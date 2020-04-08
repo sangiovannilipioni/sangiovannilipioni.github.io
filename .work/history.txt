@@ -1,0 +1,10 @@
+removed A record(s) from 
+https://admin.aruba.it/dnspanel/default2.aspx
+
+	[empty]	62.149.128.166
+	[empty]	62.149.128.163
+	[empty]	62.149.128.160
+	[empty]	62.149.128.157
+	[empty]	62.149.128.154
+	[empty]	62.149.128.151
+    www	62.149.128.40
