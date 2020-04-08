@@ -1,12 +1,12 @@
 html {
-    background: transparent url(/images/panoramix.jpg) no-repeat center center fixed;
+    background: transparent url(/images/panoramix2.jpg) no-repeat center center fixed;
     background-size: cover;
 }
 
 h1 {
     font-family: 'Roboto', sans-serif;
-    font-size: 92pt;
-    color: rgba(193, 150, 70, 0.6);
+    font-size: 80pt;
+    color: rgba(230, 193, 123, 0.6);
     position: absolute;
     top: 50%;
     left: 50%;
