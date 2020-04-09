@@ -3,9 +3,7 @@ html {
     background-size: cover;
 }
 
-h1 {
-    font-family: 'Roboto', sans-serif;
-    font-size: 80pt;
+h1#SGL {
     color: rgba(230, 193, 123, 0.6);
     position: absolute;
     top: 50%;
@@ -13,4 +11,4 @@ h1 {
     transform: translate(-50%, -50%);
     width: 100%;
     text-align: center;
-  }
+}
