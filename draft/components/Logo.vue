@@ -1,3 +1,14 @@
+<!--
+<template>
+  <div>
+    <a
+      href="https://translate.google.com/?sl=ko&tl=it&text=%EC%82%B0%20%EC%A1%B0%EB%B0%98%EB%8B%88%20%EB%A6%AC%ED%94%BC%20%EC%98%A4%EB%8B%88&op=translate&hl=en"
+      target="_google"
+      >산 조반니 리피 오니</a
+    >
+  </div>
+</template> 
+-->
 <template>
   <svg class="NuxtLogo" width="245" height="180" viewBox="0 0 452 342" xmlns="http://www.w3.org/2000/svg">
     <path
@@ -16,14 +27,4 @@
 </template>
 
 <style>
-.NuxtLogo {
-  animation: 1s appear;
-  margin: auto;
-}
-
-@keyframes appear {
-  0% {
-    opacity: 0;
-  }
-}
 </style>
