@@ -1,8 +1,21 @@
-
-html, body, #__nuxt, #__layout  {
-    height: 100% !important;
+html,
+body,
+#__nuxt,
+#__layout {
+  height: 100% !important;
 }
 
-ul, li {
-    list-style-type: none;
+ul,
+li {
+  list-style-type: none;
 }
+
+#logo svg {
+  width: 32px;
+  height: auto;
+}
+
+#logo svg path {
+    stroke-width: 56;
+}
+  

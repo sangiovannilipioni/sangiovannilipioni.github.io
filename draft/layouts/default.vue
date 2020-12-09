@@ -12,6 +12,7 @@
           <b-nav-item-dropdown text="Media">
             <b-dropdown-item  href="/gallery">Foto</b-dropdown-item>
             <b-dropdown-item href="/videos">Video</b-dropdown-item>
+            <b-dropdown-item href="/logos">Logo</b-dropdown-item>
           </b-nav-item-dropdown>
           <b-nav-item-dropdown text="Documenti">
             <b-dropdown-item disabled><img src="/png/Adobe-PDF-Document-icon.png"/></b-dropdown-item>
@@ -37,10 +38,6 @@
 </template>
 
 <style scoped>
-.NuxtLogo {
-  width: 48px;
-  height: auto;
-}
 ul.dropdown-menu li a {
 white-space: nowrap;
 }
