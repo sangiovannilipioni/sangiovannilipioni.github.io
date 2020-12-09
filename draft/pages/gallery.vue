@@ -1,14 +1,9 @@
 <template >
-  <!--div id="example-1">
-    <span v-for="image in images" :key="1">
-      <img :src="image.pathLong">
-    </span>
-  </div-->
-  <div id="app">
+  <div id="photoGallery">
     <vue-masonry-wall :items="items" :options="options" @append="append">
       <template v-slot:default="{ item }">
         <div class="Item">
-          <img :src="item.pathLong" />
+          <img class="Img Content" :src="item.pathLong" />
         </div>
       </template>
     </vue-masonry-wall>
@@ -25,7 +20,7 @@
 .Content {
   padding: 20px;
 }
-img {
+.Img {
   object-fit: cover;
   width: 100%;
   height: 100%;
@@ -37,8 +32,10 @@ img {
 <script>
 import VueMasonryWall from "vue-masonry-wall";
 export default {
-  name: "app",
+  name: "photoGallery",
+
   components: { VueMasonryWall },
+  
   data() {
     return {
       options: {
@@ -53,7 +50,7 @@ export default {
   },
 
   mounted() {
-    const f = require.context("../static/img", true, /\.jpg$/);
+    const f = require.context("../static/jpg", true, /\.jpg$/);
     f.keys().forEach((key) => {
       this.items.push({ pathLong: f(key), pathShort: key });
     });

@@ -6,5 +6,5 @@
 - Renato Rossi
 - Nicola Lilli
 - Jacqueline Rossi
-- Alessia Thiebaud :cyclone:
+- Alessia Thiebaud
 - Luca Grosso
