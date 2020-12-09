@@ -10,12 +10,14 @@
       <b-collapse id="nav-text-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item-dropdown text="Media">
-            <b-dropdown-item  href="/gallery">Foto</b-dropdown-item>
+            <b-dropdown-item href="/gallery">Foto</b-dropdown-item>
             <b-dropdown-item href="/videos">Video</b-dropdown-item>
             <b-dropdown-item href="/logos">Logo</b-dropdown-item>
           </b-nav-item-dropdown>
           <b-nav-item-dropdown text="Documenti">
-            <b-dropdown-item disabled><img src="/png/Adobe-PDF-Document-icon.png"/></b-dropdown-item>
+            <b-dropdown-item disabled
+              ><img src="/png/Adobe-PDF-Document-icon.png"
+            /></b-dropdown-item>
             <b-dropdown-item
               href="/pdf/Atto Costitutivo e STATUTO.pdf"
               target="_blank"
@@ -28,7 +30,9 @@
             >
           </b-nav-item-dropdown>
           <b-nav-item-dropdown text="Chi Siamo">
-            <b-dropdown-item href="/blog/direttivo">Consiglio Direttivo</b-dropdown-item>
+            <b-dropdown-item href="/blog/direttivo"
+              >Consiglio Direttivo</b-dropdown-item
+            >
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -38,7 +42,4 @@
 </template>
 
 <style scoped>
-ul.dropdown-menu li a {
-white-space: nowrap;
-}
 </style>

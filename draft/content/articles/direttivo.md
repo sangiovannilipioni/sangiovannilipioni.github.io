@@ -1,7 +1,7 @@
-# Consiglio Direttivo 
+# Consiglio Direttivo
 
-- Felice Monaco, *presidente*
-- Ennio Rossi, *vice presidente*
+- Felice Monaco, _presidente_
+- Ennio Rossi, _vice presidente_
 - Carlo Monaco
 - Renato Rossi
 - Nicola Lilli

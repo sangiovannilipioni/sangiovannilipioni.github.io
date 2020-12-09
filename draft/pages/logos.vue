@@ -7,46 +7,44 @@
   </div>
 </template>
 <style>
-
 .logos svg {
   width: 96px;
   height: auto;
 }
 .logos svg path {
-    stroke-width: 32;
-}
-  
-.logos div {
-padding: 10px;
+  stroke-width: 32;
 }
 
+.logos div {
+  padding: 10px;
+}
 </style>
 <script>
 export default {
-    name: 'Icon',
-    props: {
-        name: {
-            type: String,
-            required: true
-        }
+  name: "Icon",
+  props: {
+    name: {
+      type: String,
+      required: true,
     },
-    computed: {
-        src() {
-            const src = require(`assets/svg/logo.svg?raw`)
-            return src
-        },
-        src1() {
-            const src = require(`assets/svg/logo1.svg?raw`)
-            return src
-        },
-        src2() {
-            const src = require(`assets/svg/logo2.svg?raw`)
-            return src
-        },
-        src3() {
-            const src = require(`assets/svg/logo3.svg?raw`)
-            return src
-        }
-    }
-}
+  },
+  computed: {
+    src() {
+      const src = require(`assets/svg/logo.svg?raw`);
+      return src;
+    },
+    src1() {
+      const src = require(`assets/svg/logo1.svg?raw`);
+      return src;
+    },
+    src2() {
+      const src = require(`assets/svg/logo2.svg?raw`);
+      return src;
+    },
+    src3() {
+      const src = require(`assets/svg/logo3.svg?raw`);
+      return src;
+    },
+  },
+};
 </script>

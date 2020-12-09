@@ -1,7 +1,8 @@
 ---
 title: Chi siamo
 ---
-**San Giovanni Lipioni** è un piccolo paese dell’Abruzzo interno collinare, posto a 545 m.s.l.m. sul versante sinistro del fiume Trigno, al confine con il Molise. Il territorio in cui è collocato degrada progressivamente verso il mare Adriatico da cui dista appena 40 Km. In direzione opposta invece il paesaggio collinare coltivato tende a diventare montano e si copre di prati e boschi. L’Associazione “*NESSUNO ESCLUSO*” è stata costituita a San Giovanni il mese di giugno del 2020. Promossa da alcuni sangiovannesi non residenti è sorta dopo un percorso di informazione e coinvolgimento di gran parte della popolazione residente e no. Il nome “*NESSUNO ESCLUSO*” sta ad indicare la volontà dei promotori di operare con spirito di inclusione, di apertura verso tutti e per il bene dell’intera comunità.
+
+**San Giovanni Lipioni** è un piccolo paese dell’Abruzzo interno collinare, posto a 545 m.s.l.m. sul versante sinistro del fiume Trigno, al confine con il Molise. Il territorio in cui è collocato degrada progressivamente verso il mare Adriatico da cui dista appena 40 Km. In direzione opposta invece il paesaggio collinare coltivato tende a diventare montano e si copre di prati e boschi. L’Associazione “_NESSUNO ESCLUSO_” è stata costituita a San Giovanni il mese di giugno del 2020. Promossa da alcuni sangiovannesi non residenti è sorta dopo un percorso di informazione e coinvolgimento di gran parte della popolazione residente e no. Il nome “_NESSUNO ESCLUSO_” sta ad indicare la volontà dei promotori di operare con spirito di inclusione, di apertura verso tutti e per il bene dell’intera comunità.
 
 Ad oggi l'Associazione conta 50 soci. Abbiamo età diverse ma ci accomuna un legame mantenuto o costruito nel tempo col paese e col territorio, che desideriamo arricchire e rafforzare con iniziative concrete.
 
@@ -13,4 +14,4 @@ Il modello di vita urbana, moderna, che ha rappresentato fino ad oggi un’aspir
 
 Operando con una visione di lungo periodo vogliamo contribuire a creare una immagine positiva della nostra realtà favorendo lo sviluppo di iniziative singole ed associate coerenti con tale visione. Due sono le nostre bussole: la custodia e valorizzazione del territorio e del paesaggio e l’attenzione al benessere gli abitanti.
 
-Oggi le aree interne sono tornate al centro dell’attenzione anche nelle politiche pubbliche, quindi il nostro obiettivo è di intraprendere qualunque progetto possa aiutare i nostri territori a riprendersi e a crescere. 
+Oggi le aree interne sono tornate al centro dell’attenzione anche nelle politiche pubbliche, quindi il nostro obiettivo è di intraprendere qualunque progetto possa aiutare i nostri territori a riprendersi e a crescere.

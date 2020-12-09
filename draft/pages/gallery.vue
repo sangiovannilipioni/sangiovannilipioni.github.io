@@ -35,7 +35,7 @@ export default {
   name: "photoGallery",
 
   components: { VueMasonryWall },
-  
+
   data() {
     return {
       options: {
