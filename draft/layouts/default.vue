@@ -10,8 +10,8 @@
       <b-collapse id="nav-text-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item-dropdown text="Media">
-            <b-dropdown-item  href="/gallery">Fotos</b-dropdown-item>
-            <b-dropdown-item href="/videos">Videos</b-dropdown-item>
+            <b-dropdown-item  href="/gallery">Foto</b-dropdown-item>
+            <b-dropdown-item href="/videos">Video</b-dropdown-item>
           </b-nav-item-dropdown>
           <b-nav-item-dropdown text="Documenti">
             <b-dropdown-item disabled><img src="/png/Adobe-PDF-Document-icon.png"/></b-dropdown-item>
@@ -23,7 +23,7 @@
             <b-dropdown-item
               href="/pdf/DOMANDA DI AMMISSIONE A SOCIO.pdf"
               target="_blank"
-              >Come Adderire&hellip;</b-dropdown-item
+              >Come Aderire&hellip;</b-dropdown-item
             >
           </b-nav-item-dropdown>
           <b-nav-item-dropdown text="Chi Siamo">
