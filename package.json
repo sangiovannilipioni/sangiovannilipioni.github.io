@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "NUXT_ENV_CURRENT_GIT_SHA=`git rev-parse --short HEAD` nuxt",
+    "dev": "NUXT_ENV_CURRENT_GIT_SHA=`git rev-parse HEAD` nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "NUXT_ENV_CURRENT_GIT_SHA=`git rev-parse --short HEAD` nuxt generate",
+    "generate": "NUXT_ENV_CURRENT_GIT_SHA=`git rev-parse HEAD` nuxt generate",
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {

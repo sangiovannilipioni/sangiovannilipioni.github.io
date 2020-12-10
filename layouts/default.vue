@@ -1,5 +1,5 @@
 <template>
-  <div class="container d-flex flex-column h-100">
+  <div class="container-fluid d-flex flex-column h-100">
     <b-navbar toggleable="sm" type="light" variant="light">
       <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle>
 
@@ -37,9 +37,39 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <Nuxt />
+    <div class="container">
+      <Nuxt />
+    </div>
+    <footer class="footer">
+      <div class="float-right">
+        <a target="_blank" :href="gitUrl">git</a>
+      </div>
+    </footer>
   </div>
 </template>
 
 <style scoped>
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  background-color: transparent;
+  padding: 0 40px;
+
+  font-family: monospace;
+}
 </style>
+
+<script>
+export default {
+  data() {
+    return {
+      gitSha: process.env.NUXT_ENV_CURRENT_GIT_SHA,
+      gitUrl: "https://github.com/sangiovannilipioni/sangiovannilipioni.github.io/commit/" + process.env.NUXT_ENV_CURRENT_GIT_SHA
+    };
+  },
+};
+</script>
+
