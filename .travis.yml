@@ -25,5 +25,6 @@ notifications:
   slack:
     rooms:
       - nessunoescluso:kGIR9oCAutxpT7YTygEJeqKN#engineering
-    on_success: always
-    on_start: always
+    on_success: always # options: [always|never|change]
+    on_failure: always # options: [always|never|change]
+    on_start: always # options: [always|never|change]
