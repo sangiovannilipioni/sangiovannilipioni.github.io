@@ -3,7 +3,7 @@
     <nuxt-content :document="presentazione" />
     <client-only>
       <footer class="footer">
-        <div class="float-right">{{ version }}</div>
+        <div class="float-right">version {{ version }}</div>
       </footer>
     </client-only>
   </div>
