@@ -21,7 +21,5 @@ deploy:
   on:
     branch: master
 notifications:
-  slack:
-    on_success: always
-    rooms:
-      secure: zahGJY95NXKPy8CixD5Cep887116kCt2IIyvuoC36X6nLbtuww+PmroHiN/RFSIT26aUtahSocGZ4FsacOLlGE/WPBXXnI1Wn3pDayVsya3S1YR1PetmRpOUfaYpWjPzOB6if10k9Z9yGkbWVv1dmCXqsq/cdr/xtSUvS5deyO8d+PwLGGQw+FU2kX1CdPSl9fMLBQZYRof201NEp6INNyqps5IElEHZjtprGbM/Z1HYxdtDwqKi66ZXnQ1x0s7kK76AQA1TU+ihy7tSUnwqd5JGbBaxjUjhVVx67pfTvP923WDOiyB+DCBEh0gMC3cx/ypqFkBdMpmnIty/019ojYomWhs/IFmdgu2HDT46M/Fz/vDLNwZd1t+HhH8laPCK1cIV7H1xv0/Us2ITsAqSI35GK9UJfR2fukpdr7EtPra2I4Yy3reaHIHyZ+aEBMUc+3TXsbZOWyJhlpAJz3h39ZlslXKxMA4x8Ab9Bg3StDdCXrJ2g2M9kC1V3Q1WcCGi30rT0B7bgkViw8JPrwpeiYqWFQ25hZ4OdSy9n90OHG/KedmSrmlgy8ghtyrEyDm3UOsMZLoFHyrMYV89tCzw1zL+PmdX6BtECL5QkGCp4aP1pxYr8H90HmfaKO3K6GqRoPuUlBJ7n/83UTTViFe1y2RPZKaEszEye9jAPVhGvJ8=
+  email: false
+  slack: nessunoescluso:kGIR9oCAutxpT7YTygEJeqKN
