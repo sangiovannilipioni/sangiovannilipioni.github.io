@@ -1,9 +1,9 @@
 {
-  "name": "draft",
-  "version": "1.0.0",
+  "name": "nessunoescluso",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "NUXT_ENV_CURRENT_GIT_SHA=`git rev-parse --short HEAD` nuxt",
+    "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",

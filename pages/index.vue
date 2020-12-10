@@ -1,11 +1,9 @@
 <template>
   <div>
     <nuxt-content :document="presentazione" />
-    <client-only>
-      <footer class="footer">
-        <div class="float-right">version {{ version }}</div>
-      </footer>
-    </client-only>
+    <footer class="footer">
+      <div>version {{ version }}</div>
+    </footer>
   </div>
 </template>
 <style >
@@ -15,7 +13,7 @@
   width: 100%;
   height: 60px;
   line-height: 60px;
-  background-color: #f5f5f5;
+  background-color: transparent;
 
   font-family: monospace;
 }
@@ -27,7 +25,7 @@ export default {
 
     return {
       presentazione,
-      version: process.env.NUXT_ENV_CURRENT_GIT_SHA,
+      version: process.version,
     };
   },
 };
