@@ -25,7 +25,7 @@ export default {
 
     return {
       presentazione,
-      version: process.version,
+refwithrefref      version: process.env.NUXT_ENV_CURRENT_GIT_SHA,
     };
   },
 };

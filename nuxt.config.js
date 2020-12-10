@@ -1,5 +1,3 @@
-import webpack from "webpack";
-import { version } from "./package.json";
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: "static",
@@ -75,11 +73,6 @@ export default {
       config.node = {
         fs: "empty"
       };
-    },
-    plugins: [
-      new webpack.DefinePlugin({
-        "process.VERSION": version
-      })
-    ]
+    }
   }
 };
