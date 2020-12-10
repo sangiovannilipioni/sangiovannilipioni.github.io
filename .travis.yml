@@ -22,4 +22,4 @@ deploy:
     branch: master
 notifications:
   email: false
-  slack: nessunoescluso:kGIR9oCAutxpT7YTygEJeqKN
+  slack: nessunoescluso:kGIR9oCAutxpT7YTygEJeqKN#engineering
