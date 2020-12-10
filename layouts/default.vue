@@ -41,8 +41,9 @@
       <Nuxt />
     </div>
     <footer class="footer">
-      <div class="float-right">
-        <a target="_blank" :href="gitUrl">version {{packageVersion}}</a>
+      <div >
+        Associazione APS “NESSUNO ESCLUSO” 
+        <a class="float-right" target="_blank" :href="gitUrl">version {{packageVersion}}</a>
       </div>
     </footer>
   </div>
@@ -56,8 +57,10 @@
   height: 40px;
   line-height: 40px;
   background-color: transparent;
-  padding: 0 40px;
-
+  color: darkgray;
+  padding-right: 40px;
+}
+.footer a {
   font-family: monospace;
 }
 </style>
