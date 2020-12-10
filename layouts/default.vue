@@ -42,7 +42,7 @@
     </div>
     <footer class="footer">
       <div class="float-right">
-        <a target="_blank" :href="gitUrl">git</a>
+        <a target="_blank" :href="gitUrl">version {{packageVersion}}</a>
       </div>
     </footer>
   </div>
@@ -66,6 +66,7 @@
 export default {
   data() {
     return {
+      packageVersion: process.env.packageVersion,
       gitSha: process.env.NUXT_ENV_CURRENT_GIT_SHA,
       gitUrl: "https://github.com/sangiovannilipioni/sangiovannilipioni.github.io/commit/" + process.env.NUXT_ENV_CURRENT_GIT_SHA
     };

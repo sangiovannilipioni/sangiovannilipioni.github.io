@@ -1,3 +1,4 @@
+import { version } from "./package.json";
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: "static",
@@ -55,6 +56,10 @@ export default {
     // https://content.nuxtjs.org/
     "@nuxt/content"
   ],
+
+  env: {
+    packageVersion: version
+  },
 
   content: {
     markdown: {
