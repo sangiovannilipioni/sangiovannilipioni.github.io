@@ -45,11 +45,13 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <div class="container">
-      <Nuxt />
-    </div>
-    <footer class="footer">
-      <div>
+    <main role="main" class="flex-shrink-0">
+      <div class="container">
+        <Nuxt />
+      </div>
+    </main>
+    <footer class="footer mt-auto py-1">
+      <div class="container">
         <span>&copysr;&nbsp;Associazione APS “<i>NESSUNO ESCLUSO</i>”</span>
         <a id="version" class="float-right" target="_blank" :href="gitUrl"
           >version {{ packageVersion }}</a
@@ -63,13 +65,9 @@
 nav {
   background: linear-gradient(to bottom, white, #f2f3f4 100%);
 }
+
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  color: darkgray;
   background: linear-gradient(to top, #f2f3f4, white 100%);
-  padding: 0.5rem 1rem;
 }
 .footer #version {
   color: darkgray;
