@@ -67,6 +67,7 @@ nav {
 }
 
 .footer {
+  color: darkgray;
   background: linear-gradient(to top, #f2f3f4, white 100%);
 }
 
