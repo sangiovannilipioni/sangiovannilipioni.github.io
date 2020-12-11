@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid d-flex flex-column h-100">
+  <div class="d-flex flex-column h-100">
     <b-navbar toggleable="sm" type="light" variant="light">
       <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle>
 
@@ -14,7 +14,7 @@
               >Presentazione</b-dropdown-item
             >
             <b-dropdown-item href="/blog/direttivo"
-              >Il&nbsp;C.D.A.</b-dropdown-item
+              >Consiglio&nbsp;Direttivo</b-dropdown-item
             >
             <b-dropdown-item
               href="/pdf/Atto Costitutivo e STATUTO.pdf"
@@ -50,8 +50,8 @@
     </div>
     <footer class="footer">
       <div>
-        Associazione APS “NESSUNO ESCLUSO”
-        <a class="float-right" target="_blank" :href="gitUrl"
+        <span>&copysr;&nbsp;Associazione APS “<i>NESSUNO ESCLUSO</i>”</span>
+        <a id="version" class="float-right" target="_blank" :href="gitUrl"
           >version {{ packageVersion }}</a
         >
       </div>
@@ -60,17 +60,19 @@
 </template>
 
 <style scoped>
+nav {
+  background: linear-gradient(to bottom, white, #f2f3f4 100%);
+}
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 40px;
-  line-height: 40px;
-  background-color: transparent;
   color: darkgray;
-  padding-right: 40px;
+  background: linear-gradient(to top, #f2f3f4, white 100%);
+  padding: 0.5rem 1rem;
 }
-.footer a {
+.footer #version {
+  color: darkgray;
   font-family: monospace;
 }
 </style>
