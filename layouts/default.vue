@@ -8,7 +8,7 @@
       ></b-navbar-brand>
 
       <b-collapse id="nav-text-collapse" is-nav>
-        <b-navbar-nav>
+        <b-navbar-nav class="mr-auto">
           <b-nav-item-dropdown text="Chi Siamo">
             <b-dropdown-item href="/blog/presentazione"
               >Presentazione</b-dropdown-item
@@ -58,9 +58,10 @@
               ></b-dropdown-item
             >
           </b-nav-item-dropdown>
-
-          <a class="nav-item nav-link" href="/secure" title="login">
-            <span><i class="fas fa-sign-in-alt"></i>&nbsp;Sign in</span>
+        </b-navbar-nav>
+        <b-navbar-nav class="justify-content-end">
+          <a class="nav-item nav-link justify-content-end" href="/secure" title="login">
+            <span><i class="fas fa-sign-in-alt"></i>Entra</span>
           </a>
         </b-navbar-nav>
       </b-collapse>

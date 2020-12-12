@@ -47,7 +47,13 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
-  buildModules: ["@nuxtjs/svg"],
+  buildModules: ["@nuxtjs/svg", "@nuxtjs/fontawesome"],
+
+  fontawesome: {
+    icons: {
+      solid: ["faSignInAlt"]
+    }
+  },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
@@ -62,8 +68,7 @@ export default {
 
   auth: {
     // Options
-    strategies: {
-    }
+    strategies: {}
   },
 
   env: {
