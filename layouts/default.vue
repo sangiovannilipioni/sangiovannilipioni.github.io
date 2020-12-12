@@ -30,8 +30,7 @@
                 >Programma x San_Giovanni Finale Giugno 2020</span
               ></b-dropdown-item
             >
-            <b-dropdown-item
-              href="/embedded_pdf/Nessuno_Escluso_APS_ENG_v1"
+            <b-dropdown-item href="/embedded_pdf/Nessuno_Escluso_APS_ENG_v1"
               ><span class="pdf"
                 >Presentazione Inglese v1</span
               ></b-dropdown-item
@@ -40,14 +39,17 @@
 
           <b-nav-item-dropdown text="Media">
             <b-dropdown-item href="/gallery">Foto</b-dropdown-item>
-            <b-dropdown-item href="/videos">Video 1</b-dropdown-item>
-            <b-dropdown-item href="/videos2">Video 2</b-dropdown-item>
-            <!-- b-dropdown-item href="/logos">Logo</!-->
+            <!--
+              <b-dropdown-item href="/videos">Video 1</b-dropdown-item>
+            -->
+            <b-dropdown-item href="/videos2">Video</b-dropdown-item>
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown text="Contatti">
             <b-dropdown-item href="/contatti">Contatti</b-dropdown-item>
-            <b-dropdown-item href="/pdf/Domanda_di_Ammissione_a_Socio.pdf" target="_blank"
+            <b-dropdown-item
+              href="/pdf/Domanda_di_Ammissione_a_Socio.pdf"
+              target="_blank"
               ><span class="pdf"
                 >Richiesta&nbsp;di&nbsp;Adesione&nbsp;&hellip;</span
               ></b-dropdown-item

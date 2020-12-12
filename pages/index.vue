@@ -11,6 +11,7 @@
   height: 100%;
   background: url("/jpg/panoramix2.jpg") no-repeat center center fixed;
   z-index: -1000;
+  background-size: cover;
   /* 
   filter: blur(2px) grayscale(50%);
   opacity: 0.2;
