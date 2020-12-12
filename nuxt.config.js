@@ -54,8 +54,20 @@ export default {
     // https://go.nuxtjs.dev/bootstrap
     "bootstrap-vue/nuxt",
     // https://content.nuxtjs.org/
-    "@nuxt/content"
+    "@nuxt/content",
+    // https://auth.nuxtjs.org/guide/setup
+    "@nuxtjs/axios",
+    "@nuxtjs/auth-next"
   ],
+
+  auth: {
+    // Options
+    strategies: {
+      google: {
+        clientId: '...'
+      }
+    }
+  },
 
   env: {
     packageVersion: version
