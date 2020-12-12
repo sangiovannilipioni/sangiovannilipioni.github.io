@@ -63,18 +63,22 @@ export default {
   auth: {
     // Options
     strategies: {
-      /*
       google: {
-        clientId: '804480548931-gis93majiebm1o4idpuilslm5arn9l0k.apps.googleusercontent.com'
+        clientId:
+          "804480548931-gis93majiebm1o4idpuilslm5arn9l0k.apps.googleusercontent.com"
       },
-      */
       facebook: {
         endpoints: {
-          userInfo: 'https://graph.facebook.com/v6.0/me?fields=id,name,picture{url}'
+          userInfo:
+            "https://graph.facebook.com/v6.0/me?fields=id,name,picture{url}"
         },
-        clientId: '104250825478',
-        scope: ['public_profile', 'email']
+        clientId: "104250825478",
+        scope: ["public_profile", "email"]
       },
+      github: {
+        clientId: "629a325f9df6551681bf",
+        clientSecret: "fd39b63b7b67686a53fe4941b155409ad6a5e515"
+      }
     }
   },
 
