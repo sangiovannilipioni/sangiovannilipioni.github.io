@@ -73,6 +73,7 @@ export default {
       google: {
         clientId:
           "804480548931-gis93majiebm1o4idpuilslm5arn9l0k.apps.googleusercontent.com",
+          // https://stackoverflow.com/a/64080397/1070215
         codeChallengeMethod: ""
       }
     }
