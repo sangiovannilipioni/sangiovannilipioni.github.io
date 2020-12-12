@@ -57,6 +57,10 @@
               ></b-dropdown-item
             >
           </b-nav-item-dropdown>
+
+          <a class="nav-item nav-link" href="/secure" title="login">
+            <span><i class="fas fa-sign-in-alt"></i>&nbsp;Sign in</span>
+          </a>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

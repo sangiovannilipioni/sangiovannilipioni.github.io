@@ -63,9 +63,18 @@ export default {
   auth: {
     // Options
     strategies: {
+      /*
       google: {
-        clientId: '...'
-      }
+        clientId: '804480548931-gis93majiebm1o4idpuilslm5arn9l0k.apps.googleusercontent.com'
+      },
+      */
+      facebook: {
+        endpoints: {
+          userInfo: 'https://graph.facebook.com/v6.0/me?fields=id,name,picture{url}'
+        },
+        clientId: '104250825478',
+        scope: ['public_profile', 'email']
+      },
     }
   },
 
