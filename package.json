@@ -24,7 +24,8 @@
     "remark-emoji": "^2.1.0",
     "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
-    "vue-masonry-wall": "^0.3.0"
+    "vue-masonry-wall": "^0.3.0",
+    "vue-pdf": "^4.2.0"
   },
   "devDependencies": {}
 }

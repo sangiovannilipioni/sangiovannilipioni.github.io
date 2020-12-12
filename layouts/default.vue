@@ -16,30 +16,41 @@
             <b-dropdown-item href="/blog/direttivo"
               >Consiglio&nbsp;Direttivo</b-dropdown-item
             >
-            <b-dropdown-item
-              href="/pdf/Atto Costitutivo e STATUTO.pdf"
-              target="_blank"
-              ><img
-                style="width: 16px; height: auto"
-                src="/svg/PDF_file_icon.svg"
-              />&nbsp;Atto&nbsp;Costitutivo&nbsp;e&nbsp;Statuto&nbsp;&hellip;</b-dropdown-item
+            <b-dropdown-item href="/embedded_pdf/Atto_Costitutivo_e_Statuto"
+              ><span class="pdf"
+                >Atto&nbsp;Costitutivo&nbsp;e&nbsp;Statuto</span
+              ></b-dropdown-item
             >
           </b-nav-item-dropdown>
-          <b-nav-item href="/progetto">Il Progetto</b-nav-item>
+
+          <b-nav-item-dropdown text="Il Progetto">
+            <b-dropdown-item
+              href="/embedded_pdf/Programma_x_San_Giovanni_Finale_Giugno_2020_pptx"
+              ><span class="pdf"
+                >Programma x San_Giovanni Finale Giugno 2020</span
+              ></b-dropdown-item
+            >
+            <b-dropdown-item
+              href="/embedded_pdf/Nessuno_Escluso_APS_ENG_v1"
+              ><span class="pdf"
+                >Presentazione Inglese v1</span
+              ></b-dropdown-item
+            >
+          </b-nav-item-dropdown>
+
           <b-nav-item-dropdown text="Media">
             <b-dropdown-item href="/gallery">Foto</b-dropdown-item>
-            <b-dropdown-item href="/videos">Video</b-dropdown-item>
+            <b-dropdown-item href="/videos">Video 1</b-dropdown-item>
+            <b-dropdown-item href="/videos2">Video 2</b-dropdown-item>
             <!-- b-dropdown-item href="/logos">Logo</!-->
           </b-nav-item-dropdown>
+
           <b-nav-item-dropdown text="Contatti">
             <b-dropdown-item href="/contatti">Contatti</b-dropdown-item>
-            <b-dropdown-item
-              href="/pdf/DOMANDA DI AMMISSIONE A SOCIO.pdf"
-              target="_blank"
-              ><img
-                style="width: 16px; height: auto"
-                src="/svg/PDF_file_icon.svg"
-              />&nbsp;Richiesta&nbsp;di&nbsp;Adesione&nbsp;&hellip;</b-dropdown-item
+            <b-dropdown-item href="/pdf/Domanda_di_Ammissione_a_Socio.pdf" target="_blank"
+              ><span class="pdf"
+                >Richiesta&nbsp;di&nbsp;Adesione&nbsp;&hellip;</span
+              ></b-dropdown-item
             >
           </b-nav-item-dropdown>
         </b-navbar-nav>
@@ -74,6 +85,18 @@ nav {
 .footer #version {
   color: darkgray;
   font-family: monospace;
+}
+
+/* https://stackoverflow.com/a/25410621/1070215 */
+a[role="menuitem"] .pdf:after {
+  display: inline-block;
+  content: "";
+  background-image: url("/svg/PDF_file_icon.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  height: 20px;
+  width: 20px;
+  margin-left: 0.5rem;
 }
 </style>
 
