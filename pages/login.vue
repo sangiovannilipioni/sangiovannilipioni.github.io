@@ -11,6 +11,7 @@
     </b-alert>
     <b-row align-h="center" class="pt-4">
         <b-card title="Social Login" bg-variant="light">
+          <div class="alert alert-warning">Work in Progress, rien ne marche pour l'instant !</div>
           <div v-for="s in strategies" :key="s.key" class="mb-2">
             <b-btn
               block
@@ -40,11 +41,12 @@ export default {
     }
   },
   computed: {
-    strategies: () => [
+    strategies: () => [ 
+    /* */
       { key: 'google', name: 'Google', color: '#4284f4' },
       { key: 'facebook', name: 'Facebook', color: '#3c65c4' },
       { key: 'github', name: 'GitHub', color: '#202326' }
-    ],
+   ],
     redirect() {
       return (
         this.$route.query.redirect &&
