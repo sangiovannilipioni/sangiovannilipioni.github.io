@@ -45,6 +45,7 @@
               <b-dropdown-item href="/videos">Video 1</b-dropdown-item>
             -->
             <b-dropdown-item href="/videos2">Video</b-dropdown-item>
+            <b-dropdown-item href="/logos">Logo</b-dropdown-item>
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown text="Contatti">

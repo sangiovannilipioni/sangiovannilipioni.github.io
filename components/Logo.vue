@@ -6,7 +6,7 @@
 export default {
   computed: {
     src() {
-      const src = require(`assets/svg/logo3.svg?raw`);
+      const src = require(`assets/svg/Logo_qr_code.svg?raw`);
       return src;
     },
   },
