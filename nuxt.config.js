@@ -51,7 +51,8 @@ export default {
 
   fontawesome: {
     icons: {
-      solid: ["faSignInAlt"]
+      solid: true,
+      brands: true
     }
   },
 

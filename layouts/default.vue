@@ -61,7 +61,7 @@
         </b-navbar-nav>
         <b-navbar-nav class="justify-content-end">
           <a class="nav-item nav-link justify-content-end" href="/secure" title="login">
-            <span><i class="fas fa-sign-in-alt"></i>Entra</span>
+            <span><font-awesome-icon :icon="['fas', 'sign-in-alt']" />&nbsp;Entra</span>
           </a>
         </b-navbar-nav>
       </b-collapse>

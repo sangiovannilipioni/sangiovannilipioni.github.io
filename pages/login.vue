@@ -19,6 +19,7 @@
               class="login-button"
               @click="$auth.loginWith(s.key)"
             >
+              <font-awesome-icon class="float-left" :icon="['fab', s.key]" />
               Login with {{ s.name }}
             </b-btn>
           </div>
@@ -43,9 +44,9 @@ export default {
   computed: {
     strategies: () => [ 
     /* */
-      { key: 'google', name: 'Google', color: '#4284f4' },
-      { key: 'facebook', name: 'Facebook', color: '#3c65c4' },
-      { key: 'github', name: 'GitHub', color: '#202326' }
+      { key: 'google', name: 'Google', color: '#4284f4', icon: ''},
+      { key: 'facebook', name: 'Facebook', color: '#3c65c4', icon: '' },
+      { key: 'github', name: 'GitHub', color: '#202326', icon: '' }
    ],
     redirect() {
       return (
