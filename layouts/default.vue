@@ -30,11 +30,13 @@
                 >Programma x San_Giovanni Finale Giugno 2020</span
               ></b-dropdown-item
             >
+            <!--
             <b-dropdown-item href="/embedded_pdf/Nessuno_Escluso_APS_ENG_v1"
               ><span class="pdf"
                 >Presentazione Inglese v1</span
               ></b-dropdown-item
             >
+            -->
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown text="Media">
