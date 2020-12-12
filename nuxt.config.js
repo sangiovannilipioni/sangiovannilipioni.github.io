@@ -69,7 +69,13 @@ export default {
 
   auth: {
     // Options
-    strategies: {}
+    strategies: {
+      google: {
+        clientId:
+          "804480548931-gis93majiebm1o4idpuilslm5arn9l0k.apps.googleusercontent.com",
+        codeChallengeMethod: ""
+      }
+    }
   },
 
   env: {
