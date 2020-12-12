@@ -51,7 +51,7 @@
       </div>
     </main>
     <footer class="footer mt-auto py-1">
-      <div class="container">
+      <div class="container-fluid">
         <span>&copysr;&nbsp;Associazione APS “<i>NESSUNO ESCLUSO</i>”</span>
         <a id="version" class="float-right" target="_blank" :href="gitUrl"
           >version {{ packageVersion }}</a
