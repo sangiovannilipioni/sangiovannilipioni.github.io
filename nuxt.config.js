@@ -61,7 +61,7 @@ export default {
   },
 
   googleAnalytics: {
-    id: 'san-giovanni-lipioni'
+    id: 'G-Q4MGKD88VG'
   },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
