@@ -11,9 +11,9 @@
     </b-alert>
     <b-row align-h="center" class="pt-4">
       <b-card title="Social Login" bg-variant="light">
-        <div class="alert alert-warning">
-          <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
-          Login with Google marchote plus ou moins (mais plutôt moins que plus)
+        <div class="alert alert-info">
+          <font-awesome-icon :icon="['fas', 'thumbs-up']" />
+          Login with Facebook marche plus ou moins (plutôt plus que moins)
         </div>
         <div v-for="s in strategies" :key="s.key" class="mb-2">
           <b-btn
@@ -50,8 +50,8 @@ export default {
   computed: {
     strategies: () => [
       /* */
-      { key: "google", name: "Google", color: "#4284f4", active: true },
-      { key: "facebook", name: "Facebook", color: "#3c65c4", active: false },
+      { key: "google", name: "Google", color: "#4284f4", active: false },
+      { key: "facebook", name: "Facebook", color: "#3c65c4", active: true },
       { key: "github", name: "GitHub", color: "#202326", active: false },
     ],
     isCallback() {

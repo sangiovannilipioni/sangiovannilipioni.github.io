@@ -10,13 +10,13 @@
       <b-collapse id="nav-text-collapse" is-nav>
         <b-navbar-nav class="mr-auto">
           <b-nav-item-dropdown text="Chi Siamo">
-            <b-dropdown-item href="/blog/presentazione"
+            <b-dropdown-item to="/blog/presentazione"
               >Presentazione</b-dropdown-item
             >
-            <b-dropdown-item href="/blog/direttivo"
+            <b-dropdown-item to="/blog/direttivo"
               >Consiglio&nbsp;Direttivo</b-dropdown-item
             >
-            <b-dropdown-item href="/embedded_pdf/Atto_Costitutivo_e_Statuto"
+            <b-dropdown-item to="/embedded_pdf/Atto_Costitutivo_e_Statuto"
               ><span class="pdf"
                 >Atto&nbsp;Costitutivo&nbsp;e&nbsp;Statuto</span
               ></b-dropdown-item
@@ -25,7 +25,7 @@
 
           <b-nav-item-dropdown text="Il Progetto">
             <b-dropdown-item
-              href="/embedded_pdf/Programma_x_San_Giovanni_Finale_Giugno_2020_pptx"
+              to="/embedded_pdf/Programma_x_San_Giovanni_Finale_Giugno_2020_pptx"
               ><span class="pdf"
                 >Programma x San_Giovanni Finale Giugno 2020</span
               ></b-dropdown-item
@@ -33,15 +33,15 @@
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown text="Media">
-            <b-dropdown-item href="/gallery">Foto</b-dropdown-item>
-            <b-dropdown-item href="/videos2">Video</b-dropdown-item>
-            <b-dropdown-item href="/logos">Logo</b-dropdown-item>
+            <b-dropdown-item to="/gallery">Foto</b-dropdown-item>
+            <b-dropdown-item to="/videos2">Video</b-dropdown-item>
+            <b-dropdown-item to="/logos">Logo</b-dropdown-item>
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown text="Contatti">
-            <b-dropdown-item href="/contatti">Contatti</b-dropdown-item>
+            <b-dropdown-item to="/contatti">Contatti</b-dropdown-item>
             <b-dropdown-item
-              href="/pdf/Domanda_di_Ammissione_a_Socio.pdf"
+              to="/pdf/Domanda_di_Ammissione_a_Socio.pdf"
               target="_blank"
               ><span class="pdf"
                 >Richiesta&nbsp;di&nbsp;Adesione&nbsp;&hellip;</span
@@ -51,20 +51,33 @@
 
         </b-navbar-nav>
         <b-navbar-nav class="justify-content-end">
-          <template v-if="$auth.$state.loggedIn">$auth.user.name</template>
+          <client-only>
+          <template v-if="$auth.$state.loggedIn">
+            <b-nav-item-dropdown :text="$auth.user.name" right>
+              <b-dropdown-item to="/secure">Info</b-dropdown-item>
+              <b-dropdown-item @click="$auth.logout()">
+                <font-awesome-icon
+                  :icon="['fas', 'sign-out-alt']"
+                />&nbsp;Esci
+              </b-dropdown-item>
+            </b-nav-item-dropdown>
+            <b-img
+              :src="this.$auth.user.picture.data.url"
+              class="mt-1"
+              rounded="circle"
+              width="30px"
+              height="30px"
+            />
+          </template>
           <template v-else>
-            <a
-              class="nav-item nav-link justify-content-end"
-              href="/login"
-              title="login"
-            >
-              <span
+            <b-nav-item to="/login" right> <span
                 ><font-awesome-icon
                   :icon="['fas', 'sign-in-alt']"
                 />&nbsp;Entra</span
               >
-            </a>
+            </b-nav-item>
           </template>
+          </client-only>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -113,6 +126,7 @@ a[role="menuitem"] .pdf:after {
 </style>
 
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {

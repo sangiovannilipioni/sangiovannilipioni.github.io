@@ -77,12 +77,10 @@ export default {
 
   auth: {
     redirect: {
-      login: "/login",
-      logout: "/",
-      callback: "/secure",
-      home: "/"
+      login: '/login',
+      logout: '/',
+      home: '/'
     },
-    // Options
     strategies: {
       google: {
         // https://github.com/nuxt-community/auth-module/issues/931#issue-764604267
@@ -93,7 +91,14 @@ export default {
         // https://stackoverflow.com/questions/64073309/parameter-not-allowed-for-this-message-type-code-challenge-method-how-to-fix-i/64080397#64080397
         // https://github.com/nuxt-community/auth-module/issues/850
         codeChallengeMethod: ""
-      }
+      },
+      facebook: {
+        endpoints: {
+          userInfo: 'https://graph.facebook.com/v6.0/me?fields=id,name,email,picture{url}'
+        },
+        clientId: '104250825478',
+        scope: ['public_profile', 'email']
+      },
     }
   },
 
