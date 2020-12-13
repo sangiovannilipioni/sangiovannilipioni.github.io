@@ -33,7 +33,7 @@ export default {
         href: "/favicon-16x16.png"
       },
       { rel: "manifest", href: "/site.webmanifest" },
-      { rel: "mask-icon", href:"/safari-pinned-tab.svg"}
+      { rel: "mask-icon", href: "/safari-pinned-tab.svg" }
     ]
   },
 
@@ -61,7 +61,7 @@ export default {
   },
 
   googleAnalytics: {
-    id: 'G-Q4MGKD88VG'
+    id: "G-Q4MGKD88VG"
   },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -77,22 +77,22 @@ export default {
 
   auth: {
     redirect: {
-      login: '/login',
-      logout: '/logout',
-      callback: '/secure',
-      home: '/'
+      login: "/login",
+      logout: "/",
+      callback: "/secure",
+      home: "/"
     },
     // Options
     strategies: {
       google: {
+        // https://github.com/nuxt-community/auth-module/issues/931#issue-764604267
         clientId:
           "804480548931-gis93majiebm1o4idpuilslm5arn9l0k.apps.googleusercontent.com",
-        scope: ['profile', 'email'],
         // https://stackoverflow.com/a/64080397/1070215
-        codeChallengeMethod: "",
-        responseType: 'code', 
-        /* accessType: 'offline', 
-        grantType: 'authorization_code' */
+        // https://github.com/nuxt-community/auth-module/issues/931#issue-764604267
+        // https://stackoverflow.com/questions/64073309/parameter-not-allowed-for-this-message-type-code-challenge-method-how-to-fix-i/64080397#64080397
+        // https://github.com/nuxt-community/auth-module/issues/850
+        codeChallengeMethod: ""
       }
     }
   },
@@ -109,6 +109,7 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+    extractCSS: true,
     /*
      * https://github.com/nuxt-community/dotenv-module/issues/11#issuecomment-640277825
      ** You can extend webpack config here

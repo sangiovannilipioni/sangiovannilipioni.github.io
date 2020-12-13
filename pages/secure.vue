@@ -1,25 +1,4 @@
 <template>
-  <section class="section">
-      <div><label>$auth.loggedIn</label> <span class="badge badge-primary">&nbsp;{{ $auth.loggedIn }}&nbsp;</span></div>
-
-      <div><label>$auth.$state</label> <span class="badge badge-info">&nbsp;{{ $auth.$state }}&nbsp;</span></div>
-
-  </section>
-</template>
-
-<script>
-export default {
-  middleware: 'auth',
-  methods: {
-    logout() {
-      /* this.$auth.logout(); */
-    },
-  },
-};
-</script>
-
-<!--
-<template>
   <div>
     <b-alert show variant="warning"> This is a secure page! </b-alert>
     <b-row>
@@ -72,4 +51,3 @@ export default {
   }
 }
 </script>
--->
