@@ -47,13 +47,21 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
-  buildModules: ["@nuxtjs/svg", "@nuxtjs/fontawesome"],
+  buildModules: [
+    "@nuxtjs/svg",
+    "@nuxtjs/fontawesome",
+    "@nuxtjs/google-analytics"
+  ],
 
   fontawesome: {
     icons: {
       solid: true,
       brands: true
     }
+  },
+
+  googleAnalytics: {
+    id: 'san-giovanni-lipioni'
   },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -73,7 +81,7 @@ export default {
       google: {
         clientId:
           "804480548931-gis93majiebm1o4idpuilslm5arn9l0k.apps.googleusercontent.com",
-          // https://stackoverflow.com/a/64080397/1070215
+        // https://stackoverflow.com/a/64080397/1070215
         codeChallengeMethod: ""
       }
     }
