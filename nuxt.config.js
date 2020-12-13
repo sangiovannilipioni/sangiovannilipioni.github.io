@@ -32,8 +32,8 @@ export default {
         sizes: "16x16",
         href: "/favicon-16x16.png"
       },
-      { rel: "manifest", href: "/site.webmanifest" }
-      // { rel: "mask-icon", href:"/safari-pinned-tab.svg", color="#5bbad5"}
+      { rel: "manifest", href: "/site.webmanifest" },
+      { rel: "mask-icon", href:"/safari-pinned-tab.svg"}
     ]
   },
 
@@ -76,13 +76,23 @@ export default {
   ],
 
   auth: {
+    redirect: {
+      login: '/login',
+      logout: '/logout',
+      callback: '/secure',
+      home: '/'
+    },
     // Options
     strategies: {
       google: {
         clientId:
           "804480548931-gis93majiebm1o4idpuilslm5arn9l0k.apps.googleusercontent.com",
+        scope: ['profile', 'email'],
         // https://stackoverflow.com/a/64080397/1070215
-        codeChallengeMethod: ""
+        codeChallengeMethod: "",
+        responseType: 'code', 
+        /* accessType: 'offline', 
+        grantType: 'authorization_code' */
       }
     }
   },

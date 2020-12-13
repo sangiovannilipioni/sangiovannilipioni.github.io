@@ -10,20 +10,24 @@
       <strong>{{ $auth.$state.redirect }}</strong>
     </b-alert>
     <b-row align-h="center" class="pt-4">
-        <b-card title="Social Login" bg-variant="light">
-          <div class="alert alert-warning">Work in Progress, rien ne marche pour l'instant !</div>
-          <div v-for="s in strategies" :key="s.key" class="mb-2">
-            <b-btn
-              block
-              :style="{ background: s.color }"
-              class="login-button"
-              @click="$auth.loginWith(s.key)"
-            >
-              <font-awesome-icon class="float-left" :icon="['fab', s.key]" />
-              Login with {{ s.name }}
-            </b-btn>
-          </div>
-        </b-card>
+      <b-card title="Social Login" bg-variant="light">
+        <div class="alert alert-warning">
+          <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
+          Login with Google marchote plus ou moins (mais plutôt moins que plus)
+        </div>
+        <div v-for="s in strategies" :key="s.key" class="mb-2">
+          <b-btn
+            block
+            :style="{ background: s.color }"
+            class="login-button"
+            @click="$auth.loginWith(s.key)"
+            :disabled="!s.active"
+          >
+            <font-awesome-icon class="float-left" :icon="['fab', s.key]" />
+            Login with {{ s.name }}
+          </b-btn>
+        </div>
+      </b-card>
     </b-row>
   </div>
 </template>
@@ -32,52 +36,47 @@
 // import busyOverlay from '~/components/busy-overlay'
 
 export default {
-  components: { /* busyOverlay */ },
-  middleware: ['auth'],
+  components: {
+    /* busyOverlay */
+  },
+  middleware: ["auth"],
   data() {
     return {
-      username: '',
-      password: '123',
-      error: null
-    }
+      username: "",
+      password: "123",
+      error: null,
+    };
   },
   computed: {
-    strategies: () => [ 
-    /* */
-      { key: 'google', name: 'Google', color: '#4284f4', icon: ''},
-      { key: 'facebook', name: 'Facebook', color: '#3c65c4', icon: '' },
-      { key: 'github', name: 'GitHub', color: '#202326', icon: '' }
-   ],
-    redirect() {
-      return (
-        this.$route.query.redirect &&
-        decodeURIComponent(this.$route.query.redirect)
-      )
-    },
+    strategies: () => [
+      /* */
+      { key: "google", name: "Google", color: "#4284f4", active: true },
+      { key: "facebook", name: "Facebook", color: "#3c65c4", active: false },
+      { key: "github", name: "GitHub", color: "#202326", active: false },
+    ],
     isCallback() {
-      return Boolean(this.$route.query.callback)
+      return Boolean(this.$route.query.callback);
     },
     errorMessage() {
-      const { error } = this
-      if (!error || typeof error === 'string') {
-        return error
+      const { error } = this;
+      if (!error || typeof error === "string") {
+        return error;
       }
-      let msg = ''
+      let msg = "";
       if (error.message) {
-        msg += error.message
+        msg += error.message;
       }
       if (error.errors) {
         msg += `(${JSON.stringify(error.errors)
-          .replace(/[{}"[\]]/g, '')
-          .replace(/:/g, ': ')
-          .replace(/,/g, ' ')})`
+          .replace(/[{}"[\]]/g, "")
+          .replace(/:/g, ": ")
+          .replace(/,/g, " ")})`;
       }
-      return msg
-    }
+      return msg;
+    },
   },
-  methods: {
-  }
-}
+  methods: {},
+};
 </script>
 
 <style scoped>

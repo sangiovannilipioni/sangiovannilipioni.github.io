@@ -30,20 +30,10 @@
                 >Programma x San_Giovanni Finale Giugno 2020</span
               ></b-dropdown-item
             >
-            <!--
-            <b-dropdown-item href="/embedded_pdf/Nessuno_Escluso_APS_ENG_v1"
-              ><span class="pdf"
-                >Presentazione Inglese v1</span
-              ></b-dropdown-item
-            >
-            -->
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown text="Media">
             <b-dropdown-item href="/gallery">Foto</b-dropdown-item>
-            <!--
-              <b-dropdown-item href="/videos">Video 1</b-dropdown-item>
-            -->
             <b-dropdown-item href="/videos2">Video</b-dropdown-item>
             <b-dropdown-item href="/logos">Logo</b-dropdown-item>
           </b-nav-item-dropdown>
@@ -58,11 +48,23 @@
               ></b-dropdown-item
             >
           </b-nav-item-dropdown>
+
         </b-navbar-nav>
         <b-navbar-nav class="justify-content-end">
-          <a class="nav-item nav-link justify-content-end" href="/secure" title="login">
-            <span><font-awesome-icon :icon="['fas', 'sign-in-alt']" />&nbsp;Entra</span>
-          </a>
+          <template v-if="$auth.$state.loggedIn">$auth.user.name</template>
+          <template v-else>
+            <a
+              class="nav-item nav-link justify-content-end"
+              href="/login"
+              title="login"
+            >
+              <span
+                ><font-awesome-icon
+                  :icon="['fas', 'sign-in-alt']"
+                />&nbsp;Entra</span
+              >
+            </a>
+          </template>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
