@@ -22,11 +22,13 @@
     "imagesloaded": "^4.1.4",
     "masonry-layout": "^4.2.2",
     "nuxt": "^2.14.11",
+    "nuxt-i18n": "^6.16.0",
     "push-dir": "^0.4.1",
     "remark": "^13.0.0",
     "remark-emoji": "^2.1.0",
     "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
+    "svg-country-flags": "^1.2.9",
     "vue-masonry-wall": "^0.3.0",
     "vue-pdf": "^4.2.0"
   },

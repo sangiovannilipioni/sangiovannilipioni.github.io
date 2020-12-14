@@ -72,14 +72,36 @@ export default {
     "@nuxt/content",
     // https://auth.nuxtjs.org/guide/setup
     "@nuxtjs/axios",
-    "@nuxtjs/auth-next"
+    "@nuxtjs/auth-next",
+    //
+    "nuxt-i18n"
   ],
+
+  i18n: {
+    lazy: true,
+    langDir: "lang/",
+    locales: [
+      {
+        name: "Italiano",
+        code: "it",
+        iso: "it-IT",
+        file: "it-IT.js"
+      },
+      {
+        name: "English",
+        code: "en",
+        iso: "en-US",
+        file: "en-US.js"
+      }
+    ],
+    defaultLocale: "it"
+  },
 
   auth: {
     redirect: {
-      login: '/login',
-      logout: '/',
-      home: '/'
+      login: "/login",
+      logout: "/",
+      home: "/"
     },
     strategies: {
       google: {
@@ -94,11 +116,12 @@ export default {
       },
       facebook: {
         endpoints: {
-          userInfo: 'https://graph.facebook.com/v6.0/me?fields=id,name,email,picture{url}'
+          userInfo:
+            "https://graph.facebook.com/v6.0/me?fields=id,name,email,picture{url}"
         },
-        clientId: '104250825478',
-        scope: ['public_profile', 'email']
-      },
+        clientId: "104250825478",
+        scope: ["public_profile", "email"]
+      }
     }
   },
 

@@ -51,6 +51,7 @@
 
         </b-navbar-nav>
         <b-navbar-nav class="justify-content-end">
+          <locale-switcher />
           <client-only>
           <template v-if="$auth.$state.loggedIn">
             <b-nav-item-dropdown :text="$auth.user.name" right>

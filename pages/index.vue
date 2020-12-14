@@ -1,5 +1,7 @@
 <template>
-  <div id="bg"></div>
+  <div id="bg" class="d-flex align-items-center justify-content-center">
+    <h1>{{ $t("hello") }}</h1>
+  </div>
 </template>
 
 <style scoped>
@@ -17,6 +19,11 @@
   opacity: 0.2;
   filter: sepia(.5) hue-rotate(-30deg) saturate(1.4); 
   */
+}
+#bg h1 {
+  font-size: 12rem;
+  color: white;
+  opacity: 0.4;
 }
 
 img.bg {
