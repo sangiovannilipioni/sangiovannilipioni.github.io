@@ -80,6 +80,12 @@ export default {
   i18n: {
     lazy: true,
     langDir: "lang/",
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: "i18n_redirected",
+      onlyOnRoot: true, // recommended
+      alwaysRedirect: true
+    },
     locales: [
       {
         name: "Italiano",

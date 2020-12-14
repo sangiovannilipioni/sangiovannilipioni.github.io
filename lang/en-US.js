@@ -7,5 +7,7 @@ export default {
   signIn: "Sign In",
   signOut: "Sign Out",
 
-  pages: {}
+  presentazione: "Summary",
+  bigBosses: "Board of Directors",
+  paperwork: "Constitutive Act and Statute",
 };

@@ -4,22 +4,23 @@
       <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle>
 
       <b-navbar-brand
-        ><NuxtLink to="/"><Logo /></NuxtLink
+        ><NuxtLink :to="localePath('/')"><Logo /></NuxtLink
       ></b-navbar-brand>
 
       <b-collapse id="nav-text-collapse" is-nav>
         <b-navbar-nav class="mr-auto">
           <b-nav-item-dropdown>
             <template slot="button-content">{{ $t("whoWeAre") }}</template>
-            <b-dropdown-item to="/blog/presentazione"
-              >Presentazione</b-dropdown-item
+            <b-dropdown-item :to="localePath('/blog/presentazione')"
+              >{{ $t("presentazione") }}</b-dropdown-item
             >
-            <b-dropdown-item to="/blog/direttivo"
-              >Consiglio&nbsp;Direttivo</b-dropdown-item
+            <b-dropdown-item :to="localePath('/blog/direttivo')"
+              >{{ $t("bigBosses") }}</b-dropdown-item 
             >
-            <b-dropdown-item to="/embedded_pdf/Atto_Costitutivo_e_Statuto"
+            <b-dropdown-item
+              :to="localePath('/embedded_pdf/Atto_Costitutivo_e_Statuto')"
               ><span class="pdf"
-                >Atto&nbsp;Costitutivo&nbsp;e&nbsp;Statuto</span
+                >{{ $t("paperwork") }}</span 
               ></b-dropdown-item
             >
           </b-nav-item-dropdown>
@@ -27,7 +28,11 @@
           <b-nav-item-dropdown>
             <template slot="button-content">{{ $t("theProject") }}</template>
             <b-dropdown-item
-              to="/embedded_pdf/Programma_x_San_Giovanni_Finale_Giugno_2020_pptx"
+              :to="
+                localePath(
+                  '/embedded_pdf/Programma_x_San_Giovanni_Finale_Giugno_2020_pptx'
+                )
+              "
               ><span class="pdf"
                 >Programma x San_Giovanni Finale Giugno 2020</span
               ></b-dropdown-item
@@ -35,14 +40,18 @@
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown text="Media">
-            <b-dropdown-item to="/gallery">Foto</b-dropdown-item>
-            <b-dropdown-item to="/videos2">Video</b-dropdown-item>
-            <b-dropdown-item to="/logos">Logo</b-dropdown-item>
+            <b-dropdown-item :to="localePath('/gallery')">Foto</b-dropdown-item>
+            <b-dropdown-item :to="localePath('/videos2')"
+              >Video</b-dropdown-item
+            >
+            <b-dropdown-item :to="localePath('/logos')">Logo</b-dropdown-item>
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown>
             <template slot="button-content">{{ $t("contacts") }}</template>
-            <b-dropdown-item to="/contatti">Contatti</b-dropdown-item>
+            <b-dropdown-item :to="localePath('/contatti')"
+              >Contatti</b-dropdown-item
+            >
             <b-dropdown-item
               to="/pdf/Domanda_di_Ammissione_a_Socio.pdf"
               target="_blank"
@@ -57,11 +66,13 @@
           <client-only>
             <template v-if="$auth.$state.loggedIn">
               <b-nav-item-dropdown :text="$auth.user.name" right>
-                <b-dropdown-item to="/secure">Info</b-dropdown-item>
+                <b-dropdown-item :to="localePath('/secure')"
+                  >Info</b-dropdown-item
+                >
                 <b-dropdown-item @click="$auth.logout()">
-                  <font-awesome-icon
-                    :icon="['fas', 'sign-out-alt']"
-                  />&nbsp;{{ $t("signOut") }}
+                  <font-awesome-icon :icon="['fas', 'sign-out-alt']" />&nbsp;{{
+                    $t("signOut")
+                  }}
                 </b-dropdown-item>
               </b-nav-item-dropdown>
               <b-img
@@ -73,11 +84,11 @@
               />
             </template>
             <template v-else>
-              <b-nav-item to="/login" right>
+              <b-nav-item :to="localePath('/login')" right>
                 <span
-                  ><font-awesome-icon
-                    :icon="['fas', 'sign-in-alt']"
-                  />&nbsp;{{ $t("signIn") }}</span
+                  ><font-awesome-icon :icon="['fas', 'sign-in-alt']" />&nbsp;{{
+                    $t("signIn")
+                  }}</span
                 >
               </b-nav-item>
             </template>

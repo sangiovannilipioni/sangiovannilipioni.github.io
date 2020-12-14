@@ -2,10 +2,12 @@
 export default {
   hello: "Ciao a tutti",
   whoWeAre: "Chi siamo",
-  theProject: "Il Progetto",
+  theProject: "Il progetto",
   contacts: "Contatti",
   signIn: "Entra",
   signOut: "Esci",
 
-  pages: {}
+  presentazione: "Presentazione",
+  bigBosses: "Consiglio Direttivo",
+  paperwork: "Atto&nbsp;Costitutivo&nbsp;e&nbsp;Statuto",
 };
