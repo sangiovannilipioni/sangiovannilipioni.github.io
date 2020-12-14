@@ -9,7 +9,8 @@
 
       <b-collapse id="nav-text-collapse" is-nav>
         <b-navbar-nav class="mr-auto">
-          <b-nav-item-dropdown text="Chi Siamo">
+          <b-nav-item-dropdown>
+            <template slot="button-content">{{ $t("whoWeAre") }}</template>
             <b-dropdown-item to="/blog/presentazione"
               >Presentazione</b-dropdown-item
             >
@@ -23,7 +24,8 @@
             >
           </b-nav-item-dropdown>
 
-          <b-nav-item-dropdown text="Il Progetto">
+          <b-nav-item-dropdown>
+            <template slot="button-content">{{ $t("theProject") }}</template>
             <b-dropdown-item
               to="/embedded_pdf/Programma_x_San_Giovanni_Finale_Giugno_2020_pptx"
               ><span class="pdf"
@@ -38,7 +40,8 @@
             <b-dropdown-item to="/logos">Logo</b-dropdown-item>
           </b-nav-item-dropdown>
 
-          <b-nav-item-dropdown text="Contatti">
+          <b-nav-item-dropdown>
+            <template slot="button-content">{{ $t("contacts") }}</template>
             <b-dropdown-item to="/contatti">Contatti</b-dropdown-item>
             <b-dropdown-item
               to="/pdf/Domanda_di_Ammissione_a_Socio.pdf"
@@ -48,36 +51,36 @@
               ></b-dropdown-item
             >
           </b-nav-item-dropdown>
-
         </b-navbar-nav>
         <b-navbar-nav class="justify-content-end">
           <locale-switcher />
           <client-only>
-          <template v-if="$auth.$state.loggedIn">
-            <b-nav-item-dropdown :text="$auth.user.name" right>
-              <b-dropdown-item to="/secure">Info</b-dropdown-item>
-              <b-dropdown-item @click="$auth.logout()">
-                <font-awesome-icon
-                  :icon="['fas', 'sign-out-alt']"
-                />&nbsp;Esci
-              </b-dropdown-item>
-            </b-nav-item-dropdown>
-            <b-img
-              :src="this.$auth.user.picture.data.url"
-              class="mt-1"
-              rounded="circle"
-              width="30px"
-              height="30px"
-            />
-          </template>
-          <template v-else>
-            <b-nav-item to="/login" right> <span
-                ><font-awesome-icon
-                  :icon="['fas', 'sign-in-alt']"
-                />&nbsp;Entra</span
-              >
-            </b-nav-item>
-          </template>
+            <template v-if="$auth.$state.loggedIn">
+              <b-nav-item-dropdown :text="$auth.user.name" right>
+                <b-dropdown-item to="/secure">Info</b-dropdown-item>
+                <b-dropdown-item @click="$auth.logout()">
+                  <font-awesome-icon
+                    :icon="['fas', 'sign-out-alt']"
+                  />&nbsp;{{ $t("signOut") }}
+                </b-dropdown-item>
+              </b-nav-item-dropdown>
+              <b-img
+                :src="this.$auth.user.picture.data.url"
+                class="mt-1"
+                rounded="circle"
+                width="30px"
+                height="30px"
+              />
+            </template>
+            <template v-else>
+              <b-nav-item to="/login" right>
+                <span
+                  ><font-awesome-icon
+                    :icon="['fas', 'sign-in-alt']"
+                  />&nbsp;{{ $t("signIn") }}</span
+                >
+              </b-nav-item>
+            </template>
           </client-only>
         </b-navbar-nav>
       </b-collapse>
@@ -127,7 +130,7 @@ a[role="menuitem"] .pdf:after {
 </style>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   data() {
     return {
