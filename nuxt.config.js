@@ -88,16 +88,22 @@ export default {
     },
     locales: [
       {
-        name: "Italiano",
-        code: "it",
-        iso: "it-IT",
-        file: "it-IT.js"
-      },
-      {
         name: "English",
         code: "en",
         iso: "en-US",
         file: "en-US.js"
+      },
+      {
+        name: "Français",
+        code: "fr",
+        iso: "fr-FR",
+        file: "fr-FR.js"
+      },
+      {
+        name: "Italiano",
+        code: "it",
+        iso: "it-IT",
+        file: "it-IT.js"
       }
     ],
     defaultLocale: "it"

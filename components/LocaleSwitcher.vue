@@ -14,6 +14,7 @@
 
 <script>
 import enIcon from "svg-country-flags/svg/gb.svg";
+import frIcon from "svg-country-flags/svg/fr.svg";
 import itIcon from "svg-country-flags/svg/it.svg";
 
 export default {
@@ -21,6 +22,7 @@ export default {
     return {
       icons: {
         en: enIcon,
+        fr: frIcon,
         it: itIcon,
       },
     };

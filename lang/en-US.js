@@ -1,4 +1,4 @@
-// en-US.js with English translations
+// en-US.js in English
 export default {
   hello: "Hello World",
   whoWeAre: "Who We Are",
@@ -10,7 +10,7 @@ export default {
   exordium: "Summary",
   dictators: "Board of Directors",
   administrivia: "Constitutive Act and Statute",
-  pictures: "Photo",
+  pictures: "Photos",
   movies: "Video",
   impresa: "Logo",
   register: "Application for Membership",

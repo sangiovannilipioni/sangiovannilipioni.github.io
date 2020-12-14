@@ -1,4 +1,4 @@
-// it-IT.js with Italian translations
+// it-IT.js in italiano
 export default {
   hello: "Ciao a tutti",
   whoWeAre: "Chi siamo",
