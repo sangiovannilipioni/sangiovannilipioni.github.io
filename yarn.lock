@@ -1339,6 +1339,17 @@
     consola "^2.14.0"
     defu "^3.1.0"
 
+"@nuxtjs/axios@^5.12.3":
+  version "5.12.3"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/axios/-/axios-5.12.3.tgz#0c3d19f0a28cdf90b425898919f90414022beeee"
+  integrity sha512-3hvr14dU0h61s4XF+HT/IgqCOq4608dMVFt9dHhNyZ479Y/Fiv59lAIJNx1NAwFnFNEMFHZ2FlWwc47bls89Fg==
+  dependencies:
+    "@nuxtjs/proxy" "^2.0.1"
+    axios "^0.21.0"
+    axios-retry "^3.1.9"
+    consola "^2.15.0"
+    defu "^3.2.2"
+
 "@nuxtjs/fontawesome@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@nuxtjs/fontawesome/-/fontawesome-1.1.2.tgz#0add6519095b392bdffb6e3ad40f3026d20f5c44"
@@ -2186,7 +2197,7 @@ autoprefixer@^9.6.1:
     postcss "^7.0.32"
     postcss-value-parser "^4.1.0"
 
-axios-retry@^3.1.8:
+axios-retry@^3.1.8, axios-retry@^3.1.9:
   version "3.1.9"
   resolved "https://registry.yarnpkg.com/axios-retry/-/axios-retry-3.1.9.tgz#6c30fc9aeb4519aebaec758b90ef56fa03fe72e8"
   integrity sha512-NFCoNIHq8lYkJa6ku4m+V1837TP6lCa7n79Iuf8/AqATAHYB0ISaAS1eyIenDOfHOLtym34W65Sjke2xjg2fsA==
@@ -2199,6 +2210,13 @@ axios@^0.19.2:
   integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
   dependencies:
     follow-redirects "1.5.10"
+
+axios@^0.21.0:
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.0.tgz#26df088803a2350dff2c27f96fef99fe49442aca"
+  integrity sha512-fmkJBknJKoZwem3/IKSSLpkdNXZeBu5Q7GA/aRsr2btgrptmSCxi2oFjZHqGdK9DoTil9PIHlPIZw2EcRJXRvw==
+  dependencies:
+    follow-redirects "^1.10.0"
 
 babel-loader@^8.2.2:
   version "8.2.2"
@@ -2318,10 +2336,10 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
 
-bootstrap-vue@^2.20.1:
-  version "2.20.1"
-  resolved "https://registry.yarnpkg.com/bootstrap-vue/-/bootstrap-vue-2.20.1.tgz#1b6cd4368632c1a6dd4a5ed161242baa131c3cd5"
-  integrity sha512-s+w83q0T2mo/RbFwTM8gExbLJMEOYpdTUqmyFaHv2Ir+TFprMvTWpeAzeNuawJ130W1gePZ3LW3cNp1t/tZbOw==
+bootstrap-vue@^2.21.0:
+  version "2.21.0"
+  resolved "https://registry.yarnpkg.com/bootstrap-vue/-/bootstrap-vue-2.21.0.tgz#9de6da71ec8d94222c5bc54dbc28494a1cc14f7e"
+  integrity sha512-R55XY83Ro3w8OfVEWn/eOyw8eayGDdZs0qYFuvG29eW4zVb9NtB4LwgskOhIaqF3Yzac/6ra/FqQUm+uVhDYfA==
   dependencies:
     "@nuxt/opencollective" "^0.3.2"
     bootstrap ">=4.5.3 <5.0.0"
@@ -2634,9 +2652,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001164, caniuse-lite@^1.0.30001165:
-  version "1.0.30001165"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001165.tgz#32955490d2f60290bb186bb754f2981917fa744f"
-  integrity sha512-8cEsSMwXfx7lWSUMA2s08z9dIgsnR5NAqjXP23stdsU3AUWkCr/rr4s4OFtHXn5XXr6+7kam3QFVoYyXNPdJPA==
+  version "1.0.30001166"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001166.tgz#ca73e8747acfd16a4fd6c4b784f1b995f9698cf8"
+  integrity sha512-nCL4LzYK7F4mL0TjEMeYavafOGnBa98vTudH5c8lW9izUjnB99InG6pmC1ElAI1p0GlyZajv4ltUdFXvOHIl1A==
 
 capital-case@^1.0.4:
   version "1.0.4"
@@ -4136,7 +4154,7 @@ follow-redirects@1.5.10:
   dependencies:
     debug "=3.1.0"
 
-follow-redirects@^1.0.0:
+follow-redirects@^1.0.0, follow-redirects@^1.10.0:
   version "1.13.1"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.1.tgz#5f69b813376cee4fd0474a3aba835df04ab763b7"
   integrity sha512-SSG5xmZh1mkPGyKzjZP8zLjltIfpW32Y5QpdNJyjcfGxK3qo3NDDkZOZSFiGn1A6SclQxY9GzEwAHQ3dmYRWpg==
@@ -4609,9 +4627,9 @@ html-comment-regex@^1.1.0:
   integrity sha512-P+M65QY2JQ5Y0G9KKdlDpo0zK+/OHptU5AaBwUfAIDJZk1MYf32Frm84EcOytfJE0t5JvkAnKlmjsXDnWzCJmQ==
 
 html-entities@^1.2.0:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.3.1.tgz#fb9a1a4b5b14c5daba82d3e34c6ae4fe701a0e44"
-  integrity sha512-rhE/4Z3hIhzHAUKbW8jVcCyuT5oJCXXqhN/6mXXVCpzTmvJnoH2HL/bt3EZ6p55jbFJBeAe1ZNpL5BugLujxNA==
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.3.3.tgz#3dca638a43ee7de316fc23067398491152ad4736"
+  integrity sha512-/VulV3SYni1taM7a4RMdceqzJWR39gpZHjBwUnsCFKWV/GJkD14CJ5F7eWcZozmHJK0/f/H5U3b3SiPkuvxMgg==
 
 html-minifier-terser@^5.0.1:
   version "5.1.1"
@@ -5690,9 +5708,9 @@ micromark-extension-footnote@^0.3.0:
     micromark "~2.11.0"
 
 micromark-extension-gfm-autolink-literal@~0.5.0:
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/micromark-extension-gfm-autolink-literal/-/micromark-extension-gfm-autolink-literal-0.5.3.tgz#4cbca411c4cb7bef6946d952806506bfaeadf24d"
-  integrity sha512-PWk05KFFKvsM48+D1Oxn/gHcSbi6iIVvvx2PNcwY0v041UTo7wURzlwRl5gbzk7zJ4RUs+3A6XD9+rRqxFUiWA==
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/micromark-extension-gfm-autolink-literal/-/micromark-extension-gfm-autolink-literal-0.5.4.tgz#0c8cc7004dd2277ed8f52e01195432291c47e699"
+  integrity sha512-471VKd4k3SiX7vx9fC+IYeGQL0RnxwBBXeEc5WConb7naJDG5m16guA+VoFzyXchrvmU08t0dUWWPZ0mkJSXVw==
   dependencies:
     micromark "~2.11.0"
 

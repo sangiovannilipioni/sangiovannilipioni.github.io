@@ -9,10 +9,10 @@ export default {
 
   exordium: "Prolégomènes",
   dictators: "Conseil d'administration",
-  administrivia: "Acte Constitutif et Statuts",
+  administrivia: "Acte constitutif et statuts",
   pictures: "Photos",
   movies: "Video",
   impresa: "Logo",
-  register: "Demande d'Adhésion",
-  gossip: "Zone Privée"
+  register: "Demande d'adhésion",
+  gossip: "Zone privée"
 };

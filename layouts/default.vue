@@ -70,6 +70,7 @@
                 <b-dropdown-item :to="localePath('/secure')"
                   >{{ $t("gossip") }}</b-dropdown-item
                 >
+                <div class="dropdown-divider"></div>
                 <b-dropdown-item @click="$auth.logout()">
                   <font-awesome-icon :icon="['fas', 'sign-out-alt']" />&nbsp;{{
                     $t("signOut")
