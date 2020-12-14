@@ -7,7 +7,12 @@ export default {
   signIn: "Entra",
   signOut: "Esci",
 
-  presentazione: "Presentazione",
-  bigBosses: "Consiglio Direttivo",
-  paperwork: "Atto&nbsp;Costitutivo&nbsp;e&nbsp;Statuto",
+  exordium: "Presentazione",
+  dictators: "Consiglio Direttivo",
+  administrivia: "Atto Costitutivo e Statuto",
+  pictures: "Foto",
+  movies: "Video",
+  impresa: "Logo",
+  register: "Richiesta di Adesione",
+  gossip: "Area Riservata"
 };

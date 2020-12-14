@@ -9,18 +9,19 @@
 
       <b-collapse id="nav-text-collapse" is-nav>
         <b-navbar-nav class="mr-auto">
+
           <b-nav-item-dropdown>
             <template slot="button-content">{{ $t("whoWeAre") }}</template>
             <b-dropdown-item :to="localePath('/blog/presentazione')"
-              >{{ $t("presentazione") }}</b-dropdown-item
+              >{{ $t("exordium") }}</b-dropdown-item
             >
             <b-dropdown-item :to="localePath('/blog/direttivo')"
-              >{{ $t("bigBosses") }}</b-dropdown-item 
+              >{{ $t("dictators") }}</b-dropdown-item 
             >
             <b-dropdown-item
               :to="localePath('/embedded_pdf/Atto_Costitutivo_e_Statuto')"
               ><span class="pdf"
-                >{{ $t("paperwork") }}</span 
+                >{{ $t("administrivia") }}</span 
               ></b-dropdown-item
             >
           </b-nav-item-dropdown>
@@ -40,23 +41,23 @@
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown text="Media">
-            <b-dropdown-item :to="localePath('/gallery')">Foto</b-dropdown-item>
+            <b-dropdown-item :to="localePath('/gallery')">{{ $t("pictures") }}</b-dropdown-item>
             <b-dropdown-item :to="localePath('/videos2')"
-              >Video</b-dropdown-item
+              >{{ $t("movies") }}</b-dropdown-item
             >
-            <b-dropdown-item :to="localePath('/logos')">Logo</b-dropdown-item>
+            <b-dropdown-item :to="localePath('/logos')">{{ $t("impresa") }}</b-dropdown-item>
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown>
             <template slot="button-content">{{ $t("contacts") }}</template>
             <b-dropdown-item :to="localePath('/contatti')"
-              >Contatti</b-dropdown-item
+              >{{ $t("contacts") }}</b-dropdown-item
             >
             <b-dropdown-item
               to="/pdf/Domanda_di_Ammissione_a_Socio.pdf"
               target="_blank"
               ><span class="pdf"
-                >Richiesta&nbsp;di&nbsp;Adesione&nbsp;&hellip;</span
+                >{{ $t("register") }}</span
               ></b-dropdown-item
             >
           </b-nav-item-dropdown>
@@ -67,7 +68,7 @@
             <template v-if="$auth.$state.loggedIn">
               <b-nav-item-dropdown :text="$auth.user.name" right>
                 <b-dropdown-item :to="localePath('/secure')"
-                  >Info</b-dropdown-item
+                  >{{ $t("gossip") }}</b-dropdown-item
                 >
                 <b-dropdown-item @click="$auth.logout()">
                   <font-awesome-icon :icon="['fas', 'sign-out-alt']" />&nbsp;{{

@@ -7,7 +7,12 @@ export default {
   signIn: "Sign In",
   signOut: "Sign Out",
 
-  presentazione: "Summary",
-  bigBosses: "Board of Directors",
-  paperwork: "Constitutive Act and Statute",
+  exordium: "Summary",
+  dictators: "Board of Directors",
+  administrivia: "Constitutive Act and Statute",
+  pictures: "Photo",
+  movies: "Video",
+  impresa: "Logo",
+  register: "Application for Membership",
+  gossip: "Private Area"
 };
