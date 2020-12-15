@@ -11,28 +11,73 @@ export default {
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { hid: "description", name: "description", content: "" },
       { name: "msapplication-TileColor", content: "#da532c" },
-      { name: "theme-color", content: "#ffffff" }
-      /* 
-<!-- COMMON TAGS -->
-<meta charset="utf-8">
-<title>Nessuno Escluso</title>
-<!-- Search Engine -->
-<meta name="description" content="Chi siamo Il progetto Media Contatti  Christophe Thiebaud  San Giovanni Lipioni è un piccolo paese dell’Abruzzo interno collinare, posto a 545 m.s.l.m. sul versante sinistro del fiume Trigno, al confine con il Molise. Il territorio in cui è collocato degrada progressivamente verso il mare Adriatico da cui dista appena 40 Km.">
-<meta name="image" content="https://sangiovannilipioni.net/_nuxt/img/panoramix2.b0cd889.jpg">
-<!-- Schema.org for Google -->
-<meta itemprop="name" content="Nessuno Escluso">
-<meta itemprop="description" content="Chi siamo Il progetto Media Contatti  Christophe Thiebaud  San Giovanni Lipioni è un piccolo paese dell’Abruzzo interno collinare, posto a 545 m.s.l.m. sul versante sinistro del fiume Trigno, al confine con il Molise. Il territorio in cui è collocato degrada progressivamente verso il mare Adriatico da cui dista appena 40 Km.">
-<meta itemprop="image" content="https://sangiovannilipioni.net/_nuxt/img/panoramix2.b0cd889.jpg">
-<!-- Open Graph general (Facebook, Pinterest & Google+) -->
-<meta name="og:title" content="Nessuno Escluso">
-<meta name="og:description" content="Chi siamo Il progetto Media Contatti  Christophe Thiebaud  San Giovanni Lipioni è un piccolo paese dell’Abruzzo interno collinare, posto a 545 m.s.l.m. sul versante sinistro del fiume Trigno, al confine con il Molise. Il territorio in cui è collocato degrada progressivamente verso il mare Adriatico da cui dista appena 40 Km.">
-<meta name="og:image" content="https://sangiovannilipioni.net/logo/Logo.JPG">
-<meta name="og:site_name" content="https://sangiovannilipioni.net/">
-<meta name="og:video" content="https://storage.googleapis.com/sangiovannilipioni/volo%2002%20master.mov">
-<meta name="fb:admins" content="708154592">
-<meta name="fb:app_id" content="104250825478">
-<meta name="og:type" content="website">      
-      */
+      { name: "theme-color", content: "#ffffff" },
+      /* Search Engine */
+
+      {
+        hid: "description",
+        name: "description",
+        content:
+          "San Giovanni Lipioni è un piccolo paese dell’Abruzzo interno collinare, posto a 545 m.s.l.m. sul versante sinistro del fiume Trigno, al confine con il Molise. Il territorio in cui è collocato degrada progressivamente verso il mare Adriatico da cui dista appena 40 Km."
+      },
+      {
+        hid: "image",
+        name: "image",
+        content:
+          "https://sangiovannilipioni.net/_nuxt/img/panoramix2.b0cd889.jpg"
+      },
+
+      /* Schema.org for Google */
+
+      { hid: "name", name: "name", content: "Nessuno Escluso" },
+      {
+        hid: "description",
+        name: "description",
+        content:
+          "San Giovanni Lipioni è un piccolo paese dell’Abruzzo interno collinare, posto a 545 m.s.l.m. sul versante sinistro del fiume Trigno, al confine con il Molise. Il territorio in cui è collocato degrada progressivamente verso il mare Adriatico da cui dista appena 40 Km."
+      },
+      {
+        hid: "image",
+        name: "image",
+        content:
+          "https://sangiovannilipioni.net/_nuxt/img/panoramix2.b0cd889.jpg"
+      },
+
+      /* Open Graph general (Facebook, Pinterest & Google+) */
+
+      { hid: "og:title", name: "og:title", content: "Nessuno Escluso" },
+      {
+        hid: "og:description",
+        name: "og:description",
+        content:
+          "San Giovanni Lipioni è un piccolo paese dell’Abruzzo interno collinare, posto a 545 m.s.l.m. sul versante sinistro del fiume Trigno, al confine con il Molise. Il territorio in cui è collocato degrada progressivamente verso il mare Adriatico da cui dista appena 40 Km."
+      },
+      {
+        hid: "og:image",
+        name: "og:image",
+        content:
+          "https://sangiovannilipioni.net/_nuxt/img/panoramix2.b0cd889.jpg"
+      },
+      {
+        hid: "og:site_name",
+        name: "og:site_name",
+        content: "https://sangiovannilipioni.net/"
+      },
+      {
+        hid: "og:video",
+        name: "og:video",
+        content:
+          "https://storage.googleapis.com/sangiovannilipioni/volo%2002%20master.mov"
+      },
+      { hid: "fb:admins", name: "fb:admins", content: "708154592" },
+      { hid: "fb:app_id", name: "fb:app_id", content: "104250825478" },
+      { hid: "og:type", name: "og:type", content: "website" },
+
+      /* CT */
+
+      { hid: "og:image:type", name: "og:image:type", content: "image/jpeg" },
+      { hid: "og:image:width", name: "og:image:width", content: "1600" },
+      { hid: "og:image:height", name: "og:image:height", content: "1200" }
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
