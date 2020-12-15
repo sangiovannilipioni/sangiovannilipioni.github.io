@@ -75,6 +75,12 @@ export default {
 
       /* CT */
 
+      {
+        hid: "og:image",
+        name: "og:image",
+        content:
+          "https://storage.googleapis.com/sangiovannilipioni/volo%2002%20master.mov"
+      },
       { hid: "og:image:type", name: "og:image:type", content: "image/jpeg" },
       { hid: "og:image:width", name: "og:image:width", content: "1600" },
       { hid: "og:image:height", name: "og:image:height", content: "1200" }
