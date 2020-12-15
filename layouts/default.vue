@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column h-100">
+  <div class="d-flex flex-column vh-100 my-content">
     <b-navbar toggleable="sm" type="light" variant="light">
       <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle>
 
@@ -9,7 +9,7 @@
 
       <b-collapse id="nav-text-collapse" is-nav>
         <b-navbar-nav class="mr-auto">
-
+          
           <b-nav-item-dropdown>
             <template slot="button-content">{{ $t("whoWeAre") }}</template>
             <b-dropdown-item :to="localePath('/blog/presentazione')"
@@ -103,7 +103,7 @@
         <Nuxt />
       </div>
     </main>
-    <footer class="footer mt-auto py-1">
+    <footer class="my-footer mt-auto py-1">
       <div class="container-fluid">
         <span>&copysr;&nbsp;Associazione APS “<i>NESSUNO ESCLUSO</i>”</span>
         <a id="version" class="float-right" target="_blank" :href="gitUrl"
@@ -115,19 +115,6 @@
 </template>
 
 <style scoped>
-nav {
-  background: linear-gradient(to bottom, white, #f2f3f4 100%);
-}
-
-.footer {
-  color: darkgray;
-  background: linear-gradient(to top, #f2f3f4, white 100%);
-}
-
-.footer #version {
-  color: darkgray;
-  font-family: monospace;
-}
 
 /* https://stackoverflow.com/a/25410621/1070215 */
 a[role="menuitem"] .pdf:after {

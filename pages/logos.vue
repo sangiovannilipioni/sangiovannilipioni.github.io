@@ -56,12 +56,6 @@ export default {
       angle: 180,
     };
   },
-  props: {
-    name: {
-      type: String,
-      required: true,
-    },
-  },
   methods: {
     // https://stackoverflow.com/a/31488227/1070215
     getMatrixForRotation(cx, cy) {

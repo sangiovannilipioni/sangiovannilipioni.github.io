@@ -1,5 +1,5 @@
 <template>
-  <div id="logo" v-html="src"></div>
+  <div class="logo" v-html="src"></div>
 </template>
 
 <script>

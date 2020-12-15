@@ -30,7 +30,8 @@
     "sass-loader": "^10.1.0",
     "svg-country-flags": "^1.2.9",
     "vue-masonry-wall": "^0.3.0",
-    "vue-pdf": "^4.2.0"
+    "vue-pdf": "^4.2.0",
+    "vueperslides": "^2.12.1"
   },
   "devDependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15.1",

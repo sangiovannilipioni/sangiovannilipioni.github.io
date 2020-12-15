@@ -1,11 +1,11 @@
 // fr-FR.js en français
 export default {
   hello: "Bonjour",
-  whoWeAre: "Qui sommes-nous ?",
-  theProject: "C'est notre project",
+  whoWeAre: "Infos",
+  theProject: "Projet",
   contacts: "Contacts",
-  signIn: "Connection",
-  signOut: "Déconnection",
+  signIn: "Connexion",
+  signOut: "Se déconnecter",
 
   exordium: "Prolégomènes",
   dictators: "Conseil d'administration",
