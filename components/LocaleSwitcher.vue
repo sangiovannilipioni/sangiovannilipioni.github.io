@@ -2,11 +2,25 @@
   <b-nav-item-dropdown>
     <!-- https://stackoverflow.com/a/53436065 -->
     <template slot="button-content"
-      ><img :src="icons[currentLocale]" class="country-icon as-toggle" />
+      ><b-img
+        :src="icons[currentLocale]"
+        class=""
+        
+        width="20px"
+        height="20px"
+      />
     </template>
 
-    <b-dropdown-item v-for="locale in $i18n.locales" :key="locale.code" :to="switchLocalePath(locale.code)">
-      <img :src="icons[locale.code]" class="country-icon" />
+    <b-dropdown-item
+      v-for="locale in $i18n.locales"
+      :key="locale.code"
+      :to="switchLocalePath(locale.code)"
+    >
+      <b-img :src="icons[locale.code]" 
+        class=""
+        
+        width="20px"
+        height="20px" />
       <span class="locale-name">{{ locale.name }}</span>
     </b-dropdown-item>
   </b-nav-item-dropdown>
@@ -38,8 +52,8 @@ export default {
 
 <style scoped>
 .country-icon {
-  width: 20px;
-  height: auto;
+  width: 30px;
+  height: 30px;
   display: inline-block;
   vertical-align: baseline;
   border: 1px solid #dee2e6;

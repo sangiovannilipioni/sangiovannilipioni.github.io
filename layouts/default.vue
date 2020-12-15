@@ -1,3 +1,4 @@
+<!-- https://merrymaker.github.io/bs4-holygrail-layout/ -->
 <template>
   <div class="d-flex flex-column vh-100 my-content">
     <b-navbar toggleable="sm" type="light" variant="light">
@@ -9,20 +10,19 @@
 
       <b-collapse id="nav-text-collapse" is-nav>
         <b-navbar-nav class="mr-auto">
-          
           <b-nav-item-dropdown>
             <template slot="button-content">{{ $t("whoWeAre") }}</template>
-            <b-dropdown-item :to="localePath('/blog/presentazione')"
-              >{{ $t("exordium") }}</b-dropdown-item
-            >
-            <b-dropdown-item :to="localePath('/blog/direttivo')"
-              >{{ $t("dictators") }}</b-dropdown-item 
-            >
+            <b-dropdown-item :to="localePath('/blog/presentazione')">{{
+              $t("exordium")
+            }}</b-dropdown-item>
+            <b-dropdown-item :to="localePath('/blog/direttivo')">{{
+              $t("dictators")
+            }}</b-dropdown-item>
             <b-dropdown-item
               :to="localePath('/embedded_pdf/Atto_Costitutivo_e_Statuto')"
-              ><span class="pdf"
-                >{{ $t("administrivia") }}</span 
-              ></b-dropdown-item
+              ><span class="pdf">{{
+                $t("administrivia")
+              }}</span></b-dropdown-item
             >
           </b-nav-item-dropdown>
 
@@ -41,24 +41,26 @@
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown text="Media">
-            <b-dropdown-item :to="localePath('/gallery')">{{ $t("pictures") }}</b-dropdown-item>
-            <b-dropdown-item :to="localePath('/videos2')"
-              >{{ $t("movies") }}</b-dropdown-item
-            >
-            <b-dropdown-item :to="localePath('/logos')">{{ $t("impresa") }}</b-dropdown-item>
+            <b-dropdown-item :to="localePath('/gallery')">{{
+              $t("pictures")
+            }}</b-dropdown-item>
+            <b-dropdown-item :to="localePath('/videos2')">{{
+              $t("movies")
+            }}</b-dropdown-item>
+            <b-dropdown-item :to="localePath('/logos')">{{
+              $t("impresa")
+            }}</b-dropdown-item>
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown>
             <template slot="button-content">{{ $t("contacts") }}</template>
-            <b-dropdown-item :to="localePath('/contatti')"
-              >{{ $t("contacts") }}</b-dropdown-item
-            >
+            <b-dropdown-item :to="localePath('/contatti')">{{
+              $t("contacts")
+            }}</b-dropdown-item>
             <b-dropdown-item
               to="/pdf/Domanda_di_Ammissione_a_Socio.pdf"
               target="_blank"
-              ><span class="pdf"
-                >{{ $t("register") }}</span
-              ></b-dropdown-item
+              ><span class="pdf">{{ $t("register") }}</span></b-dropdown-item
             >
           </b-nav-item-dropdown>
         </b-navbar-nav>
@@ -67,9 +69,17 @@
           <client-only>
             <template v-if="$auth.$state.loggedIn">
               <b-nav-item-dropdown :text="$auth.user.name" right>
-                <b-dropdown-item :to="localePath('/secure')"
-                  >{{ $t("gossip") }}</b-dropdown-item
-                >
+                <template slot="button-content"
+                  ><b-img
+                    :src="this.$auth.user.picture.data.url"
+                    class="mt-1"
+                    rounded="circle"
+                    width="30px"
+                    height="30px"
+                /></template>
+                <b-dropdown-item :to="localePath('/secure')">{{
+                  $t("gossip")
+                }}</b-dropdown-item>
                 <div class="dropdown-divider"></div>
                 <b-dropdown-item @click="$auth.logout()">
                   <font-awesome-icon :icon="['fas', 'sign-out-alt']" />&nbsp;{{
@@ -77,13 +87,6 @@
                   }}
                 </b-dropdown-item>
               </b-nav-item-dropdown>
-              <b-img
-                :src="this.$auth.user.picture.data.url"
-                class="mt-1"
-                rounded="circle"
-                width="30px"
-                height="30px"
-              />
             </template>
             <template v-else>
               <b-nav-item :to="localePath('/login')" right>
@@ -115,7 +118,6 @@
 </template>
 
 <style scoped>
-
 /* https://stackoverflow.com/a/25410621/1070215 */
 a[role="menuitem"] .pdf:after {
   display: inline-block;

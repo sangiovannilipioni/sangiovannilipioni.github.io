@@ -12,6 +12,27 @@ export default {
       { hid: "description", name: "description", content: "" },
       { name: "msapplication-TileColor", content: "#da532c" },
       { name: "theme-color", content: "#ffffff" }
+      /* 
+<!-- COMMON TAGS -->
+<meta charset="utf-8">
+<title>Nessuno Escluso</title>
+<!-- Search Engine -->
+<meta name="description" content="Chi siamo Il progetto Media Contatti  Christophe Thiebaud  San Giovanni Lipioni è un piccolo paese dell’Abruzzo interno collinare, posto a 545 m.s.l.m. sul versante sinistro del fiume Trigno, al confine con il Molise. Il territorio in cui è collocato degrada progressivamente verso il mare Adriatico da cui dista appena 40 Km.">
+<meta name="image" content="https://sangiovannilipioni.net/_nuxt/img/panoramix2.b0cd889.jpg">
+<!-- Schema.org for Google -->
+<meta itemprop="name" content="Nessuno Escluso">
+<meta itemprop="description" content="Chi siamo Il progetto Media Contatti  Christophe Thiebaud  San Giovanni Lipioni è un piccolo paese dell’Abruzzo interno collinare, posto a 545 m.s.l.m. sul versante sinistro del fiume Trigno, al confine con il Molise. Il territorio in cui è collocato degrada progressivamente verso il mare Adriatico da cui dista appena 40 Km.">
+<meta itemprop="image" content="https://sangiovannilipioni.net/_nuxt/img/panoramix2.b0cd889.jpg">
+<!-- Open Graph general (Facebook, Pinterest & Google+) -->
+<meta name="og:title" content="Nessuno Escluso">
+<meta name="og:description" content="Chi siamo Il progetto Media Contatti  Christophe Thiebaud  San Giovanni Lipioni è un piccolo paese dell’Abruzzo interno collinare, posto a 545 m.s.l.m. sul versante sinistro del fiume Trigno, al confine con il Molise. Il territorio in cui è collocato degrada progressivamente verso il mare Adriatico da cui dista appena 40 Km.">
+<meta name="og:image" content="https://sangiovannilipioni.net/logo/Logo.JPG">
+<meta name="og:site_name" content="https://sangiovannilipioni.net/">
+<meta name="og:video" content="https://storage.googleapis.com/sangiovannilipioni/volo%2002%20master.mov">
+<meta name="fb:admins" content="708154592">
+<meta name="fb:app_id" content="104250825478">
+<meta name="og:type" content="website">      
+      */
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
