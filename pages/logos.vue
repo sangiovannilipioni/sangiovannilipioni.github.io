@@ -62,14 +62,16 @@ import "vue-slider-component/theme/default.css";
 const MIN_SCALE = 0;
 const MAX_SCALE = 12;
 
+import { mapGetters, mapMutations } from "vuex";
+
 export default {
   name: "Icon",
   data() {
     return {
-      angle: 0,
-      strokeWidth: Math.pow(2, 4),
+      // angle: 0,
+      // strokeWidth: Math.pow(2, 4),
       scale: 4,
-      angleFormatter: '{value}°',
+      angleFormatter: "{value}°",
       options: {
         data: Array.from(
           new Array((MAX_SCALE - MIN_SCALE) * 12 + 1),
@@ -102,13 +104,36 @@ export default {
       return "matrix(" + [a, b, c, d, e, f].join(", ") + ")";
     },
     formatnum: (n) => {
-      return n.toFixed(2).padStart(7, " ");
+      return n ? n.toFixed(2).padStart(7, " ") : "?";
     },
+    ...mapMutations({
+      setStrokeWidth: "user/setStrokeWidth",
+      setAngle: "user/setAngle",
+    }),
   },
   computed: {
     src() {
       const src = require(`assets/svg/Logo_qr_code.svg?raw`);
       return src;
+    },
+    ...mapGetters({
+      user: "user/user",
+    }),
+    strokeWidth: {
+      get() {
+        return this.user.strokeWidth;
+      },
+      set(strokeWidth) {
+        this.setStrokeWidth(strokeWidth);
+      },
+    },
+    angle: {
+      get() {
+        return this.user.angle;
+      },
+      set(angle) {
+        this.setAngle(angle);
+      },
     },
   },
 };

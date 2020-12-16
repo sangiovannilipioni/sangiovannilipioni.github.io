@@ -17,6 +17,7 @@
     "@nuxtjs/svg": "^0.1.12",
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.21.0",
+    "cookie-universal-nuxt": "^2.1.4",
     "core-js": "^3.8.1",
     "fibers": "^5.0.0",
     "imagesloaded": "^4.1.4",

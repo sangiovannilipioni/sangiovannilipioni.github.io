@@ -109,7 +109,8 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     { src: "~/plugins/vue-pdf.client.js", mode: "client" },
-    { src: "./plugins/vue-awesome-swiper.client.js", mode: "client" }
+    { src: "./plugins/vue-awesome-swiper.client.js", mode: "client" },
+    '~plugins/persistedState'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -148,7 +149,9 @@ export default {
     "@nuxtjs/axios",
     "@nuxtjs/auth-next",
     //
-    "nuxt-i18n"
+    "nuxt-i18n",
+    //
+    'cookie-universal-nuxt'
   ],
 
   i18n: {
