@@ -1,6 +1,13 @@
 <template>
   <client-only>
     <swiper class="swiper" :options="swiperOption">
+      <swiper-slide>
+        Press
+        <code class="code">left</code>
+        or
+        <code class="code">right</code>
+        to control slide
+      </swiper-slide>
       <swiper-slide>Slide 1</swiper-slide>
       <swiper-slide>Slide 2</swiper-slide>
       <swiper-slide>Slide 3</swiper-slide>
@@ -25,6 +32,10 @@ export default {
   data() {
     return {
       swiperOption: {
+        slidesPerView: 1,
+        keyboard: {
+          enabled: true,
+        },
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
