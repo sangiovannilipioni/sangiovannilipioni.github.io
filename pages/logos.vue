@@ -2,36 +2,35 @@
   <div class="logos mx-auto">
     <!-- https://github.com/nuxt/nuxt.js/issues/6645#issuecomment-550111141 -->
     <component :is="'style'">
-      .logos svg path { stroke-width: {{ strokeWidth }}; } 
-      .logos svg > g {
-      transform: translate(-20px,-250px) {{ getMatrixForRotation(310, 535) }}; }
+      @media (min-width: 540px) { .logo svg path { stroke-width:
+      {{ strokeWidth }}; } } @media (max-width: 540px) { .logo svg path {
+      stroke-width: {{ strokeWidth }}; } } .logo svg path { stroke-width:
+      {{ strokeWidth }}; } .logos svg > g { transform: translate(-20px,-250px)
+      {{ getMatrixForRotation(310, 535) }}; }
     </component>
     <b-form id="strokeWidthForm" class="form-inline">
       <div class="blah d-flex w-100">
-        <label class="" for="strokeWidth">Stroke Width</label>
-        <b-form-input
-          class="d-inline-flex px-2"
-          type="range"
+        <label class="mr-3" for="strokeWidth">Stroke Width</label>
+        <vue-slider
           id="strokeWidth"
-          min="0"
-          max="128"
-          step="1"
           v-model="strokeWidth"
+          v-bind="options1"
+          @change="setScale"
+          class="d-inline-flex flex-grow-1"
         />
-        <div class="feedback">{{ strokeWidth }}</div>
+        <div class="feedback ml-3">{{ strokeWidth }}</div>
       </div>
       <div class="d-flex w-100">
-        <label class="" for="angle">Angle</label>
-        <b-form-input
-          class="px-2"
-          type="range"
+        <label class="mr-3" for="angle">Angle</label>
+        <vue-slider
           id="angle"
-          min="0"
-          max="360"
-          step="1"
           v-model="angle"
+          :min="0"
+          :max="360"
+          :interval="1"
+          class="d-inline-flex flex-grow-1"
         />
-        <div class="feedback">{{ angle }}</div>
+        <div class="feedback ml-3">{{ angle }}</div>
       </div>
     </b-form>
     <div v-html="src" class="d-flex justify-content-center"></div>
@@ -49,15 +48,41 @@
 </style>
 
 <script>
+import VueSlider from "vue-slider-component/dist-css/vue-slider-component.umd.min";
+import "vue-slider-component/dist-css/vue-slider-component.css";
+import "vue-slider-component/theme/default.css";
+
+const MIN_SCALE = 0;
+const MAX_SCALE = 12;
+
 export default {
   name: "Icon",
   data() {
     return {
-      strokeWidth: 20,
       angle: 180,
+      strokeWidth: Math.pow(10, 2),
+      scale: MIN_SCALE,
+      options1: {
+        data: Array.from(new Array(MAX_SCALE - MIN_SCALE + 1), (_, i) =>
+          Math.pow(2, i + MIN_SCALE)
+        ),
+      },
+      options2: {
+        min: MIN_SCALE,
+        max: MAX_SCALE,
+      },
     };
   },
+  components: {
+    VueSlider,
+  },
   methods: {
+    setScale: function () {
+      this.scale = Math.round(Math.log(this.strokeWidth) / Math.log(2));
+    },
+    setValue: function () {
+      this.strokeWidth = Math.pow(2, this.scale);
+    },
     // https://stackoverflow.com/a/31488227/1070215
     getMatrixForRotation(cx, cy) {
       const an = this.angle;
