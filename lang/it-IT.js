@@ -16,5 +16,5 @@ export default {
   register: "Richiesta di Adesione",
   gossip: "Area Riservata",
 
-  slides: "Slides",
+  slides: "Esempio di presentazione",
 };

@@ -16,5 +16,5 @@ export default {
   register: "Application for Membership",
   gossip: "Private Area",
 
-  slides: "Slides",
+  slides: "Sample Slideshow",
 };
