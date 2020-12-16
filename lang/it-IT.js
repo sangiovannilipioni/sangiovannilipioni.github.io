@@ -14,5 +14,7 @@ export default {
   movies: "Video",
   impresa: "Logo",
   register: "Richiesta di Adesione",
-  gossip: "Area Riservata"
+  gossip: "Area Riservata",
+
+  slides: "Slides",
 };

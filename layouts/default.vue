@@ -38,6 +38,9 @@
                 >Programma x San_Giovanni Finale Giugno 2020</span
               ></b-dropdown-item
             >
+            <b-dropdown-item :to="localePath('/slides')">{{
+              $t("slides")
+            }}</b-dropdown-item>
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown text="Media">

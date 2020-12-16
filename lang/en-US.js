@@ -14,5 +14,7 @@ export default {
   movies: "Video",
   impresa: "Logo",
   register: "Application for Membership",
-  gossip: "Private Area"
+  gossip: "Private Area",
+
+  slides: "Slides",
 };
