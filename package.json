@@ -29,14 +29,16 @@
     "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
     "svg-country-flags": "^1.2.9",
+    "swiper": "^6.4.1",
+    "vue-awesome-swiper": "^4.1.1",
     "vue-masonry-wall": "^0.3.0",
-    "vue-pdf": "^4.2.0",
-    "vueperslides": "^2.12.1"
+    "vue-pdf": "^4.2.0"
   },
   "devDependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@nuxtjs/fontawesome": "^1.1.2",
-    "@nuxtjs/google-analytics": "^2.4.0"
+    "@nuxtjs/google-analytics": "^2.4.0",
+    "@nuxtjs/style-resources": "^1.0.0"
   }
 }

@@ -47,6 +47,7 @@
   font-size: larger;
 }
 </style>
+
 <script>
 export default {
   name: "Icon",

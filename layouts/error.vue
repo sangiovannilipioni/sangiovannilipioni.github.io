@@ -1,3 +1,4 @@
+<!-- https://www.damirscorner.com/blog/posts/20200904-ErrorHandlingInNuxtjs.html -->
 <template>
   <div>
     <h2 v-if="error.statusCode === 404">Page not found</h2>

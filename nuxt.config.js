@@ -104,10 +104,13 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ["~/assets/css/style"],
+  css: ["~/assets/scss/style"],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [{ src: "~/plugins/vue-pdf.js", mode: "client" }],
+  plugins: [
+    { src: "~/plugins/vue-pdf.js", mode: "client" },
+    { src: "./plugins/vue-awesome-swiper.js", ssr: false }
+  ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -116,7 +119,8 @@ export default {
   buildModules: [
     "@nuxtjs/svg",
     "@nuxtjs/fontawesome",
-    "@nuxtjs/google-analytics"
+    "@nuxtjs/google-analytics",
+    "@nuxtjs/style-resources"
   ],
 
   fontawesome: {
@@ -128,6 +132,10 @@ export default {
 
   googleAnalytics: {
     id: "UA-163898058-3"
+  },
+
+  styleResources: {
+    scss: ["assets/scss/_variables.scss"]
   },
 
   // Modules (https://go.nuxtjs.dev/config-modules)

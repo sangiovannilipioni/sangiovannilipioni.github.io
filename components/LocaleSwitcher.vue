@@ -51,21 +51,8 @@ export default {
 </script>
 
 <style scoped>
-.country-icon {
-  width: 30px;
-  height: 30px;
-  display: inline-block;
-  vertical-align: baseline;
-  border: 1px solid #dee2e6;
-  box-shadow: 0px 1px 3px rgba(24, 29, 38, 0.1);
-}
-
-.country-icon.as-toggle {
-  margin-top: 5px;
-}
-
 .locale-name {
   display: inline-block;
-  vertical-align: baseline;
+  vertical-align: text-top;
 }
 </style>

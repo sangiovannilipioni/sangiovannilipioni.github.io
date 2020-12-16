@@ -1,46 +1,52 @@
 <template>
-  <div class="row">
-    <vueper-slides class="col" fractions progress>
-      <vueper-slide
-        v-for="(slide, i) in slides"
-        :key="i"
-        :title="slide.title"
-        :content="slide.content"
-      ></vueper-slide>
-    </vueper-slides>
-  </div>
+  <swiper class="swiper" :options="swiperOption">
+    <swiper-slide>Slide 1</swiper-slide>
+    <swiper-slide>Slide 2</swiper-slide>
+    <swiper-slide>Slide 3</swiper-slide>
+    <swiper-slide>Slide 4</swiper-slide>
+    <swiper-slide>Slide 5</swiper-slide>
+    <swiper-slide>Slide 6</swiper-slide>
+    <swiper-slide>Slide 7</swiper-slide>
+    <swiper-slide>Slide 8</swiper-slide>
+    <swiper-slide>Slide 9</swiper-slide>
+    <swiper-slide>Slide 10</swiper-slide>
+    <div class="swiper-button-prev" slot="button-prev"></div>
+    <div class="swiper-button-next" slot="button-next"></div>
+    <div class="swiper-pagination" slot="pagination"></div>
+  </swiper>
 </template>
 
-<style scoped>
-.vueperslides__progress {
-  background: rgba(0, 0, 0, 0.25);
-  color: #ff5252;
-}
-</style>
-
 <script>
-import { VueperSlides, VueperSlide } from "vueperslides";
-import "vueperslides/dist/vueperslides.css";
 export default {
-  components: { VueperSlides, VueperSlide },
+  name: "swiper-example-navigation",
+  title: "Navigation",
   data() {
     return {
-      slides: [
-        {
-          title: "Slide #1",
-          content: "Slide content.",
+      swiperOption: {
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
         },
-        {
-          title: "Slide #2",
-          content: 'Slide title can be HTML.<br>And so does the slide content, <span style="font-size: 1.2em;color: yellow">why not?</span>',
+        pagination: {
+          el: ".swiper-pagination",
+          type: "progressbar",
         },
-        {
-          title: "Slide #3",
-          content: "Slide content.",
-        },
-      ],
+        loop: false,
+      },
     };
   },
 };
 </script>
 
+<style lang="scss" scoped>
+@import "swiper/swiper-bundle.css";
+.swiper {
+  height: auto;
+
+  .swiper-slide {
+    text-align: center;
+    height: 300px;
+    line-height: 300px;
+  }
+}
+</style>
