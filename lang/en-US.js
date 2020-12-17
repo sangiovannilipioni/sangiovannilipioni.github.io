@@ -9,7 +9,7 @@ export default {
   signOut: "Sign Out",
 
   exordium: "Summary",
-  dictators: "Board of Directors",
+  dictators: "Committee Members",
   administrivia: "Constitutive Act and Statute",
   pictures: "Photos",
   movies: "Video",

@@ -6,9 +6,9 @@
 
 <script>
 export default {
-  async asyncData({ $content, params }) {
-    const article = await $content("articles", params.slug).fetch();
-
+  async asyncData(context) {
+    const { $content, params, app, route, redirect } = context;
+    const article = await $content(`${app.i18n.locale}/articles`, params.slug).fetch();
     return { article };
   },
 };

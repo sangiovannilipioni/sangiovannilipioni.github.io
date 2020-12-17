@@ -21,9 +21,9 @@
 
 <script>
 export default {
-  async asyncData({ $content }) {
-    const contatti = await $content("/articles/contatti").fetch();
-
+  async asyncData(context) {
+    const { $content, params, app, route, redirect } = context;
+    const contatti = await $content(`${app.i18n.locale}/articles`, "contatti").fetch();
     return {
       contatti,
     };

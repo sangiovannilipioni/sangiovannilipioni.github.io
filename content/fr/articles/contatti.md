@@ -1,6 +1,6 @@
-## Contatti
+## Contacts
 
-**Indirizzo**
+**Adresse**
 
 <div class="card">
 <div class="card-body">
@@ -18,6 +18,6 @@ Piazza Largo del Popolo, 50
 
 <br/>
 
-**Mail** nessunoesclusoaps@gmail.com
+**Email** nessunoesclusoaps@gmail.com
 
 **PEC** nessunoesclusoaps@pec.it

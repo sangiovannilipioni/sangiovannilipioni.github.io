@@ -183,6 +183,7 @@ export default {
         file: "it-IT.js"
       }
     ],
+    strategy: 'prefix_except_default',
     defaultLocale: "it"
   },
 
