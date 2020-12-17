@@ -44,6 +44,7 @@
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown text="Media">
+            <template slot="button-content">{{ $t("media") }}</template>
             <b-dropdown-item :to="localePath('/gallery')">{{
               $t("pictures")
             }}</b-dropdown-item>
@@ -104,10 +105,10 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <main role="main" class="_flex-shrink-0">
+    <main role="main">
       <Nuxt />
     </main>
-    <footer class="my-footer mt-auto py-1">
+    <footer class="footer">
       <div class="container-fluid">
         <span>&copysr;&nbsp;Associazione APS “<i>NESSUNO ESCLUSO</i>”</span>
         <a id="version" class="float-right" target="_blank" :href="gitUrl"
@@ -120,7 +121,7 @@
 
 <style scoped>
 .navbar {
-    z-index: 1000;
+  z-index: 1000;
 }
 /* https://stackoverflow.com/a/25410621/1070215 */
 a[role="menuitem"] .pdf:after {

@@ -3,6 +3,7 @@ export default {
   hello: "Ciao",
   whoWeAre: "Chi siamo",
   theProject: "Il progetto",
+  media: "Media",
   contacts: "Contatti",
   signIn: "Entra",
   signOut: "Esci",

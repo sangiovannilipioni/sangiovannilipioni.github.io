@@ -1,7 +1,5 @@
 <template>
   <div>
-    <h2 class="text-center">Login</h2>
-    <hr />
     <b-alert v-if="errorMessage" show variant="danger">
       {{ errorMessage }}
     </b-alert>
@@ -10,7 +8,7 @@
       <strong>{{ $auth.$state.redirect }}</strong>
     </b-alert>
     <b-row align-h="center" class="pt-4">
-      <b-card title="Social Login" bg-variant="light">
+      <b-card v-show="!loggedIn" title="Login" bg-variant="light">
         <div class="alert alert-info">
           <font-awesome-icon :icon="['fas', 'thumbs-up']" />
           Login with Facebook marche plus ou moins (plutôt plus que moins)
@@ -28,35 +26,33 @@
           </b-btn>
         </div>
       </b-card>
+      <b-card v-show="loggedIn" title="Logout" bg-variant="light">
+        <b-btn
+          block
+          v-show="loggedIn"
+          class="login-button"
+          @click="$auth.logout()"
+          ><font-awesome-icon :icon="['fas', 'sign-out-alt']" />
+        </b-btn>
+      </b-card>
     </b-row>
   </div>
 </template>
 
 <script>
-// import busyOverlay from '~/components/busy-overlay'
+import { mapState } from "vuex";
 
 export default {
-  components: {
-    /* busyOverlay */
-  },
+  components: {},
   middleware: ["auth"],
-  data() {
-    return {
-      username: "",
-      password: "123",
-      error: null,
-    };
-  },
   computed: {
+    ...mapState("auth", ["loggedIn"]),
     strategies: () => [
       /* */
       { key: "google", name: "Google", color: "#4284f4", active: false },
       { key: "facebook", name: "Facebook", color: "#3c65c4", active: true },
       { key: "github", name: "GitHub", color: "#202326", active: false },
     ],
-    isCallback() {
-      return Boolean(this.$route.query.callback);
-    },
     errorMessage() {
       const { error } = this;
       if (!error || typeof error === "string") {

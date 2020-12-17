@@ -11,29 +11,33 @@ body {
   flex-direction: column;
 }
 
-main[role="main"]{
-  padding-top: .5rem;
-  flex-grow: 1!important;
+/* main */
+main[role="main"] {
+  padding: 0.3rem;
+  flex-grow: 1 !important;
   width: 100%;
 }
 
+/* footer */
+.footer {
+  z-index: 999;
+  color: darkgray;
+  background: linear-gradient(0deg, white, $footGradient 100%);
+}
+
+.footer #version {
+  color: inherit;
+  font-family: monospace;
+}
+
+/* navbar */
 nav {
-  background: linear-gradient(to bottom, white, #f2f3f4 100%);
+  background: linear-gradient(180deg, white, $headGradient 100%);
 }
 
 .navbar-brand {
   font-size: 18px;
   line-height: 20px;
-}
-
-.my-footer {
-  color: $darkgray;
-  background: linear-gradient(to top, #f2f3f4, white 100%);
-}
-
-.my-footer #version {
-  color: $darkgray;
-  font-family: monospace;
 }
 
 @media (min-width: 540px) {
@@ -54,7 +58,7 @@ nav {
     height: auto;
   }
   .logo svg path {
-    stroke-width: $strokeWidth;
+    stroke-width: $logoStrokeWidth;
   }
 }
 @media (max-width: 540px) {
@@ -63,10 +67,11 @@ nav {
     height: auto;
   }
   .logo svg path {
-    stroke-width: $strokeWidth;
+    stroke-width: $logoStrokeWidth;
   }
 }
 
+/* kitchen-sink */
 ul,
 li {
   list-style-type: none;
