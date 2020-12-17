@@ -1,7 +1,7 @@
 <!-- https://github.com/FranckFreiburger/vue-pdf/issues/148#issuecomment-619117454 -->
 <template>
   <client-only>
-    <div>
+    <div class="container">
       <vue-pdf
         class="your-pdf-class"
         :src="pdfSrc"

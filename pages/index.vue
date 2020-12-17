@@ -6,13 +6,12 @@
 
 <style scoped lang="scss">
 #bg {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: url("/jpg/panoramix2.jpg") no-repeat center center fixed;
-  z-index: -1000;
   background-size: cover;
   h1 {
     font-size: 12rem;

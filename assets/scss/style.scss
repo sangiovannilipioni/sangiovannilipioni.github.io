@@ -11,12 +11,10 @@ body {
   flex-direction: column;
 }
 
-/* https://css-tricks.com/couple-takes-sticky-footer/ */
-.my-content {
-  flex: 1 0 auto;
-}
-.my-footer {
-  flex-shrink: 0;
+main[role="main"]{
+  padding-top: .5rem;
+  flex-grow: 1!important;
+  width: 100%;
 }
 
 nav {

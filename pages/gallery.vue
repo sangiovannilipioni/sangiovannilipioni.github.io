@@ -1,5 +1,5 @@
 <template >
-  <div id="photoGallery">
+  <div id="photoGallery" class="container">
     <vue-masonry-wall :items="items" :options="options" @append="append">
       <template v-slot:default="{ item }">
         <div class="Item">

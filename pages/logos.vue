@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto">
+  <div class="mx-auto container">
     <!-- https://github.com/nuxt/nuxt.js/issues/6645#issuecomment-550111141 -->
     <component :is="'style'">
       @media (min-width: 540px) { .logo svg path { stroke-width:

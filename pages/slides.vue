@@ -1,35 +1,83 @@
 <template>
-  <div>
-    <client-only>
-      <swiper class="swiper" :options="swiperOption">
-        <swiper-slide>
+  <client-only>
+    <swiper class="swiper" :options="swiperOption">
+      <swiper-slide
+        ><div>
           Press
           <code class="code">left</code>
           or
           <code class="code">right</code>
           to control slide
-        </swiper-slide>
-        <swiper-slide>Slide 1</swiper-slide>
-        <swiper-slide>Slide 2</swiper-slide>
-        <swiper-slide>Slide 3</swiper-slide>
-        <swiper-slide>Slide 4</swiper-slide>
-        <swiper-slide>Slide 5</swiper-slide>
-        <swiper-slide>Slide 6</swiper-slide>
-        <swiper-slide>Slide 7</swiper-slide>
-        <swiper-slide>Slide 8</swiper-slide>
-        <swiper-slide>Slide 9</swiper-slide>
-        <swiper-slide>Slide 10</swiper-slide>
-        <div class="swiper-button-prev" slot="button-prev"></div>
-        <div class="swiper-button-next" slot="button-next"></div>
-        <div class="swiper-pagination" slot="pagination"></div>
-      </swiper>
-    </client-only>
-  </div>
+        </div>
+      </swiper-slide>
+      <swiper-slide class="d-flex__align-items-center"
+        ><div>Slide 1</div></swiper-slide
+      >
+      <swiper-slide class="d-flex__align-items-center"
+        ><div>
+          <div>Slide 2</div>
+          <div>Slide 2</div>
+          <div>Slide 2</div>
+          <div>Slide 2</div>
+          <div>Slide 2</div>
+          <div>Slide 2</div>
+          <div>Slide 2</div>
+          <div>Slide 2</div>
+          <div>Slide 2</div>
+          <div>Slide 2</div>
+        </div></swiper-slide
+      >
+      <swiper-slide class="d-flex__align-items-center"
+        ><div>Slide 3</div></swiper-slide
+      >
+      <swiper-slide class="d-flex__align-items-center"
+        ><div>Slide 4</div></swiper-slide
+      >
+      <swiper-slide class="d-flex__align-items-center"
+        ><div>Slide 5</div></swiper-slide
+      >
+      <swiper-slide class="d-flex__align-items-center"
+        ><div>Slide 6</div></swiper-slide
+      >
+      <swiper-slide class="d-flex__align-items-center"
+        ><div>Slide 7</div></swiper-slide
+      >
+      <swiper-slide class="d-flex__align-items-center"
+        ><div>Slide 8</div></swiper-slide
+      >
+      <swiper-slide class="d-flex__align-items-center"
+        ><div>Slide 9</div></swiper-slide
+      >
+      <swiper-slide class="d-flex__align-items-center"
+        ><div>The End</div></swiper-slide
+      >
+      <div class="swiper-button-prev" slot="button-prev"></div>
+      <div class="swiper-button-next" slot="button-next"></div>
+      <div class="swiper-pagination" slot="pagination"></div>
+    </swiper>
+  </client-only>
 </template>
+
+<style lang="scss" scoped>
+.swiper {
+  height: 100%;
+
+  .swiper-slide {
+    background: #eee;
+    display: flex !important;
+    align-items: center !important;
+
+    > div {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+</style>
 
 <script>
 // https://github.com/nolimits4web/swiper/issues/3768#issuecomment-680926562
-import Swiper from 'swiper/swiper-bundle.esm'
+import Swiper from "swiper/swiper-bundle.esm";
 
 export default {
   name: "swiper-example-navigation",
@@ -57,15 +105,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.swiper {
-  height: auto;
 
-  .swiper-slide {
-    text-align: center;
-    height: 520px;
-    line-height: 520px;
-    background: #ddd;
-  }
-}
-</style>

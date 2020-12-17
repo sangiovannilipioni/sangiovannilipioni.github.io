@@ -1,6 +1,6 @@
 <!-- https://merrymaker.github.io/bs4-holygrail-layout/ -->
 <template>
-  <div class="d-flex flex-column vh-100 my-content">
+  <div class="d-flex flex-column vh-100">
     <b-navbar toggleable="sm" type="light" variant="light">
       <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle>
 
@@ -104,10 +104,8 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <main role="main" class="flex-shrink-0">
-      <div class="container">
-        <Nuxt />
-      </div>
+    <main role="main" class="_flex-shrink-0">
+      <Nuxt />
     </main>
     <footer class="my-footer mt-auto py-1">
       <div class="container-fluid">
@@ -121,6 +119,9 @@
 </template>
 
 <style scoped>
+.navbar {
+    z-index: 1000;
+}
 /* https://stackoverflow.com/a/25410621/1070215 */
 a[role="menuitem"] .pdf:after {
   display: inline-block;
