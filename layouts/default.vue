@@ -38,7 +38,7 @@
                 >Programma x San_Giovanni Finale Giugno 2020</span
               ></b-dropdown-item
             >
-            <b-dropdown-item :to="localePath('/slides')">{{
+            <b-dropdown-item v-show="loggedIn" :to="localePath('/slides')">{{
               $t("slides")
             }}</b-dropdown-item>
           </b-nav-item-dropdown>
@@ -51,7 +51,7 @@
             <b-dropdown-item :to="localePath('/videos2')">{{
               $t("movies")
             }}</b-dropdown-item>
-            <b-dropdown-item :to="localePath('/logos')">{{
+            <b-dropdown-item v-show="loggedIn" :to="localePath('/logos')">{{
               $t("impresa")
             }}</b-dropdown-item>
           </b-nav-item-dropdown>
@@ -138,7 +138,12 @@ a[role="menuitem"] .pdf:after {
 
 <script>
 import axios from "axios";
+import { mapState } from "vuex";
+
 export default {
+  computed: {
+    ...mapState("auth", ["loggedIn"]),
+  },
   data() {
     return {
       packageVersion: process.env.packageVersion,
