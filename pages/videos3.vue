@@ -1,6 +1,6 @@
 <template>
   <Video
-    src="https://storage.googleapis.com/sangiovannilipioni/San%20giovanni%20bis%202.MP4"
+    src="https://storage.googleapis.com/sangiovannilipioni/SGL%202%20-%20HD%20720p.mov"
     type="video/mp4"
     muted="muted"
   />
