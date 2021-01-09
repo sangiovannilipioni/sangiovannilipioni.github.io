@@ -1,5 +1,5 @@
 <template>
-  <video playsinline autoplay muted loop>
+  <video playsinline autoplay loop>
     <source :src="src" :type="type" />
 
     Sorry, your browser doesn't support embedded videos.
