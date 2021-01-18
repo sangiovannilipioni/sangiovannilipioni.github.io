@@ -1,6 +1,6 @@
 // it-IT.js in italiano
 export default {
-  hello: "Ciao",
+  hello: "…",
   whoWeAre: "Chi siamo",
   theProject: "Il progetto",
   media: "Media",

@@ -1,6 +1,6 @@
 // en-US.js in English
 export default {
-  hello: "Hello",
+  hello: "…",
   whoWeAre: "Who We Are",
   theProject: "The Project",
   media: "Media",

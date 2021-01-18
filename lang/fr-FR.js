@@ -1,6 +1,6 @@
 // fr-FR.js en français
 export default {
-  hello: "Bonjour",
+  hello: "…",
   whoWeAre: "Infos",
   theProject: "Projet",
   media: "Media",
