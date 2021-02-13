@@ -48,13 +48,16 @@
             <b-dropdown-item :to="localePath('/gallery')">{{
               $t("pictures")
             }}</b-dropdown-item>
+<!--
             <b-dropdown-item :to="localePath('/videos3')">{{
               $t("movies")
             }} (1)</b-dropdown-item>
             <b-dropdown-item :to="localePath('/videos2')">{{
               $t("movies")
-            }} (2)</b-dropdown-item>
-            <b-dropdown-item v-show="loggedIn" :to="localePath('/logos')">{{
+            }} (2)
+            </b-dropdown-item>
+-->
+             <b-dropdown-item v-show="loggedIn" :to="localePath('/logos')">{{
               $t("impresa")
             }}</b-dropdown-item>
           </b-nav-item-dropdown>
