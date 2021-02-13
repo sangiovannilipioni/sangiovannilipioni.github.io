@@ -18,4 +18,7 @@ export default {
   gossip: "Area Riservata",
 
   slides: "Esempio di presentazione",
+  
+  loginWarning: "Per il momento, solo il Login con Facebook è disponibile",
+  loginPrompt: "Login con",
 };

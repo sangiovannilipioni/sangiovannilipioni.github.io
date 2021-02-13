@@ -18,4 +18,7 @@ export default {
   gossip: "Private Area",
 
   slides: "Sample Slideshow",
+  
+  loginWarning: "For the time being, only Login through Facebook is enabled.",
+  loginPrompt: "Login with",
 };

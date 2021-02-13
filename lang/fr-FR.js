@@ -18,4 +18,7 @@ export default {
   gossip: "Zone privée",
 
   slides: "Exemple de présentation",
+  
+  loginWarning: "Pour le moment, seul le Login via Facebook est disponbile.",
+  loginPrompt: "Login via",
 };

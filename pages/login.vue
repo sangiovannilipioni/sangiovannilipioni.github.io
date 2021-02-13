@@ -9,11 +9,11 @@
     </b-alert>
     <b-row align-h="center" class="pt-4">
       <b-card v-show="!loggedIn" title="Login" bg-variant="light">
-        <div class="alert alert-info">
-          <font-awesome-icon :icon="['fas', 'thumbs-up']" />
-          Login with Facebook marche plus ou moins (plutôt plus que moins)
+        <div class="alert alert-warning">
+          <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
+          {{ $t("loginWarning") }}
         </div>
-        <div v-for="s in strategies" :key="s.key" class="mb-2">
+        <div v-for="s in strategies" :key="s.key" class="mb-2" style="width:100%">
           <b-btn
             block
             :style="{ background: s.color }"
@@ -21,8 +21,8 @@
             @click="$auth.loginWith(s.key)"
             :disabled="!s.active"
           >
-            <font-awesome-icon class="float-left" :icon="['fab', s.key]" />
-            Login with {{ s.name }}
+            <font-awesome-icon :icon="['fab', s.key]" />
+            {{ $t("loginPrompt") }} {{ s.name }}
           </b-btn>
         </div>
       </b-card>
@@ -48,10 +48,11 @@ export default {
   computed: {
     ...mapState("auth", ["loggedIn"]),
     strategies: () => [
-      /* */
-      { key: "google", name: "Google", color: "#4284f4", active: false },
-      { key: "facebook", name: "Facebook", color: "#3c65c4", active: true },
-      { key: "github", name: "GitHub", color: "#202326", active: false },
+      /* 
+      */
+     { key: "facebook", name: "Facebook", color: "#3c65c4", active: true },
+     { key: "google", name: "Google", color: "#4284f4", active: false },
+     { key: "github", name: "GitHub", color: "#202326", active: false },
     ],
     errorMessage() {
       const { error } = this;
