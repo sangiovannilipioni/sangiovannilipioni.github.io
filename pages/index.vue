@@ -30,7 +30,8 @@ function initialize() {
   const map = new google.maps.Map(document.getElementById("map"), {
     center: fenway,
     zoom: 15.5,
-    disableDefaultUI: true,
+    /* disableDefaultUI: true, */
+    mapTypeControl: false,
   });
   const panorama = new google.maps.StreetViewPanorama(
     document.getElementById("pano"),
