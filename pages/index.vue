@@ -29,7 +29,7 @@ function initialize() {
   const fenway = { lat: 41.8442301, lng: 14.5618596 };
   const map = new google.maps.Map(document.getElementById("map"), {
     center: fenway,
-    zoom: 15,
+    zoom: 15.5,
     disableDefaultUI: true,
   });
   const panorama = new google.maps.StreetViewPanorama(
