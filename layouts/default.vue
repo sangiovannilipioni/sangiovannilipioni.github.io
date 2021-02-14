@@ -1,7 +1,7 @@
 <!-- https://merrymaker.github.io/bs4-holygrail-layout/ -->
 <template>
   <div class="d-flex flex-column vh-100">
-    <b-navbar toggleable="sm" type="light" variant="light">
+    <b-navbar toggleable="sm">
       <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle>
 
       <b-navbar-brand
@@ -48,7 +48,7 @@
             <b-dropdown-item :to="localePath('/gallery')">{{
               $t("pictures")
             }}</b-dropdown-item>
-<!--
+            <!--
             <b-dropdown-item :to="localePath('/videos3')">{{
               $t("movies")
             }} (1)</b-dropdown-item>
@@ -57,7 +57,7 @@
             }} (2)
             </b-dropdown-item>
 -->
-             <b-dropdown-item v-show="loggedIn" :to="localePath('/logos')">{{
+            <b-dropdown-item v-show="loggedIn" :to="localePath('/logos')">{{
               $t("impresa")
             }}</b-dropdown-item>
           </b-nav-item-dropdown>
@@ -149,6 +149,9 @@ import { mapState } from "vuex";
 export default {
   computed: {
     ...mapState("auth", ["loggedIn"]),
+    currentLocale() {
+      return this.$i18n.locale;
+    },
   },
   data() {
     return {

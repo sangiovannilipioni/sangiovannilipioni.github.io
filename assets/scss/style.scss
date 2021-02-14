@@ -22,7 +22,7 @@ main[role="main"] {
 .footer {
   z-index: 999;
   color: darkgray;
-  background: linear-gradient(0deg, white, $footGradient 100%);
+  background: #cbe18e77; /*linear-gradient(0deg, #cbe18e, $footGradient 100%); */
 }
 
 .footer #version {
@@ -32,7 +32,7 @@ main[role="main"] {
 
 /* navbar */
 nav {
-  background: linear-gradient(180deg, white, $headGradient 100%);
+  background: #cbe18e77 !important;; /* linear-gradient(180deg, #cbe18e, $headGradient 100%);*/
 }
 
 .navbar-brand {
