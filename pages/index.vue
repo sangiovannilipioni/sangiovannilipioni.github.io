@@ -1,16 +1,27 @@
 <template>
-  <div style="height: 100%">
-    <div id="map"></div>
-    <div id="pano"></div>
+  <div id="qwe" style="height: 100%" class="row d-flex">
+    <div id="map" class="col" ></div>
+    <div id="pano" class="col" ></div>
   </div>
 </template>
 <style type="text/css">
-#map,
+@media (orientation: landscape) {
+  body #qwe {
+    flex-direction: row;
+  }
+}
+
+@media (orientation: portrait) {
+  body #qwe {
+    flex-direction: column;
+  }
+}
+/* #map,
 #pano {
   float: left;
   height: 100%;
   width: 50%;
-}
+} */
 </style> 
     <script>
 function initialize() {
