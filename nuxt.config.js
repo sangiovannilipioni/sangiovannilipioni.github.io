@@ -110,7 +110,8 @@ export default {
   plugins: [
     { src: "~/plugins/vue-pdf.client.js", mode: "client" },
     { src: "./plugins/vue-awesome-swiper.client.js", mode: "client" },
-    '~plugins/persistedState'
+    "~plugins/persistedState",
+    { src: "~/plugins/vue-plyr.js", mode: "client" }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -151,7 +152,7 @@ export default {
     //
     "nuxt-i18n",
     //
-    'cookie-universal-nuxt'
+    "cookie-universal-nuxt"
   ],
 
   i18n: {
@@ -183,7 +184,7 @@ export default {
         file: "it-IT.js"
       }
     ],
-    strategy: 'prefix_except_default',
+    strategy: "prefix_except_default",
     defaultLocale: "it"
   },
 

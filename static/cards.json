@@ -1,20 +1,30 @@
 [
   {
-    "key": "facebook",
-    "name": "Facebook",
-    "img": "https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png?w=512&h=512",
-    "slug": "https://www.facebook.com/"
+    "key": "1",
+    "name": "Proloco San Giovanni Lipioni",
+    "img": "",
+    "vid": "7R7QXUhUUhY",
+    "slug": "http://www.comunesangiovannilipioni.it/"
   },
   {
-    "key": "google",
-    "name": "Google",
-    "img": "https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg",
-    "slug": "https://www.google.com/"
+    "key": "2",
+    "name": "Pagina Facebook del gruppo Andamarosa",
+    "img": "",
+    "vid": "gRv12hy8RSQ",
+    "slug": "https://www.facebook.com/andamarosa/videos/452061432831864/"
   },
   {
-    "key": "github",
-    "name": "GitHub",
-    "img": "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg",
-    "slug": "https://www.github.com/"
+    "key": "3",
+    "name": "",
+    "img": "",
+    "vid": "cezX-Q3u7gM",
+    "slug": "#"
+  },
+  {
+    "key": "5",
+    "name": "Wikipedia",
+    "img": "/jpg/San_Giovanni_Lipioni.jpg",
+    "slug": "https://en.wikipedia.org/wiki/San_Giovanni_Lipioni"
   }
+  
 ]
