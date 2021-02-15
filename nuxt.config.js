@@ -238,6 +238,18 @@ export default {
       config.node = {
         fs: "empty"
       };
+      // https://medium.com/js-dojo/debugging-nuxt-js-with-vs-code-60a1a9e75cf6
+      if (ctx.isDev) {
+        config.devtool = ctx.isClient ? "source-map" : "inline-source-map";
+      }
     }
-  }
+  },
+
+  // https://nuxtjs.org/blog/moving-from-nuxtjs-dotenv-to-runtime-config/
+  publicRuntimeConfig: {
+    googleMapsApiSecret: process.env.GOOGLE_MAPS_API_KEY
+  },
+  privateRuntimeConfig : {
+    // googleMapsApiSecret: process.env.GOOGLE_MAPS_API_KEY
+  },
 };

@@ -3,19 +3,18 @@
     "configurations": [
       {
         "type": "chrome",
-        "request": "attach",
-        "name": "attach to Chrome",
-        "port": 9222,
-        "webRoot": "${workspaceFolder}",
-        "sourceMapPathOverrides": {
-          "webpack:///*": "${workspaceRoot}/*"
-        }
+        "request": "launch",
+        "name": "client: chrome",
+        "url": "http://localhost:3000",
+        "webRoot": "${workspaceFolder}"
       },
       {
         "type": "node",
         "request": "launch",
         "name": "server: nuxt",
-        "args": ["dev"],
+        "args": [
+          "dev"
+        ],
         "osx": {
           "program": "${workspaceFolder}/node_modules/.bin/nuxt"
         },
@@ -30,7 +29,10 @@
     "compounds": [
       {
         "name": "fullstack: nuxt",
-        "configurations": ["server: nuxt", "attach to Chrome"]
+        "configurations": [
+          "server: nuxt",
+          "client: chrome"
+        ]
       }
     ]
   }
