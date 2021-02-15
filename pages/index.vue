@@ -82,8 +82,7 @@ export default {
       const script = document.createElement("script");
       script.onload = this.onScriptLoaded;
       script.type = "text/javascript";
-      const qwe = "qwe"; // this.$config.googleMapsApiSecret;
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${qwe}&libraries=places&language=${this.$i18n.locale}`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${this.$config.googleMapsApiSecret}&libraries=places&language=${this.$i18n.locale}`;
       document.head.appendChild(script);
       
     } else {
