@@ -52,14 +52,13 @@ function initialize() {
   );
   map.setStreetView(panorama);
 }
-const apiKey = "AIzaSyBC_WlQhwb4Cq8BeR1UEzsrifeynQVsejU"; // Package: @nuxtjs/dotenv
 
 export default {
   head() {
     return {
       script: [
         {
-          src: `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&language=${this.$i18n.locale}`,
+          src: `https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_MAPS_API_KEY}&libraries=places&language=${this.$i18n.locale}`,
         },
       ],
     };

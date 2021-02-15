@@ -1,17 +1,17 @@
 language: node_js
 node_js:
-  - "15"
+- '15'
 cache:
   directories:
-    - node_modules
+  - node_modules
 branches:
   only:
-    - master
+  - master
 install:
-  - yarn install
-  - yarn generate
+- yarn install
+- yarn generate
 script:
-  - echo "Skipping tests"
+- echo "Skipping tests"
 deploy:
   provider: pages
   skip-cleanup: true
@@ -24,7 +24,10 @@ notifications:
   email: false
   slack:
     rooms:
-      - nessunoescluso:kGIR9oCAutxpT7YTygEJeqKN#engineering
-    on_success: always # options: [always|never|change]
-    on_failure: always # options: [always|never|change]
-    on_start: always # options: [always|never|change]
+    - nessunoescluso:kGIR9oCAutxpT7YTygEJeqKN#engineering
+    on_success: always
+    on_failure: always
+    on_start: always
+env:
+  global:
+    secure: l/oFv6WiPg+fiEE+98r8YnYd1B0ZSIJxiEEPHihTJDB7eicKYnT+VHRR8HSYbvn2Xl6yRz36pZuK/KGyiHser7q0/bNkbsUA7igpKPvfED2RFCGqC31lldyEo/ZNJeGciwzFkEGp6HPG876N32kE2D/tXDXCI7XGp9pEl0uP9jKvcjHXVsnXHzIbOU7ecrZFeB0Ng7Ck9HWVBVsUqFNnGhHnDoueNDuTCHolcLrRBtACacLoCnrMf+DbHPo0ew5oOxcuUXHi5n6yUSKlshdgM7bZWwUKLmnAkgzCrbAP6lgyFPcK+146uu3+bmdJMPYd4jzEFBHxJ/dHOyV5CG+ACuD/3pfGJW/G579Tz0d9P8b2WvKY2XlbcJBLA/kj4+7P4IvlHZWOJdJw6KsUnPZfbvWJB6ZAc79cn5Ag1V49VJJzCtG+k1gN7kb9t7KkFwGWbSz/x36HxSB/ssFakOJ+SKIl8WFaljWuFviB9oxEU8V80l6EarhAd8Ww0/8OYVvSaWmwS8U72NPm/DlWEVgfwGHJUjck7K/rii1jyh/pWuCu84l4yu2vQwl8RVl9RNJLOMltRFsxF59fumGLfBU7OjXuyZAcobeHMsnGVrun/SoSXGl7OGTknV1uyGeHZj565xqVnvVTPmEwCRjMLfFJZ9AplWLlhZKErwVVIWc5M4U=
