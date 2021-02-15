@@ -3,7 +3,7 @@ export default {
   hello: "…",
   whoWeAre: "Infos",
   theProject: "Projet",
-  media: "Media",
+  media: "Lieux",
   contacts: "Contacts",
   signIn: "Connexion",
   signOut: "Se déconnecter",
@@ -11,14 +11,14 @@ export default {
   exordium: "Prolégomènes",
   dictators: "Conseil d'administration",
   administrivia: "Acte constitutif et statuts",
-  pictures: "Photos",
-  movies: "Video",
+  pictures: "Vu d'en bas",
+  movies: "Vu d'en haut",
   impresa: "Logo",
   register: "Demande d'adhésion",
   gossip: "Zone privée",
 
   slides: "Exemple de présentation",
-  
+
   loginWarning: "Pour le moment, seul le Login via Facebook est disponbile.",
-  loginPrompt: "Login via",
+  loginPrompt: "Login via"
 };

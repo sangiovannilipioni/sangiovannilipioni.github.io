@@ -1,63 +1,45 @@
-<template >
-  <div id="photoGallery" class="container">
-    <vue-masonry-wall :items="items" :options="options" @append="append">
-      <template v-slot:default="{ item }">
-        <div class="Item">
-          <img class="Img Content" :src="item.pathLong" />
+<template>
+  <div class="album py-5">
+    <div class="container">
+      <div id="cards" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div v-for="item in items" :key="item.pathShort">
+          <div :id="item.pathShort + '_'" class="col">
+            <div
+              :id="item.pathShort"
+              class="card shadow-sm"
+              :style="{ background: 'transparent', position: 'relative' }"
+            >
+              <img class="img-fluid" :src="item.pathLong" alt="" />
+
+              <div class="card-body">
+                <p class="card-text" style="">
+                  {{ item.pathShort }}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-      </template>
-    </vue-masonry-wall>
+      </div>
+    </div>
   </div>
 </template>
-
-<style scoped>
-.Item {
-  overflow: hidden;
-  border-radius: 4px;
-  width: 100%;
-  background: #f5f5f5;
-}
-.Content {
-  padding: 20px;
-}
-.Img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  line-height: 0;
-  display: block;
-}
-</style>
-
 <script>
-import VueMasonryWall from "vue-masonry-wall";
 export default {
   name: "photoGallery",
 
-  components: { VueMasonryWall },
-
   data() {
     return {
-      options: {
-        width: 360,
-        padding: {
-          2: 8,
-          default: 12,
-        },
-      },
       items: [],
     };
   },
 
   mounted() {
-    const f = require.context("../static/jpg", true, /\.jpg$/);
+    const f = require.context("../static/jpeg", true, /\.jpg$/);
     f.keys().forEach((key) => {
       this.items.push({ pathLong: f(key), pathShort: key });
     });
   },
-
-  methods: {
-    append() {},
-  },
 };
 </script>
+<style>
+</style>
