@@ -23,11 +23,15 @@
   width: 50%;
 } */
 </style> 
+
+<script>
+function gm_authFailure() {console.log('ouille');}
+</script>
     <script>
-function initialize() {
+async function initialize() {
   // 41.8442301,14.5618596,16z
   const fenway = { lat: 41.8442301, lng: 14.5618596 };
-  const map = new google.maps.Map(document.getElementById("map"), {
+  const map = await new google.maps.Map(document.getElementById("map"), {
     center: fenway,
     zoom: 15.5,
     /* disableDefaultUI: true, */
@@ -50,20 +54,10 @@ function initialize() {
       enableCloseButton: false,
     }
   );
-  map.setStreetView(panorama);
+  await map.setStreetView(panorama);
 }
 
 export default {
-  /*   head() {
-    return {
-      script: [
-        {
-          src: `https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_MAPS_API_KEY}&libraries=places&language=${this.$i18n.locale}`,
-        },
-      ],
-    };
-  },
- */
   // https://dev.to/bawa93/troubleshooting-and-adding-google-maps-to-individual-nuxt-js-pages-1d34
   // https://dev.to/bawa_geek/how-to-use-google-maps-in-nuxt-js-project-without-any-package-or-heavy-library-26gh
   methods: {
@@ -79,11 +73,19 @@ export default {
   },
   mounted() {
     if (typeof google === "undefined") {
+      
+    const script0 = document.createElement("script")
+      script0.appendChild(document.createTextNode("function gm_authFailure() {console.log('ouille');document.getElementById('map').remove();document.getElementById('pano').remove();}"));
+      script0.type = "text/javascript";
+      document.head.appendChild(script0);
+
       const script = document.createElement("script");
       script.onload = this.onScriptLoaded;
       script.type = "text/javascript";
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${this.$config.googleMapsApiSecret}&libraries=places&language=${this.$i18n.locale}`;
+      const qwe = "qwe"; // this.$config.googleMapsApiSecret;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${qwe}&libraries=places&language=${this.$i18n.locale}`;
       document.head.appendChild(script);
+      
     } else {
       this.onScriptLoaded();
     }
