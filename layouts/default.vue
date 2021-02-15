@@ -43,12 +43,13 @@
             }}</b-dropdown-item>
           </b-nav-item-dropdown>
 
+           <b-nav-item :to="localePath('/videos')">{{ $t("media") }}</b-nav-item>
+<!--
           <b-nav-item-dropdown text="Media">
             <template slot="button-content">{{ $t("media") }}</template>
             <b-dropdown-item :to="localePath('/gallery')">{{
               $t("pictures")
             }}</b-dropdown-item>
-            <!--
             <b-dropdown-item :to="localePath('/videos3')">{{
               $t("movies")
             }} (1)</b-dropdown-item>
