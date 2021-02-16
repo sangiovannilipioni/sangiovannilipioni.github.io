@@ -82,7 +82,7 @@ export default {
       const script = document.createElement("script");
       script.onload = this.onScriptLoaded;
       script.type = "text/javascript";
-      const encodedURI = encodeURI(`/maps/api/js?key=${this.$config.googleMapsApiSecret}&libraries=places&language=${this.$i18n.locale}`);
+      const encodedURI = encodeURIComponent(`/maps/api/js?key=${this.$config.googleMapsApiSecret}&libraries=places&language=${this.$i18n.locale}`);
       script.src = `https://sleepy-cliffs-23560.herokuapp.com/proxy?scheme=https&host=maps.googleapis.com&port=443&path=${encodedURI}`;
       document.head.appendChild(script);
 
