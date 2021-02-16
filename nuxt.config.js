@@ -247,9 +247,7 @@ export default {
 
   // https://nuxtjs.org/blog/moving-from-nuxtjs-dotenv-to-runtime-config/
   publicRuntimeConfig: {
-    googleMapsApiSecret: process.env.GOOGLE_MAPS_API_KEY
   },
   privateRuntimeConfig : {
-    // googleMapsApiSecret: process.env.GOOGLE_MAPS_API_KEY
   },
 };

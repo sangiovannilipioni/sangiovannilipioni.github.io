@@ -1,16 +1,5 @@
 <template>
   <div class="container">
-<!-- 
-    <iframe
-      class="border rounded"
-      width="100%"
-      height="450"
-      frameborder="0"
-      :src="googleMapsUrl"
-      allowfullscreen
-    >
-    </iframe>
- -->    
     <nuxt-content :document="contatti" />
   </div>
 </template>
@@ -25,7 +14,7 @@
 export default {
   data() {
     return {
-      googleMapsUrl : `https://www.google.com/maps/embed/v1/place?key=${this.$config.googleMapsApiSecret}&q=San Giovanni Lipioni`
+      googleMapsUrl : ``
     }
   },
   async asyncData(context) {
