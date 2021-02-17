@@ -43,7 +43,7 @@
             }}</b-dropdown-item>
           </b-nav-item-dropdown>
 
-<!--
+          <!--
             <template slot="button-content">{{ $t("media") }}</template>
             <b-dropdown-item :to="localePath('/videos2')">{{
               $t("movies")
@@ -58,9 +58,6 @@
             }}</b-dropdown-item>
             <b-dropdown-item :to="localePath('/videos')">{{
               $t("movies")
-            }}</b-dropdown-item>
-            <b-dropdown-item v-show="loggedIn" :to="localePath('/logos')">{{
-              $t("impresa")
             }}</b-dropdown-item>
             <b-dropdown-item :to="localePath('/internet')">{{
               $t("internet")
@@ -94,6 +91,9 @@
                 /></template>
                 <b-dropdown-item :to="localePath('/secure')">{{
                   $t("gossip")
+                }}</b-dropdown-item>
+                <b-dropdown-item v-show="loggedIn" :to="localePath('/logos')">{{
+                  $t("impresa")
                 }}</b-dropdown-item>
                 <div class="dropdown-divider"></div>
                 <b-dropdown-item @click="$auth.logout()">
