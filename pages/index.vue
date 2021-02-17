@@ -4,11 +4,16 @@
                      v-else
   -->
   <div id="qwe" style="height: 100%" class="row d-flex">
-    <div id="map" class="col"></div>
-    <div id="pano" class="col"></div>
+    <div id="map" class="col" style="background:transparent;"></div>
+    <div id="pano" class="col" style="background:transparent;"></div>
   </div>
 </template>
-<style type="text/css">
+<style type="text/css" scoped>
+#qwe {
+  background: url("/svg/Logo_qr_code_animated.svg") no-repeat center center
+    fixed;
+  background-size: contain;
+}
 @media (orientation: landscape) {
   body #qwe {
     flex-direction: row;
