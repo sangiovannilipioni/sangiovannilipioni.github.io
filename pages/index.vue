@@ -1,4 +1,8 @@
 <template>
+  <!-- 
+  <font-awesome-icon v-if="$auth.$state.loggedIn" :icon="['fas', 'spinner']" class="fa-pulse" style="color:blue; width:50%; height:100%; margin: auto;"></font-awesome-icon>
+                     v-else
+  -->
   <div id="qwe" style="height: 100%" class="row d-flex">
     <div id="map" class="col"></div>
     <div id="pano" class="col"></div>
@@ -16,16 +20,12 @@
     flex-direction: column;
   }
 }
-/* #map,
-#pano {
-  float: left;
-  height: 100%;
-  width: 50%;
-} */
 </style> 
 
 <script>
-function gm_authFailure() {console.log('ouille');}
+function gm_authFailure() {
+  console.log("ouille");
+}
 </script>
     <script>
 async function initialize() {
@@ -73,9 +73,12 @@ export default {
   },
   mounted() {
     if (typeof google === "undefined") {
-      
-    const script0 = document.createElement("script")
-      script0.appendChild(document.createTextNode("function gm_authFailure() {console.log('ouille');document.getElementById('map').remove();document.getElementById('pano').remove();}"));
+      const script0 = document.createElement("script");
+      script0.appendChild(
+        document.createTextNode(
+          "function gm_authFailure() {console.log('ouille');document.getElementById('map').remove();document.getElementById('pano').remove();}"
+        )
+      );
       script0.type = "text/javascript";
       document.head.appendChild(script0);
 
@@ -84,7 +87,6 @@ export default {
       script.type = "text/javascript";
       script.src = `https://sleepy-cliffs-23560.herokuapp.com/proxy?scheme=https&host=maps.googleapis.com&port=443&path=maps/api/js?libraries=places&language=${this.$i18n.locale}`;
       document.head.appendChild(script);
-
     } else {
       this.onScriptLoaded();
     }
