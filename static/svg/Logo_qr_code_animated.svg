@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="716pt" height="716pt" viewBox="-100 140 820 800">
-    <g transform="matrix(.12,0,0,-.12,0,842)" stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none">
-        <g>
+    <g transform="matrix(.12,0,0,-.12,0,842)">
+        <g stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none">
             <!-- rect 
                 cx = 2521 = (2013 + 3029)/2
                 cy = 2537.67 = (2079.67 + 2995.67)/2
