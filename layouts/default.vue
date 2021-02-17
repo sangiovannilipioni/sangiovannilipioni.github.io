@@ -62,6 +62,9 @@
             <b-dropdown-item v-show="loggedIn" :to="localePath('/logos')">{{
               $t("impresa")
             }}</b-dropdown-item>
+            <b-dropdown-item :to="localePath('/internet')">{{
+              $t("internet")
+            }}</b-dropdown-item>
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown>

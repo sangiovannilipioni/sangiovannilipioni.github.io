@@ -5,6 +5,7 @@ export default {
   theProject: "Il progetto",
   media: "Luoghi",
   contacts: "Contatti",
+  internet: "Altri Siti",
   signIn: "Entra",
   signOut: "Esci",
 

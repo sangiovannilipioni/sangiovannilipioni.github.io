@@ -5,6 +5,7 @@ export default {
   theProject: "The Project",
   media: "Places",
   contacts: "Contacts",
+  internet: "On internet",
   signIn: "Sign In",
   signOut: "Sign Out",
 
