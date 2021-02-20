@@ -95,6 +95,9 @@
                 <b-dropdown-item v-show="loggedIn" :to="localePath('/logos')">{{
                   $t("impresa")
                 }}</b-dropdown-item>
+                <b-dropdown-item v-show="loggedIn" :to="localePath('/blog/test')">
+                  Test
+                </b-dropdown-item>
                 <div class="dropdown-divider"></div>
                 <b-dropdown-item @click="$auth.logout()">
                   <font-awesome-icon :icon="['fas', 'sign-out-alt']" />&nbsp;{{
