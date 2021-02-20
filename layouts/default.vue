@@ -59,14 +59,14 @@
             <b-dropdown-item :to="localePath('/videos')">{{
               $t("movies")
             }}</b-dropdown-item>
-            <b-dropdown-item :to="localePath('/internet')">{{
+            <b-dropdown-item :to="localePath('/blog/internet')">{{
               $t("internet")
             }}</b-dropdown-item>
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown>
             <template slot="button-content">{{ $t("contacts") }}</template>
-            <b-dropdown-item :to="localePath('/contatti')">{{
+            <b-dropdown-item :to="localePath('/blog/contatti')">{{
               $t("contacts")
             }}</b-dropdown-item>
             <b-dropdown-item

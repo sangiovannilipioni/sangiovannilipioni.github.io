@@ -4,6 +4,12 @@
   </article>
 </template>
 
+<style>
+.card-body > p {
+  margin-bottom: 0;
+}
+</style>
+
 <script>
 export default {
   async asyncData(context) {

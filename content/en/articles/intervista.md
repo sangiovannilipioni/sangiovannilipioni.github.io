@@ -1,0 +1,10 @@
+# Rehab San Giovanni, what challenges? Interview with Eng. Happy Monaco
+
+The **Community of Progetto Riabitare San Giovanni** aims to stop the depopulation process of the village of San Giovanni Lipioni and activate all those actions necessary to reverse the trend through social, associative and entrepreneurial initiatives that involve the resident community and not.
+
+We interviewed **Ing. Felice Monaco**, one of the promoters and community contact person, to learn more about the Riabitare San Giovanni project.
+
+##### We know Eng. Felice Monaco, contact person and coordinator of the project.
+
+<img class="float-left mr-4" src="/fmonaco.jpg" /> * Civil engineer, he is originally from San Giovanni Lipioni where he lived up to 14 years. He spent his high school years in L’Aquila and after completing his studies he moved to Bologna and enrolled at the University of Engineering. In the same years he won a competition and began working as a technician at the Municipality of Bologna. In 1987 he graduated and continued his career with the Municipality within the department of the public works sector, first in public construction, then as manager in the technological systems sector where he deals with design, construction management and testing. In the 1990s, on its initiative, the Municipality of Bologna established a health and safety unit in the workplace. At the same time he also works in the public entertainment commission which he chairs until 2019, and for fifteen years he directs the security and logistics service of the Municipality. In the 1990s, he also entered the order system and specifically the Order of Engineers of the Province of Bologna, first as a councilor, then as a secretary and finally for twelve years as President.
+Since 2017 he has been on the National Council of Engineers. *
