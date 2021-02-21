@@ -250,4 +250,9 @@ export default {
   },
   privateRuntimeConfig : {
   },
+
+  // https://nuxtjs.org/docs/2.x/deployment/netlify-deployment/
+  generate: {
+    fallback: true
+  },
 };
