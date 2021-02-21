@@ -10,46 +10,40 @@
           to control slide
         </div>
       </swiper-slide>
-      <swiper-slide class="d-flex__align-items-center"
-        ><div>Slide 1</div></swiper-slide
-      >
+      <swiper-slide class="d-flex align-items-start"
+        ><div>
+          <div>
+            <h1>Presentazione</h1>
+            <img src="/pres/CT_5.jpg" style="max-width: 33%; width: 300px" />
+          </div></div
+      ></swiper-slide>
       <swiper-slide class="d-flex__align-items-center"
         ><div>
-          <div>Slide 2</div>
-          <div>Slide 2</div>
-          <div>Slide 2</div>
-          <div>Slide 2</div>
-          <div>Slide 2</div>
-          <div>Slide 2</div>
-          <div>Slide 2</div>
-          <div>Slide 2</div>
-          <div>Slide 2</div>
-          <div>Slide 2</div>
+          <h3>Cittadinanza San Giovanni Lipionese per Adozione dal 1982</h3>
+          <img src="/pres/world_cup.jpg" style="max-width: 33%; width: 200px" />
+        </div>
+      </swiper-slide>
+      <swiper-slide class="d-flex__align-items-center"
+        ><div>
+          <h2>Son bravo in :</h2>
+          <ol>
+            <li><h3>1. Musica</h3> &amp;</li>
+            <li><h3>2. Informatica</h3></li>
+          </ol>
+          <h4>ultimi 15 anni con</h4>
+          <img src="/pres/SAP.png" style="max-width: 33%; width: 200px" />
+          <h4>
+          <a
+              href="https://www.google.com/search?q=top+ten+european+software+company"
+              ><code>"first european software company"</code></a
+            >
+          </h4>
+          <h3>Da Gennaio 2020 in pre-penzione.</h3>
         </div></swiper-slide
       >
       <swiper-slide class="d-flex__align-items-center"
-        ><div>Slide 3</div></swiper-slide
-      >
-      <swiper-slide class="d-flex__align-items-center"
-        ><div>Slide 4</div></swiper-slide
-      >
-      <swiper-slide class="d-flex__align-items-center"
-        ><div>Slide 5</div></swiper-slide
-      >
-      <swiper-slide class="d-flex__align-items-center"
-        ><div>Slide 6</div></swiper-slide
-      >
-      <swiper-slide class="d-flex__align-items-center"
-        ><div>Slide 7</div></swiper-slide
-      >
-      <swiper-slide class="d-flex__align-items-center"
-        ><div>Slide 8</div></swiper-slide
-      >
-      <swiper-slide class="d-flex__align-items-center"
-        ><div>Slide 9</div></swiper-slide
-      >
-      <swiper-slide class="d-flex__align-items-center"
-        ><div>The End</div></swiper-slide
+        ><div>
+          </div></swiper-slide
       >
       <div class="swiper-button-prev" slot="button-prev"></div>
       <div class="swiper-button-next" slot="button-next"></div>
