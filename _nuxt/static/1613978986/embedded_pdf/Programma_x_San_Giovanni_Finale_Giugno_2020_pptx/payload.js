@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/embedded_pdf/Programma_x_San_Giovanni_Finale_Giugno_2020_pptx", {data:[{pdfSrc:"\u002Fpdf\u002FProgramma_x_San_Giovanni_Finale_Giugno_2020_pptx.pdf",pdfPageCount:0}],fetch:[],mutations:[]});

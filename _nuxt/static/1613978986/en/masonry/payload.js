@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/en/masonry", {data:[{}],fetch:[],mutations:[]});

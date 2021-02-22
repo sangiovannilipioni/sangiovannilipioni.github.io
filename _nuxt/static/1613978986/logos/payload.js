@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/logos", {data:[{}],fetch:[],mutations:[]});

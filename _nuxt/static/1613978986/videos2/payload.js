@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/videos2", {data:[{}],fetch:[],mutations:[]});

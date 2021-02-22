@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/en/embedded_pdf/Atto_Costitutivo_e_Statuto", {data:[{pdfSrc:"\u002Fpdf\u002FAtto_Costitutivo_e_Statuto.pdf",pdfPageCount:0}],fetch:[],mutations:[]});
