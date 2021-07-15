@@ -122,7 +122,11 @@ export default {
     "@nuxtjs/svg",
     "@nuxtjs/fontawesome",
     "@nuxtjs/google-analytics",
-    "@nuxtjs/style-resources"
+    "@nuxtjs/style-resources",
+    '@nuxtjs/pwa',
+     
+    
+
   ],
 
   fontawesome: {

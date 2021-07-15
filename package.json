@@ -42,6 +42,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/google-analytics": "^2.4.0",
+    "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/style-resources": "^1.0.0"
   }
 }
