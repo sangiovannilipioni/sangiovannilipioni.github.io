@@ -9,7 +9,7 @@ export default {
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "" },
+      { hid: "description", name: "description", content: "Associazione Nessuno Escluso : Proposta per un programma di rilancio dell’abitato di San Giovanni Lipioni." },
       { name: "msapplication-TileColor", content: "#da532c" },
       { name: "theme-color", content: "#ffffff" },
       /* Search Engine */
