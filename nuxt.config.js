@@ -124,9 +124,6 @@ export default {
     "@nuxtjs/google-analytics",
     "@nuxtjs/style-resources",
     '@nuxtjs/pwa',
-     
-    
-
   ],
 
   fontawesome: {
