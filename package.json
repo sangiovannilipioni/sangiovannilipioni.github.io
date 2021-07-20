@@ -12,7 +12,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@nuxt/content": "^1.11.1",
-    "@nuxtjs/auth-next": "5.0.0-1608140074.47635f0",
+    "@nuxtjs/auth-next": "5.0.0-1624817847.21691f1",
     "@nuxtjs/axios": "^5.12.4",
     "@nuxtjs/svg": "^0.1.12",
     "bootstrap": "^4.5.3",
@@ -22,6 +22,7 @@
     "fibers": "^5.0.0",
     "imagesloaded": "^4.1.4",
     "masonry-layout": "^4.2.2",
+    "n": "^7.3.0",
     "nuxt": "^2.14.11",
     "nuxt-i18n": "^6.16.0",
     "push-dir": "^0.4.1",
