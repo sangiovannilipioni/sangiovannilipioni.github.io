@@ -124,6 +124,13 @@ export default {
     '@nuxtjs/pwa',
   ],
 
+  pwa: {
+    meta: {
+      /* meta options */
+      theme_color: "#cce18d",
+    }
+  },
+
   fontawesome: {
     icons: {
       solid: true,
