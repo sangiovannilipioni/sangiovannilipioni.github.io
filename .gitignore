@@ -88,9 +88,6 @@ sw.*
 
 # Vim swap files
 *.swp
-
-sw.*
-
 googlemapsapirequestsresponses.txt
 
 material-kit-master/

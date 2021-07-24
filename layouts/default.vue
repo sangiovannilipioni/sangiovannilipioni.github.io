@@ -1,7 +1,8 @@
 <!-- https://merrymaker.github.io/bs4-holygrail-layout/ -->
 <template>
   <div class="d-flex flex-column vh-100">
-    <b-navbar toggleable="sm">
+    <nav><NuxtLink :to="localePath('/')"><Logo /></NuxtLink></nav>
+    <!-- b-navbar toggleable="sm">
       <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle>
 
       <b-navbar-brand
@@ -38,19 +39,11 @@
                 >Programma x San_Giovanni Finale Giugno 2020</span
               ></b-dropdown-item
             >
-            <b-dropdown-item v-show="loggedIn" :to="localePath('/slides')">{{
+            <b-dropdown-item  :to="localePath('/slides')">{{
               $t("slides")
             }}</b-dropdown-item>
           </b-nav-item-dropdown>
 
-          <!--
-            <template slot="button-content">{{ $t("media") }}</template>
-            <b-dropdown-item :to="localePath('/videos2')">{{
-              $t("movies")
-            }} (2)
-            </b-dropdown-item>
-           <b-nav-item :to="localePath('/videos')">{{ $t("media") }}</b-nav-item>
--->
           <b-nav-item-dropdown>
             <template slot="button-content">{{ $t("media") }}</template>
             <b-dropdown-item :to="localePath('/gallery')">{{
@@ -115,18 +108,18 @@
           </client-only>
         </b-navbar-nav>
       </b-collapse>
-    </b-navbar>
+    </!-->
     <main role="main">
       <Nuxt />
     </main>
-    <footer class="footer">
+    <!-- footer class="footer">
       <div class="container-fluid">
         <span>&copysr;&nbsp;Associazione APS “<i>NESSUNO ESCLUSO</i>”</span>
         <a id="version" class="float-right" target="_blank" :href="gitUrl"
           >version {{ packageVersion }}</a
         >
       </div>
-    </footer>
+    </!-->
   </div>
 </template>
 
