@@ -106,21 +106,21 @@ function gm_authFailure() {
 </script>
     <script>
 async function initialize() {
-  // 41.8442301,14.5618596,16z
-  const fenway = { lat: 41.8442301, lng: 14.5618596 };
+  const piazza = { position : { lat: 41.8442301, lng: 14.5618596 }, heading : 189.53 };
+  const farmacia = { position : { lat: 41.8428559, lng: 14.5619902 }, heading : 159.68 };
   const map = await new google.maps.Map(document.getElementById("map"), {
-    center: fenway,
+    center: piazza.position,
     zoom: 7,
     /* disableDefaultUI: true, */
     mapTypeControl: false,
-      streetViewControl: false
+    streetViewControl: false 
   });
   const panorama = new google.maps.StreetViewPanorama(
     document.getElementById("pano"),
     {
-      position: fenway,
+      position: farmacia.position,
       pov: {
-        heading: 189.53,
+        heading: farmacia.heading,
         pitch: 0,
         zoom: 1,
       },
@@ -146,11 +146,11 @@ async function initialize() {
 
   const infowindow = new google.maps.InfoWindow({
     content: contentString,
-    maxWidth: 200,
+    maxWidth: 400,
   });
   
   const marker = new google.maps.Marker({
-    position: fenway,
+    position: piazza.position,
     map,
     label: "San Giovanni Lipioni",
   });
