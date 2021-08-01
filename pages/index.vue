@@ -15,19 +15,19 @@
       <h1>Associazione Nessuno Escluso APS</h1>
       <div
         id="qwe"
-        style="height: 25%; width: 100%; margin: 2rem 0"
+        style="height: 25%; max-height: 25%; width: 100%; margin: 2rem 0"
         class="row d-flex"
       >
         <div
           id="map"
-          class="col"
-          style="background: transparent; margin-right: 2rem"
-        ></div>
+          class="col d-flex justify-content-center align-items-center"
+          style="background: transparent;"
+        ><div><font-awesome-icon :icon="['fas', 'spinner']" class="fa-spin"/></div></div>
         <div
           id="pano"
-          class="col"
-          style="background: transparent; margin-left: 2rem"
-        ></div>
+          class="col d-flex justify-content-center align-items-center"
+          style="background: transparent;"
+        ><font-awesome-icon :icon="['fas', 'spinner']" class="fa-spin"/></div>
       </div>
       <p style="font-size: larger">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -86,9 +86,19 @@ h1 {
     fixed;
   background-size: contain;
 }
+
+#qwe > div {
+  border: solid 1px lightgray;
+}
 @media (orientation: landscape) {
   body #qwe {
     flex-direction: row;
+  }
+  body #qwe > div:first-child{
+    margin-right: 1rem;
+  }
+  body #qwe > div:last-child{
+    margin-left: 1rem;
   }
 }
 
@@ -96,6 +106,17 @@ h1 {
   body #qwe {
     flex-direction: column;
   }
+  body #qwe > div:first-child{
+    margin-bottom: 1rem;
+  }
+  body #qwe > div:last-child{
+    margin-top: 1rem;
+  }
+}
+
+.fa-spin {
+  color:lightgray; 
+  font-size: 32pt;
 }
 </style> 
 
