@@ -122,8 +122,16 @@ export default {
     "@nuxtjs/fontawesome",
     "@nuxtjs/google-analytics",
     "@nuxtjs/style-resources",
-    "@nuxtjs/svg"
+    "@nuxtjs/svg",
+    '@nuxtjs/google-fonts'
   ],
+
+  googleFonts: {
+    /*download: true,*/
+    families: {
+      Poppins: [400, 700],
+    }
+  },
 
   pwa: {
     meta: {

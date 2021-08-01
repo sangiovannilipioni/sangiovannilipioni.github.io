@@ -12,7 +12,7 @@
       </nav>
     </div>
     <div class="container flex" style="height: 100%">
-      <h1>Associazione Nessuno Escluso APS</h1>
+      <h1>Associazione <span style="font-weight:700">Nessuno Escluso</span> APS</h1>
       <div
         id="qwe"
         style="height: 25%; max-height: 25%; width: 100%; margin: 2rem 0"
