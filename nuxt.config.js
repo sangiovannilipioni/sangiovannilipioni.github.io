@@ -117,11 +117,12 @@ export default {
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
-    "@nuxtjs/svg",
+    '@nuxt/image',
+    '@nuxtjs/pwa',
     "@nuxtjs/fontawesome",
     "@nuxtjs/google-analytics",
     "@nuxtjs/style-resources",
-    '@nuxtjs/pwa',
+    "@nuxtjs/svg"
   ],
 
   pwa: {

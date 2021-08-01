@@ -110,9 +110,10 @@ async function initialize() {
   const fenway = { lat: 41.8442301, lng: 14.5618596 };
   const map = await new google.maps.Map(document.getElementById("map"), {
     center: fenway,
-    zoom: 15.5,
+    zoom: 7,
     /* disableDefaultUI: true, */
     mapTypeControl: false,
+      streetViewControl: false
   });
   const panorama = new google.maps.StreetViewPanorama(
     document.getElementById("pano"),
@@ -131,6 +132,37 @@ async function initialize() {
       enableCloseButton: false,
     }
   );
+  const contentString =
+    '<div id="content">' +
+    '<div id="siteNotice">' +
+    "</div>" +
+    '<div id="bodyContent">' +
+    "<p><b>San Giovanni Lipioni</b> è un comune italiano di 152 abitanti della provincia di Chieti in Abruzzo.</p>" +
+    '<p>cf. <a href="https://it.wikipedia.org/wiki/San_Giovanni_Lipioni">' +
+    "https://it.wikipedia.org/wiki/San_Giovanni_Lipioni</a> " +
+    "</p>" +
+    "</div>" +
+    "</div>";
+
+  const infowindow = new google.maps.InfoWindow({
+    content: contentString,
+    maxWidth: 200,
+  });
+  
+  const marker = new google.maps.Marker({
+    position: fenway,
+    map,
+    label: "San Giovanni Lipioni",
+  });
+
+  marker.addListener("click", () => {
+    infowindow.open({
+      anchor: marker,
+      map,
+      shouldFocus: false,
+    });
+  });
+
   await map.setStreetView(panorama);
 }
 
