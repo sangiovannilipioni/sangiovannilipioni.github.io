@@ -112,14 +112,19 @@
     <main role="main">
       <Nuxt />
     </main>
-    <!-- footer class="footer">
-      <div class="container-fluid">
-        <span>&copysr;&nbsp;Associazione APS “<i>NESSUNO ESCLUSO</i>”</span>
-        <a id="version" class="float-right" target="_blank" :href="gitUrl"
-          >version {{ packageVersion }}</a
-        >
+    <footer class="footer py-3" style="margin-top: auto!important;">
+      <div class="container">
+        <span class="text-muted">
+          <div>Associazione APS “NESSUNO ESCLUSO”</div>
+
+          <div>Piazza Largo del Popolo, 50</div>
+
+          <div>66050 San Giovanni Lipioni (CH)</div>
+
+          <p>nessunoesclusoaps@gmail.com</p>
+        </span>
       </div>
-    </!-->
+    </footer>
   </div>
 </template>
 

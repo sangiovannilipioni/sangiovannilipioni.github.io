@@ -1,14 +1,10 @@
 <template>
-  <!-- 
-  <font-awesome-icon v-if="$auth.$state.loggedIn" :icon="['fas', 'spinner']" class="fa-pulse" style="color:blue; width:50%; height:100%; margin: auto;"></font-awesome-icon>
-                     v-else
-  -->
-  <div style="height: 100%">
-    <div class="container flex" style="height: 100%">
+  <div>
+    <div class="container flex" >
       <h1 id="theTitle">Associazione <span style="font-weight:700">Nessuno Escluso</span> APS</h1>
       <div
         id="qwe"
-        style="height: 25%; max-height: 25%; width: 100%; margin: 2rem 0"
+        style="height: 400px; max-height: 33%; width: 100%; margin: 2rem 0;"
         class="row d-flex"
       >
         <div
@@ -55,19 +51,6 @@
         Curabitur eu amet.
       </p>
     </div>
-    <footer class="footer mt-auto py-3">
-      <div class="container">
-        <span class="text-muted">
-          <p>Associazione APS “NESSUNO ESCLUSO”</p>
-
-          <p>Piazza Largo del Popolo, 50</p>
-
-          <p>66050 San Giovanni Lipioni (CH)</p>
-
-          <p>nessunoesclusoaps@gmail.com</p>
-        </span>
-      </div>
-    </footer>
   </div>
 </template>
 <style type="text/css" scoped>
