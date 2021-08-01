@@ -42,6 +42,10 @@ main[role="main"] {
   line-height: 20px;
 }
 
+li.nav-item {
+  background-color: white;
+}
+
 @media (min-width: 768px) {
   #theTitle{
     margin-top: 10rem;
@@ -68,22 +72,23 @@ main[role="main"] {
 }
 @media (max-width: 768px) {
   #theTitle{
-    margin-top: 3rem;
+    margin-top: 5rem;
   }
   .navbar {
     max-height: 0px;
     overflow: visible;
   }
   .navbar  .logo {
-    display : none;
-    /* position: absolute;
+    /* display: none;
+    position: absolute;
     left: 0;
     top: 0; */
+    padding-top: 11.5rem;
     z-index: 2;
     padding: 1rem;
   }
   .navbar .logo svg {
-    width: 120px;
+    width: 50px;
     height: auto;
   }
   .navbar .logo svg path {

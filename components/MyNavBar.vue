@@ -8,7 +8,7 @@
 
 
         <b-collapse id="nav-collapse" is-nav>
-            <b-navbar-nav toggleable="sm" style="flex: auto">
+            <b-navbar-nav toggleable="sm" style="flex: auto;">
                 <b-nav-item href="#">Progetto</b-nav-item>
                 <b-nav-item class="flex-grow-1" href="#">Riabitare San Giovanni</b-nav-item>
                 <b-nav-item href="#">Area Riservata</b-nav-item>
