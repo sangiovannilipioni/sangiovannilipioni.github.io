@@ -4,15 +4,8 @@
                      v-else
   -->
   <div style="height: 100%">
-    <div class="d-flex flex-row-reverse bd-highlight m-4">
-      <nav class="nav flex-column border">
-        <a class="nav-link" href="#">Area Riservata</a>
-        <a class="nav-link" href="#">Progetto</a>
-        <a class="nav-link" href="#">Riabitare San Giovanni</a>
-      </nav>
-    </div>
     <div class="container flex" style="height: 100%">
-      <h1>Associazione <span style="font-weight:700">Nessuno Escluso</span> APS</h1>
+      <h1 id="theTitle">Associazione <span style="font-weight:700">Nessuno Escluso</span> APS</h1>
       <div
         id="qwe"
         style="height: 25%; max-height: 25%; width: 100%; margin: 2rem 0"

@@ -1,7 +1,7 @@
 <!-- https://merrymaker.github.io/bs4-holygrail-layout/ -->
 <template>
   <div class="d-flex flex-column vh-100">
-    <nav><NuxtLink :to="localePath('/')"><Logo /></NuxtLink></nav>
+    <MyNavBar />
     <!-- b-navbar toggleable="sm">
       <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle>
 
