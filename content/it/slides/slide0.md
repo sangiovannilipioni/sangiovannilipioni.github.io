@@ -1,9 +1,9 @@
 ## Progetto: **Nessuno Escluso**
 
-### Proposta per un programma di rilancio dell’abitato di san giovanni lipioni.
+### Proposta per un programma di rilancio dell’abitato di San Giovanni Lipioni.
 
 Presentato:
 
 * 18 Gennaio 2020 nella sala Consiliare Comune di san Giovanni Lipioni;
 
- * 29 Marzo e 3 Maggio 2020 in videoconferenza
+* 29 Marzo e 3 Maggio 2020 in videoconferenza
