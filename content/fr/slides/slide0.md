@@ -1,4 +1,4 @@
-## Projet : **PNessuno Escluso**
+## Projet : **Nessuno Escluso**
 
 ### Proposition de programme pour la revitalisation de la ville de San Giovanni Lipioni.
 

@@ -1,6 +1,4 @@
-## Progetto: **Nessuno Escluso**
-
-### Proposta per un programma di rilancio dell’abitato di San Giovanni Lipioni.
+## Proposta per un programma di rilancio dell’abitato di San Giovanni Lipioni.
 
 Presentato:
 

@@ -6,7 +6,7 @@ export default {
   media: "Luoghi",
   contacts: "Contatti",
   internet: "Altri Siti",
-  signIn: "Entra",
+  signIn: "Area Riservata",
   signOut: "Esci",
 
   exordium: "Presentazione",

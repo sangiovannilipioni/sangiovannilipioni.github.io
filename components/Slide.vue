@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nuxt-content :document="slide" style="padding-top: 1rem;"/>
+    <nuxt-content :document="slide"/>
   </div>
 </template>
 

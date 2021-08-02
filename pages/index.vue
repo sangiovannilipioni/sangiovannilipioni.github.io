@@ -28,7 +28,7 @@
         </div>
         <p style="font-size: larger">
           L’Associazione <b>Nessuno Escluso</b> è stata fondata da un gruppo di
-          sangiovannesi con l’obiettivo di promuovere la rigenererazione e la
+          sangiovannesi con l’obiettivo di promuovere la rigenerazione e la
           riabitazione del paese nel rispetto dei principi dello sviluppo
           sostenibile. 
         </p><p>

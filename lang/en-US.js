@@ -2,7 +2,7 @@
 export default {
   hello: "…",
   whoWeAre: "Who We Are",
-  theProject: "The Project",
+  theProject: "Project",
   media: "Places",
   contacts: "Contacts",
   internet: "On internet",

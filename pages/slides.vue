@@ -33,26 +33,6 @@
   </client-only>
 </template>
 
-<style lang="scss" scoped>
-.swiper {
-  /* height: 100%; */
-
-  .swiper-slide {
-    display: flex !important;
-    align-items: center !important;
-
-    > div {
-      width: 100%;
-      text-align: center;
-    }
-  }
-  .swiper-slide-active > button {
-    color:black;
-    background-color: lightgray;
-  }
-}
-</style>
-
 <script>
 export default {
 };

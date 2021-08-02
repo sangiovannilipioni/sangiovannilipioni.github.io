@@ -6,7 +6,7 @@ export default {
   media: "Lieux",
   contacts: "Contacts",
   internet: "Autres sites",
-  signIn: "Connexion",
+  signIn: "Se connecter",
   signOut: "Se déconnecter",
 
   exordium: "Prolégomènes",

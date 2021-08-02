@@ -1,23 +1,26 @@
 <template>
   <client-only>
     <div id="slides" class="container">
-      <div>
-        <swiper id="swiperThumbs" ref="swiperThumbs" class="swiper gallery-thumbs" :options="swiperOptionThumbs" @slideChange="onThumbnailChange">
-          <swiper-slide
-            v-for="(slide) in slides"
-            :key="slide.title"
-          >
-            <b-button variant="outline-secondary">{{ slide.title }}</b-button>
-          </swiper-slide>
-        </swiper>
-      </div>
-      <h1 class="m-4" style="text-align:center">Associazione x San Giovanni</h1>
+
+      <h1 class="m-4" style="text-align:center">
+        {{ $t("theProject") }} <strong>Nessuno Escluso</strong>
+      </h1>
+
+      <swiper id="swiperThumbs" ref="swiperThumbs" class="swiper gallery-thumbs my-4" :options="swiperOptionThumbs" @slideChange="onThumbnailChange">
+        <swiper-slide
+          v-for="(slide, index) in slides"
+          :key="index">
+          <b-button variant="outline-secondary">{{ slide.title }}</b-button>
+        </swiper-slide>
+      </swiper>
+
       <swiper id="swiperTop" ref="swiperTop" class="swiper gallery-top" :options="swiperOption" @slideChange="onTopChange">
         <swiper-slide v-for="(slide, index) in slides" :key="index">
           <Slide :src="`slide${index}`" />
         </swiper-slide>
       </swiper>
     </diV>
+
   </client-only>
 </template>
 
@@ -27,6 +30,7 @@ export default {
     return {
       swiperOption: {
         slidesPerView: 1,
+        spaceBetween: 20,
         keyboard: {
           enabled: true
         },
@@ -82,14 +86,15 @@ export default {
 
 <style lang="scss" scoped>
 #slides {
-  /* height: calc(100vh - (#{$footerHeight} + #{$headerHeight}));*/
+  /* height: calc(100vh - (#{$footerHeight} + #{$headerHeight})); */
 }
 
 .swiper {
   /* height: 100%; */
 
   .swiper-slide {
-    /* background-color: rgba(255, 127, 127, .2) !important;*/
+    display: flex !important;
+    /* align-items: center !important; */
     color: black; 
     display: flex !important;
     align-items: center !important;
@@ -98,12 +103,20 @@ export default {
     overflow: scroll;
     max-height: calc(100vh - (#{$footerHeight} + #{$headerHeight}));
 
-    div > .card {
-      margin: 0 1rem 1rem 1rem;
+    > div {
+      width: 100%;
     }
-    div:first-child > .card {
-      margin: 1rem;
-    }
+  }
+}
+
+.swiper#swiperTop {
+
+  background-color: #efefef;
+  border: 1px dotted gray;
+
+  .swiper-slide {
+    background-color: white;
+    padding: 1rem;
   }
 }
 
@@ -112,12 +125,10 @@ export default {
 
   .swiper-slide {
     width: 16%;
-    /* color: darkgray;
-    background: rgba(127, 255, 127, 0.5) !important; */
   }
-  .swiper-slide-active {
-    /* color: white;
-    background: rgba(127, 127, 127, .2) !important; */
+  .swiper-slide-active > button {
+    color: white;
+    background-color: lightgray;
   }
 }
 </style>
