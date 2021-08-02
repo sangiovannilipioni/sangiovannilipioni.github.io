@@ -35,10 +35,9 @@
 
 <style lang="scss" scoped>
 .swiper {
-  height: 100%;
+  /* height: 100%; */
 
   .swiper-slide {
-    background: #eee;
     display: flex !important;
     align-items: center !important;
 
@@ -46,6 +45,10 @@
       width: 100%;
       text-align: center;
     }
+  }
+  .swiper-slide-active > button {
+    color:black;
+    background-color: lightgray;
   }
 }
 </style>

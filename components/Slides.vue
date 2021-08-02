@@ -7,15 +7,14 @@
             v-for="(slide) in slides"
             :key="slide.title"
           >
-            <span>
-              {{ slide.title }}
-            </span>
+            <b-button variant="outline-secondary">{{ slide.title }}</b-button>
           </swiper-slide>
         </swiper>
       </div>
+      <h1 class="m-4" style="text-align:center">Associazione x San Giovanni</h1>
       <swiper id="swiperTop" ref="swiperTop" class="swiper gallery-top" :options="swiperOption" @slideChange="onTopChange">
-        <swiper-slide v-for="(slide) in slides" :key="slide.title">
-          {{ slide }}
+        <swiper-slide v-for="(slide, index) in slides" :key="index">
+          <Slide :src="`slide${index}`" />
         </swiper-slide>
       </swiper>
     </diV>
@@ -57,9 +56,14 @@ export default {
   computed: {
     slides () {
       return [
-        {title: "hello slide"},
-        {title: "hello slide 2"},
-        {title: "hello slide 3"}
+        {title: "1"},
+        {title: "2"},
+        {title: "3"},
+        {title: "4"},
+        {title: "5"},
+        {title: "6"},
+        {title: "7"},
+        {title: "8"}
       ]
     }
   },
@@ -78,15 +82,15 @@ export default {
 
 <style lang="scss" scoped>
 #slides {
-  height: calc(100vh - (#{$footerHeight} + #{$headerHeight}));
+  /* height: calc(100vh - (#{$footerHeight} + #{$headerHeight}));*/
 }
 
 .swiper {
-  height: 100%;
+  /* height: 100%; */
 
   .swiper-slide {
-    background-color: rgba(255, 127, 127, .2) !important;
-    color: red;
+    /* background-color: rgba(255, 127, 127, .2) !important;*/
+    color: black; 
     display: flex !important;
     align-items: center !important;
     flex-direction: column;
@@ -107,13 +111,13 @@ export default {
   margin-top: .75rem;
 
   .swiper-slide {
-    width: 25%;
-    color: darkgray;
-    background: rgba(127, 255, 127, 0.5) !important;
+    width: 16%;
+    /* color: darkgray;
+    background: rgba(127, 255, 127, 0.5) !important; */
   }
   .swiper-slide-active {
-    color: white;
-    background: rgba(127, 127, 255, .8) !important;
+    /* color: white;
+    background: rgba(127, 127, 127, .2) !important; */
   }
 }
 </style>
