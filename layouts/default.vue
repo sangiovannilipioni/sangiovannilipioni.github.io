@@ -46,6 +46,9 @@ export default {
       return this.$i18n.locale;
     },
   },
+
+  mounted() {
+  },
   data() {
     return {
       packageVersion: process.env.packageVersion,

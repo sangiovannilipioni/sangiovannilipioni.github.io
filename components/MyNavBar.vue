@@ -15,6 +15,7 @@
           <b-nav-item class="flex-grow-1" href="#"
             >Riabitare San Giovanni</b-nav-item
           >
+          <b-nav-item href="#">{{ $route.path }}</b-nav-item>
           <b-nav-item href="#">Area Riservata</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
