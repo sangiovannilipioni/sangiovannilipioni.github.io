@@ -3,9 +3,8 @@
     <div class="container flex" >
       <h1 id="theTitle">Associazione <span style="font-weight:700">Nessuno Escluso</span> APS</h1>
       <div
-        id="qwe"
         style="height: 400px; max-height: 33%; width: 100%; margin: 2rem 0;"
-        class="row d-flex"
+        class="row d-flex binome"
       >
         <div
           id="map"
@@ -61,33 +60,6 @@ h1 {
   background: url("/svg/Logo_qr_code_animated.svg") no-repeat center center
     fixed;
   background-size: contain;
-}
-
-#qwe > div {
-  border: solid 1px lightgray;
-}
-@media (orientation: landscape) {
-  body #qwe {
-    flex-direction: row;
-  }
-  body #qwe > div:first-child{
-    margin-right: 1rem;
-  }
-  body #qwe > div:last-child{
-    margin-left: 1rem;
-  }
-}
-
-@media (orientation: portrait) {
-  body #qwe {
-    flex-direction: column;
-  }
-  body #qwe > div:first-child{
-    margin-bottom: 1rem;
-  }
-  body #qwe > div:last-child{
-    margin-top: 1rem;
-  }
 }
 
 .fa-spin {

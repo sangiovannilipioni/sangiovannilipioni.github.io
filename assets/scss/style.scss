@@ -96,8 +96,37 @@ li.nav-item {
   }
 }
 
+.binome > div {
+  border: solid 1px lightgray;
+}
+
+@media (orientation: landscape) {
+  .binome {
+    flex-direction: row;
+  }
+  .binome > div:first-child {
+    margin-right: .5rem;
+  }
+  .binome > div:last-child {
+    margin-left: .5rem;
+  }
+}
+
+@media (orientation: portrait) {
+  .binome {
+    flex-direction: column;
+  }
+  .binome > div:first-child {
+    margin-bottom: .5rem;
+  }
+  .binome > div:last-child {
+    margin-top: .5rem;
+  }
+}
+
 /* kitchen-sink */
 ul,
 li {
   list-style-type: none;
 }
+
