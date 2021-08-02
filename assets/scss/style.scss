@@ -47,7 +47,7 @@ li.nav-item {
 }
 
 @media (min-width: 768px) {
-  #theTitle{
+  main[role="main"] {
     margin-top: 10rem;
   }
   .navbar {
@@ -71,7 +71,7 @@ li.nav-item {
   }
 }
 @media (max-width: 768px) {
-  #theTitle{
+  main[role="main"] {
     margin-top: 5rem;
   }
   .navbar {
