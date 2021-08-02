@@ -1,54 +1,74 @@
 <template>
   <div>
-    <div class="container flex" >
-      <h1 id="theTitle">Associazione <span style="font-weight:700">Nessuno Escluso</span> APS</h1>
+    <div class="container flex">
+      <h1 id="theTitle">
+        Associazione <span style="font-weight: 700">Nessuno Escluso</span> APS
+      </h1>
       <div
-        style="height: 400px; max-height: 30%; width: 100%; margin: 2rem 0;"
+        style="height: 400px; max-height: 30%; width: 100%; margin: 2rem 0"
         class="binome"
       >
         <div
           id="map"
           class="col d-flex justify-content-center align-items-center"
-          style="background: transparent;"
-        ><div><font-awesome-icon :icon="['fas', 'spinner']" class="fa-spin"/></div></div>
+          style="background: transparent"
+        >
+          <div>
+            <font-awesome-icon :icon="['fas', 'spinner']" class="fa-spin" />
+          </div>
+        </div>
         <div
           id="pano"
           class="col d-flex justify-content-center align-items-center"
-          style="background: transparent;"
-        ><font-awesome-icon :icon="['fas', 'spinner']" class="fa-spin"/></div>
+          style="background: transparent"
+        >
+          <font-awesome-icon :icon="['fas', 'spinner']" class="fa-spin" />
+        </div>
       </div>
       <p style="font-size: larger">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
+        L’Associazione <b>Nessuno Escluso</b> è stata fondata da un gruppo di
+        sangiovannesi con l’obiettivo di promuovere la rigenererazione e la
+        riabitazione del paese nel rispetto dei principi dello sviluppo
+        sostenibile. 
+      </p><p>
+        Nel Gennaio 2020, con l'aiuto dell'amministrazione comunale, un nutrito gruppo di residenti e non-residenti
+        originari del paese ha dato
+        vita a un percorso partecipativo mirato all’identificazione di
+        scenari possibili per attivare un processo di rigenerazione e di
+        ripopolamento del borgo. 
+          </p><p>
+        Nel Giugno 2020, il percorso partecipativo è
+        culminato nella creazione dell’Associazione <b>Nessuno Escluso</b>, nata
+        dall’unione di 50 cittadini divenuti soci a tutti gli effetti. Lo scopo
+        principale dell’Associazione è quello di promuovere la rigenerazione e
+        riabitazione del territorio del comune di San Giovanni Lipioni
+        attraverso il recupero edilizio del borgo, la promozione turistica e
+        l’arricchimento culturale e sociale.
+           </p><p>
+              L’Associazione si prefigge di
+        individuare le strategie necessarie e ottimali per attrarre nuovi
+        residenti e visitatori in modo da: 
+        <ol>
+          <li>ricreare la socialità e promuovere
+        l’arricchimento culturale quali principali fattori di vita del borgo; </li>
+       <li> costruire opportunità nuove di vita generando attività legate al
+        territorio, artigianali, culturali; </li>
+        <li>
+innescare un processo di
+        rivalorizzazione del borgo che possa riportare interesse verso la
+        sostenibilità dell’abitarvi permanentemente nel paese o rimanervi per
+        lunghi periodi; e 
+        </li>
+        <li>
+attivare un turismo nuovo, esperienziale ed
+        ecosostenibile che metta in contatto il turista con la realtà autentica
+        del borgo e del suo territorio. 
+        </li>
+        </ol>
       </p>
-      <p>
-        Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci
-        vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula
-        non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros
-        vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis.
-        Curabitur aliquet pellentesque diam. Integer quis metus vitae elit
-        lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing
-        elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien.
-        Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam.
-        Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum
-        posuere, metus purus iaculis lectus, et tristique ligula justo vitae
-        magna.
-      </p>
-      <p>
-        Aliquam convallis sollicitudin purus. Praesent aliquam, enim at
-        fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu
-        lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod
-        libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean
-        suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla
-        tincidunt tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus,
-        felis magna fermentum augue, et ultricies lacus lorem varius purus.
-        Curabitur eu amet.
-      </p>
+      <p><i>Due sono le bussole dell’Associazione:
+        la custodia e valorizzazione del territorio e del paesaggio e
+        l’attenzione al benessere gli abitanti.</i></p>
     </div>
   </div>
 </template>
@@ -59,7 +79,7 @@ h1 {
 }
 
 .binome .fa-spin {
-  color:lightgray; 
+  color: lightgray;
   font-size: 32pt;
 }
 </style> 
@@ -72,14 +92,20 @@ function gm_authFailure() {
 
 <script>
 async function initialize() {
-  const piazza = { position : { lat: 41.8442301, lng: 14.5618596 }, heading : 189.53 };
-  const farmacia = { position : { lat: 41.8428559, lng: 14.5619902 }, heading : 159.68 };
+  const piazza = {
+    position: { lat: 41.8442301, lng: 14.5618596 },
+    heading: 189.53,
+  };
+  const farmacia = {
+    position: { lat: 41.8428559, lng: 14.5619902 },
+    heading: 159.68,
+  };
   const map = await new google.maps.Map(document.getElementById("map"), {
     center: piazza.position,
     zoom: 7,
     /* disableDefaultUI: true, */
     mapTypeControl: false,
-    streetViewControl: false 
+    streetViewControl: false,
   });
   const panorama = new google.maps.StreetViewPanorama(
     document.getElementById("pano"),
@@ -114,7 +140,7 @@ async function initialize() {
     content: contentString,
     maxWidth: 400,
   });
-  
+
   const marker = new google.maps.Marker({
     position: piazza.position,
     map,

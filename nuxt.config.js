@@ -173,6 +173,7 @@ export default {
   i18n: {
     lazy: true,
     langDir: "lang/",
+    vueI18nLoader: true,
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: "i18n_redirected",
