@@ -96,8 +96,14 @@ li.nav-item {
   }
 }
 
+.binome {
+  display: flex !important;
+}
+
 .binome > div {
   border: solid 1px lightgray;
+  padding: 0.25rem !important;
+  flex: 1 0 0%;
 }
 
 @media (orientation: landscape) {

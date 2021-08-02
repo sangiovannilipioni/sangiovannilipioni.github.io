@@ -113,11 +113,11 @@
       <Nuxt />
     </main>
     <footer class="footer py-1" style="margin-top: auto!important;">
-      <div class="container no-gutters d-flex binome">
-        <div class="col p-1 d-flex text-muted">
-          <div class="col" style="whitespace: nowrap">Associazione <b>Nessuno Escluso</b> APS<br>Largo del Popolo, 50<br>66050 San Giovanni Lipioni (CH)</div>
+      <div class="container binome">
+        <div class="text-muted">
+          <div style="whitespace: nowrap">Associazione <b>Nessuno Escluso</b> APS<br>Largo del Popolo, 50<br>66050 San Giovanni Lipioni (CH)</div>
         </div>
-        <div class="col p-1 d-flex text-muted">
+        <div class="text-muted">
           <div style="whitespace: nowrap">nessunoesclusoaps@gmail.com</div>
         </div>
       </div>

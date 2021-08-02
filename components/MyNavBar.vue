@@ -1,5 +1,5 @@
 <template>
-    <b-navbar toggleable="md" class="container">
+    <b-navbar toggleable="md" class="container" style="padding: 0 1rem;">
 
         <b-navbar-brand href="#"><Logo/></b-navbar-brand>
 

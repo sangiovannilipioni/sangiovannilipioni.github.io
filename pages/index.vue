@@ -3,8 +3,8 @@
     <div class="container flex" >
       <h1 id="theTitle">Associazione <span style="font-weight:700">Nessuno Escluso</span> APS</h1>
       <div
-        style="height: 400px; max-height: 33%; width: 100%; margin: 2rem 0;"
-        class="row d-flex binome"
+        style="height: 400px; max-height: 30%; width: 100%; margin: 2rem 0;"
+        class="binome"
       >
         <div
           id="map"
@@ -52,17 +52,13 @@
     </div>
   </div>
 </template>
+
 <style type="text/css" scoped>
 h1 {
   text-align: center;
 }
-#qwe_ {
-  background: url("/svg/Logo_qr_code_animated.svg") no-repeat center center
-    fixed;
-  background-size: contain;
-}
 
-.fa-spin {
+.binome .fa-spin {
   color:lightgray; 
   font-size: 32pt;
 }
@@ -73,7 +69,8 @@ function gm_authFailure() {
   console.log("ouille");
 }
 </script>
-    <script>
+
+<script>
 async function initialize() {
   const piazza = { position : { lat: 41.8442301, lng: 14.5618596 }, heading : 189.53 };
   const farmacia = { position : { lat: 41.8428559, lng: 14.5619902 }, heading : 159.68 };
