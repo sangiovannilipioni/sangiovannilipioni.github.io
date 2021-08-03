@@ -6,7 +6,7 @@
         {{ $t("theProject") }} <strong>Nessuno Escluso</strong>
       </h1>
 
-      <swiper id="swiperThumbs" ref="swiperThumbs" class="swiper gallery-thumbs my-4" :options="swiperOptionThumbs" @slideChange="onThumbnailChange">
+      <swiper id="swiperThumbs" ref="swiperThumbs" class="swiper gallery-thumbs my-4" style="borde: 1px dotted gray;" :options="swiperOptionThumbs" @slideChange="onThumbnailChange">
         <swiper-slide
           v-for="(slide, index) in slides"
           :key="index">
@@ -122,6 +122,8 @@ export default {
 
 .swiper#swiperThumbs {
   margin-top: .75rem;
+  border: 1px dotted #eee;
+  background-color: #eee;
 
   .swiper-slide {
     width: 16%;
