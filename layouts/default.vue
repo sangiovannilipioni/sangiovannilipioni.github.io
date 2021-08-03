@@ -5,7 +5,7 @@
     <main role="main">
       <Nuxt />
     </main>
-    <footer class="footer py-1" style="margin-top: auto!important;" v-if="$route.path === '/'">
+    <footer class="footer py-1" style="margin-top: auto!important;" v-if="$route.path === '/' || $route.path === '/fr' || $route.path === '/en'">
       <div class="container binome">
         <div class="text-muted">
           <div style="whitespace: nowrap">Associazione <b>Nessuno Escluso</b> APS<br>Largo del Popolo, 50<br>66050 San Giovanni Lipioni (CH)</div>
