@@ -15,8 +15,9 @@
           <b-nav-item class="flex-grow-1" href="#"
             >Riabitare San Giovanni</b-nav-item
           >
-          <b-nav-item href="#">{{ $route.path }}</b-nav-item>
+          <!-- b-nav-item href="#">{{ $route.path }}</!-->
           <locale-switcher />
+
           <template v-if="$auth.$state.loggedIn">
             <b-nav-item-dropdown :text="$auth.user.name" right>
               <template slot="button-content"

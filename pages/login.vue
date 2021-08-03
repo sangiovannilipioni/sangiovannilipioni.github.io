@@ -1,38 +1,32 @@
 <template>
-  <div>
-    <b-alert v-if="errorMessage" show variant="danger">
+  <div id="backButton" @click="backOnEscape">
+    <!-- b-alert v-if="errorMessage" show variant="danger">
       {{ errorMessage }}
-    </b-alert>
+    </!-->
     <b-alert v-if="$auth.$state.redirect" show>
       You have to login before accessing to
       <strong>{{ $auth.$state.redirect }}</strong>
     </b-alert>
     <b-row align-h="center" class="pt-4">
-      <b-card v-show="!loggedIn" title="Login" bg-variant="light">
-        <div class="alert alert-warning">
-          <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
-          {{ $t("loginWarning") }}
-        </div>
-        <div v-for="s in strategies" :key="s.key" class="mb-2" style="width:100%">
+      <b-card v-show="!loggedIn" title="Login" bg-variant="light" style="max-width: fit-content;">
+        <div v-for="s in strategies" :key="s.key" class="mb-2">
           <b-btn
-            block
             :style="{ background: s.color }"
             class="login-button"
-            @click="$auth.loginWith(s.key)"
             :disabled="!s.active"
+            @click="$auth.loginWith(s.key)"
           >
-            <font-awesome-icon :icon="['fab', s.key]" />
-            {{ $t("loginPrompt") }} {{ s.name }}
+            {{ s.name }}
           </b-btn>
         </div>
       </b-card>
-      <b-card v-show="loggedIn" title="Logout" bg-variant="light">
+      <b-card v-show="loggedIn" title="Logout" bg-variant="light" style="max-width: fit-content;">
         <b-btn
-          block
           v-show="loggedIn"
           class="login-button"
           @click="$auth.logout()"
-          ><font-awesome-icon :icon="['fas', 'sign-out-alt']" />
+        >
+          <font-awesome-icon :icon="['fas', 'sign-out-alt']" />
         </b-btn>
       </b-card>
     </b-row>
@@ -40,44 +34,40 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex'
 
 export default {
   components: {},
-  middleware: ["auth"],
+  layout: 'logo',
+  middleware: ['auth'],
   computed: {
-    ...mapState("auth", ["loggedIn"]),
+    ...mapState('auth', ['loggedIn']),
     strategies: () => [
-      /* 
-      */
-     { key: "facebook", name: "Facebook", color: "#3c65c4", active: true },
-     { key: "google", name: "Google", color: "#4284f4", active: false },
-     { key: "github", name: "GitHub", color: "#202326", active: false },
-    ],
-    errorMessage() {
-      const { error } = this;
-      if (!error || typeof error === "string") {
-        return error;
-      }
-      let msg = "";
-      if (error.message) {
-        msg += error.message;
-      }
-      if (error.errors) {
-        msg += `(${JSON.stringify(error.errors)
-          .replace(/[{}"[\]]/g, "")
-          .replace(/:/g, ": ")
-          .replace(/,/g, " ")})`;
-      }
-      return msg;
-    },
+      { key: 'facebook', name: 'Facebook', color: '#3c65c4', active: true }
+    ]
   },
-  methods: {},
-};
+  beforeDestroy () {
+    window.removeEventListener('keydown', this.backOnEscape)
+  },
+  mounted () {
+    window.addEventListener('keydown', this.backOnEscape)
+  },
+  methods: {
+    backOnEscape (e) {
+      if ((e.srcElement && e.srcElement.id === 'backButton') || e.key === 'Escape') {
+        window.removeEventListener('keydown', this.backOnEscape)
+        this.$router.back()
+      }
+    }
+  }
+}
 </script>
 
 <style scoped>
 .login-button {
   border: 0;
+}
+body {
+  background-color:red;
 }
 </style>
