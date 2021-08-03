@@ -84,9 +84,18 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+
 #slides {
+
+  margin-bottom: 1rem;
   /* height: calc(100vh - (#{$footerHeight} + #{$headerHeight})); */
+
+  img {
+    margin-left: 1rem;
+    max-width: 30%;
+    float: right;
+  }
 }
 
 .swiper {
@@ -111,7 +120,7 @@ export default {
 
 .swiper#swiperTop {
 
-  background-color: #efefef;
+  /* background-color: #efefef; */
   border: 1px dotted gray;
 
   .swiper-slide {

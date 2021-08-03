@@ -12,6 +12,8 @@ Rédaction d'un projet de faisabilité consistant en :
     
     * Restitution des données de l'enquête en format numérique.
 
+![Image of SGL](/jpeg/rustico_casale_e_casa_di_corte-in-vendita-a-san_giovanni_lipioni1.jpg)
+
 * B. Conception et réalisation du projet de communication par Internet ;
 
     * Analyse et évaluation technique des actions à mettre en place pour la diffusion du projet sur le web afin d'optimiser la communication institutionnelle et de promouvoir l'Association. Il s'agira de créer une plateforme qui permettra la diffusion, les échanges et les contacts (site web, médias sociaux, Newletter) ainsi qu'un espace réservé aux membres pour les activités de l'association. Le Conseil d'administration, avec la contribution des membres qui ont donné leur disponibilité, évaluera la personne à qui le service sera confié.

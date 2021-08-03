@@ -1,5 +1,7 @@
 ## Ruolo dell’Amministrazione Comunale
 
+![Image of SGL](/jpeg/scorci-3.jpg)
+
 Per dare attuazione al programma è fondamentale il pieno appoggio e sinergia
 dell’Amministrazione Comunale al fine di sostenere l’iniziativa dal punto di vista
 amministrativo e procedurale; infatti la funzione di organo “facilitatore” e attivazione di

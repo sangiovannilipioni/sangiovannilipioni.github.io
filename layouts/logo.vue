@@ -2,7 +2,7 @@
   <div class="p-2">
     <div
       v-html="src"
-      class="logo blurp d-flex justify-content-center align-items-center"
+      class="logo w-100 blurp d-flex justify-content-center align-items-center"
     ></div>
     <Nuxt style="z-index: 12345" />
     <footer class="fixed-bottom">

@@ -1,6 +1,9 @@
 ## Objet
 
-L'Association est constituée pour poursuivre sans but lucratif des objectifs civiques, solidaires et d'utilité sociale dans son intégralité.
+![Image of SGL](/jpeg/b4e8cca7-36bd-461a-80af-cd4f6da1fef5.jpg)
+
+L'Association est constituée pour poursuivre sans but lucratif 
+des objectifs civiques, solidaires et d'utilité sociale dans son intégralité.
 le respect de la liberté et de la dignité de ses membres.
 
 L'Association entend agir dans le domaine de la promotion de la

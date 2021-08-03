@@ -10,7 +10,7 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav toggleable="sm" style="flex: auto">
           <b-nav-item :to="localePath('/slides')">{{
-            $t("theProject")
+            $t("presentation")
           }}</b-nav-item>
           <b-nav-item class="flex-grow-1" :to="localePath('/maiellaverde')">{{
             $t("maiellaverde") 

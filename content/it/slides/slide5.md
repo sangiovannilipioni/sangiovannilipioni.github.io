@@ -1,5 +1,6 @@
 ## Programma Attività dell’Associazione
 
+
 Redazione di un progetto di fattibilità che consiste in:
 
 * A. Rilievo plano-altimetrico e digitalizzazione di tutto il territorio di San Giovanni Lipioni, sia la parte abitata che i terreni:
@@ -11,6 +12,8 @@ Redazione di un progetto di fattibilità che consiste in:
     * Esecuzione di sopralluoghi con redazione di video/foto/schede tematiche sugli edifici potenzialmente interessanti ai fini del progetto ed eventuale indicazione/analisi/descrizione del tessuto non costruito
     
     * Restituzione dei dati rilevati in formato digitale
+
+![Image of SGL](/jpeg/rustico_casale_e_casa_di_corte-in-vendita-a-san_giovanni_lipioni1.jpg)
 
 * B. Ideazione e realizzazione del progetto di comunicazione Internet;
 

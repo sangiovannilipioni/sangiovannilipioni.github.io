@@ -1,5 +1,7 @@
 # Programma Attività dell’Associazione
 
+![Image of SGL](/jpeg/rustico_casale_e_casa_di_corte-in-vendita-a-san_giovanni_lipioni.jpg)
+
 A conclusione di questa prima Fase, l’Assemblea:
 
 * su proposta del consiglio direttivo, effettuerà la valutazione delle risultanze del lavoro fin qui realizzato e se ci saranno le condizioni per formulare proposte di sviluppo di attività potrà indicare forme e livelli di approfondimento più opportune (master plan, proposte di fattibilità, piuttosto che esposizione di tipologie di attività economiche realizzabili etc.) con l’ausilio di esperti del settore ( fiscale, societario, tecnico e turistico)

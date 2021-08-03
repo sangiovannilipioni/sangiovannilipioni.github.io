@@ -25,47 +25,18 @@
             <font-awesome-icon :icon="['fas', 'spinner']" class="fa-spin" />
           </div>
         </div>
-        <p style="font-size: larger">
-          L’Associazione <b>Nessuno Escluso</b> è stata fondata da un gruppo di
-          sangiovannesi con l’obiettivo di promuovere la rigenerazione e la
-          riabitazione del paese nel rispetto dei principi dello sviluppo
-          sostenibile. 
-        </p><p>
-          Nel Gennaio 2020, con l'aiuto dell'amministrazione comunale, un nutrito gruppo di residenti e non-residenti
-          originari del paese ha dato
-          vita a un percorso partecipativo mirato all’identificazione di
-          scenari possibili per attivare un processo di rigenerazione e di
-          ripopolamento del borgo. 
-        </p><p>
-          Nel Giugno 2020, il percorso partecipativo è
-          culminato nella creazione dell’Associazione <b>Nessuno Escluso</b>, nata
-          dall’unione di 50 cittadini divenuti soci a tutti gli effetti. Lo scopo
-          principale dell’Associazione è quello di promuovere la rigenerazione e
-          riabitazione del territorio del comune di San Giovanni Lipioni
-          attraverso il recupero edilizio del borgo, la promozione turistica e
-          l’arricchimento culturale e sociale.
-        </p><p>
-          L’Associazione si prefigge di
-          individuare le strategie necessarie e ottimali per attrarre nuovi
-          residenti e visitatori in modo da:
+        <p style="font-size: larger" v-html="$t('pres1')">
+        </p><p v-html="$t('pres2')">
+        </p><p v-html="$t('pres3')">
+        </p><p v-html="$t('pres4')">          
         </p>
         <ol>
-          <li>ricreare la socialità e promuovere l’arricchimento culturale quali principali fattori di vita del borgo; </li>
-          <li> costruire opportunità nuove di vita generando attività legate al territorio, artigianali, culturali; </li>
-          <li> innescare un processo di
-        rivalorizzazione del borgo che possa riportare interesse verso la
-        sostenibilità dell’abitarvi permanentemente nel paese o rimanervi per
-        lunghi periodi; e 
-          </li>  
-          <li> attivare un turismo nuovo, esperienziale ed
-        ecosostenibile che metta in contatto il turista con la realtà autentica
-        del borgo e del suo territorio. 
-          </li>
+          <li v-html="$t('pres5_li1')"></li>
+          <li v-html="$t('pres5_li2')"></li>
+          <li v-html="$t('pres5_li3')"></li>  
+          <li v-html="$t('pres5_li4')"></li>
         </ol>
-        <p><i>Due sono le bussole dell’Associazione:
-          la custodia e valorizzazione del territorio e del paesaggio e
-          l’attenzione al benessere gli abitanti.</i>
-        </p>
+        <p v-html="$t('pres6')"></p>
       </div>
     </div>
 </template>
