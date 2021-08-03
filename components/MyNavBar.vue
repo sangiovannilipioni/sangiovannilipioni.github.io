@@ -12,9 +12,9 @@
           <b-nav-item :to="localePath('/slides')">{{
             $t("theProject")
           }}</b-nav-item>
-          <b-nav-item class="flex-grow-1" :to="localePath('/maiellaverde')"
-            >$t("maiellaverde")</b-nav-item
-          >
+          <b-nav-item class="flex-grow-1" :to="localePath('/maiellaverde')">{{
+            $t("maiellaverde") 
+          }}</b-nav-item>
           <!-- b-nav-item href="#">{{ $route.path }}</!-->
           <locale-switcher />
 
