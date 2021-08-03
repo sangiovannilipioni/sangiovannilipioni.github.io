@@ -17,6 +17,7 @@ export default {
   impresa: "Logo",
   register: "Demande d'adhésion",
   gossip: "Zone privée",
+  maiellaverde: "Riabitare San Giovanni",
 
   slides: "Exemple de présentation",
 

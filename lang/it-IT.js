@@ -17,6 +17,7 @@ export default {
   impresa: "Logo",
   register: "Richiesta di Adesione",
   gossip: "Area Riservata",
+  maiellaverde: "Riabitare San Giovanni",
 
   slides: "Esempio di presentazione",
 
