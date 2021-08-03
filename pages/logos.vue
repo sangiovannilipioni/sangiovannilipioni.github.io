@@ -2,20 +2,32 @@
   <div class="mx-auto container">
     <!-- https://github.com/nuxt/nuxt.js/issues/6645#issuecomment-550111141 -->
     <component :is="'style'">
-      @media (min-width: 540px) { .logo svg path { stroke-width:
-      {{ strokeWidth }}; } } @media (max-width: 540px) { .logo svg path {
-      stroke-width: {{ strokeWidth }}; } } .logo svg path { stroke-width:
-      {{ strokeWidth }}; } .logo svg > g { transform:
-      {{ getMatrixForRotation(310, 535) }}; }
+      @media (min-width: 540px) { 
+          .logo svg path { 
+              stroke-width: {{ strokeWidth }}; 
+          } 
+      } 
+      @media (max-width: 540px) { 
+          .logo svg path {
+              stroke-width: {{ strokeWidth }}; 
+          } 
+      } 
+      .logo svg path { 
+          stroke-width: {{ strokeWidth }}; 
+      } 
+      .logo svg > g { 
+          transform: {{ getMatrixForRotation(310, 535) }}; 
+      }
     </component>
     <b-form id="strokeWidthForm" class="form-inline">
-      <div class="blah d-flex w-100">
+      <div class="white-space-nowrap d-flex w-100">
         <label class="mr-3" for="strokeWidth">Stroke Width</label>
         <vue-slider
           id="strokeWidth"
           v-model="strokeWidth"
           v-bind="options"
-          class="d-inline-flex flex-grow-1"
+          class="d-inline-flex flex-grow-1 p-7"
+          style="padding:7px 12px;"
         />
         <div class="feedback ml-3">{{ formatnum(strokeWidth) }}</div>
       </div>
@@ -29,6 +41,7 @@
           :interval="1"
           :tooltip-formatter="angleFormatter"
           class="d-inline-flex flex-grow-1"
+          style="padding:7px 12px;"
         />
         <div class="feedback ml-3">{{ angle }}°</div>
       </div>
@@ -43,9 +56,9 @@
 <style>
 .blurp svg {
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 80px);
 }
-.blah {
+.white-space-nowrap {
   white-space: nowrap;
 }
 .feedback {
@@ -66,6 +79,7 @@ import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "Icon",
+  layout: 'void',
   data() {
     return {
       // angle: 0,
