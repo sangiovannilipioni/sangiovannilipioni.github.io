@@ -245,11 +245,6 @@ export default {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     extractCSS: true,
-    /*
-     * https://github.com/nuxt-community/dotenv-module/issues/11#issuecomment-640277825
-     ** You can extend webpack config here
-     */
-
     extend(config, ctx) {
       config.node = {
         fs: "empty"
@@ -258,6 +253,12 @@ export default {
       if (ctx.isDev) {
         config.devtool = ctx.isClient ? "source-map" : "inline-source-map";
       }
+    },
+    babel:{
+      compact: true,
+      plugins: [
+        ["@babel/plugin-proposal-private-property-in-object", { "loose": true }]
+      ]
     }
   },
 
