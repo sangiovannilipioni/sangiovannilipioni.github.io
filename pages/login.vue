@@ -13,10 +13,12 @@
           <b-btn
             :style="{ background: s.color }"
             class="login-button"
-            :disabled="!s.active"
-            @click="$auth.loginWith(s.key)"
+            :disabled="!s.active || loading"
+            @click="loading=true && $auth.loginWith(s.key)"
           >
             {{ s.name }}
+            <font-awesome-icon v-if="!loading" :icon="['fas', 'sign-out-alt']">&nbsp;</font-awesome-icon>
+            <font-awesome-icon v-if="loading" :icon="['fas', 'spinner']" class="fa-spin">&nbsp;</font-awesome-icon>
           </b-btn>
         </div>
       </b-card>
@@ -24,7 +26,8 @@
         <b-btn
           v-show="loggedIn"
           class="login-button"
-          @click="$auth.logout()"
+          :disabled="loading"
+          @click="loading=true && $auth.logout()"
         >
           <font-awesome-icon :icon="['fas', 'sign-out-alt']" />
         </b-btn>
@@ -37,7 +40,13 @@
 import { mapState } from 'vuex'
 
 export default {
-  components: {},
+  data () {
+    return {
+      loading: false,
+    }
+  },
+  components: {
+  },
   layout: 'logo',
   middleware: ['auth'],
   computed: {
@@ -50,6 +59,7 @@ export default {
     window.removeEventListener('keydown', this.backOnEscape)
   },
   mounted () {
+    this.loading = false;
     window.addEventListener('keydown', this.backOnEscape)
   },
   methods: {
