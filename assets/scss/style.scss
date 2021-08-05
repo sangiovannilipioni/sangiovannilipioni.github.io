@@ -44,13 +44,15 @@ main[role="main"] {
 
 a.nav-link {
   height:100%;
-  vertical-align: top;
+}
+
+a.nav-link img {
+  vertical-align: middle;
 }
 
 li.nav-item {
   background-color: white;
   padding: 0 1rem;
-  vertical-align: top;
 }
 
 @media (min-width: 768px) {

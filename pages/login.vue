@@ -14,11 +14,10 @@
             :style="{ background: s.color }"
             class="login-button"
             :disabled="!s.active || loading"
-            @click="loading=true && $auth.loginWith(s.key)"
-          >
+            @click="loading=true && $auth.loginWith(s.key)">
             {{ s.name }}
-            <font-awesome-icon v-if="!loading" :icon="['fas', 'sign-out-alt']">&nbsp;</font-awesome-icon>
-            <font-awesome-icon v-if="loading" :icon="['fas', 'spinner']" class="fa-spin">&nbsp;</font-awesome-icon>
+            <font-awesome-icon v-if="!loading" :icon="['fas', 'sign-out-alt']" style="margin-left: 0.75rem" />
+            <font-awesome-icon v-if="loading" :icon="['fas', 'spinner']" class="fa-spin"  style="margin-left: 0.75rem" />
           </b-btn>
         </div>
       </b-card>
