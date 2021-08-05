@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <b-alert show variant="warning"> This is a secure page! </b-alert>
     <b-row>
       <b-col md="8">
