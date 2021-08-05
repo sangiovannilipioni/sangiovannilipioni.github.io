@@ -42,9 +42,15 @@ main[role="main"] {
   line-height: 20px;
 }
 
+a.nav-link {
+  height:100%;
+  vertical-align: top;
+}
+
 li.nav-item {
   background-color: white;
   padding: 0 1rem;
+  vertical-align: top;
 }
 
 @media (min-width: 768px) {
