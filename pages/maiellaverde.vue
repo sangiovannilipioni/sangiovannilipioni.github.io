@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-    <div class="binome">
+    <div class="binome card">
         <div style="border: none;" class="flex-grow-1">
             <span>Comunità di progetto <b>Riabitare San Giovanni</b> sul sito di Maiella Verde</span>
             <a href="https://riabitaresangiovanni.maiellaverde.it/" target="_maiellaverde">

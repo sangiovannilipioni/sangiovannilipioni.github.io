@@ -6,7 +6,7 @@
         {{ $t("theProject") }} <strong>Nessuno Escluso</strong>
       </h1>
 
-      <swiper id="swiperThumbs" ref="swiperThumbs" class="swiper gallery-thumbs my-4" style="borde: 1px dotted gray;" :options="swiperOptionThumbs" @slideChange="onThumbnailChange">
+      <swiper :navigation="true" id="swiperThumbs" ref="swiperThumbs" class="swiper gallery-thumbs my-4" style="borde: 1px dotted gray;" :options="swiperOptionThumbs" @slideChange="onThumbnailChange">
         <swiper-slide
           v-for="(slide, index) in slides"
           :key="index">
@@ -18,9 +18,12 @@
         <swiper-slide v-for="(slide, index) in slides" :key="index">
           <Slide :src="`slide${index}`" />
         </swiper-slide>
+        <!-- 
+        <div id="prev" class="swiper-button-prev" slot="button-prev"></div>
+        <div id="next" class="swiper-button-next" slot="button-next"></div>
+        -->
       </swiper>
     </diV>
-
   </client-only>
 </template>
 
@@ -34,12 +37,12 @@ export default {
         keyboard: {
           enabled: true
         },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        },
         pagination: {
           el: '.swiper-pagination'
+        },
+        navigation: {
+          nextEl: "#next",
+          prevEl: "#prev",
         },
         loop: false
       },
@@ -47,7 +50,8 @@ export default {
         spaceBetween: 10,
         centeredSlides: true,
         slidesPerView: 'auto',
-        slideToClickedSlide: true
+        slideToClickedSlide: true,
+        navigation: false,
       },
       swiperTop () {
         return this.$refs.swiperTop.swiper
@@ -98,8 +102,12 @@ export default {
   }
 }
 
+.swiper-button-prev, .swiper-button-next {
+  top: 5% !important;
+}
+
 .swiper {
-  /* height: 100%; */
+  border-radius: 0.25rem;
 
   .swiper-slide {
     display: flex !important;
@@ -120,19 +128,19 @@ export default {
 
 .swiper#swiperTop {
 
-  /* background-color: #efefef; */
   border: 1px dotted gray;
 
   .swiper-slide {
     background-color: white;
-    padding: 1rem;
+    padding: 0.75rem;
   }
 }
 
 .swiper#swiperThumbs {
-  margin-top: .75rem;
-  border: 1px dotted #eee;
+  margin: .75rem 0 !important;
+  padding: .5rem 0;
   background-color: #eee;
+  border: 1px dotted rgb(191, 191, 191);
 
   .swiper-slide {
     width: 16%;

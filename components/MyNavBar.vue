@@ -7,15 +7,16 @@
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-      <b-collapse id="nav-collapse" is-nav>
+      <b-collapse id="nav-collapse" style="text-align: center; border: 1px dotted gray; border-radius: 0.25rem;" is-nav>
         <b-navbar-nav toggleable="sm" style="flex: auto">
           <b-nav-item :to="localePath('/slides')">{{
             $t("presentation")
           }}</b-nav-item>
-          <b-nav-item class="flex-grow-1" :to="localePath('/maiellaverde')">{{
+          <b-nav-item :to="localePath('/maiellaverde')">{{
             $t("maiellaverde") 
           }}</b-nav-item>
-          <!-- b-nav-item href="#">{{ $route.path }}</!-->
+          <b-nav-item id="spy" href="#" class="flex-grow-1 text-muted" disabled>{{ $route.path }}</b-nav-item>
+
           <locale-switcher />
 
           <template v-if="$auth.$state.loggedIn">
@@ -45,9 +46,9 @@
           <template v-else>
             <b-nav-item :to="localePath('/login')" right>
               <span style="white-space: nowrap;"
-                ><!-- font-awesome-icon :icon="['fas', 'sign-in-alt']" />&nbsp;-->{{
+                >{{
                   $t("signIn")
-                }}</span
+                }}<font-awesome-icon :icon="['fas', 'sign-in-alt']" style="margin-left: 0.5rem;" /></span
               >
             </b-nav-item>
           </template>
