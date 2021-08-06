@@ -24,7 +24,6 @@
 
 <script>
 export default {
-  
   async asyncData({ $content, params }) {
     return {
       pdfSrc: "/pdf/"+params.slug+".pdf",

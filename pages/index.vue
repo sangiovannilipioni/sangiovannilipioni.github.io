@@ -94,13 +94,13 @@ export default {
       console.log('about to const map = await new google.maps.Map', mapElement, document.getElementById("map"));
       const map = await new google.maps.Map(mapElement, {
         center: piazza.position,
-        zoom: 20,
+        zoom: this.zoom,
         /* disableDefaultUI: true, */
         mapTypeControl: false,
         streetViewControl: false,
       });
       console.log('about to const panorama = new google.maps.StreetViewPanorama');
-      /*const panorama = new google.maps.StreetViewPanorama(
+      const panorama = new google.maps.StreetViewPanorama(
         document.getElementById("pano"),
         {
           position: farmacia.position,
@@ -116,7 +116,7 @@ export default {
           panControl: false,
           enableCloseButton: false,
         }
-      );*/
+      );
       const contentString =
         '<div id="content">' +
         '<div id="siteNotice">' +
@@ -141,6 +141,7 @@ export default {
       });
 
       marker.addListener("click", () => {
+        document.getElementById('otherImage')
         infowindow.open({
           anchor: marker,
           map,
@@ -155,12 +156,16 @@ export default {
       });
 
       marker2.addListener("click", () => {
-        document.getElementById('pano').innerHTML += '<div style="position:absolute;width:100%;height:100%;">hello!</div>'
+        if (document.getElementById('otherImage')) {
+          document.getElementById('otherImage').remove();
+        }
+        document.getElementById('pano').innerHTML = 
+        "<div id='otherImage' style='width:100%;height:100%;background: no-repeat center center url(/foto/IMG_8544.JPG); background-size: cover;'></div>"
       });
 
-      console.log('about to map.setStreetView(panorama)');
+      /* console.log('about to map.setStreetView(panorama)');
 
-      // await map.setStreetView(panorama);
+      await map.setStreetView(panorama); */
 
       console.log('google maps initialized !');
 
@@ -189,7 +194,8 @@ export default {
   },
   data() {
     return {
-      mapElement: undefined
+      mapElement: undefined,
+      zoom: 20
     };
   },
 };
