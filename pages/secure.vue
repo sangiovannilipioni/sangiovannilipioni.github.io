@@ -1,6 +1,12 @@
 <template>
   <div class="container">
     <b-alert show variant="warning"> This is a secure page! </b-alert>
+      <b-card title="Links">
+        <hr>
+        <nuxt-link :to="localePath('/videos')">videos</nuxt-link>
+        <hr>
+        <nuxt-link :to="localePath('/buildings/A02')">datum</nuxt-link>
+      </b-card>
     <b-row>
       <b-col md="8">
         <b-card title="State">

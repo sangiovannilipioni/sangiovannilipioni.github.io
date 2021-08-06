@@ -167,7 +167,9 @@ export default {
     //
     "nuxt-i18n",
     //
-    "cookie-universal-nuxt"
+    "cookie-universal-nuxt",
+    //
+    'nuxt-google-sheets-parser'
   ],
 
   i18n: {
