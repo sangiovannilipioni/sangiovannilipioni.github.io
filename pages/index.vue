@@ -86,17 +86,21 @@ export default {
         position: { lat: 41.8428559, lng: 14.5619902 },
         heading: 159.68,
       };
+      const prova = {
+        position: { lat: 41.84428, lng: 14.56181 },
+        heading: 159.68,
+      };
       const mapElement = this.mapElement || document.getElementById("map")
       console.log('about to const map = await new google.maps.Map', mapElement, document.getElementById("map"));
       const map = await new google.maps.Map(mapElement, {
         center: piazza.position,
-        zoom: 7,
+        zoom: 20,
         /* disableDefaultUI: true, */
         mapTypeControl: false,
         streetViewControl: false,
       });
       console.log('about to const panorama = new google.maps.StreetViewPanorama');
-      const panorama = new google.maps.StreetViewPanorama(
+      /*const panorama = new google.maps.StreetViewPanorama(
         document.getElementById("pano"),
         {
           position: farmacia.position,
@@ -112,7 +116,7 @@ export default {
           panControl: false,
           enableCloseButton: false,
         }
-      );
+      );*/
       const contentString =
         '<div id="content">' +
         '<div id="siteNotice">' +
@@ -144,9 +148,19 @@ export default {
         });
       });
 
+      const marker2 = new google.maps.Marker({
+        position: prova.position,
+        map,
+        label: "Test",
+      });
+
+      marker2.addListener("click", () => {
+        document.getElementById('pano').innerHTML += '<div style="position:absolute;width:100%;height:100%;">hello!</div>'
+      });
+
       console.log('about to map.setStreetView(panorama)');
 
-      await map.setStreetView(panorama);
+      // await map.setStreetView(panorama);
 
       console.log('google maps initialized !');
 
