@@ -2,10 +2,10 @@
 <template>
   <div class="d-flex flex-column vh-100">
     <MyNavBar></MyNavBar>
-    <main role="main">
+    <main role="main" :class="isHomePage?'home':'not-home'">
       <Nuxt />
     </main>
-    <footer class="footer py-1" style="margin-top: auto!important;" v-if="$route.path === '/' || $route.path === '/fr' || $route.path === '/en'">
+    <footer class="footer py-1" style="margin-top: auto!important;" v-if="isHomePage">
       <div class="container binome">
         <div class="text-muted">
           <div style="whitespace: nowrap">Associazione <b>Nessuno Escluso</b> APS<br>Largo del Popolo, 50<br>66050 San Giovanni Lipioni (CH)</div>
@@ -36,7 +36,6 @@ a[role="menuitem"] .pdf:after {
 </style>
 
 <script>
-import axios from "axios";
 import { mapState } from "vuex";
 
 export default {
@@ -45,6 +44,9 @@ export default {
     currentLocale() {
       return this.$i18n.locale;
     },
+    isHomePage() {
+      return this.$route.path === '/' || this.$route.path === '/fr' || this.$route.path === '/en';
+    }
   },
 
   mounted() {

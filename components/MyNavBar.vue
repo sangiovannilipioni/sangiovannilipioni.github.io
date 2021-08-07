@@ -2,7 +2,7 @@
   <client-only>
     <b-navbar toggleable="md" class="container" style="padding: 0 1rem">
       <b-navbar-brand :to="localePath('/')">
-        <Logo />
+        <Logo :class="isHomePage?'home':'not-home'"/>
       </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -12,10 +12,23 @@
           <b-nav-item :to="localePath('/slides')">{{
             $t("presentation")
           }}</b-nav-item>
+
+
+          <b-nav-item-dropdown>
+            <template slot="button-content">{{ $t("theProject") }}</template>
+            <b-dropdown-item  :to="localePath('/patrimonio')">{{
+              $t("patrimonio")
+            }}</b-dropdown-item>
+            <b-dropdown-item  :to="localePath('/collab_da')">{{
+              $t("collab_da") 
+            }}</b-dropdown-item>
+          </b-nav-item-dropdown>
+          
+          
           <b-nav-item :to="localePath('/maiellaverde')">{{
             $t("maiellaverde") 
           }}</b-nav-item>
-          <b-nav-item id="spy" href="#" class="flex-grow-1 text-muted" disabled>{{ $route.path }}</b-nav-item>
+          <b-nav-item id="spy" href="#" class="flex-grow-1 text-muted" disabled><span v-if="$auth.$state.loggedIn" >{{ $route.path }}</span></b-nav-item>
 
           <locale-switcher />
 
@@ -57,4 +70,16 @@
     </b-navbar>
   </client-only>
 </template>
+
+<script>
+export default {
+  computed: {
+    isHomePage() {
+      return this.$route.path === '/' || this.$route.path === '/fr' || this.$route.path === '/en';
+    }
+  },
+};
+</script>
+
+
 

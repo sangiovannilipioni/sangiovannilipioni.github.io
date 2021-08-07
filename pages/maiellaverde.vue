@@ -1,5 +1,6 @@
 <template>
 <div class="container">
+    <div class="m-4">&nbsp;</div>
     <div class="binome card">
         <div style="border: none;" class="flex-grow-1">
             <span>Comunità di progetto <b>Riabitare San Giovanni</b> sul sito di Maiella Verde</span>

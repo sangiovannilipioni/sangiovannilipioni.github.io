@@ -4,6 +4,8 @@ export default {
   whoWeAre: "Who We Are",
   theProject: "Project",
   presentation: "Presentation",
+  patrimonio: "Heritage",
+  collab_da: "Department of Architecture of the University of Bologna",
   media: "Places",
   contacts: "Contacts",
   internet: "On internet",

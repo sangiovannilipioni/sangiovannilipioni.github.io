@@ -3,7 +3,7 @@
     <div id="slides" class="container">
 
       <h1 class="m-4" style="text-align:center">
-        {{ $t("theProject") }} <strong>Nessuno Escluso</strong>
+        <strong>Nessuno Escluso</strong>
       </h1>
 
       <swiper :navigation="true" id="swiperThumbs" ref="swiperThumbs" class="swiper gallery-thumbs my-4" style="borde: 1px dotted gray;" :options="swiperOptionThumbs" @slideChange="onThumbnailChange">
@@ -93,7 +93,6 @@ export default {
 #slides {
 
   margin-bottom: 1rem;
-  /* height: calc(100vh - (#{$footerHeight} + #{$headerHeight})); */
 
   img {
     margin-left: 1rem;

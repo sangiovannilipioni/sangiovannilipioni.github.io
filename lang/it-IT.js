@@ -4,6 +4,8 @@ export default {
   whoWeAre: "Chi siamo",
   theProject: "Progetto",
   presentation: "Presentazione",
+  patrimonio: "Patrimonio",
+  collab_da: "Dipartimento di Architettura dell’Università di Bologna",
   media: "Luoghi",
   contacts: "Contatti",
   internet: "Altri Siti",
