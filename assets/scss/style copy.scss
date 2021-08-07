@@ -1,12 +1,68 @@
+@import "variables";
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden; /* https://stackoverflow.com/a/52019093  */
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+/* main */
+main[role="main"] {
+  /* padding: 0.3rem; */
+  flex-grow: 1 !important;
+  width: 100%;
+}
+
+/* footer */
+.footer {
+  z-index: 999;
+  color: darkgray;
+  /* background: #cbe18e77; linear-gradient(0deg, #cbe18e, $footGradient 100%); */
+}
+
+.footer #version {
+  color: inherit;
+  font-family: monospace;
+}
+
 /* navbar */
-.navbar li.nav-item {
-  background-color: #efefef;
+.navbar {
+  background: white !important; /* linear-gradient(180deg, #cbe18e, $headGradient 100%);*/
+}
+
+.navbar-brand {
+  font-size: 18px;
+  line-height: 20px;
+}
+
+a.nav-link {
+  height:100%;
+}
+
+a.nav-link img {
+  vertical-align: middle;
+}
+
+li.nav-item {
+  background-color: white;
   padding: 0 1rem;
+}
+
+.binome .fa-spin {
+  color: lightgray;
+  font-size: 32pt;
 }
 
 @media (min-width: 768px) {
   main[role="main"].home {
-    margin-top: 6rem;
+    margin-top: 9rem;
   }
   main[role="main"].not-home {
     margin-top: 1rem;
@@ -67,11 +123,6 @@
   display: flex !important;
 }
 
-.binome .fa-spin {
-  color: lightgray;
-  font-size: 32pt;
-}
-
 .binome > div {
   border: solid 1px lightgray;
   padding: 0.25rem !important;
@@ -100,5 +151,11 @@
   .binome > div:last-child {
     margin-top: .5rem;
   }
+}
+
+/* kitchen-sink */
+ul,
+ul > li {
+  list-style-type: none;
 }
 
