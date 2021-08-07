@@ -21,6 +21,7 @@
           indicators
           style="color: red"
           no-animation
+          :interval="0"
         >
           <b-carousel-slide
             :img-src="`/foto/${jpeg}`"
