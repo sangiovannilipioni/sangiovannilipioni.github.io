@@ -16,7 +16,7 @@
             <div
               id="pano"
               class="col d-flex justify-content-center align-items-center"
-              style="background: transparent"
+              style="background: transparent; padding: 0 !important;"
             ></div>
           </client-only>
         </div>
@@ -162,7 +162,7 @@ export default {
                 "' style='width:100%;height:100%;'>" +
                 "<div id='otherImage' style='width:100%;height:100%;background: no-repeat center center url(/foto/" +
                 unit.foto +
-                "); background-size: contain;'></div>" +
+                "); background-size: cover;'></div>" +
                 "</a>";
             } else {
               document.getElementById("pano").innerHTML =
