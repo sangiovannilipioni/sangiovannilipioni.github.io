@@ -6,7 +6,7 @@ export default {
   presentation: "Presentation",
   patrimonio: "Heritage",
   collab_da: "Research Project",
-  media: "Places",
+  media: "Video",
   contacts: "Contacts",
   internet: "On internet",
   signIn: "Sign In",

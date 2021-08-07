@@ -48,13 +48,13 @@
     </b-form>
     <div
       v-html="src"
-      class="logo blurp d-flex justify-content-center align-items-center"
+      class="logo blurp2 d-flex justify-content-center align-items-center"
     ></div>
   </div>
 </template>
 
 <style>
-.blurp svg {
+.blurp2 svg {
   width: 100%;
   height: calc(100vh - 80px);
 }

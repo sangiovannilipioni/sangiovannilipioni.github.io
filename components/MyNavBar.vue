@@ -19,6 +19,9 @@
             <b-dropdown-item  :to="localePath('/patrimonio')">{{
               $t("patrimonio")
             }}</b-dropdown-item>
+            <b-dropdown-item  :to="localePath('/videos2')">{{
+              $t("media")
+            }}</b-dropdown-item>
             <b-dropdown-divider></b-dropdown-divider>
             <b-dropdown-item  :to="localePath('/collab_da')">{{
               $t("collab_da") 
@@ -34,10 +37,11 @@
           <locale-switcher />
 
           <template v-if="$auth.$state.loggedIn">
-            <b-nav-item-dropdown :text="$auth.user.name" right>
+            <b-nav-item-dropdown :text="$auth.user ? $auth.user.name : ''" right>
               <template slot="button-content"
                 ><b-img
-                  :src="this.$auth.user.picture.data.url"
+                  v-if="$auth.user"
+                  :src="$auth.user.picture.data.url"
                   class="mt-1"
                   rounded="circle"
                   width="30px"
@@ -46,7 +50,7 @@
               <b-dropdown-item :to="localePath('/secure')">{{
                 $t("gossip")
               }}</b-dropdown-item>
-              <b-dropdown-item v-show="loggedIn" :to="localePath('/logos')">{{
+              <b-dropdown-item :to="localePath('/logos')">{{
                 $t("impresa")
               }}</b-dropdown-item>
               <div class="dropdown-divider"></div>
