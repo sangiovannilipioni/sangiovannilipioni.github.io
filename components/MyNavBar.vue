@@ -15,10 +15,11 @@
 
 
           <b-nav-item-dropdown>
-            <template slot="button-content">{{ $t("theProject") }}</template>
+            <template slot="button-content">{{ $t("patrimonio") }}</template>
             <b-dropdown-item  :to="localePath('/patrimonio')">{{
               $t("patrimonio")
             }}</b-dropdown-item>
+            <b-dropdown-divider></b-dropdown-divider>
             <b-dropdown-item  :to="localePath('/collab_da')">{{
               $t("collab_da") 
             }}</b-dropdown-item>

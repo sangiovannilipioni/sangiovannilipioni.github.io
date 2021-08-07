@@ -5,7 +5,7 @@
         <hr>
         <nuxt-link :to="localePath('/videos')">videos</nuxt-link>
         <hr>
-        <nuxt-link :to="localePath('/buildings/A02')">datum</nuxt-link>
+        <nuxt-link :to="localePath('/units/A02')">datum</nuxt-link>
       </b-card>
     <b-row>
       <b-col md="8">

@@ -12,6 +12,9 @@ export default {
   signIn: "Area Riservata",
   signOut: "Esci",
 
+  map: "Carta geografica",
+  list: "Elenco",
+
   exordium: "Presentazione",
   dictators: "Consiglio Direttivo",
   administrivia: "Atto Costitutivo e Statuto",

@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <div class="container my-4">
 
-    <img class="float-right m-2" style="max-width:340px;height:auto;" src="/foto/LOGO_DA_HD.png">
+    <img id="da_logo" class="img-fluid p-1" style="max-width:340px;height:auto;border:1px dotted gray;" src="/foto/LOGO_DA_HD_640.jpg">
     
     <p style="font-size:larger">
       Tra il <b>Dipartimento di Architettura dell’Università di Bologna</b> e
@@ -29,6 +29,21 @@
       piattaforme web.
     </p>
 
-    <video src="https://youtu.be/pmgZcSv4Huk"></video>
+    <img class="img-fluid" src="/foto/MTSH_1.jpg">
   </div>
 </template>
+
+<style scoped>
+@media (min-width: 540px) {
+
+  #da_logo {
+      float: right !important;
+  }
+}
+@media (max-width: 540px) {
+
+  #da_logo {
+      float: none;
+  }
+}
+</style>

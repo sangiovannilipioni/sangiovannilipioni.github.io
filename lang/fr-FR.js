@@ -12,6 +12,9 @@ export default {
   signIn: "Se connecter",
   signOut: "Se déconnecter",
 
+  map: "Carte",
+  list: "Liste",
+
   exordium: "Prolégomènes",
   dictators: "Conseil d'administration",
   administrivia: "Acte constitutif et statuts",

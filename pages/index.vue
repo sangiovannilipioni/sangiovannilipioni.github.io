@@ -45,11 +45,6 @@
 h1 {
   text-align: center;
 }
-
-.binome .fa-spin {
-  color: lightgray;
-  font-size: 32pt;
-}
 </style> 
 
 <script>
@@ -149,23 +144,9 @@ export default {
         });
       });
 
-      const marker2 = new google.maps.Marker({
-        position: prova.position,
-        map,
-        label: "Test",
-      });
+      console.log('about to map.setStreetView(panorama)');
 
-      marker2.addListener("click", () => {
-        if (document.getElementById('otherImage')) {
-          document.getElementById('otherImage').remove();
-        }
-        document.getElementById('pano').innerHTML = 
-        "<div id='otherImage' style='width:100%;height:100%;background: no-repeat center center url(/foto/IMG_8544.JPG); background-size: cover;'></div>"
-      });
-
-      /* console.log('about to map.setStreetView(panorama)');
-
-      await map.setStreetView(panorama); */
+      await map.setStreetView(panorama);
 
       console.log('google maps initialized !');
 
@@ -195,8 +176,9 @@ export default {
   data() {
     return {
       mapElement: undefined,
-      zoom: 20
+      zoom: 7
     };
   },
 };
 </script>
+

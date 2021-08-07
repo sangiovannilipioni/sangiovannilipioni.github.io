@@ -12,6 +12,9 @@ export default {
   signIn: "Sign In",
   signOut: "Sign Out",
 
+  map: "Map",
+  list: "List",
+
   exordium: "Summary",
   dictators: "Committee Members",
   administrivia: "Constitutive Act and Statute",
