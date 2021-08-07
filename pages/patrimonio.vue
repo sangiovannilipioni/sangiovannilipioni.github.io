@@ -12,11 +12,13 @@
               <font-awesome-icon :icon="['fas', 'spinner']" class="fa-spin" />
             </div>
           </div>
-          <div
-            id="pano"
-            class="col d-flex justify-content-center align-items-center"
-            style="background: transparent"
-          ></div>
+          <client-only>
+            <div
+              id="pano"
+              class="col d-flex justify-content-center align-items-center"
+              style="background: transparent"
+            ></div>
+          </client-only>
         </div>
       </b-tab>
       <b-tab :title="$t('list')">
@@ -31,7 +33,7 @@
             </div>
             <div class="p-2" style="max-width: 30%; text-align: right">
               <NuxtLink :to="`/units/${unit.ref}`">
-              <img class="thmb" :src="'/foto/' + unit.foto" alt="" />
+                <img class="thmb" :src="'/foto/' + unit.foto" alt="" />
               </NuxtLink>
             </div>
           </div>
@@ -145,7 +147,6 @@ export default {
           });
 
           marker.addListener("click", () => {
-          
             infowindow.open({
               anchor: marker,
               map,
@@ -154,11 +155,21 @@ export default {
             if (document.getElementById("otherImage")) {
               document.getElementById("otherImage").remove();
             }
-            document.getElementById("pano").innerHTML =
-              "<a href='/units/"+unit.ref+"' style='width:100%;height:100%;'>"+
-              "<div id='otherImage' style='width:100%;height:100%;background: no-repeat center center url(/foto/"+unit.foto+"); background-size: contain;'>"+
-              "</div></a>";
-    
+            if (true) {
+              document.getElementById("pano").innerHTML =
+                "<a href='/units/" +
+                unit.ref +
+                "' style='width:100%;height:100%;'>" +
+                "<div id='otherImage' style='width:100%;height:100%;background: no-repeat center center url(/foto/" +
+                unit.foto +
+                "); background-size: contain;'></div>" +
+                "</a>";
+            } else {
+              document.getElementById("pano").innerHTML =
+                "<video playsinline autoplay loop><source :src='" +
+                unit.video +
+                "' type='video/mp4' />Sorry, your browser doesn't support embedded videos.</video>";
+            }
           });
         }
       });
@@ -195,12 +206,26 @@ export default {
   data() {
     return {
       units: [
-        { key: "Via Roma, 37", value: "qwe", foto: "GOPR1232_light_2.jpg", position: { lat: 41.84247, lng: 14.56213 }, ref: "A02"}, 
-        { key: "Via Vicenne. 4", value: "asd", foto: "X2.jpg", position: { lat: 41.84821126881966, lng: 14.562941327400237}, ref: "G01"  }, 
+        {
+          key: "Via Roma, 37",
+          value: "qwe",
+          foto: "GOPR1232_light_2.jpg",
+          position: { lat: 41.84247, lng: 14.56213 },
+          ref: "A02",
+          video:
+            "https://storage.googleapis.com/sangiovannilipioni/SGL_DA_silent_1080.mov",
+        },
+        {
+          key: "Via Vicenne. 4",
+          value: "asd",
+          foto: "X2.jpg",
+          position: { lat: 41.84821126881966, lng: 14.562941327400237 },
+          ref: "G01",
+        },
         { key: "⋮", value: "zxc" },
       ],
       mapElement: undefined,
-      zoom: 16.80,
+      zoom: 16.8,
     };
   },
 };
