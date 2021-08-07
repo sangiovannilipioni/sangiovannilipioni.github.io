@@ -1,10 +1,12 @@
 <template>
   <div class="container my-4">
 
-    <img id="da_logo" class="img-fluid p-1" style="max-width:340px;height:auto;border:1px dotted gray;" src="/foto/LOGO_DA_HD_640.jpg">
+    
     
     <p style="font-size:larger">
-      Tra il <b>Dipartimento di Architettura dell’Università di Bologna</b> e
+      <img id="da_logo" class="img-fluid p-1" style="max-width:340px;height:auto;" src="/foto/LOGO_DA_HD_640.jpg">
+      Tra il 
+      <b>Dipartimento di Architettura dell’Università di Bologna</b> e
       l’Associazione Nessuno Escluso Aps è stata stipulata la Convenzione n. 92
       Prot. 969 del 13/10/2020 avente come oggetto il <b>“Progetto di
       valorizzazione e promozione del territorio del Comune di San Giovanni
@@ -28,8 +30,10 @@
       fine di ricostruire un percorso virtuale visualizzabile mediante
       piattaforme web.
     </p>
+    <p style="text-align:center">
 
-    <img class="img-fluid" src="/foto/MTSH_1.jpg">
+    <img class="img-fluid" src="/foto/MTSH_1_light.jpg">
+    </p>
   </div>
 </template>
 
