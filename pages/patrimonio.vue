@@ -193,7 +193,7 @@ export default {
     return {
       units: [
         { key: "Via Roma, 37", value: "qwe", foto: "GOPR1232.JPG", position: { lat: 41.84247, lng: 14.56213 }, ref: "A02"}, 
-        { key: "Via Vicenne. 4", value: "asd", foto: "X2.PNG", position: { lat: 41.84821126881966, lng: 14.562941327400237}, ref: "G01"  }, 
+        { key: "Via Vicenne. 4", value: "asd", foto: "X2.jpg", position: { lat: 41.84821126881966, lng: 14.562941327400237}, ref: "G01"  }, 
         { key: "⋮", value: "zxc" },
       ],
       mapElement: undefined,

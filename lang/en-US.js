@@ -5,7 +5,7 @@ export default {
   theProject: "Project",
   presentation: "Presentation",
   patrimonio: "Heritage",
-  collab_da: "Department of Architecture of the University of Bologna",
+  collab_da: "Research Project",
   media: "Places",
   contacts: "Contacts",
   internet: "On internet",
@@ -21,7 +21,7 @@ export default {
   pictures: "From below",
   movies: "From above",
   impresa: "Logo",
-  register: "Application for Membership",
+  register: "Membership Application",
   gossip: "Private Area",
   maiellaverde: "Riabitare San Giovanni",
 

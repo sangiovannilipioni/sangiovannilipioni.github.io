@@ -5,7 +5,7 @@ export default {
   theProject: "Progetto",
   presentation: "Presentazione",
   patrimonio: "Patrimonio",
-  collab_da: "Dipartimento di Architettura dell’Università di Bologna",
+  collab_da: "Progetto di ricerca",
   media: "Luoghi",
   contacts: "Contatti",
   internet: "Altri Siti",
