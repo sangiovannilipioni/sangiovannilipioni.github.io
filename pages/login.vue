@@ -1,5 +1,5 @@
 <template>
-  <div id="backButton" @click="backOnEscape">
+  <div id="backButton" class="container" @click="backOnEscape">
     <!-- b-alert v-if="errorMessage" show variant="danger">
       {{ errorMessage }}
     </!-->
