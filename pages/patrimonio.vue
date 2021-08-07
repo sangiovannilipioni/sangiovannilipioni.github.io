@@ -155,7 +155,10 @@ export default {
               document.getElementById("otherImage").remove();
             }
             document.getElementById("pano").innerHTML =
-              "<div id='otherImage' style='width:100%;height:100%;background: no-repeat center center url(/foto/"+unit.foto+"); background-size: contain;'></div>";
+              "<a href='/units/"+unit.ref+"' style='width:100%;height:100%;'>"+
+              "<div id='otherImage' style='width:100%;height:100%;background: no-repeat center center url(/foto/"+unit.foto+"); background-size: contain;'>"+
+              "</div></a>";
+    
           });
         }
       });
