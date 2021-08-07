@@ -62,7 +62,7 @@ export default {
   data() {
     return {
       units: {
-        A02: {
+        O02: {
           jpegs: [
             "O1__O2-PianoPrimo.jpg",
             "O1__O2-PianoSeminterrato.jpg",

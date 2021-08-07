@@ -211,7 +211,7 @@ export default {
           value: "qwe",
           foto: "GOPR1232_light_2.jpg",
           position: { lat: 41.84247, lng: 14.56213 },
-          ref: "A02",
+          ref: "O02",
           video:
             "https://storage.googleapis.com/sangiovannilipioni/SGL_DA_silent_1080.mov",
         },
