@@ -1,13 +1,14 @@
 <template>
   <div class="container">
     <b-alert show variant="warning"> This is a secure page! </b-alert>
+    <!-- 
+    <b-row>
       <b-card title="Links">
-        <hr>
+        <hr />
         <nuxt-link :to="localePath('/videos')">videos</nuxt-link>
-        <hr>
+        <hr />
         <nuxt-link :to="localePath('/units/A02')">datum</nuxt-link>
       </b-card>
-    <b-row>
       <b-col md="8">
         <b-card title="State">
           <pre>{{ state }}</pre>
@@ -15,18 +16,18 @@
       </b-col>
       <b-col md="4">
         <b-card title="Scopes" class="mb-2">
-          User: <b-badge>{{ $auth.hasScope('user') }}</b-badge> Test:
-          <b-badge>{{ $auth.hasScope('test') }}</b-badge> Admin:
-          <b-badge>{{ $auth.hasScope('admin') }}</b-badge>
+          User: <b-badge>{{ $auth.hasScope("user") }}</b-badge> Test:
+          <b-badge>{{ $auth.hasScope("test") }}</b-badge> Admin:
+          <b-badge>{{ $auth.hasScope("admin") }}</b-badge>
         </b-card>
         <b-card v-if="$auth.strategy.token" title="token" class="mb-2">
           <div style="white-space: nowrap; overflow: auto">
-            {{ $auth.strategy.token.get() || '-' }}
+            {{ $auth.strategy.token.get() || "-" }}
           </div>
         </b-card>
         <b-card v-if="$auth.strategy.refreshToken" title="refresh token">
           <div style="white-space: nowrap; overflow: auto">
-            {{ $auth.strategy.refreshToken.get() || '-' }}
+            {{ $auth.strategy.refreshToken.get() || "-" }}
           </div>
         </b-card>
       </b-col>
@@ -35,25 +36,28 @@
     <b-btn-group>
       <b-button @click="$auth.fetchUser()"> Fetch User </b-button>
       <b-button @click="refreshTokens"> Refresh Tokens </b-button>
+      -->
       <b-button @click="$auth.logout()"> Logout </b-button>
+      <!--
     </b-btn-group>
+    -->
   </div>
 </template>
 
 <script>
 export default {
-  middleware: ['auth'],
+  middleware: ["auth"],
   computed: {
     state() {
-      return JSON.stringify(this.$auth.$state, undefined, 2)
-    }
+      return JSON.stringify(this.$auth.$state, undefined, 2);
+    },
   },
   methods: {
     refreshTokens() {
       this.$auth.refreshTokens().catch((e) => {
-        this.error = e + ''
-      })
-    }
-  }
-}
+        this.error = e + "";
+      });
+    },
+  },
+};
 </script>
