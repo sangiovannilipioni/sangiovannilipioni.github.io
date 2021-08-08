@@ -3,33 +3,18 @@
     <b-button variant="light" to="/patrimonio">
       <font-awesome-icon :icon="['fas', 'arrow-left']" />
     </b-button>
-    <!-- nuxt-content :document="unit" /-->
+    
     {{ slug }}
     <div class="d-flex bd-highlight" v-if="theUnit">
       <div class="p-2 flex-fill bd-highlight" style="min-width: 30%">
         <div v-for="text in theUnit.texts" v-bind:key="text">
-          <h4>{{ text }}</h4>
+          <nuxt-content :document="unit" />
         </div>
         <b-img v-for="img in theUnit.imgs" v-bind:key="img" :src="`/foto/${img}`" fluid>
         </b-img>
       </div>
-      <div class="p-2 flex-fill bd-highlight">
-        <b-carousel
-          v-if="theUnit.jpegs.length"
-          id="carousel-1"
-          controls
-          indicators
-          style="color: red"
-          no-animation
-          :interval="0"
-        >
-          <b-carousel-slide
-            :img-src="`/foto/${jpeg}`"
-            v-for="jpeg in theUnit.jpegs"
-            v-bind:key="jpeg"
-          >
-          </b-carousel-slide>
-        </b-carousel>
+      <div class="p-2 flex-fill bd-highlight" style="max-width: 70%">
+        <AnySlides v-if="theUnit.slides.length" :slides="theUnit.slides" imgDir="/foto/cropped-images/"></AnySlides>
       </div>
     </div>
   </article>
@@ -63,21 +48,21 @@ export default {
     return {
       units: {
         O02: {
-          jpegs: [
-            "O1__O2-PianoPrimo.jpg",
-            "O1__O2-PianoSeminterrato.jpg",
-            "O1__O2-PianoTerra.jpg",
-            "O1__O2-ProspettoNord.jpg",
-            "O1__O2-ProspettoOvestEst.jpg",
-            "O1__O2-ProspettoSud.jpg",
-            "O1__O2-SezioneA.jpg",
-            "O1__O2-SezioneBCD.jpg",
+          slides: [
+              {jpeg: "O1__O2-PianoPrimo.jpg", title: "Piano Primo"},
+              {jpeg: "O1__O2-PianoSeminterrato.jpg", title: "Piano Seminterrato"},
+              {jpeg: "O1__O2-PianoTerra.jpg", title: "Piano Terra"},
+              {jpeg: "O1__O2-ProspettoNord.jpg", title: "Prospetto Nord"},
+              {jpeg: "O1__O2-ProspettoOvestEst.jpg", title: "Prospetto Ovest Est"},
+              {jpeg: "O1__O2-ProspettoSud.jpg", title: "Prospetto Sud"},
+              {jpeg: "O1__O2-SezioneA.jpg", title: "Sezione A"},
+              {jpeg: "O1__O2-SezioneBCD.jpg", title: "Sezione B C D"},
           ],
           texts: ["Via Roma, 37"],
           imgs: ["GOPR1232_light_2.jpg"],
         },
         G01: {
-          jpegs: [],
+          slides: [],
           texts: ["Via Vicenne. 4"],
           imgs: ["X2.jpg"],
         },

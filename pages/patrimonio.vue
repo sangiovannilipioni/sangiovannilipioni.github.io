@@ -216,7 +216,7 @@ export default {
             "https://storage.googleapis.com/sangiovannilipioni/SGL_DA_silent_1080.mov",
         },
         {
-          key: "Via Vicenne. 4",
+          key: "Via Vicenne, 4",
           value: "asd",
           foto: "X2.jpg",
           position: { lat: 41.84821126881966, lng: 14.562941327400237 },
