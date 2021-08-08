@@ -18,10 +18,6 @@
         <swiper-slide v-for="(slide, index) in slides" :key="index">
           <Slide :src="`slide${index}`" />
         </swiper-slide>
-        <!-- 
-        <div id="prev" class="swiper-button-prev" slot="button-prev"></div>
-        <div id="next" class="swiper-button-next" slot="button-next"></div>
-        -->
       </swiper>
     </diV>
   </client-only>

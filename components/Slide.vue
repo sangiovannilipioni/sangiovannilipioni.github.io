@@ -16,7 +16,6 @@ export default {
       `${this.currentLocale}/slides`,
       this.src
     ).fetch();
-    console.log(this.slide);
     return { slide: this.slide };
   },
   computed: {
