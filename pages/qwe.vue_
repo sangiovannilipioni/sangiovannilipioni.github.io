@@ -39,7 +39,7 @@
       ><img
         src="https://swiperjs.com/demos/images/nature-9.jpg" /></swiper-slide
     ><swiper-slide
-      ><img src="https://swiperjs.com/demos/images/nature-10.jpg"
+      ><nuxt-img src="https://swiperjs.com/demos/images/nature-10.jpg"
     /></swiper-slide>
   </swiper>
   <swiper
@@ -79,7 +79,7 @@
       ><img
         src="https://swiperjs.com/demos/images/nature-9.jpg" /></swiper-slide
     ><swiper-slide
-      ><img src="https://swiperjs.com/demos/images/nature-10.jpg"
+      ><nuxt-img src="https://swiperjs.com/demos/images/nature-10.jpg"
     /></swiper-slide>
   </swiper>
 </div>

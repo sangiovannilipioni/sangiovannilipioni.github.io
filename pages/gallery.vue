@@ -9,7 +9,7 @@
               class="card shadow-sm"
               :style="{ background: 'transparent', position: 'relative' }"
             >
-              <img class="img-fluid" :src="item.pathLong" alt="" />
+              <nuxt-img class="img-fluid" :src="item.pathLong" alt="" />
 
               <!-- <div class="card-body">
                 <p class="card-text" style="">

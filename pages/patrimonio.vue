@@ -33,7 +33,7 @@
             </div>
             <div class="p-2" style="max-width: 30%; text-align: right">
               <NuxtLink :to="`/units/${unit.ref}`">
-                <img class="thmb" :src="'/foto/' + unit.foto" alt="" />
+                <nuxt-img class="thmb" :src="'/foto/' + unit.foto" alt="" />
               </NuxtLink>
             </div>
           </div>

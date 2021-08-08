@@ -17,7 +17,7 @@
                 ></div>
               </vue-plyr>
 
-              <img v-else class="img-fluid" :src="c.img" alt="" />
+              <nuxt-img v-else class="img-fluid" :src="c.img" alt="" />
 
               <div class="card-body">
                 <a

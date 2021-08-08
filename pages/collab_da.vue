@@ -4,7 +4,7 @@
     
     
     <p style="font-size:larger">
-      <img id="da_logo" class="img-fluid p-1" style="max-width:340px;height:auto;" src="/foto/LOGO_DA_HD_640.jpg">
+      <nuxt-img id="da_logo" class="img-fluid p-1" style="max-width:340px;height:auto;" src="/foto/LOGO_DA_HD_640.jpg" />
       Tra il 
       <b>Dipartimento di Architettura dell’Università di Bologna</b> e
       l’Associazione Nessuno Escluso Aps è stata stipulata la Convenzione n. 92
@@ -32,7 +32,7 @@
     </p>
     <p style="text-align:center">
 
-    <img class="img-fluid" src="/foto/MTSH_1_light.jpg">
+    <nuxt-img class="img-fluid" src="/foto/MTSH_1_light.jpg" />
     </p>
   </div>
 </template>

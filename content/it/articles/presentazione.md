@@ -4,7 +4,7 @@ title: Presentazione
 
 # Associazione Nessuno Escluso : Proposta per un programma di rilancio dell’abitato di San Giovanni Lipioni.
 
-<img class="float-left mr-4 img-fluid" style="max-width: 40%;" src="/jpg/sangiovannilipioni-04.jpg"/>**San Giovanni Lipioni** è un piccolo paese dell’Abruzzo interno collinare, posto a 545 m.s.l.m. sul versante sinistro del fiume Trigno, al confine con il Molise. Il territorio in cui è collocato degrada progressivamente verso il mare Adriatico da cui dista appena 40 Km. In direzione opposta invece il paesaggio collinare coltivato tende a diventare montano e si copre di prati e boschi. L’Associazione “_NESSUNO ESCLUSO_” è stata costituita a **San Giovanni** il mese di giugno del 2020. Promossa da alcuni sangiovannesi non residenti è sorta dopo un percorso di informazione e coinvolgimento di gran parte della popolazione residente e no. Il nome “_NESSUNO ESCLUSO_” sta ad indicare la volontà dei promotori di operare con spirito di inclusione, di apertura verso tutti e per il bene dell’intera comunità.
+<nuxt-img class="float-left mr-4 img-fluid" style="max-width: 40%;" src="/jpg/sangiovannilipioni-04.jpg"/>**San Giovanni Lipioni** è un piccolo paese dell’Abruzzo interno collinare, posto a 545 m.s.l.m. sul versante sinistro del fiume Trigno, al confine con il Molise. Il territorio in cui è collocato degrada progressivamente verso il mare Adriatico da cui dista appena 40 Km. In direzione opposta invece il paesaggio collinare coltivato tende a diventare montano e si copre di prati e boschi. L’Associazione “_NESSUNO ESCLUSO_” è stata costituita a **San Giovanni** il mese di giugno del 2020. Promossa da alcuni sangiovannesi non residenti è sorta dopo un percorso di informazione e coinvolgimento di gran parte della popolazione residente e no. Il nome “_NESSUNO ESCLUSO_” sta ad indicare la volontà dei promotori di operare con spirito di inclusione, di apertura verso tutti e per il bene dell’intera comunità.
 
 Ad oggi l'Associazione conta 50 soci. Abbiamo età diverse ma ci accomuna un legame mantenuto o costruito nel tempo col paese e col territorio, che desideriamo arricchire e rafforzare con iniziative concrete.
 
@@ -12,7 +12,7 @@ Molti di noi hanno conosciuto il paese come era nel dopoguerra, negli anni ’50
 
 Paradossalmente l’abbandono ha mantenuto un ambiente incontaminato e ha lasciato un cospicuo patrimonio edilizio inutilizzato ma che conserva quasi integralmente il suo carattere originario. Queste ed altre risorse quali il tipico paesaggio collinare, la gastronomia, la disponibilità delle persone all’accoglienza, oggi possono essere valorizzate. Vogliamo in primo luogo rispondere a quella domanda, sempre più diffusa in Italia e in Europa, di un turismo nuovo, di tipo esperienziale ed ecosostenibile che mette in contatto il turista con realtà geografiche diverse ma autentiche.
 
-<img class="float-right ml-4 img-fluid" style="max-width: 25%;" src="/svg/Logo_qr_code.svg"/>
+<nuxt-img class="float-right ml-4 img-fluid" style="max-width: 25%;" src="/svg/Logo_qr_code.svg"/>
 
 Il modello di vita urbana, moderna, che ha rappresentato fino ad oggi un’aspirazione e una meta di progresso, oggi presenta numerose criticità dipendenti dalla mancanza di un rapporto diretto con la natura, dai ritmi di vita stressanti e dalla carenza di rapporti comunitari e solidali.
 

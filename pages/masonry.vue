@@ -3,7 +3,7 @@
     <vue-masonry-wall :items="items" :options="options" @append="append">
       <template v-slot:default="{ item }">
         <div class="Item">
-          <img class="Img Content" :src="item.pathLong" />
+          <nuxt-img class="Img Content" :src="item.pathLong" />
         </div>
       </template>
     </vue-masonry-wall>

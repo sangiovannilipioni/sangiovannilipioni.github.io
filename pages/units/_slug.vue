@@ -1,5 +1,5 @@
 <template>
-  <article class="container">
+  <article class="container-fluid">
     <b-button variant="light" to="/patrimonio">
       <font-awesome-icon :icon="['fas', 'arrow-left']" />
     </b-button>
