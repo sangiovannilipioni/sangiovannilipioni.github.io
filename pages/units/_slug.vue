@@ -1,44 +1,57 @@
 <template>
   <article class="container-fluid">
-    <b-button variant="light" to="/patrimonio">
-      <font-awesome-icon :icon="['fas', 'arrow-left']" />
-    </b-button>
-    
-    {{ slug }}
+    <div class="container d-flex">
+      <b-button variant="outline-secondary" size="sm"  to="/patrimonio">
+        <font-awesome-icon :icon="['fas', 'arrow-left']" />
+      </b-button>
+
+      <div class="flex-grow-1 text-center text-muted" style="margin: auto;">{{ slug }}</div>
+
+      <b-button v-b-modal.modalvideo v-if="theUnit.video" variant="outline-secondary" size="sm" class="float-right">Video ...</b-button>
+
+      <b-modal id="modalvideo" :title="theUnit.title" size="xl" :hide-footer="true">
+        <vue-plyr
+          v-if="theUnit.video"
+          :options="{ mute: true, volume: 0, captions: true, autoplay: true}"
+        >
+          <div
+            data-plyr-provider="youtube"
+            :data-plyr-embed-id="theUnit.video"
+          ></div>
+        </vue-plyr>
+      </b-modal>
+    </div>
+
     <div class="d-flex bd-highlight" v-if="theUnit">
       <div class="p-2 flex-fill bd-highlight" style="min-width: 30%">
-        <div v-for="text in theUnit.texts" v-bind:key="text">
-          <nuxt-content :document="unit" />
-        </div>
-        <b-img v-for="img in theUnit.imgs" v-bind:key="img" :src="`/foto/${img}`" fluid>
+        <nuxt-content :document="unit" />
+        <b-img
+          v-for="img in theUnit.imgs"
+          v-bind:key="img"
+          :src="`/foto/${img}`"
+          fluid
+        >
         </b-img>
       </div>
       <div class="p-2 flex-fill bd-highlight" style="max-width: 70%">
-        <AnySlides v-if="theUnit.slides.length" :slides="theUnit.slides" imgDir="/foto/cropped-images/"></AnySlides>
+        <AnySlides
+          v-if="theUnit.slides.length"
+          :slides="theUnit.slides"
+          imgDir="/foto/cropped-images/"
+        ></AnySlides>
       </div>
     </div>
   </article>
 </template>
 
-<style>
-.card-body > p {
-  margin-bottom: 0;
-}
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-image: none;
-}
-
-.carousel-control-next-icon:after {
-  content: ">";
-  font-size: 55px;
-  color: navy;
-}
-
-.carousel-control-prev-icon:after {
-  content: "<";
-  font-size: 55px;
-  color: navy;
+<style lang="scss">
+#modalvideo {
+  .modal-header {
+    padding: 0.5rem !important;
+  }
+  .modal-body {
+    padding: 0 !important;
+  }
 }
 </style>
 
@@ -49,21 +62,28 @@ export default {
       units: {
         O02: {
           slides: [
-              {jpeg: "O1__O2-PianoPrimo.jpg", title: "Piano Primo"},
-              {jpeg: "O1__O2-PianoSeminterrato.jpg", title: "Piano Seminterrato"},
-              {jpeg: "O1__O2-PianoTerra.jpg", title: "Piano Terra"},
-              {jpeg: "O1__O2-ProspettoNord.jpg", title: "Prospetto Nord"},
-              {jpeg: "O1__O2-ProspettoOvestEst.jpg", title: "Prospetto Ovest Est"},
-              {jpeg: "O1__O2-ProspettoSud.jpg", title: "Prospetto Sud"},
-              {jpeg: "O1__O2-SezioneA.jpg", title: "Sezione A"},
-              {jpeg: "O1__O2-SezioneBCD.jpg", title: "Sezione B C D"},
+            { jpeg: "O1__O2-PianoPrimo.jpg", title: "Piano Primo" },
+            {
+              jpeg: "O1__O2-PianoSeminterrato.jpg",
+              title: "Piano Seminterrato",
+            },
+            { jpeg: "O1__O2-PianoTerra.jpg", title: "Piano Terra" },
+            { jpeg: "O1__O2-ProspettoNord.jpg", title: "Prospetto Nord" },
+            {
+              jpeg: "O1__O2-ProspettoOvestEst.jpg",
+              title: "Prospetto Ovest Est",
+            },
+            { jpeg: "O1__O2-ProspettoSud.jpg", title: "Prospetto Sud" },
+            { jpeg: "O1__O2-SezioneA.jpg", title: "Sezione A" },
+            { jpeg: "O1__O2-SezioneBCD.jpg", title: "Sezione B C D" },
           ],
-          texts: ["Via Roma, 37"],
+          title: "Via Roma, 37",
           imgs: ["GOPR1232_light_2.jpg"],
+          video: "https://youtu.be/pmgZcSv4Huk",
         },
         G01: {
           slides: [],
-          texts: ["Via Vicenne. 4"],
+          title: "Via Vicenne. 4",
           imgs: ["X2.jpg"],
         },
       },
@@ -71,11 +91,11 @@ export default {
   },
   computed: {
     slug() {
-      return this.$route.params.slug
+      return this.$route.params.slug;
     },
     theUnit() {
-      return this.units[this.$route.params.slug]
-    }
+      return this.units[this.$route.params.slug];
+    },
   },
   async asyncData({ $content, params, app, route, redirect }) {
     const unit = await $content(
