@@ -5,7 +5,11 @@
         <font-awesome-icon :icon="['fas', 'arrow-left']" />
       </b-button>
 
-      <div class="flex-grow-1 text-center text-muted" style="margin: auto;">{{ slug }}</div>
+      <div class="flex-grow-1 text-center text-muted" style="margin: auto;">
+        <b-button variant="outline-secondary" size="sm"  :to="`/data/${slug}`">
+          {{ slug }}
+        </b-button>
+      </div>
 
       <b-button v-b-modal.modalvideo v-if="theUnit.video" variant="outline-secondary" size="sm" class="float-right">Video ...</b-button>
 
