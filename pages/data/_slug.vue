@@ -2,8 +2,9 @@
   <client-only>
     <article class="container-fluid">
       <b-tabs content-class="mt-3">
+
         <b-tab
-          v-for="(tab, index) in data"
+          v-for="(tab, index) in datum"
           :key="index"
           :title="tab.sheet"
           :active="index == 0"
@@ -37,11 +38,16 @@
 export default {
   data() {
     return {
-      data: [],
+      units: {
+        O02: {
+        },
+        G01: {
+        },
+      },
     };
   },
   async fetch() {
-    this.data = await fetch("/json/SintesiO2.json").then((res) => res.json());
+    this.units[this.$route.params.slug] = await fetch("/json/SintesiO2.json").then((res) => res.json());
   },
   fetchOnServer: false,
   fetchKey: 'dugenou',
@@ -64,5 +70,13 @@ export default {
       return ret;
     },
   },
+  computed: {
+    slug() {
+      return this.$route.params.slug;
+    },
+    datum() {
+      return this.units[this.$route.params.slug];
+    },
+  }
 };
 </script>

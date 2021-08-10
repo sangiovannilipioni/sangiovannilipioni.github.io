@@ -6,9 +6,10 @@
       </b-button>
 
       <div class="flex-grow-1 text-center text-muted" style="margin: auto;">
-        <b-button variant="outline-secondary" size="sm"  :to="`/data/${slug}`">
+        <b-button v-if="theUnit.hasData" variant="outline-secondary" size="sm"  :to="`/data/${slug}`">
           {{ slug }}
         </b-button>
+        <span v-if="!theUnit.hasData" >{{ slug }}</span>
       </div>
 
       <b-button v-b-modal.modalvideo v-if="theUnit.video" variant="outline-secondary" size="sm" class="float-right">Video ...</b-button>
@@ -68,6 +69,7 @@ export default {
       imgDir: "/foto/cropped-images/",
       units: {
         O02: {
+          hasData: true,
           slides: [
             { jpeg: "O1__O2-PianoPrimo.jpg",        title: "Piano Primo" },
             { jpeg: "O1__O2-PianoSeminterrato.jpg", title: "Piano Seminterrato" },
@@ -83,6 +85,7 @@ export default {
           video: "https://youtu.be/pmgZcSv4Huk",
         },
         G01: {
+          hasData: false,
           slides: [],
           title: "Via Vicenne. 4",
           imgs: ["X2.jpg"],

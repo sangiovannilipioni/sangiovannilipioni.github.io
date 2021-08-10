@@ -36,13 +36,7 @@ export default {
       index = index + 1;
       return rObj;
     });
-  } /*,
-  async asyncData({ $content, params }) {
-    console.log($content, params);
-    const building = await $content("case", params.slug).fetch();
-
-    return { building, qwe:"qwe"};
-  },*/
+  }
 };
 
 </script>
