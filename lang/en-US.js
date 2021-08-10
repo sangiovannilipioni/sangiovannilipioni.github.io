@@ -40,4 +40,7 @@ export default {
   ,pres5_li4: "activate a new, experiential and eco-sustainable tourism that puts the tourist in contact with the authentic reality of the village and its territory."
   ,pres6: "<i>The two compasses of the Association are 1) the custody and enhancement of the territory and landscape, and 2) attention to the welfare of the inhabitants.</i>"
 
+  ,da1: "Between the <b>Department of Architecture of the University of Bologna</b> and the Nessuno Escluso Aps Association the Convention n. 92 Prot. 969 of 13/10/2020 has been stipulated having as object the <b>\"Project of valorisation and promotion of the territory of the Municipality of San Giovanni Lipioni (CH)\"</b>."
+  ,da2: "The aim of the project was to understand the natural, urban and building context of the historic centre and the municipal area of San Giovanni Lipioni, as well as to carry out a detailed study of a group of about 50 buildings in the historic centre, in order to understand their construction characteristics and state of conservation."
+  ,da3: "The results of the activities include the cataloguing of the analysed heritage in order to make the information easily consultable and shareable, the general indication of the interventions to be carried out for the functional recovery of the heritage and the photographic and video restitution of some urban routes of cultural and landscape interest, in order to reconstruct a virtual route that can be viewed through web platforms."
 };
