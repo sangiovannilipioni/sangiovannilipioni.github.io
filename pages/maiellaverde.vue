@@ -10,7 +10,7 @@
         </div>
         <div style="border: none;">
             <a href="https://riabitaresangiovanni.maiellaverde.it/" target="_maiellaverde">
-                <b-img src="/jpg/maiellaverde.jpg" alt="Maiella Verde" style="max-width: 80%; height:auto; float:right"></b-img>
+                <nuxt-img src="/jpg/maiellaverde.jpg" alt="Maiella Verde" style="max-width: 80%; height:auto; float:right" />
             </a>
         </div>
     </div>

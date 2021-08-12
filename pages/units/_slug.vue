@@ -29,14 +29,19 @@
 
     <div class="d-flex bd-highlight" v-if="theUnit">
       <div class="p-2 flex-fill bd-highlight" style="min-width: 30%">
-        <nuxt-content :document="unit" />
-        <b-img
+        <!-- div style="height: 500px; width: 500px; border: 1px solid red; position: relative;">
+          <vue-draggable-resizable :w="100" :h="100" @dragging="onDrag" @resizing="onResize" :parent="true" :draggable="false">
+            <p>Hello! I'm a flexible component. You can resize me.<br>
+            X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}</p>
+          </vue-draggable-resizable>
+        </div-->
+        <h4>{{ theUnit.title }}</h4>
+        <nuxt-img
           v-for="img in theUnit.imgs"
           v-bind:key="img"
           :src="`/foto/${img}`"
-          fluid
-        >
-        </b-img>
+          class="img-fluid"
+        />
       </div>
       <div class="p-2 flex-fill bd-highlight" style="max-width: 70%">
         <jpeg-slides
@@ -58,14 +63,31 @@
     padding: 0 !important;
   }
 }
+
+.handle:not(.handle-mr) {
+  display:none !important;
+}
+
+.medium-zoom-image {
+  z-index: 12;
+  width:100vh;
+  height:auto;
+}
+
 </style>
 
 <script>
 import JpegSlides from '../../components/JpegSlides.vue';
+import VueDraggableResizable from 'vue-draggable-resizable'
+
 export default {
   components: { JpegSlides },
   data() {
     return {
+      width: 0,
+      height: 0,
+      x: 0,
+      y: 0,
       imgDir: "/foto/cropped-images/",
       units: {
         O02: {
@@ -108,5 +130,17 @@ export default {
     ).fetch();
     return { unit };
   },
+  methods: {
+    onResize: function (x, y, width, height) {
+      this.x = x
+      this.y = y
+      this.width = width
+      this.height = height
+    },
+    onDrag: function (x, y) {
+      this.x = x
+      this.y = y
+    }
+  }
 };
 </script>

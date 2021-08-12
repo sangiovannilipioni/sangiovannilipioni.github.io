@@ -25,7 +25,7 @@
         ref="swiperTop"
       >
         <swiper-slide v-for="(slide, index) in slides" :key="index">
-          <nuxt-img class="img-fluid" :src="imgDir + slide.jpeg" />
+          <nuxt-img class="img-fluid zoom" :src="imgDir + slide.jpeg" />
         </swiper-slide>
       </swiper>
     </div>
@@ -42,6 +42,7 @@
     border: 1px dotted rgb(191, 191, 191);
     margin: 0.75rem 0 !important;
     padding: .5rem 0;
+    z-index: 0;
 
     .swiper-slide {
       width: 15%;

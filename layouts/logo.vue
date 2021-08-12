@@ -4,7 +4,7 @@
       v-html="src"
       class="logo w-100 blurp d-flex justify-content-center align-items-center"
     ></div>
-    <Nuxt style="z-index: 12345" />
+    <Nuxt style="z-index: 1000" />
     <footer class="fixed-bottom">
       <div class="text-muted px-2">
         <div style="whitespace: nowrap">

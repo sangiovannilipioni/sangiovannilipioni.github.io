@@ -6343,6 +6343,11 @@ media-typer@0.3.0:
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
 
+medium-zoom@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/medium-zoom/-/medium-zoom-1.0.6.tgz#9247f21ca9313d8bbe9420aca153a410df08d027"
+  integrity sha512-UdiUWfvz9fZMg1pzf4dcuqA0W079o0mpqbTnOz5ip4VGYX96QjmbM+OgOU/0uOzAytxC0Ny4z+VcYQnhdifimg==
+
 mem@^8.1.1:
   version "8.1.1"
   resolved "https://registry.yarnpkg.com/mem/-/mem-8.1.1.tgz#cf118b357c65ab7b7e0817bdf00c8062297c0122"
@@ -10352,6 +10357,11 @@ vue-client-only@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/vue-client-only/-/vue-client-only-2.1.0.tgz#1a67a47b8ecacfa86d75830173fffee3bf8a4ee3"
   integrity sha512-vKl1skEKn8EK9f8P2ZzhRnuaRHLHrlt1sbRmazlvsx6EiC3A8oWF8YCBrMJzoN+W3OnElwIGbVjsx6/xelY1AA==
+
+vue-draggable-resizable@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/vue-draggable-resizable/-/vue-draggable-resizable-2.3.0.tgz#94c433ca748bc1a4d0959ba1c5c0e1c3536cee5b"
+  integrity sha512-77CLRj1TPwB30pwsjOf3pkd1UzYanCdKXbqhILJ0Oo5QQl50lvBfyQCXxMFzwWwTc3sbBbQH3FfWSV+BkoSElA==
 
 vue-functional-data-merge@^3.1.0:
   version "3.1.0"

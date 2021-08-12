@@ -19,9 +19,6 @@
 </template>
 
 <style scoped>
-.navbar {
-  z-index: 1000;
-}
 /* https://stackoverflow.com/a/25410621/1070215 */
 a[role="menuitem"] .pdf:after {
   display: inline-block;
