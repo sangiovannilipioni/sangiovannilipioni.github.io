@@ -198,7 +198,7 @@ export default {
                 "<a href='/units/" +
                 unit.ref +
                 "' style='width:100%;height:100%;'>" +
-                "<div id='otherImage' style='width:100%;height:100%;background: no-repeat center center url(/foto/" +
+                "<div id='otherImage' style='width:100%;height:100%;background: no-repeat center center url(" +
                 unit.foto +
                 "); background-size: cover;'></div>" +
                 "</a>";
