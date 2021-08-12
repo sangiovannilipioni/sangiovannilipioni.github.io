@@ -21,6 +21,18 @@
           </client-only>
         </div>
       </b-tab>
+      <b-tab :title="$t('photos')">
+        <div id="photoGallery">
+          <vue-masonry-wall :items="units" :options="masonryOptions" @append="append">
+            <div class="grid-sizer" />
+            <template v-slot:default="{ item }">
+              <div class="Item grid-item">
+                <b-img class="Img Content" :src="item.foto" />
+              </div>
+            </template>
+          </vue-masonry-wall>
+        </div>
+      </b-tab>
       <b-tab :title="$t('list')">
         <b-card
           v-for="unit in units"
@@ -33,7 +45,7 @@
             </div>
             <div class="p-2" style="max-width: 30%; text-align: right">
               <NuxtLink :to="`/units/${unit.ref}`">
-                <nuxt-img class="thmb" :src="'/foto/' + unit.foto" alt="" />
+                <nuxt-img class="thmb" :src="unit.foto" alt="" />
               </NuxtLink>
             </div>
           </div>
@@ -50,7 +62,7 @@
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 #patrimonio {
   .thmb {
     max-width: 300px;
@@ -59,14 +71,40 @@
   .binome {
     height: calc(100vh - (80px + #{$footerHeight} + #{$headerHeight}));
   }
+  .Item {
+    overflow: hidden;
+    border-radius: 4px;
+    width: 100%;
+    
+    background: #f5f5f5;
+  }
+  .Content {
+    padding: 20px;
+  }
+  .Img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    line-height: 0;
+    display: block;
+  }
+  .grid-sizer,
+  .grid-item  {
+     width: 20%; 
+  }
 }
 </style>
 
 <script>
+
+import VueMasonryWall from "vue-masonry-wall";
+
 export default {
   // https://dev.to/bawa93/troubleshooting-and-adding-google-maps-to-individual-nuxt-js-pages-1d34
   // https://dev.to/bawa_geek/how-to-use-google-maps-in-nuxt-js-project-without-any-package-or-heavy-library-26gh
+  components: { VueMasonryWall },
   methods: {
+    append() {},
     onScriptLoaded(event = null) {
       console.log("onScriptLoaded", event);
       // YOU HAVE ACCESS TO "new google" now, ADD YOUR GOOGLE MAPS FUNCTIONS HERE.
@@ -202,6 +240,16 @@ export default {
     } else {
       this.onScriptLoaded();
     }
+
+    // masonry
+    const f = require.context("../static/jpeg", true, /\.jpg$/);
+    f.keys().forEach((key) => {
+      // this.masonryItems.push({ key: f(key), src: '/jpeg/'+key });
+      /* this.units.push(
+        { key: f(key), foto: '/jpeg/' + key }
+      ); */
+    });
+
   },
   data() {
     return {
@@ -209,7 +257,7 @@ export default {
         {
           key: "Via Roma, 37",
           value: "qwe",
-          foto: "GOPR1232_light_2.jpg",
+          foto: "/foto/GOPR1232_light_2.jpg",
           position: { lat: 41.84247, lng: 14.56213 },
           ref: "O02",
           video:
@@ -218,14 +266,21 @@ export default {
         {
           key: "Via Vicenne, 4",
           value: "asd",
-          foto: "X2.jpg",
+          foto: "/foto/X2.jpg",
           position: { lat: 41.84821126881966, lng: 14.562941327400237 },
           ref: "G01",
         },
-        { key: "⋮", value: "zxc" },
+        { key: "⋮"},
       ],
       mapElement: undefined,
       zoom: 16.8,
+      masonryItems: [],
+      masonryOptions: {
+        columnWidth: '.grid-sizer',
+        itemSelector: '.grid-item',
+        percentPosition: true,
+        gutter: 10
+      },
     };
   },
 };

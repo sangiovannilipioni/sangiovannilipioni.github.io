@@ -13,6 +13,7 @@ export default {
   signOut: "Se déconnecter",
 
   map: "Carte",
+  photos: "Photos",
   list: "Liste",
 
   exordium: "Prolégomènes",

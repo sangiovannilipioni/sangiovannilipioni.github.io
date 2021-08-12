@@ -12,6 +12,8 @@
         text-align: center;
         border: 1px dotted gray;
         border-radius: 0.25rem;
+        z-index: 3;
+        margin-top: -1.5rem;
       "
       is-nav
     >

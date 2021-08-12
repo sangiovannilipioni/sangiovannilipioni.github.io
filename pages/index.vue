@@ -81,10 +81,6 @@ export default {
         position: { lat: 41.8428559, lng: 14.5619902 },
         heading: 159.68,
       };
-      const prova = {
-        position: { lat: 41.84428, lng: 14.56181 },
-        heading: 159.68,
-      };
       const mapElement = this.mapElement || document.getElementById("map")
       console.log('about to const map = await new google.maps.Map', mapElement, document.getElementById("map"));
       const map = await new google.maps.Map(mapElement, {

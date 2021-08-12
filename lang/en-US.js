@@ -13,6 +13,7 @@ export default {
   signOut: "Sign Out",
 
   map: "Map",
+  photos: "Photos",
   list: "List",
 
   exordium: "Summary",

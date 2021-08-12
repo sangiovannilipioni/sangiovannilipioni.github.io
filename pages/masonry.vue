@@ -1,9 +1,9 @@
 <template >
   <div id="photoGallery" class="container">
-    <vue-masonry-wall :items="items" :options="options" @append="append">
+    <vue-masonry-wall :items="items" :masonryoptions="masonryoptions" @append="append">
       <template v-slot:default="{ item }">
         <div class="Item">
-          <b-img class="Img Content zoom" :src="item.pathLong" />
+          <b-img class="Img Content zoom masonryImage" :src="item.pathLong" />
         </div>
       </template>
     </vue-masonry-wall>
@@ -38,7 +38,8 @@ export default {
 
   data() {
     return {
-      options: {
+      masonryOptions: {
+        itemSelector: '.masonryImage',
         width: 360,
         padding: {
           2: 8,
