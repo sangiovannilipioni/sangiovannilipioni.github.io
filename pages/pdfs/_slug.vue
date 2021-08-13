@@ -22,6 +22,11 @@
 
 <script>
 export default {
+  data () {
+    return {
+      loading: "true"
+    }
+  },
   async asyncData({ $content, params }) {
     return {
       pdfSrc: "/pdf/"+params.slug+".pdf",
