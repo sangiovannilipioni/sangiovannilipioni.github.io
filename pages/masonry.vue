@@ -1,12 +1,17 @@
 <template >
   <div id="photoGallery" class="container">
-    <!-- vue-masonry-wall :items="items" :masonryoptions="masonryoptions" @append="append">
-      <template v-slot:default="{ item }">
-        <div class="Item">
-          <b-img class="Img Content zoom masonryImage" :src="item.pathLong" />
-        </div>
-      </template>
-    </!-->
+    <div
+      v-masonry
+    >
+      <div
+        v-masonry-tile
+        class="Item"
+        :key="index"
+        v-for="(item, index) in items"
+      >
+        <nuxt-img class="Img Content zoom masonryImage" :src="`/masonry/${item.pathShort}`" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -14,7 +19,7 @@
 .Item {
   overflow: hidden;
   border-radius: 4px;
-  width: 100%;
+  width: 340px;
   background: #f5f5f5;
 }
 .Content {
@@ -30,35 +35,23 @@
 </style>
 
 <script>
-// import VueMasonryWall from "vue-masonry-wall";
+
 export default {
-  name: "photoGallery",
-
-  // components: { VueMasonryWall },
-
   data() {
     return {
-      masonryOptions: {
-        itemSelector: '.masonryImage',
-        width: 360,
-        padding: {
-          2: 8,
-          default: 12,
-        },
-      },
       items: [],
     };
   },
-
   mounted() {
-    const f = require.context("../static/jpeg", true, /\.jpg$/);
+    const f = require.context("../static/masonry", true, /\.jpg$/);
     f.keys().forEach((key) => {
       this.items.push({ pathLong: f(key), pathShort: key });
     });
-  },
 
-  methods: {
-    append() {},
+    // 
+    if (typeof this.$redrawVueMasonry === "function") {
+      this.$redrawVueMasonry();
+    }
   },
 };
 </script>
