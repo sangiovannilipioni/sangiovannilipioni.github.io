@@ -4,7 +4,7 @@ body {
 }
 
 /* https://stackoverflow.com/a/25410621/1070215 */
-a[role="menuitem"] .pdf:after {
+a.pdf:before {
   display: inline-block;
   content: "";
   background-image: url("/svg/PDF_file_icon.svg");
@@ -12,7 +12,7 @@ a[role="menuitem"] .pdf:after {
   background-repeat: no-repeat;
   height: 20px;
   width: 20px;
-  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 /* navbar */
