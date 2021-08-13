@@ -124,6 +124,7 @@ export default {
       return this.units[this.$route.params.slug];
     },
   },
+  /*
   async asyncData({ $content, params, app, route, redirect }) {
     const unit = await $content(
       `${app.i18n.locale}/units`,
@@ -131,6 +132,7 @@ export default {
     ).fetch();
     return { unit };
   },
+  */
   methods: {
     onResize: function (x, y, width, height) {
       this.x = x
