@@ -7,7 +7,7 @@
         :page="1"
         @num-pages="pdfPageCount = $event"
       ></vue-pdf>
-      <!-- div v-if="pdfPageCount > 1">
+      <div v-if="pdfPageCount > 1">
         <div v-for="(pageNum, index) in pdfPageCount" :key="index">
           <vue-pdf
             :src="pdfSrc"
@@ -15,7 +15,7 @@
             v-if="pageNum > 1"
           ></vue-pdf>
         </div>
-      </!-->
+      </div>
     </div>
   </client-only>
 </template>
