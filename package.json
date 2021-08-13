@@ -36,7 +36,7 @@
     "swiper": "^6.8.1",
     "vue-awesome-swiper": "^4.1.1",
     "vue-draggable-resizable": "^2.3.0",
-    "vue-pdf": "4.2.0",
+    "vue-pdf": "^4.2.0",
     "vue-plyr": "^7.0.0",
     "vue-slider-component": "^3.2.14"
   },
