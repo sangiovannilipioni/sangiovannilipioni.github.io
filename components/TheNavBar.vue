@@ -59,6 +59,9 @@
             <b-dropdown-item :to="localePath('/secure')">{{
               $t("gossip")
             }}</b-dropdown-item>
+            <b-dropdown-item :to="localePath('/masonry')">{{
+              $t("pictures")
+            }}</b-dropdown-item>
             <b-dropdown-item :to="localePath('/logos')">{{
               $t("impresa")
             }}</b-dropdown-item>

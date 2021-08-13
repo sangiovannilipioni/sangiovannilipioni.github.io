@@ -21,18 +21,6 @@
           </client-only>
         </div>
       </b-tab>
-      <b-tab :title="$t('photos')">
-        <div id="photoGallery">
-          <!-- vue-masonry-wall :items="units" :options="masonryOptions" @append="append">
-            <div class="grid-sizer" />
-            <template v-slot:default="{ item }">
-              <div class="Item grid-item">
-                <b-img class="Img Content" :src="item.foto" />
-              </div>
-            </template>
-          </!-->
-        </div>
-      </b-tab>
       <b-tab :title="$t('list')">
         <b-card
           v-for="unit in units"
@@ -70,27 +58,6 @@
   }
   .binome {
     height: calc(100vh - (80px + #{$footerHeight} + #{$headerHeight}));
-  }
-  .Item {
-    overflow: hidden;
-    border-radius: 4px;
-    width: 100%;
-    
-    background: #f5f5f5;
-  }
-  .Content {
-    padding: 20px;
-  }
-  .Img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    line-height: 0;
-    display: block;
-  }
-  .grid-sizer,
-  .grid-item  {
-     width: 20%; 
   }
 }
 </style>
@@ -237,16 +204,6 @@ export default {
     } else {
       this.onScriptLoaded();
     }
-
-    // masonry
-    const f = require.context("../static/jpeg", true, /\.jpg$/);
-    f.keys().forEach((key) => {
-      // this.masonryItems.push({ key: f(key), src: '/jpeg/'+key });
-      /* this.units.push(
-        { key: f(key), foto: '/jpeg/' + key }
-      ); */
-    });
-
   },
   data() {
     return {
@@ -271,13 +228,6 @@ export default {
       ],
       mapElement: undefined,
       zoom: 16.8,
-      masonryItems: [],
-      masonryOptions: {
-        columnWidth: '.grid-sizer',
-        itemSelector: '.grid-item',
-        percentPosition: true,
-        gutter: 10
-      },
     };
   },
 };
