@@ -1,7 +1,7 @@
 <template>
   <b-navbar toggleable="md" class="container" style="padding: 0 1rem">
     <b-navbar-brand :to="localePath('/')">
-      <Logo :class="isHomePage ? 'home' : 'not-home'" />
+      <LogoDiv :class="isHomePage ? 'home' : 'not-home'" />
     </b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -36,13 +36,14 @@
         <b-nav-item :to="localePath('/maiellaverde')">{{
           $t("maiellaverde")
         }}</b-nav-item>
+        
         <b-nav-item id="spy" href="#" class="flex-grow-1 text-muted" disabled
           ><span v-if="$auth.$state.loggedIn">{{
             $route.path
           }}</span></b-nav-item
         >
 
-        <locale-switcher />
+        <LocaleSwitcherNavItemDropdown />
 
         <template v-if="$auth.$state.loggedIn">
           <b-nav-item-dropdown :text="$auth.user ? $auth.user.name : ''" right>

@@ -1,12 +1,12 @@
 <template >
   <div id="photoGallery" class="container">
-    <vue-masonry-wall :items="items" :masonryoptions="masonryoptions" @append="append">
+    <!-- vue-masonry-wall :items="items" :masonryoptions="masonryoptions" @append="append">
       <template v-slot:default="{ item }">
         <div class="Item">
           <b-img class="Img Content zoom masonryImage" :src="item.pathLong" />
         </div>
       </template>
-    </vue-masonry-wall>
+    </!-->
   </div>
 </template>
 
@@ -30,11 +30,11 @@
 </style>
 
 <script>
-import VueMasonryWall from "vue-masonry-wall";
+// import VueMasonryWall from "vue-masonry-wall";
 export default {
   name: "photoGallery",
 
-  components: { VueMasonryWall },
+  // components: { VueMasonryWall },
 
   data() {
     return {

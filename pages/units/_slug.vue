@@ -44,11 +44,11 @@
         />
       </div>
       <div class="p-2 flex-fill bd-highlight" style="max-width: 70%">
-        <jpeg-slides
+        <ImgSlides
           v-if="theUnit.slides.length"
           :slides="theUnit.slides"
           :imgDir="imgDir"
-        ></jpeg-slides>
+        ></ImgSlides>
       </div>
     </div>
   </article>
@@ -77,11 +77,13 @@
 </style>
 
 <script>
-import JpegSlides from '../../components/JpegSlides.vue';
+import ImgSlides from '../../components/ImgSlides.vue';
 import VueDraggableResizable from 'vue-draggable-resizable'
 
 export default {
-  components: { JpegSlides },
+  components: { 
+    ImgSlides 
+  },
   data() {
     return {
       width: 0,

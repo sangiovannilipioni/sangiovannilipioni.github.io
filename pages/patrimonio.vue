@@ -23,14 +23,14 @@
       </b-tab>
       <b-tab :title="$t('photos')">
         <div id="photoGallery">
-          <vue-masonry-wall :items="units" :options="masonryOptions" @append="append">
+          <!-- vue-masonry-wall :items="units" :options="masonryOptions" @append="append">
             <div class="grid-sizer" />
             <template v-slot:default="{ item }">
               <div class="Item grid-item">
                 <b-img class="Img Content" :src="item.foto" />
               </div>
             </template>
-          </vue-masonry-wall>
+          </!-->
         </div>
       </b-tab>
       <b-tab :title="$t('list')">
@@ -97,12 +97,9 @@
 
 <script>
 
-import VueMasonryWall from "vue-masonry-wall";
-
 export default {
   // https://dev.to/bawa93/troubleshooting-and-adding-google-maps-to-individual-nuxt-js-pages-1d34
   // https://dev.to/bawa_geek/how-to-use-google-maps-in-nuxt-js-project-without-any-package-or-heavy-library-26gh
-  components: { VueMasonryWall },
   methods: {
     append() {},
     onScriptLoaded(event = null) {
