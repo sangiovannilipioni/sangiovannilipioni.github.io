@@ -14,7 +14,9 @@
           <div style="whitespace: nowrap">Associazione <b>Nessuno Escluso</b> APS<br>Largo del Popolo, 50<br>66050 San Giovanni Lipioni (CH)</div>
         </div>
         <div class="text-muted">
-          <div style="whitespace: nowrap">nessunoesclusoaps@gmail.com</div>
+          <div style="whitespace: nowrap">
+            <a href="mailto:nessunoesclusoaps@gmail.com"><font-awesome-icon v-if="!loading" :icon="['fas', 'envelope']" /> nessunoesclusoaps@gmail.com</a>
+          </div>
         </div>
       </div>
     </footer>
