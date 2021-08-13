@@ -1,4 +1,3 @@
-node_js:
 language: node_js
 node_js:
   - lts/*
@@ -6,12 +5,12 @@ cache:
   npm: false
 branches:
   only:
-  - master
+    - master
 install:
-- yarn install
-- yarn generate
+  - yarn install
+  - yarn generate
 script:
-- echo "Skipping tests"
+  - echo "Skipping tests"
 deploy:
   provider: pages
   skip-cleanup: true
@@ -24,7 +23,7 @@ notifications:
   email: false
   slack:
     rooms:
-    - nessunoescluso:kGIR9oCAutxpT7YTygEJeqKN#engineering
+      - nessunoescluso:kGIR9oCAutxpT7YTygEJeqKN#engineering
     on_success: always
     on_failure: always
     on_start: always
