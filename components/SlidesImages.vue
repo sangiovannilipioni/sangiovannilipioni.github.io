@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <div id="jpegSlides">
+    <div id="slidesImages">
       <swiper
         :navigation="true"
         :options="swiperOptionThumbs"
@@ -25,7 +25,7 @@
         ref="swiperTop"
       >
         <swiper-slide v-for="(slide, index) in slides" :key="index">
-          <nuxt-img class="img-fluid zoom" :src="imgDir + slide.jpeg" />
+          <nuxt-img class="img-fluid zoom" :src="imgDir + slide.img" />
         </swiper-slide>
       </swiper>
     </div>
@@ -33,7 +33,7 @@
 </template>
 
 <style lang="scss">
-#jpegSlides {
+#slidesImages {
   margin-bottom: 1rem;
 
   .swiper#swiperThumbs {

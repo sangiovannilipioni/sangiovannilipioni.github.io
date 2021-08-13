@@ -44,11 +44,10 @@
         />
       </div>
       <div class="p-2 flex-fill bd-highlight" style="max-width: 70%">
-        <ImgSlides
+        <SlidesImages
           v-if="theUnit.slides.length"
           :slides="theUnit.slides"
-          :imgDir="imgDir"
-        ></ImgSlides>
+          :imgDir="imgDir" />
       </div>
     </div>
   </article>
@@ -77,12 +76,12 @@
 </style>
 
 <script>
-import ImgSlides from '../../components/ImgSlides.vue';
+import SlidesImages from '../../components/SlidesImages.vue';
 import VueDraggableResizable from 'vue-draggable-resizable'
 
 export default {
   components: { 
-    ImgSlides 
+    SlidesImages 
   },
   data() {
     return {
@@ -95,14 +94,14 @@ export default {
         O02: {
           hasData: true,
           slides: [
-            { jpeg: "O1__O2-PianoPrimo.jpg",        title: "Piano Primo" },
-            { jpeg: "O1__O2-PianoSeminterrato.jpg", title: "Piano Seminterrato" },
-            { jpeg: "O1__O2-PianoTerra.jpg",        title: "Piano Terra" },
-            { jpeg: "O1__O2-ProspettoNord.jpg",     title: "Prospetto Nord" },
-            { jpeg: "O1__O2-ProspettoOvestEst.jpg", title: "Prospetto Ovest Est" },
-            { jpeg: "O1__O2-ProspettoSud.jpg",      title: "Prospetto Sud" },
-            { jpeg: "O1__O2-SezioneA.jpg",          title: "Sezione A" },
-            { jpeg: "O1__O2-SezioneBCD.jpg",        title: "Sezione B C D" },
+            { img: "O1__O2-PianoPrimo.jpg",        title: "Piano Primo" },
+            { img: "O1__O2-PianoSeminterrato.jpg", title: "Piano Seminterrato" },
+            { img: "O1__O2-PianoTerra.jpg",        title: "Piano Terra" },
+            { img: "O1__O2-ProspettoNord.jpg",     title: "Prospetto Nord" },
+            { img: "O1__O2-ProspettoOvestEst.jpg", title: "Prospetto Ovest Est" },
+            { img: "O1__O2-ProspettoSud.jpg",      title: "Prospetto Sud" },
+            { img: "O1__O2-SezioneA.jpg",          title: "Sezione A" },
+            { img: "O1__O2-SezioneBCD.jpg",        title: "Sezione B C D" },
           ],
           title: "Via Roma, 37",
           imgs: ["GOPR1232_light_2.jpg"],

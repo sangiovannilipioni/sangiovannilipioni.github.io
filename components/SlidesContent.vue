@@ -16,7 +16,7 @@
 
       <swiper id="swiperTop" ref="swiperTop" class="swiper gallery-top" :options="swiperOption" @slideChange="onTopChange">
         <swiper-slide v-for="(slide, index) in slides" :key="index">
-          <Slide :src="`slide${index}`" />
+          <SlideContent :src="`slide${index}`" />
         </swiper-slide>
       </swiper>
     </diV>

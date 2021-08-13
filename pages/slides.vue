@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <Slides />
+    <SlidesContent />
   </client-only>
 </template>
 
