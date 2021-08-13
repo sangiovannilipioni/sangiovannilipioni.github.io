@@ -18,7 +18,7 @@
             <a href="mailto:nessunoesclusoaps@gmail.com"><font-awesome-icon v-if="!loading" :icon="['fas', 'envelope']" /> nessunoesclusoaps@gmail.com</a>
           </div>
           <div style="whitespace: nowrap">
-            <nuxt-link class="pdf" to="/pdf/Atto_Costitutivo_e_Statuto">Atto Costitutivo e Statuto</nuxt-link>
+            <nuxt-link class="pdf" to="/pdfs/Atto_Costitutivo_e_Statuto">Atto Costitutivo e Statuto</nuxt-link>
           </div>
           <div style="whitespace: nowrap">
             <a class="pdf" href="/pdf/Domanda_di_Ammissione_a_Socio.pdf" target="_blank">Domanda di Ammissione a Socio</a>
