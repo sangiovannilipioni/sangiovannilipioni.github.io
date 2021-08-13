@@ -15,7 +15,7 @@
         </div>
         <div class="text-muted">
           <div style="whitespace: nowrap">
-            <a href="mailto:nessunoesclusoaps@gmail.com"><font-awesome-icon v-if="!loading" :icon="['fas', 'envelope']" /> nessunoesclusoaps@gmail.com</a>
+            <a href="mailto:nessunoesclusoaps@gmail.com"><font-awesome-icon :icon="['fas', 'envelope']" /> nessunoesclusoaps@gmail.com</a>
           </div>
           <div style="whitespace: nowrap">
             <nuxt-link class="pdf" to="/pdfs/Atto_Costitutivo_e_Statuto">Atto Costitutivo e Statuto</nuxt-link>
