@@ -1,6 +1,6 @@
 ## Role of the Municipal Administration
 
-![Image of SGL](/jpeg/scorci-3.jpg)
+![Image of SGL](/jpeg/DSCN7025.jpg)
 
 In order to implement the programme, the full support and synergy of the municipal
 of the Municipal Administration in order to support the initiative from an administrative and procedural point of view.
