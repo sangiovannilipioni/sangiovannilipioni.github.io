@@ -48,7 +48,7 @@
         <template v-if="$auth.$state.loggedIn">
           <b-nav-item-dropdown :text="$auth.user ? $auth.user.name : ''" right>
             <template slot="button-content"
-              ><b-img
+              ><img
                 v-if="$auth.user"
                 :src="$auth.user.picture.data.url"
                 class="mt-1"
