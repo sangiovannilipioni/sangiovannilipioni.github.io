@@ -1,5 +1,5 @@
 <template>
-  <div id="photoGallery" class="container">
+  <div id="photoGallery" class="container d-flex justify-content-center">
     <div id="VueMasonry" v-masonry fit-width="true">
       <div
         v-masonry-tile
@@ -40,7 +40,7 @@ export default {
   .Item {
     overflow: hidden;
     border-radius: 4px;
-    width: 340px;
+    width: 334px;
     /* background: #f5f5f5; */
   }
   .Content {
