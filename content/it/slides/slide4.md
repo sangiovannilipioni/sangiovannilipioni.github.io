@@ -1,6 +1,6 @@
 ## Ruolo dell’Amministrazione Comunale
 
-![Image of SGL](/jpeg/DSCN7025.jpg)
+![Image of SGL](/masonry/DSCN7025.jpg)
 
 Per dare attuazione al programma è fondamentale il pieno appoggio e sinergia
 dell’Amministrazione Comunale al fine di sostenere l’iniziativa dal punto di vista

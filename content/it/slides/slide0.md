@@ -1,6 +1,6 @@
 ## Proposta per un programma di rilancio dell’abitato di San Giovanni Lipioni.
 
-![Image of SGL](/jpeg/m-c.jpg)
+![Image of SGL](/masonry/m-c.jpg)
 
 Presentato:
 

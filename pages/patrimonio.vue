@@ -1,6 +1,6 @@
 <template>
   <div id="patrimonio" class="container">
-    <b-tabs content-class="mt-3">
+    <b-tabs content-class="mt-3" @activate-tab="onActiveTab">
       <b-tab :title="$t('map')" active>
         <div style="width: 100%; margin: 2rem 0" class="binome">
           <div
@@ -20,6 +20,9 @@
             ></div>
           </client-only>
         </div>
+      </b-tab>
+      <b-tab :title="$t('photos')">
+        <masonry-div :items="items" :imgDir="imgDir" />
       </b-tab>
       <b-tab :title="$t('list')">
         <b-card
@@ -69,6 +72,17 @@ export default {
   // https://dev.to/bawa_geek/how-to-use-google-maps-in-nuxt-js-project-without-any-package-or-heavy-library-26gh
   methods: {
     append() {},
+    onActiveTab(newTab, previousTab, event) {
+      console.log("onActiveTab", newTab, previousTab, event);
+      if (newTab === 1) {
+        if (typeof this.$redrawVueMasonry === "function") {
+          const redrawVueMasonry = this.$redrawVueMasonry;
+          setTimeout(function () {
+            redrawVueMasonry();
+          }, 200);
+        }
+      }
+    },
     onScriptLoaded(event = null) {
       console.log("onScriptLoaded", event);
       // YOU HAVE ACCESS TO "new google" now, ADD YOUR GOOGLE MAPS FUNCTIONS HERE.
@@ -204,6 +218,14 @@ export default {
     } else {
       this.onScriptLoaded();
     }
+
+    // masonry
+    const f = require.context("../static/masonry", true, /\.jpg$/);
+    f.keys().forEach((key) => {
+      this.items.push({ pathLong: f(key), pathShort: 'masonry/' + key, disabled:true });
+    });
+
+    
   },
   data() {
     return {
@@ -224,10 +246,22 @@ export default {
           position: { lat: 41.84821126881966, lng: 14.562941327400237 },
           ref: "G01",
         },
-        { key: "⋮"},
+        { key: "⋮" },
       ],
       mapElement: undefined,
       zoom: 16.8,
+
+      // masonry
+      items: [{
+        key: "Via Roma, 37",
+        to: "/units/O02",
+        pathShort: "foto/GOPR1232_light_2.jpg"
+      },{
+        key: "Via Vicenne, 4",
+        to: "/units/G01",
+        pathShort: "foto/X2.jpg"
+      }],
+      imgDir: "",
     };
   },
 };

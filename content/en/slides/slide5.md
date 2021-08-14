@@ -12,7 +12,7 @@ Drafting of a feasibility project consisting of:
     
     * Restitution of the surveyed data in digital format.
 
-![Image of SGL](/jpeg/rustico_casale_e_casa_di_corte-in-vendita-a-san_giovanni_lipioni1.jpg)
+![Image of SGL](/masonry/rustico_casale_e_casa_di_corte-in-vendita-a-san_giovanni_lipioni1.jpg)
 
 * B. Design and implementation of the Internet communication project;
 

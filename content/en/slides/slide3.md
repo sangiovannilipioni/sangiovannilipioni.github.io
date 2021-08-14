@@ -1,6 +1,6 @@
 ## Proposal
 
-![Image of SGL](/jpeg/esterno-S.-Maria-delle-Grazie-860x1024.jpg)
+![Image of SGL](/masonry/esterno-S.-Maria-delle-Grazie-860x1024.jpg)
 
 * Establishment of an association that must be as inclusive as possible,
 * The membership fee (due to the high number of members) is 400 euros.

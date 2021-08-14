@@ -13,7 +13,7 @@ export default {
   signOut: "Esci",
 
   map: "Carta",
-  photos: "Foto",
+  photos: "Immagini",
   list: "Elenco",
   
   exordium: "Presentazione",

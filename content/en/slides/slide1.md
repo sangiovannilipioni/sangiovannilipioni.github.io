@@ -1,6 +1,6 @@
 ## Purpose
 
-![Image of SGL](/jpeg/b4e8cca7-36bd-461a-80af-cd4f6da1fef5.jpg)
+![Image of SGL](/masonry/b4e8cca7-36bd-461a-80af-cd4f6da1fef5.jpg)
 
 The Association is constituted for the non-profit pursuit of civic, solidarity and socially useful purposes in full
 respect for the freedom and dignity of its members.

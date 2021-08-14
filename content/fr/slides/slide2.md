@@ -1,6 +1,6 @@
 ## Objectifs
 
-![Image of SGL](/jpeg/DSCN7236.jpg)
+![Image of SGL](/masonry/DSCN7236.jpg)
 
 Transformation de l'ensemble du village en une réalité touristique et résidentielle, conformément aux canons les plus avancés de l'industrie du tourisme.
 du développement durable

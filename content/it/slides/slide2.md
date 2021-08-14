@@ -1,6 +1,6 @@
 ## Obiettivi
 
-![Image of SGL](/jpeg/DSCN7236.jpg)
+![Image of SGL](/masonry/DSCN7236.jpg)
 
 Trasformazione dell’intero paese in una realtà turistico-residenziale nel rispetto dei canoni
 più avanzati di sviluppo sostenibile

@@ -1,6 +1,6 @@
 # Programma Attività dell’Associazione
 
-![Image of SGL](/jpeg/rustico_casale_e_casa_di_corte-in-vendita-a-san_giovanni_lipioni.jpg)
+![Image of SGL](/masonry/rustico_casale_e_casa_di_corte-in-vendita-a-san_giovanni_lipioni.jpg)
 
 A conclusione di questa prima Fase, l’Assemblea:
 

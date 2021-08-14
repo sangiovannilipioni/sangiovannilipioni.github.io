@@ -13,7 +13,7 @@ Redazione di un progetto di fattibilità che consiste in:
     
     * Restituzione dei dati rilevati in formato digitale
 
-![Image of SGL](/jpeg/rustico_casale_e_casa_di_corte-in-vendita-a-san_giovanni_lipioni1.jpg)
+![Image of SGL](/masonry/rustico_casale_e_casa_di_corte-in-vendita-a-san_giovanni_lipioni1.jpg)
 
 * B. Ideazione e realizzazione del progetto di comunicazione Internet;
 

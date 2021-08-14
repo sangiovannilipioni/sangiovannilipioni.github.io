@@ -8,4 +8,4 @@ and in parallel
 
 * B. A suitable legal entity (capital company, or other entrepreneurial form) can be set up, capable of carrying out a far-reaching initiative both from the economic point of view and in terms of entrepreneurial capacity.
 
-![Image of SGL](/jpeg/rustico_casale_e_casa_di_corte-in-vendita-a-san_giovanni_lipioni2.jpg)
+![Image of SGL](/masonry/rustico_casale_e_casa_di_corte-in-vendita-a-san_giovanni_lipioni2.jpg)

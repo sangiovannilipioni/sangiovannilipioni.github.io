@@ -1,6 +1,6 @@
 ## Proposition
 
-![Image of SGL](/jpeg/esterno-S.-Maria-delle-Grazie-860x1024.jpg)
+![Image of SGL](/masonry/esterno-S.-Maria-delle-Grazie-860x1024.jpg)
 * Création d'une association qui doit être la plus inclusive possible,
 * La cotisation (en raison du nombre élevé de membres) est de 400 euros.
 

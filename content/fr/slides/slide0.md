@@ -1,6 +1,6 @@
 ## Proposition de programme pour la revitalisation de la ville de San Giovanni Lipioni.
 
-![Image of SGL](/jpeg/m-c.jpg)
+![Image of SGL](/masonry/m-c.jpg)
 
 Présenté :
 

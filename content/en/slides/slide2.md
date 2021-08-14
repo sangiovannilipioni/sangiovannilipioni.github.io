@@ -1,6 +1,6 @@
 ## Objectives
 
-![Image of SGL](/jpeg/DSCN7236.jpg)
+![Image of SGL](/masonry/DSCN7236.jpg)
 
 Transformation of the entire village into a tourist-residential reality in compliance with the most advanced canons of
 of sustainable development
