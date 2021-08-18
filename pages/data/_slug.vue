@@ -47,28 +47,31 @@ export default {
       json.forEach((sheet) => {
         // remove first row
         sheet.rows.shift()
-
         // for all rows, 
+        let nextRowIsRed = false;
         sheet.rows.forEach((row) => {
-          const firstcol = row[0];
-          // if first column is a numeric, style the row with gray background
-          if (firstcol && firstcol.col === "0" && !isNaN(firstcol.text.replace('.','')) ) {
-            row.style = "background-color: #eee;"
+          if (nextRowIsRed) {
+            row.style = (row.style || "") + "color: #a42424; "
+            nextRowIsRed = false;
           }
           // for all cols, 
-          row.forEach((col) => {
+          row.forEach((col, index) => {
+            // if first column is column zero, and is a numeric, style the row with gray background
+            if (index === 0) {
+              if (col.col === "0" && !isNaN(col.text.replace('.','')) ) {
+                row.style = (row.style || "") + "background-color: #eee; "
+              }
+            }
             // if text is numeric and end with ".0", remove it
             if (!isNaN(col.text) && col.text.endsWith('.0')) {
               col.text = col.text.substring(0, col.text.length - 2);
             }
-            // self explanatory
-            if (col.text === "EDIFICIO IN AGGREGATO" || col.text === "MONOFAMILIARE") {
-              row.style = "color: #a42424;"
+            // next row will be red
+            if (col.text === "CARATTERISTICHE EDIFICIO" || col.text === "estremità") {
+              nextRowIsRed = true;
             }
           });
-
         });
-        return
       });
       return json;
     },
