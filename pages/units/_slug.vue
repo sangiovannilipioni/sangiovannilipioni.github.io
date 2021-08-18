@@ -94,9 +94,9 @@ export default {
         O02: {
           hasData: true,
           slides: [
+            { img: "O1__O2-PianoTerra.jpg",        title: "Piano Terra" },
             { img: "O1__O2-PianoPrimo.jpg",        title: "Piano Primo" },
             { img: "O1__O2-PianoSeminterrato.jpg", title: "Piano Seminterrato" },
-            { img: "O1__O2-PianoTerra.jpg",        title: "Piano Terra" },
             { img: "O1__O2-ProspettoNord.jpg",     title: "Prospetto Nord" },
             { img: "O1__O2-ProspettoOvestEst.jpg", title: "Prospetto Ovest Est" },
             { img: "O1__O2-ProspettoSud.jpg",      title: "Prospetto Sud" },
