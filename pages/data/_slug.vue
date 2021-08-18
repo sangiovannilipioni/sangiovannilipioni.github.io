@@ -9,8 +9,16 @@
           :active="index == 0"
         >
           <table class="table table-sm table-responsive table-borderless">
-            <tr v-for="(row, index2) in tab.rows" :key="index2" :style="row.style">
-              <td v-for="(col, index3) in toArray(tab.cols, row)" :key="index3" :style="col.style">
+            <tr
+              v-for="(row, index2) in tab.rows"
+              :key="index2"
+              :style="row.style"
+            >
+              <td
+                v-for="(col, index3) in toArray(tab.cols, row)"
+                :key="index3"
+                :style="col.style"
+              >
                 {{ col }}
               </td>
             </tr>
@@ -46,29 +54,54 @@ export default {
     massageData(json) {
       json.forEach((sheet) => {
         // remove first row
-        sheet.rows.shift()
-        // for all rows, 
+        sheet.rows.shift();
+        // for all rows,
         let nextRowIsRed = false;
+        let ignoreNextRow = false;
         sheet.rows.forEach((row) => {
+          if (ignoreNextRow) {
+            row.style = (row.style || "") + "display: none; ";
+          }
           if (nextRowIsRed) {
-            row.style = (row.style || "") + "color: #a42424; "
+            row.style = (row.style || "") + "color: #a42424; ";
             nextRowIsRed = false;
           }
-          // for all cols, 
+          // for all cols,
           row.forEach((col, index) => {
             // if first column is column zero, and is a numeric, style the row with gray background
             if (index === 0) {
-              if (col.col === "0" && !isNaN(col.text.replace('.','')) ) {
-                row.style = (row.style || "") + "background-color: #eee; "
+              if (col.col === "0" && !isNaN(col.text.replace(".", ""))) {
+                row.style =
+                  (row.style || "") +
+                  "background-color: #eee; display: table.row; ";
+                ignoreNextRow = false;
               }
             }
-            // if text is numeric and end with ".0", remove it
-            if (!isNaN(col.text) && col.text.endsWith('.0')) {
-              col.text = col.text.substring(0, col.text.length - 2);
+            // format numbers
+            if (!isNaN(col.text)) {
+              // number of decimals ?
+              if (col.col !== "0") {
+                let num = col.text;
+                col.text = parseFloat(num).toFixed(2);
+              }
+              // if text ends with ".0", remove it
+              if (col.text.endsWith(".0")) {
+                col.text = col.text.substring(0, col.text.length - 2);
+                // if text ends with ".00", remove it
+              } else if (col.text.endsWith(".00")) {
+                col.text = col.text.substring(0, col.text.length - 3);
+              }
             }
             // next row will be red
-            if (col.text === "CARATTERISTICHE EDIFICIO" || col.text === "estremità") {
+            if (
+              col.text === "CARATTERISTICHE EDIFICIO" ||
+              col.text === "estremità"
+            ) {
               nextRowIsRed = true;
+            }
+            // ignore next rows until new paragraph
+            if (col.text === "nr. vani" || col.text === "Superficie totale") {
+              ignoreNextRow = true;
             }
           });
         });
