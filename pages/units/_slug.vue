@@ -101,7 +101,7 @@ export default {
             { img: "O1__O2-ProspettoOvestEst.jpg", title: "Prospetto Ovest Est" },
             { img: "O1__O2-ProspettoSud.jpg",      title: "Prospetto Sud" },
             { img: "O1__O2-SezioneA.jpg",          title: "Sezione A" },
-            { img: "O1__O2-SezioneBCD.jpg",        title: "Sezione B C D" },
+            { img: "O1__O2-SezioneB.jpg",          title: "Sezione B" },
           ],
           title: "Via Roma, 37",
           imgs: ["GOPR1232_light_2.jpg"],
