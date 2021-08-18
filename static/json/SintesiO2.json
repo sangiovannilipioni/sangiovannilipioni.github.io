@@ -117,34 +117,6 @@
 			"col": "2",
 			"text": "41.84247, 14.56213"
 		  }
-		],
-		[
-		  {
-			"col": "0",
-			"text": "1.2"
-		  },
-		  {
-			"col": "1",
-			"text": "DATI CATASTALI"
-		  }
-		],
-		[
-		  {
-			"col": "1",
-			"text": "FOGLIO"
-		  }
-		],
-		[
-		  {
-			"col": "1",
-			"text": "MAPPALE"
-		  }
-		],
-		[
-		  {
-			"col": "1",
-			"text": "SUBALTERNI"
-		  }
 		]
 	  ],
 	  "cols": "2"
