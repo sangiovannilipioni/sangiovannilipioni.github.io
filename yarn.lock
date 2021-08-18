@@ -3414,7 +3414,12 @@ core-js@^2.4.0, core-js@^2.6.5:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
   integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
 
-core-js@^3.16.1, core-js@^3.6.5, core-js@^3.8.1:
+core-js@^3.16.2:
+  version "3.16.2"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.16.2.tgz#3f485822889c7fc48ef463e35be5cc2a4a01a1f4"
+  integrity sha512-P0KPukO6OjMpjBtHSceAZEWlDD1M2Cpzpg6dBbrjFqFhBHe/BwhxaP820xKOjRn/lZRQirrCusIpLS/n2sgXLQ==
+
+core-js@^3.6.5, core-js@^3.8.1:
   version "3.16.1"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.16.1.tgz#f4485ce5c9f3c6a7cb18fa80488e08d362097249"
   integrity sha512-AAkP8i35EbefU+JddyWi12AWE9f2N/qr/pwnDtWz4nyUIBGMJPX99ANFFRSw6FefM374lDujdtLDyhN2A/btHw==
@@ -9011,10 +9016,10 @@ sass-resources-loader@^2.2.4:
     glob "^7.1.6"
     loader-utils "^2.0.0"
 
-sass@^1.37.5:
-  version "1.37.5"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.37.5.tgz#f6838351f7cc814c4fcfe1d9a20e0cabbd1e7b3c"
-  integrity sha512-Cx3ewxz9QB/ErnVIiWg2cH0kiYZ0FPvheDTVC6BsiEGBTZKKZJ1Gq5Kq6jy3PKtL6+EJ8NIoaBW/RSd2R6cZOA==
+sass@^1.38.0:
+  version "1.38.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.38.0.tgz#2f3e60a1efdcdc910586fa79dc89d3399a145b4f"
+  integrity sha512-WBccZeMigAGKoI+NgD7Adh0ab1HUq+6BmyBUEaGxtErbUtWUevEbdgo5EZiJQofLUGcKtlNaO2IdN73AHEua5g==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
 
