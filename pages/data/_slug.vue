@@ -52,7 +52,7 @@ export default {
         sheet.rows.forEach((row) => {
           const firstcol = row[0];
           // if first column is a numeric, style the row with gray background
-          if (firstcol && firstcol.col === "0" && !isNaN(firstcol.text) ) {
+          if (firstcol && firstcol.col === "0" && !isNaN(firstcol.text.replace('.','')) ) {
             row.style = "background-color: #eee;"
           }
           // for all cols, 
@@ -61,6 +61,7 @@ export default {
             if (!isNaN(col.text) && col.text.endsWith('.0')) {
               col.text = col.text.substring(0, col.text.length - 2);
             }
+            // self explanatory
             if (col.text === "EDIFICIO IN AGGREGATO" || col.text === "MONOFAMILIARE") {
               row.style = "color: #a42424;"
             }
