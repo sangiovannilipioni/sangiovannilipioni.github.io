@@ -74,7 +74,8 @@ export default {
         "01_id_edificio": "Identificazione",
         "02_descriz_edificio": "Descrizione",
         "03_dati_metrici_AB": "Dati metrici",
-        "04_dati_costrutt_CARENZE": "Carenze",
+        "04_dati_costrutt_CARENZE": "Carenze costruttive",
+        "04_dati_costrutt_VERT_IQM": "Qualità muraria"
       };
       // remove all sheets that have no title
       json = json.filter((sheet) => sheetTitles[sheet.sheet]);
@@ -90,8 +91,8 @@ export default {
         let columnBackground = undefined;
         let ignoreNextRow = false;
         let is_03_dati_metrici_AB = sheet.sheet === "03_dati_metrici_AB";
-        let is_04_dati_costrutt_CARENZE =
-          sheet.sheet === "04_dati_costrutt_CARENZE";
+        let is_04_dati_costrutt_CARENZE = sheet.sheet === "04_dati_costrutt_CARENZE";
+        let is_04_dati_costrutt_VERT_IQM = sheet.sheet === "04_dati_costrutt_VERT_IQM";
 
         let newColAfterSolaioDiPiano = undefined
 
@@ -150,16 +151,16 @@ export default {
             return;
           }
 
+          const fixTypos = {
+            "stato di conservaz": "stato di conservazione",
+            "carenzestrutturali": "carenze strutturali"
+          }
+
           if (is_04_dati_costrutt_CARENZE) {
             let piano = undefined
-            const fixTypos = {
-              "stato di conservaz": "stato di conservazione",
-              "carenzestrutturali": "carenze strutturali"
-            }
             // for all cols
             row.forEach((element) => {
 
-              element.text = (fixTypos[element.text] || element.text)
 
               if (element.text === "ct" || element.text === "c") {
                 element.style="font-weight: 600;"
@@ -192,6 +193,11 @@ export default {
 
           // for all cols,
           row.forEach((col, colindex) => {
+
+            // fix typos
+            col.text = (fixTypos[col.text] || col.text)
+
+            // special cases
             if (is_04_dati_costrutt_CARENZE) {
               if (ignoreNextRow && isUpper(col.text)) {
                 row.style = (row.style || "") + "display: table.row; ";
@@ -204,7 +210,11 @@ export default {
                 if (columnBackground === "#ffc000" || columnBackground === "#ffe699") {
                   col.style = (col.style || "") +"font-weight: 600; ";
                 }
-                if (true) {
+                // add center for this
+                if (columnBackground === "#eee") {
+                  col.style = (col.style || "") +"text-align: center; ";
+                }
+                {
                   if (columnBackground === "#eee") {
                     columnBackground = "#fff2cd";
                   } else if (columnBackground === "#fff2cd") {
@@ -214,18 +224,43 @@ export default {
               }
             }
 
+            if (is_04_dati_costrutt_VERT_IQM) {
+              if (col.text === "A1" || col.text === "A2") {
+                columnBackground = "#c6e0b3";
+                nextRowColumnBackground = "#eee"
+              }
+
+              if (columnBackground && 1 <= col.col && col.col <= 2) {
+                col.style = (col.style || "") + "background-color: " + columnBackground + "; ";
+
+                // add center for this
+                if (columnBackground === "#eee") {
+                  col.style = (col.style || "") +"text-align: center; ";
+                }
+
+                {
+                  if (columnBackground === "#eee") {
+                    columnBackground = "#eff5e9";
+                  } else if (columnBackground === "#eff5e9") {
+                    columnBackground = "#eee";
+                  }
+                }
+              }
+            }
+            
             // if first column is column zero, and is a numeric, style the row with gray background
             if (colindex === 0) {
               if (col.col === "0" && !isNaN(col.text.replace(".", ""))) {
                 let bgColor = "#eee";
 
-                // for 'Carenze' sheet, darker gray for 3rd level rows (of the form 'x.y.z', that is, with two dots)
-                if (is_04_dati_costrutt_CARENZE) {
+                // for 'Carenze' and 'Qualità' sheets, darker gray for 3rd level rows (of the form 'x.y.z', that is, with two dots)
+                if (is_04_dati_costrutt_CARENZE || is_04_dati_costrutt_VERT_IQM) {
                   var dots = (col.text.match(/\./g) || []).length;
                   if (dots == 2) {
                     bgColor = "#ddd";
                   }
                 }
+
                 row.style = (row.style || "") + "background-color: " + bgColor + "; display: table.row; ";
 
                 // new section : reset flags
@@ -234,6 +269,7 @@ export default {
                 columnBackground = undefined;
               }
             }
+
             // format numbers
             formatNumber(col)
 
@@ -241,10 +277,30 @@ export default {
             if (col.text === "CARATTERISTICHE EDIFICIO" || col.text === "estremità" ) {
               nextRowTextIsRed = true;
             }
+
             // next row background will be dark orange
             if (col.text.match(/4\.4\.\d/g)) {
               nextRowColumnBackground = "#ffc000";
             }
+
+            // next row background will be dark orange
+            if (col.text.match(/pareti interne/g) || col.text.match(/pareti esterne/g)) {
+              col.style = "font-weight: 600;"
+            }
+            
+            /*
+            
+              */
+            if (col.col <= 2 && ( 
+              col.text.startsWith('codice id. elementi costruttivi' ) || 
+              col.text  === 'IQMv' || 
+              col.text  === 'IQMo,fp' || 
+              col.text  === 'IQMo,np' )) {
+                console.log(row);
+                row.style="display:none;"
+            }
+            
+
             // ignore next rows until new section
             if (col.text === "nr. vani" || col.text === "Superficie totale") {
               ignoreNextRow = true;
@@ -260,6 +316,9 @@ export default {
       let colspanned = false;
       if (sheet === "04_dati_costrutt_CARENZE") {
         row = row.filter((e) => e.col < 4 );
+      }
+      if (sheet === "04_dati_costrutt_VERT_IQM") {
+        row = row.filter((e) => e.col < 3 );
       }
       row.forEach((element) => {
         for (let i = index; i < element.col; i++) {
