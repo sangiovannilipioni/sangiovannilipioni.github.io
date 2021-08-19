@@ -1,12 +1,13 @@
 <template>
   <client-only>
-    <article class="container-fluid">
+    <article class="container">
       <b-tabs content-class="mt-3">
         <b-tab
           v-for="(tab, index) in datum"
           :key="index"
           :title="tab.sheet"
           :active="index == 0"
+          :id="'_' + tab.sheet.replace(' ', '_')"
         >
           <table class="table table-sm table-responsive table-borderless">
             <tr
@@ -15,11 +16,12 @@
               :style="row.style"
             >
               <td
-                v-for="(col, index3) in toArray(tab.cols, row)"
+                v-for="(col, index3) in toTrueArray(tab.cols, row)"
                 :key="index3"
                 :style="col.style"
+                :colspan="col.colspan"
               >
-                {{ col }}
+                {{ col.text }}
               </td>
             </tr>
           </table>
@@ -29,7 +31,23 @@
   </client-only>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
+td:nth-child(1) {
+  width: 5%;
+}
+#_02_descriz_edificio td:nth-child(2) {
+  text-align: right;
+}
+#_03_dati_metrici_AB {
+  td:nth-child(3) {
+    text-align: right;
+    width: 10%;
+  }
+  td:nth-child(4) {
+    text-align: right;
+    width: 10%;
+  }
+}
 </style>
 
 <script>
@@ -52,13 +70,15 @@ export default {
   fetchKey: "dugenou",
   methods: {
     massageData(json) {
-      json.forEach((sheet) => {
+      json = json.filter((sheet, sheetindex) => sheetindex < 3) ;
+      json.forEach((sheet, sheetindex) => {
         // remove first row
         sheet.rows.shift();
         // for all rows,
         let nextRowIsRed = false;
         let ignoreNextRow = false;
-        sheet.rows.forEach((row) => {
+        let is_03_dati_metrici_AB = (sheet.sheet === '03_dati_metrici_AB');
+        sheet.rows.forEach((row, rowindex) => {
           if (ignoreNextRow) {
             row.style = (row.style || "") + "display: none; ";
           }
@@ -66,10 +86,13 @@ export default {
             row.style = (row.style || "") + "color: #a42424; ";
             nextRowIsRed = false;
           }
-          // for all cols,
-          row.forEach((col, index) => {
+          if (is_03_dati_metrici_AB && rowindex === 2 && row[0]) {
+            row[0].colspan="4";
+            return;
+          }
+          row.forEach((col, colindex) => {
             // if first column is column zero, and is a numeric, style the row with gray background
-            if (index === 0) {
+            if (colindex === 0) {
               if (col.col === "0" && !isNaN(col.text.replace(".", ""))) {
                 row.style =
                   (row.style || "") +
@@ -108,20 +131,29 @@ export default {
       });
       return json;
     },
-    toArray(cols, row) {
+    toTrueArray(col_count, row) {
       let ret = [];
       let index = 0;
+      let colspanned = false;
       row.forEach((element) => {
         for (let i = index; i < element.col; i++) {
-          ret.push("");
+          ret.push({text:""});
           index++;
         }
-        ret.push(element.text);
+        if (element.colspan) {
+          colspanned = true;
+          ret.push({text:element.text, colspan:element.colspan});
+          return;
+        } else {
+          ret.push({text:element.text});
+        }
         index++;
       });
-      for (let i = index; i <= cols; i++) {
-        ret.push("");
-        index++;
+      if (!colspanned) {
+        for (let i = index; i <= col_count; i++) {
+          ret.push({text:""});
+          index++;
+        }
       }
       return ret;
     },
