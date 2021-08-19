@@ -70,124 +70,123 @@ export default {
   fetchKey: "dugenou",
   methods: {
     massageData(json) {
+      function appendStyle(elem, style) {
+        elem.style = { ...elem.style, ...style };
+      }
+
+      function isUpper(str) {
+        return !/[a-z]/.test(str) && /[A-Z]/.test(str);
+      }
+
+      function formatNumber(col) {
+        if (!isNaN(col.text)) {
+          if (col.col !== "0") {
+            col.text = parseFloat(col.text).toFixed(2);
+          }
+          // if text ends with ".00", remove it
+          if (col.text.endsWith(".00")) {
+            col.text = col.text.substring(0, col.text.length - 3);
+            // if text ends with ".0", remove it
+          } else if (col.text.endsWith(".0")) {
+            col.text = col.text.substring(0, col.text.length - 2);
+          }
+        }
+      }
+
       const sheetTitles = {
         "01_id_edificio": "Identificazione",
         "02_descriz_edificio": "Descrizione",
         "03_dati_metrici_AB": "Dati metrici",
         "04_dati_costrutt_CARENZE": "Carenze costruttive",
-        "04_dati_costrutt_VERT_IQM": "Qualità muraria"
+        "04_dati_costrutt_VERT_IQM": "Qualità muraria",
       };
+
       // remove all sheets that have no title
       json = json.filter((sheet) => sheetTitles[sheet.sheet]);
 
+      // for all sheets
       json.forEach((sheet) => {
         // set title
         sheet.title = sheetTitles[sheet.sheet];
+
         // remove first row
         sheet.rows.shift();
 
-        let nextRowTextIsRed = false;
-        let nextRowColumnBackground = undefined;
-        let columnBackground = undefined;
-        let ignoreNextRow = false;
         let is_03_dati_metrici_AB = sheet.sheet === "03_dati_metrici_AB";
         let is_04_dati_costrutt_CARENZE = sheet.sheet === "04_dati_costrutt_CARENZE";
         let is_04_dati_costrutt_VERT_IQM = sheet.sheet === "04_dati_costrutt_VERT_IQM";
 
-        let newColAfterSolaioDiPiano = undefined
+        let nextRowTextIsRed = false;
+        let nextColumnBackground = undefined;
+        let columnBackground = undefined;
+        let ignoreNextRow = false;
+        let newColAfterSolaioDiPiano = undefined;
 
-        // for all rows,
+        // for all rows
         sheet.rows.forEach((row, rowindex) => {
           if (ignoreNextRow) {
-            row.style = (row.style || "") + "display: none; ";
+            appendStyle(row, { display: "none" });
           }
           if (nextRowTextIsRed) {
+            appendStyle(row, { color: "#a42424" });
             nextRowTextIsRed = false;
-            row.style = (row.style || "") + "color: #a42424; ";
           }
           if (is_03_dati_metrici_AB && rowindex === 2 && row[0]) {
             row[0].colspan = "4";
             return;
           }
-
-          if (nextRowColumnBackground) {
-            columnBackground = nextRowColumnBackground;
+          if (nextColumnBackground) {
+            columnBackground = nextColumnBackground;
           }
-          
-          if (nextRowColumnBackground) {
-            if (nextRowColumnBackground === "#ffc000") {
-              nextRowColumnBackground = "#ffe699";
+          if (nextColumnBackground) {
+            if (nextColumnBackground === "#ffc000") {
+              nextColumnBackground = "#ffe699";
               ignoreNextRow = true;
-            } else if (nextRowColumnBackground === "#ffe699") {
-              nextRowColumnBackground = "#eee";
+            } else if (nextColumnBackground === "#ffe699") {
+              nextColumnBackground = "#eee";
             } else if (!ignoreNextRow) {
-              nextRowColumnBackground = undefined;
+              nextColumnBackground = undefined;
             }
-          }
-          
-          function isUpper(str) {
-            return !/[a-z]/.test(str) && /[A-Z]/.test(str);
-          }
-
-          function formatNumber(col) {
-            if (!isNaN(col.text)) {
-              // number of decimals ?
-              if (col.col !== "0") {
-                let num = col.text;
-                col.text = parseFloat(num).toFixed(2);
-              }
-              // if text ends with ".00", remove it
-              if (col.text.endsWith("\.00")) {
-                const qwe = col.text.substring(0, col.text.length - 3);
-                console.log('FROM', col.text, 'TO', qwe);
-                col.text = qwe
-                // if text ends with ".0", remove it
-              } else if (col.text.endsWith("\.0")) {
-                const qwe = col.text.substring(0, col.text.length - 2);
-                console.log('FROM', col.text, 'TO', qwe);
-                col.text = qwe
-              }
-            }
-            return;
           }
 
           const fixTypos = {
             "stato di conservaz": "stato di conservazione",
-            "carenzestrutturali": "carenze strutturali"
-          }
+            "carenzestrutturali": "carenze strutturali",
+          };
 
           if (is_04_dati_costrutt_CARENZE) {
-            let piano = undefined
+            let piano = undefined;
             // for all cols
             row.forEach((element) => {
-
-
               if (element.text === "ct" || element.text === "c") {
-                element.style="font-weight: 600;"
+                appendStyle(element, { fontWeight: 600 });
               }
 
-              if (element.text === 'solaio di piano') {
+              if (element.text === "solaio di piano") {
                 newColAfterSolaioDiPiano = {
-                  "col": "3",
-                  "text": "",
-                  "style": "font-weight: 600;"
-                }
-              } 
+                  col: "3",
+                  text: "",
+                  style: "font-weight: 600;",
+                };
+              }
+
               if (piano) {
                 if (newColAfterSolaioDiPiano) {
                   newColAfterSolaioDiPiano.text = element.text;
-                  formatNumber(newColAfterSolaioDiPiano)
-                  newColAfterSolaioDiPiano = undefined
+                  formatNumber(newColAfterSolaioDiPiano);
+                  newColAfterSolaioDiPiano = undefined;
                 }
-                piano = undefined
+                piano = undefined;
               }
-              if (element.text === 'piano') {
+
+              if (element.text === "piano") {
                 piano = element;
-                piano.style = "visibility: hidden;";
+                appendStyle(piano, { visibility: "hidden" });
               }
-            }); 
+            });
+
             if (newColAfterSolaioDiPiano) {
-                row.push(newColAfterSolaioDiPiano);
+              row.push(newColAfterSolaioDiPiano);
             }
           }
 
@@ -195,25 +194,29 @@ export default {
           row.forEach((col, colindex) => {
 
             // fix typos
-            col.text = (fixTypos[col.text] || col.text)
+            col.text = fixTypos[col.text] || col.text;
 
-            // special cases
+            // special case I
             if (is_04_dati_costrutt_CARENZE) {
               if (ignoreNextRow && isUpper(col.text)) {
-                row.style = (row.style || "") + "display: table.row; ";
+                appendStyle(row, { display: "table.row" });
                 ignoreNextRow = false;
                 columnBackground = "#ffe699";
               }
               if (columnBackground && 1 <= col.col && col.col <= 2) {
-                col.style = (col.style || "") + "background-color: " + columnBackground + "; ";
+                appendStyle(col, { backgroundColor: columnBackground });
                 // add bold for these two
-                if (columnBackground === "#ffc000" || columnBackground === "#ffe699") {
-                  col.style = (col.style || "") +"font-weight: 600; ";
+                if (
+                  columnBackground === "#ffc000" ||
+                  columnBackground === "#ffe699"
+                ) {
+                  appendStyle(col, { fontWeight: 600 });
                 }
                 // add center for this
                 if (columnBackground === "#eee") {
-                  col.style = (col.style || "") +"text-align: center; ";
+                  appendStyle(col, { textAlign: "center" });
                 }
+
                 {
                   if (columnBackground === "#eee") {
                     columnBackground = "#fff2cd";
@@ -224,18 +227,26 @@ export default {
               }
             }
 
+            // special cases II
             if (is_04_dati_costrutt_VERT_IQM) {
+              if (
+                col.text.match(/pareti interne/g) ||
+                col.text.match(/pareti esterne/g)
+              ) {
+                columnBackground = undefined;
+                appendStyle(col, { fontWeight: 600 });
+              }
               if (col.text === "A1" || col.text === "A2") {
                 columnBackground = "#c6e0b3";
-                nextRowColumnBackground = "#eee"
+                nextColumnBackground = "#eee";
               }
 
               if (columnBackground && 1 <= col.col && col.col <= 2) {
-                col.style = (col.style || "") + "background-color: " + columnBackground + "; ";
+                appendStyle(col, { backgroundColor: columnBackground });
 
                 // add center for this
                 if (columnBackground === "#eee") {
-                  col.style = (col.style || "") +"text-align: center; ";
+                  appendStyle(col, { textAlign: "center" });
                 }
 
                 {
@@ -247,59 +258,60 @@ export default {
                 }
               }
             }
-            
+
             // if first column is column zero, and is a numeric, style the row with gray background
             if (colindex === 0) {
               if (col.col === "0" && !isNaN(col.text.replace(".", ""))) {
                 let bgColor = "#eee";
 
                 // for 'Carenze' and 'Qualità' sheets, darker gray for 3rd level rows (of the form 'x.y.z', that is, with two dots)
-                if (is_04_dati_costrutt_CARENZE || is_04_dati_costrutt_VERT_IQM) {
+                if (
+                  is_04_dati_costrutt_CARENZE ||
+                  is_04_dati_costrutt_VERT_IQM
+                ) {
                   var dots = (col.text.match(/\./g) || []).length;
                   if (dots == 2) {
                     bgColor = "#ddd";
                   }
                 }
 
-                row.style = (row.style || "") + "background-color: " + bgColor + "; display: table.row; ";
+                appendStyle(row, {
+                  backgroundColor: bgColor,
+                  display: "table.row",
+                });
 
                 // new section : reset flags
                 ignoreNextRow = false;
-                nextRowColumnBackground = undefined;
+                nextColumnBackground = undefined;
                 columnBackground = undefined;
               }
             }
 
             // format numbers
-            formatNumber(col)
+            formatNumber(col);
 
             // next row text will be red
-            if (col.text === "CARATTERISTICHE EDIFICIO" || col.text === "estremità" ) {
+            if (
+              col.text === "CARATTERISTICHE EDIFICIO" ||
+              col.text === "estremità"
+            ) {
               nextRowTextIsRed = true;
             }
 
             // next row background will be dark orange
             if (col.text.match(/4\.4\.\d/g)) {
-              nextRowColumnBackground = "#ffc000";
+              nextColumnBackground = "#ffc000";
             }
 
-            // next row background will be dark orange
-            if (col.text.match(/pareti interne/g) || col.text.match(/pareti esterne/g)) {
-              col.style = "font-weight: 600;"
+            if (
+              col.col <= 2 &&
+              (col.text.startsWith("codice id. elementi costruttivi") ||
+                col.text === "IQMv" ||
+                col.text === "IQMo,fp" ||
+                col.text === "IQMo,np")
+            ) {
+              appendStyle(row, { display: "none" });
             }
-            
-            /*
-            
-              */
-            if (col.col <= 2 && ( 
-              col.text.startsWith('codice id. elementi costruttivi' ) || 
-              col.text  === 'IQMv' || 
-              col.text  === 'IQMo,fp' || 
-              col.text  === 'IQMo,np' )) {
-                console.log(row);
-                row.style="display:none;"
-            }
-            
 
             // ignore next rows until new section
             if (col.text === "nr. vani" || col.text === "Superficie totale") {
@@ -315,10 +327,10 @@ export default {
       let index = 0;
       let colspanned = false;
       if (sheet === "04_dati_costrutt_CARENZE") {
-        row = row.filter((e) => e.col < 4 );
+        row = row.filter((e) => e.col < 4);
       }
       if (sheet === "04_dati_costrutt_VERT_IQM") {
-        row = row.filter((e) => e.col < 3 );
+        row = row.filter((e) => e.col < 3);
       }
       row.forEach((element) => {
         for (let i = index; i < element.col; i++) {
