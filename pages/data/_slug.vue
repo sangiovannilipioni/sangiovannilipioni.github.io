@@ -5,7 +5,7 @@
         <b-tab
           v-for="(tab, index) in datum"
           :key="index"
-          :title="tab.sheet"
+          :title="tab.title"
           :active="index == 0"
           :id="'_' + tab.sheet.replace(' ', '_')"
         >
@@ -70,8 +70,14 @@ export default {
   fetchKey: "dugenou",
   methods: {
     massageData(json) {
+      const sheetTitles= {
+        '01_id_edificio' : 'Identificazione',
+        '02_descriz_edificio': 'Descrizione',
+        '03_dati_metrici_AB': 'Dati metrici'
+      }
       json = json.filter((sheet, sheetindex) => sheetindex < 3) ;
       json.forEach((sheet, sheetindex) => {
+        sheet.title = sheetTitles[sheet.sheet];
         // remove first row
         sheet.rows.shift();
         // for all rows,
