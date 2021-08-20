@@ -1,8 +1,8 @@
 <template>
-  <div class="container my-4">
+  <div class="container">
 
     <p style="font-size:larger">
-      <nuxt-img id="da_logo" class="img-fluid p-1" style="max-width:340px;height:auto;" src="/foto/LOGO_DA_HD_640.jpg" />
+      <nuxt-img id="da_logo" class="img-fluid img-thumbnail" style="max-width: 320px;" src="/foto/LOGO_DA_HD_320.jpeg" />
       <span style="font-size: larger" v-html="$t('da1')"></span>
     </p>
 
@@ -10,21 +10,22 @@
 
     <p v-html="$t('da3')"></p>
 
-    <p style="text-align:center">
+    <p style="text-align:center;">
       <nuxt-img class="img-fluid" src="/foto/MTSH_1_light.jpg" />
     </p>
   </div>
 </template>
 
 <style scoped>
+.container :last-child {
+  margin-bottom: 0;
+}
 @media (min-width: 540px) {
-
   #da_logo {
       float: right !important;
   }
 }
 @media (max-width: 540px) {
-
   #da_logo {
       float: none;
   }

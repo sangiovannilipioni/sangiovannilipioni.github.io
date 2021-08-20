@@ -30,7 +30,7 @@
         </p><p v-html="$t('pres3')">
         </p><p v-html="$t('pres4')">          
         </p>
-        <ol>
+        <ol style="padding-left: .75rem;">
           <li v-html="$t('pres5_li1')"></li>
           <li v-html="$t('pres5_li2')"></li>
           <li v-html="$t('pres5_li3')"></li>  

@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <div id="slides" class="container">
+    <div id="slidesContent" class="mySlides container">
 
       <h1 class="m-4" style="text-align:center">
         <strong>Nessuno Escluso</strong>
@@ -84,80 +84,3 @@ export default {
 }
 </script>
 
-<style lang="scss">
-
-#slides {
-
-  margin-bottom: 1rem;
-
-  img {
-    margin-left: 1rem;
-    max-width: 30%;
-    float: right;
-  }
-}
-
-.swiper-button-prev, .swiper-button-next {
-  top: 5% !important;
-}
-
-.swiper {
-  border-radius: 0.25rem;
-
-  .swiper-slide {
-    display: flex !important;
-    /* align-items: center !important; */
-    color: black; 
-    display: flex !important;
-    align-items: center !important;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    overflow: scroll;
-    max-height: calc(100vh - (#{$footerHeight} + #{$headerHeight}));
-
-    > div {
-      width: 100%;
-    }
-  }
-}
-
-.swiper#swiperTop {
-
-  border: 1px dotted gray;
-
-  .swiper-slide {
-    background-color: white;
-    padding: 0.75rem;
-  }
-}
-
-.swiper#swiperThumbs {
-  margin: .75rem 0 !important;
-  padding: .5rem 0;
-  background-color: #F7F7F7;
-  border: 1px dotted rgb(191, 191, 191);
-
-  .swiper-slide {
-    width: 16%;
-    overflow: hidden !important;
-
-    button {
-      font-size: 8pt;
-      white-space: nowrap;
-      background-color: white;
-      text-overflow: ellipsis;
-      overflow-x: clip;
-      max-width: 100% !important;
-      padding: 0.1rem .5rem !important;
-    }
-    button:hover {
-      color:black;
-    }
-
-  }
-  .swiper-slide-active > button {
-    color: black;
-    background-color: #EEEEEE;;
-  }
-}
-</style>

@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <div id="slidesImages">
+    <div id="slidesImages" class="mySlides">
       <swiper
         :navigation="true"
         :options="swiperOptionThumbs"
@@ -33,40 +33,7 @@
 </template>
 
 <style lang="scss">
-#slidesImages {
-  margin-bottom: 1rem;
-
-  .swiper#swiperThumbs {
-    background-color: #F7F7F7;
-    border-radius: 0.25rem;
-    border: 1px dotted rgb(191, 191, 191);
-    margin: 0 0 0.5rem 0 !important;
-    padding: .5rem 0;
-    z-index: 0;
-
-    .swiper-slide {
-      width: 15%;
-      overflow: hidden !important;
-
-      button {
-        font-size: 8pt;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        background-color: white;
-        overflow-x: clip;
-        max-width: 100% !important;
-        padding: 0.1rem .5rem !important;
-      }
-    }
-
-    .swiper-slide-active > button {
-    color: black;
-    background-color: #EEEEEE;;
-    }
-  }
-}
 </style>
-
 
 <script>
 export default {
