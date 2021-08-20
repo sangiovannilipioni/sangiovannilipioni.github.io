@@ -2,7 +2,7 @@
 
 Rédaction d'un projet de faisabilité consistant en :
 
-* A. Levé plano-altimétrique et numérisation de tout le territoire de San Giovanni Lipioni, aussi bien la partie habitée que les terres :
+* A. Relevé plano-altimétrique et numérisation de tout le territoire de San Giovanni Lipioni, aussi bien la partie habitée que les terres :
 
     * Préparation de la cartographie et des données de base ( Registre récapitulatif de la partie bâtie et indications sur la partie agricole/bois) et élaborations techniques/graphiques et numériques utiles pour l'enquête ;
 

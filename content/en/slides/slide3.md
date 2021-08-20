@@ -8,4 +8,3 @@
 The fees collected will be allocated (in whole or in part and without any additional costs for the members) to a feasibility analysis. 
 
 This analysis will then be presented to the members' meeting and will constitute the first basis for comparison to determine possible future actions.
-to determine possible future actions.

@@ -1,13 +1,13 @@
 ## Rôle de l'administration municipale
 
 ![Image of SGL](/masonry/1/DSCN7025.jpg)
-Afin de mettre en œuvre le programme, le soutien total et la synergie de la municipalité
-de l'administration municipale afin de soutenir l'initiative d'un point de vue administratif et procédural.
-l'initiative d'un point de vue administratif et procédural.
-Les activités de la compétence municipale sont fondamentales pour la réalisation du projet.
-le projet lui-même. 
+
+Pour la mise en œuvre du programme, le soutien total et la synergie de l'administration municipale sont fondamentaux, 
+afin de soutenir l'initiative d'un point de vue administratif et procédural ; 
+en effet, la fonction d'organisme "facilitateur" et l'activation de toutes les activités 
+relevant de la compétence municipale sont fondamentales pour la réalisation du projet lui-même. 
 
 Par exemple, l'efficacité des services publics, la disponibilité de technologies de pointe
 (réseau WI-FI rapide et/ou ultra-rapide) et la mise en valeur des structures municipales existantes.
-les installations municipales existantes.
+
 
