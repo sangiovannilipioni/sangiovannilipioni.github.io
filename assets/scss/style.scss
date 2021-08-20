@@ -4,15 +4,29 @@ body {
 }
 
 /* https://stackoverflow.com/a/25410621/1070215 */
-a.pdf:before {
-  display: inline-block;
-  content: "";
-  background-image: url("/svg/PDF_file_icon.svg");
-  background-size: 20px 20px;
-  background-repeat: no-repeat;
-  height: 20px;
-  width: 20px;
-  margin-right: 0.5rem;
+.footer {
+  > div > div:last-child > div {
+    white-space: nowrap; 
+    overflow-x: hidden; 
+    text-overflow: ellipsis;
+  }
+  a:before {
+    display: inline-block;
+    content: "";
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    height: 20px;
+    width: 20px;
+    margin-right: 0.5rem;
+  }
+  a.pdf:before {
+    background-image: url("/svg/PDF_file_icon.svg");
+    vertical-align: text-top;
+  }
+  a.mail:before {
+    background-image: url("/svg/mail_icon.svg");
+    vertical-align: middle;
+  }
 }
 
 /* navbar */
