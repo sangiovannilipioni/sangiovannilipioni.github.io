@@ -27,6 +27,7 @@ export default {
   maiellaverde: "Riabitare San Giovanni",
 
   slides: "Esempio di presentazione",
+  schede: "Schede",
 
   loginWarning: "Per il momento, solo il Login con Facebook è disponibile",
   loginPrompt: "Login con",

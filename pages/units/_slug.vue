@@ -1,13 +1,13 @@
 <template>
   <article class="container-fluid">
-    <div class="container d-flex">
+    <div class="container d-flex" style="margin-bottom: .5rem;">
       <b-button variant="outline-secondary" size="sm"  to="/patrimonio">
         <font-awesome-icon :icon="['fas', 'arrow-left']" />
       </b-button>
 
       <div class="flex-grow-1 text-center text-muted" style="margin: auto;">
         <b-button v-if="theUnit.hasData" variant="outline-secondary" size="sm"  :to="`/data/${slug}`">
-          {{ slug }}
+          {{ $t("schede") }}
         </b-button>
         <span v-if="!theUnit.hasData" >{{ slug }}</span>
       </div>
@@ -27,27 +27,22 @@
       </b-modal>
     </div>
 
-    <div class="d-flex bd-highlight" v-if="theUnit">
-      <div class="p-2 flex-fill bd-highlight" style="min-width: 30%">
-        <!-- div style="height: 500px; width: 500px; border: 1px solid red; position: relative;">
-          <vue-draggable-resizable :w="100" :h="100" @dragging="onDrag" @resizing="onResize" :parent="true" :draggable="false">
-            <p>Hello! I'm a flexible component. You can resize me.<br>
-            X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}</p>
-          </vue-draggable-resizable>
-        </div-->
-        <h4>{{ theUnit.title }}</h4>
+    <h4 style="text-align:center;">{{ theUnit.title }} <span class="text-muted" style="font-size: smaller;">[{{ slug }}]</span></h4>
+
+    <div class="d-flex binome" v-if="theUnit">
+      <div class="col">
+        <SlidesImages
+          v-if="theUnit.slides.length"
+          :slides="theUnit.slides"
+          :imgDir="imgDir" />
+      </div>
+      <div class="col">
         <nuxt-img
           v-for="img in theUnit.imgs"
           v-bind:key="img"
           :src="`/foto/${img}`"
           class="img-fluid"
         />
-      </div>
-      <div class="p-2 flex-fill bd-highlight" style="max-width: 70%">
-        <SlidesImages
-          v-if="theUnit.slides.length"
-          :slides="theUnit.slides"
-          :imgDir="imgDir" />
       </div>
     </div>
   </article>

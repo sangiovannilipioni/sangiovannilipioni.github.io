@@ -2,13 +2,13 @@
 <div class="container">
     <div class="m-4">&nbsp;</div>
     <div class="binome card">
-        <div style="border: none;" class="flex-grow-1">
+        <div class="flex-grow-1">
             <span>Comunità di progetto <b>Riabitare San Giovanni</b> sul sito di Maiella Verde</span>
             <a href="https://riabitaresangiovanni.maiellaverde.it/" target="_maiellaverde">
                 <font-awesome-icon :icon="['fas', 'external-link-alt']" />
             </a>
         </div>
-        <div style="border: none;">
+        <div>
             <a href="https://riabitaresangiovanni.maiellaverde.it/" target="_maiellaverde">
                 <nuxt-img src="/jpg/maiellaverde.jpg" alt="Maiella Verde" style="max-width: 80%; height:auto; float:right" />
             </a>

@@ -1,6 +1,7 @@
 <template>
   <client-only>
     <article class="container">
+      <h4 id="title" style="text-align:center;">{{ title }} <span class="text-muted" style="font-size: smaller;">[{{ $route.params.slug }}]</span></h4>
       <b-tabs content-class="mt-3">
         <b-tab
           v-for="(sheet, sheet_index) in datum"
@@ -57,6 +58,7 @@ td:nth-child(1) {
 export default {
   data() {
     return {
+      title: "",
       units: {
         O02: {},
         G01: {},
@@ -161,6 +163,7 @@ export default {
           };
 
           let piano = undefined
+          let indirizzo = undefined
 
           // for all cols
           row.forEach((cell, colindex) => {
@@ -173,6 +176,13 @@ export default {
               if (cell.text === "DATI CATASTALI" ) {
                 ignoreRow = true
                 appendStyle(row, { display: "none" });
+              }
+              if (indirizzo) {
+                this.title = cell.text
+                indirizzo = undefined
+              }
+              if (cell.text === "INDIRIZZO" ) {
+                indirizzo = cell
               }
             }
             // special case 2

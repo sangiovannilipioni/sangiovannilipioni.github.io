@@ -27,6 +27,7 @@ export default {
   maiellaverde: "Riabitare San Giovanni",
 
   slides: "Exemple de présentation",
+  schede: "Données",
 
   loginWarning: "Pour le moment, seul le Login via Facebook est disponbile.",
   loginPrompt: "Login via",

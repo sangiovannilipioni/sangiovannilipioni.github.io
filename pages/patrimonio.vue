@@ -5,7 +5,7 @@
         <div style="width: 100%; margin: 2rem 0" class="binome">
           <div
             id="map"
-            class="col d-flex justify-content-center align-items-center"
+            class="col border d-flex justify-content-center align-items-center"
             style="background: transparent"
           >
             <div>
@@ -15,7 +15,7 @@
           <client-only>
             <div
               id="pano"
-              class="col d-flex justify-content-center align-items-center"
+              class="col border d-flex justify-content-center align-items-center"
               style="background: transparent; padding: 0 !important;"
             ></div>
           </client-only>

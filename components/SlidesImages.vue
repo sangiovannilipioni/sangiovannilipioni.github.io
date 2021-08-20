@@ -40,7 +40,7 @@
     background-color: #eee;
     border-radius: 0.25rem;
     border: 1px dotted rgb(191, 191, 191);
-    margin: 0.75rem 0 !important;
+    margin: 0 0 0.5rem 0 !important;
     padding: .5rem 0;
     z-index: 0;
 
