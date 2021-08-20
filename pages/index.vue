@@ -84,7 +84,7 @@ export default {
       const mapElement = this.mapElement || document.getElementById("map")
       console.log('about to const map = await new google.maps.Map', mapElement, document.getElementById("map"));
       const map = await new google.maps.Map(mapElement, {
-        center: piazza.position,
+        center: farmacia.position,
         zoom: this.zoom,
         /* disableDefaultUI: true, */
         mapTypeControl: false,
@@ -126,7 +126,7 @@ export default {
       });
 
       const marker = new google.maps.Marker({
-        position: piazza.position,
+        position: farmacia.position,
         map,
         label: "San Giovanni Lipioni",
       });
