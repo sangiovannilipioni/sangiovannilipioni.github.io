@@ -9,19 +9,33 @@
         <span v-else>{{ slug }}</span>
       </div>
 
-      <b-button v-b-modal.modalvideo v-if="theUnit.video" variant="outline-secondary" size="sm" class="float-right">Video ...</b-button>
+      <!-- Button trigger modal -->
+      <button v-if="theUnit.video" type="button" class="btn float-right btn-outline-secondary btn-sm" data-toggle="modal" data-target="#modalvideo">Video</button>
 
-      <b-modal id="modalvideo" :title="theUnit.title" size="xl" :hide-footer="true">
-        <vue-plyr
-          v-if="theUnit.video"
-          :options="{ mute: true, volume: 0, captions: true, autoplay: true}"
-        >
-          <div
-            data-plyr-provider="youtube"
-            :data-plyr-embed-id="theUnit.video"
-          ></div>
-        </vue-plyr>
-      </b-modal>
+      <!-- Modal -->
+      <div v-if="theUnit.video" class="modal fade" id="modalvideo" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel">{{theUnit.title}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <vue-plyr
+                v-if="theUnit.video"
+                :options="{ mute: true, volume: 0, captions: true, autoplay: true}"
+              >
+                <div
+                  data-plyr-provider="youtube"
+                  :data-plyr-embed-id="theUnit.video"
+                ></div>
+              </vue-plyr>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <h4 style="text-align:center;">{{ theUnit.title }} <span class="text-muted" style="font-size: smaller;">[{{ slug }}]</span></h4>
