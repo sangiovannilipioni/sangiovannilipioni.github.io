@@ -243,7 +243,7 @@ export default {
 
   content: {
     markdown: {
-      remarkPlugins: [["remark-emoji", { emoticon: true }]]
+      /* remarkPlugins: [["remark-emoji", { emoticon: true }]] */
     }
   },
 
