@@ -1,6 +1,6 @@
 ## Rôle de l'administration municipale
 
-![Image of SGL](/masonry/DSCN7025.jpg)
+![Image of SGL](/masonry/1/DSCN7025.jpg)
 Afin de mettre en œuvre le programme, le soutien total et la synergie de la municipalité
 de l'administration municipale afin de soutenir l'initiative d'un point de vue administratif et procédural.
 l'initiative d'un point de vue administratif et procédural.

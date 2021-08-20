@@ -1,6 +1,6 @@
 ## Objet
 
-![Image of SGL](/masonry/b4e8cca7-36bd-461a-80af-cd4f6da1fef5.jpg)
+![Image of SGL](/masonry/1/b4e8cca7-36bd-461a-80af-cd4f6da1fef5.jpg)
 
 L'Association est constituée pour poursuivre sans but lucratif 
 des objectifs civiques, solidaires et d'utilité sociale dans son intégralité.

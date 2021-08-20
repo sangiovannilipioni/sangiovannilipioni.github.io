@@ -1,6 +1,6 @@
 ## Finalità
 
-![Image of SGL](/masonry/b4e8cca7-36bd-461a-80af-cd4f6da1fef5.jpg)
+![Image of SGL](/masonry/1/b4e8cca7-36bd-461a-80af-cd4f6da1fef5.jpg)
 
 L’Associazione è costituita per il perseguimento senza scopo di
 lucro di finalità civiche, solidaristiche e di utilità sociale nel pieno

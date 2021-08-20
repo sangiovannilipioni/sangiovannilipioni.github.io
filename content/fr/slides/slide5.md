@@ -12,7 +12,7 @@ Rédaction d'un projet de faisabilité consistant en :
     
     * Restitution des données de l'enquête en format numérique.
 
-![Image of SGL](/masonry/rustico_casale_e_casa_di_corte-in-vendita-a-san_giovanni_lipioni1.jpg)
+![Image of SGL](/masonry/1/rustico_casale_e_casa_di_corte-in-vendita-a-san_giovanni_lipioni1.jpg)
 
 * B. Conception et réalisation du projet de communication par Internet ;
 

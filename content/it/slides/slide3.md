@@ -1,6 +1,6 @@
 ## Proposta
 
-![Image of SGL](/masonry/esterno-S.-Maria-delle-Grazie-860x1024.jpg)
+![Image of SGL](/masonry/1/esterno-S.-Maria-delle-Grazie-860x1024.jpg)
 
 * Costituzione di un’ Associazione che deve essere il più possibile inclusiva,
 * la quota associativa (in ragione dell’elevato numero di adesioni) è di 400 euro.

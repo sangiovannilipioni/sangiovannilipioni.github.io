@@ -1,6 +1,6 @@
 ## Proposal for a revitalisation programme for the town of San Giovanni Lipioni.
 
-![Image of SGL](/masonry/m-c.jpg)
+![Image of SGL](/masonry/1/m-c.jpg)
 
 Presented:
 

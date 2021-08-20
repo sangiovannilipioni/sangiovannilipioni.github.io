@@ -1,6 +1,6 @@
 # Programme of Association Activities
 
-![Image of SGL](/masonry/rustico_casale_e_casa_di_corte-in-vendita-a-san_giovanni_lipioni.jpg)
+![Image of SGL](/masonry/1/rustico_casale_e_casa_di_corte-in-vendita-a-san_giovanni_lipioni.jpg)
 
 At the end of this first phase, the Assembly:
 

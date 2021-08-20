@@ -8,4 +8,4 @@ e in parallelo
 
 * B. Potrà essere costituito un soggetto giuridico consono (Società di capitale, o altre forme imprenditoriali) in grado di portare avanti una iniziativa di ampio respiro sia dal punto di vista economico che di capacità imprenditoriale.
 
-![Image of SGL](/masonry/rustico_casale_e_casa_di_corte-in-vendita-a-san_giovanni_lipioni2.jpg)
+![Image of SGL](/masonry/1/rustico_casale_e_casa_di_corte-in-vendita-a-san_giovanni_lipioni2.jpg)
