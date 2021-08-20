@@ -79,7 +79,7 @@ import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "Icon",
-  // middleware: ["auth"],
+  middleware: ["auth"],
   layout: 'void',
   data() {
     return {
