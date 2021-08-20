@@ -1,7 +1,7 @@
 <template>
   <div id="patrimonio" class="container">
-    <b-tabs content-class="mt-3" @activate-tab="onActiveTab">
-      <b-tab :title="$t('map')" active>
+    <b-tabs content-class="mt-3" @activate-tab="onActiveTab" v-model="tabIndex" >
+      <b-tab :title="$t('map')">
         <div style="width: 100%; margin: 2rem 0" class="binome">
           <div
             id="map"
@@ -66,14 +66,25 @@
 </style>
 
 <script>
-
 export default {
   // https://dev.to/bawa93/troubleshooting-and-adding-google-maps-to-individual-nuxt-js-pages-1d34
   // https://dev.to/bawa_geek/how-to-use-google-maps-in-nuxt-js-project-without-any-package-or-heavy-library-26gh
+  computed: {
+    tab () {
+      return this.$store.state.tab.tab
+    }
+  },
   methods: {
     append() {},
     onActiveTab(newTab, previousTab, event) {
-      console.log("onActiveTab", newTab, previousTab, event);
+      // console.log("onActiveTab", this.tabIndex, newTab, previousTab, event);
+
+      console.log("before store", this.tab);
+      this.$store.commit('tab/setTab', {
+        tab: newTab
+      })      
+      console.log("after store", this.tab);
+
       if (newTab === 1) {
         if (typeof this.$redrawVueMasonry === "function") {
           const redrawVueMasonry = this.$redrawVueMasonry;
@@ -193,6 +204,12 @@ export default {
       console.log("google maps initialized !");
     },
   },
+  created() {
+    this.$nextTick(() => {
+      console.log("this.$store.tab", this.tab);
+      this.tabIndex = this.tab
+    })
+  },
   mounted() {
     console.log(
       "MOUNTED map element >>> ",
@@ -229,7 +246,8 @@ export default {
   },
   data() {
     return {
-      units: [
+       tabIndex: 0,
+       units: [
         {
           key: "Via Roma, 37",
           value: "qwe",
