@@ -19,7 +19,7 @@
           transform: {{ getMatrixForRotation(310, 535) }}; 
       }
     </component>
-    <b-form id="strokeWidthForm" class="form-inline">
+    <form id="strokeWidthForm" class="form-inline">
       <div class="white-space-nowrap d-flex w-100">
         <label class="mr-3" for="strokeWidth">Stroke Width</label>
         <vue-slider
@@ -45,7 +45,7 @@
         />
         <div class="feedback ml-3">{{ angle }}°</div>
       </div>
-    </b-form>
+    </form>
     <div
       v-html="src"
       class="logo blurp2 d-flex justify-content-center align-items-center"
@@ -79,7 +79,7 @@ import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "Icon",
-  middleware: ["auth"],
+  // middleware: ["auth"],
   layout: 'void',
   data() {
     return {
