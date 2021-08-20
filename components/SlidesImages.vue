@@ -11,7 +11,7 @@
         style="borde: 1px dotted gray"
       >
         <swiper-slide v-for="(slide, index) in slides" :key="index">
-          <b-button variant="outline-secondary" style="font-size: smaller">{{
+          <b-button variant="outline-secondary">{{
             slide.title
           }}</b-button>
         </swiper-slide>
@@ -37,7 +37,7 @@
   margin-bottom: 1rem;
 
   .swiper#swiperThumbs {
-    background-color: #eee;
+    background-color: #F7F7F7;
     border-radius: 0.25rem;
     border: 1px dotted rgb(191, 191, 191);
     margin: 0 0 0.5rem 0 !important;
@@ -46,11 +46,22 @@
 
     .swiper-slide {
       width: 15%;
+      overflow: hidden !important;
+
+      button {
+        font-size: 8pt;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        background-color: white;
+        overflow-x: clip;
+        max-width: 100% !important;
+        padding: 0.1rem .5rem !important;
+      }
     }
 
     .swiper-slide-active > button {
-      color: white;
-      background-color: lightgray;
+    color: black;
+    background-color: #EEEEEE;;
     }
   }
 }

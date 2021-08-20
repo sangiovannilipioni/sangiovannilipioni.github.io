@@ -134,15 +134,30 @@ export default {
 .swiper#swiperThumbs {
   margin: .75rem 0 !important;
   padding: .5rem 0;
-  background-color: #eee;
+  background-color: #F7F7F7;
   border: 1px dotted rgb(191, 191, 191);
 
   .swiper-slide {
     width: 16%;
+    overflow: hidden !important;
+
+    button {
+      font-size: 8pt;
+      white-space: nowrap;
+      background-color: white;
+      text-overflow: ellipsis;
+      overflow-x: clip;
+      max-width: 100% !important;
+      padding: 0.1rem .5rem !important;
+    }
+    button:hover {
+      color:black;
+    }
+
   }
   .swiper-slide-active > button {
-    color: white;
-    background-color: lightgray;
+    color: black;
+    background-color: #EEEEEE;;
   }
 }
 </style>
