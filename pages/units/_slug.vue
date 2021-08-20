@@ -1,15 +1,12 @@
 <template>
   <article class="container-fluid">
     <div class="container d-flex" style="margin-bottom: .5rem;" v-if="theUnit.hasData || theUnit.video">
-      <!-- b-button variant="outline-secondary" size="sm"  to="/patrimonio">
-        <font-awesome-icon :icon="['fas', 'arrow-left']" />
-      </!-->
 
       <div class="flex-grow-1" style="margin: auto;">
-        <b-button v-if="theUnit.hasData" variant="outline-secondary" size="sm"  :to="`/data/${slug}`">
+        <nuxt-link v-if="theUnit.hasData" :to="`/data/${slug}`" class="btn btn-outline-secondary btn-sm" target="_self">
           {{ $t("schede") }}
-        </b-button>
-        <span v-if="!theUnit.hasData" >{{ slug }}</span>
+        </nuxt-link>
+        <span v-else>{{ slug }}</span>
       </div>
 
       <b-button v-b-modal.modalvideo v-if="theUnit.video" variant="outline-secondary" size="sm" class="float-right">Video ...</b-button>

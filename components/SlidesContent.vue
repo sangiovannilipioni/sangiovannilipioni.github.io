@@ -10,7 +10,7 @@
         <swiper-slide
           v-for="(slide, index) in slides"
           :key="index">
-          <b-button variant="outline-secondary">{{ slide.title }}</b-button>
+          <button type="button" class="btn btn-outline-secondary">{{ slide.title }}</button>
         </swiper-slide>
       </swiper>
 
