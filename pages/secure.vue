@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <b-alert show variant="warning"> This is a secure page! </b-alert>
+    <div role="alert" class="alert alert-warning">This is a secure page!</div>
   </div>
 </template>
 
 <script>
 export default {
-  // middleware: ["auth"]
+  middleware: ["auth"]
 };
 </script>
