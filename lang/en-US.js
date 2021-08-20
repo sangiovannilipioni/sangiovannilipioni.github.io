@@ -25,6 +25,7 @@ export default {
   register: "Membership Application",
   gossip: "Private Area",
   maiellaverde: "Riabitare San Giovanni",
+  maiellaverde_desc: "Project Community <b>“Riabitare San Giovanni”</b> on the Maiella Verde site",
 
   slides: "Sample Slideshow",
   schede: "Data",

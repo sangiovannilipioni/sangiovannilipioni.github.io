@@ -25,6 +25,8 @@ export default {
   register: "Demande d'adhésion",
   gossip: "Zone privée",
   maiellaverde: "Riabitare San Giovanni",
+  maiellaverde_desc: "Communauté de projet <b>“Riabitare San Giovanni”</b> sur le site de Maiella Verde",
+
 
   slides: "Exemple de présentation",
   schede: "Données",

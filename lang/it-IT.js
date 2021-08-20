@@ -25,6 +25,7 @@ export default {
   register: "Richiesta di Adesione",
   gossip: "Area Riservata",
   maiellaverde: "Riabitare San Giovanni",
+  maiellaverde_desc: "Comunità di progetto <b>“Riabitare San Giovanni”</b> sul sito di Maiella Verde ",
 
   slides: "Esempio di presentazione",
   schede: "Schede",
