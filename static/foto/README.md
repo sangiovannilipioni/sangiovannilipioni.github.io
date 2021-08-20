@@ -1,1 +1,0 @@
-Metti les foto qui.
