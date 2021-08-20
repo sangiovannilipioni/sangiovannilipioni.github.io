@@ -7,9 +7,9 @@
                 <font-awesome-icon :icon="['fas', 'external-link-alt']" />
             </a>
         </div>
-        <div>
+        <div class="ml-auto">
             <a href="https://riabitaresangiovanni.maiellaverde.it/" target="_maiellaverde">
-                <nuxt-img src="/jpg/maiellaverde.jpg" alt="Maiella Verde" style="max-width: 80%; height:auto; float:right" />
+                <nuxt-img src="/jpg/maiellaverde.jpg" alt="Maiella Verde" style="max-width:100%;"/>
             </a>
         </div>
     </div>
