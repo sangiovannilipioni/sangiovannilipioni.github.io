@@ -2,7 +2,9 @@
   <div class="container">
 
     <p style="font-size:larger">
-      <nuxt-img id="da_logo" class="img-fluid img-thumbnail" style="max-width: 320px;" src="/foto/LOGO_DA_HD_320.jpeg" />
+      <a href="https://da.unibo.it/it" target="_blank">
+        <nuxt-img id="da_logo" class="img-fluid img-thumbnail" style="max-width: 320px;" src="/foto/LOGO_DA_HD_320.jpeg" />
+      </a>
       <span style="font-size: larger" v-html="$t('da1')"></span>
     </p>
 
@@ -11,7 +13,9 @@
     <p v-html="$t('da3')"></p>
 
     <p style="text-align:center;">
-      <nuxt-img class="img-fluid" src="/foto/MTSH_1_light.jpg" />
+      <a href="https://amslaurea.unibo.it/22533/" target="_blank">
+        <nuxt-img class="img-fluid" src="/foto/MTSH_1_light.jpg" />
+      </a>
     </p>
   </div>
 </template>
