@@ -1,55 +1,66 @@
 <template>
   <div id="patrimonio" class="container">
-    <b-tabs content-class="mt-3" @activate-tab="onActiveTab" v-model="tabIndex" >
-      <b-tab :title="$t('map')">
-        <div style="width: 100%; margin: 2rem 0" class="binome">
-          <div
-            id="map"
-            class="col border d-flex justify-content-center align-items-center"
-            style="background: transparent"
-          >
-            <div>
-              <font-awesome-icon :icon="['fas', 'spinner']" class="fa-spin" />
-            </div>
-          </div>
-          <client-only>
+    <ul role="tablist" class="nav nav-tabs">
+        <li role="presentation" class="nav-item">
+          <a role="tab" id="0" href="#a" data-toggle="tab" :class="`nav-link ${tabIndex === 0 ? 'active' : ''}`">{{ $t('map') }}</a>
+        </li>
+        <li role="presentation" class="nav-item">
+          <a role="tab" id="1" href="#b" data-toggle="tab" :class="`nav-link ${tabIndex === 1 ? 'active' : ''}`">{{ $t('photos') }}</a>
+        </li>
+        <li role="presentation" class="nav-item">
+          <a role="tab" id="2" href="#c" data-toggle="tab" :class="`nav-link ${tabIndex === 2 ? 'active' : ''}`">{{ $t('list') }}</a>
+        </li>
+    </ul>
+    <div class="tab-content mt-3" id="myTabContent">
+        <div id="a" role="tabpanel" :class="`tab-pane fade ${tabIndex === 0 ? ' show active' : ''}`">
+          <div style="width: 100%; margin: 2rem 0" class="binome">
             <div
-              id="pano"
+              id="map"
               class="col border d-flex justify-content-center align-items-center"
-              style="background: transparent; padding: 0 !important;"
-            ></div>
-          </client-only>
+              style="background: transparent"
+            >
+              <div>
+                <font-awesome-icon :icon="['fas', 'spinner']" class="fa-spin" />
+              </div>
+            </div>
+            <client-only>
+              <div
+                id="pano"
+                class="col border d-flex justify-content-center align-items-center"
+                style="background: transparent; padding: 0 !important;"
+              ></div>
+            </client-only>
+          </div>
         </div>
-      </b-tab>
-      <b-tab :title="$t('photos')">
-        <masonry-div :items="items" :imgDir="imgDir" />
-      </b-tab>
-      <b-tab :title="$t('list')">
-        <b-card
-          v-for="unit in units"
-          v-bind:key="unit.index"
-          style="margin-bottom: 0.75rem; overflow: hidden"
-        >
-          <div class="d-flex" v-if="unit.foto">
-            <div class="p-2 flex-grow-1">
-              <span>{{ unit.key }}</span>
-            </div>
-            <div class="p-2" style="max-width: 30%; text-align: right">
-              <NuxtLink :to="`/units/${unit.ref}`">
-                <nuxt-img class="thmb" :src="unit.foto" alt="" />
-              </NuxtLink>
-            </div>
-          </div>
-          <div
-            class="p-2 flex-grow-1"
-            style="text-align: center"
-            v-if="!unit.foto"
+        <div id="b" role="tabpanel" :class="`tab-pane fade ${tabIndex === 1 ? ' show active' : ''}`">
+          <masonry-div :items="items" :imgDir="imgDir" />
+        </div>
+        <div id="c" role="tabpanel" :class="`tab-pane fade ${tabIndex === 2 ? ' show active' : ''}`">
+          <div class="card"
+            v-for="unit in units"
+            v-bind:key="unit.index"
+            style="margin-bottom: 0.75rem; overflow: hidden"
           >
-            {{ unit.key }}
+            <div class="d-flex" v-if="unit.foto">
+              <div class="p-2 flex-grow-1">
+                <span>{{ unit.key }}</span>
+              </div>
+              <div class="p-2" style="max-width: 30%; text-align: right">
+                <NuxtLink :to="`/units/${unit.ref}`">
+                  <nuxt-img class="thmb" :src="unit.foto" alt="" />
+                </NuxtLink>
+              </div>
+            </div>
+            <div
+              class="p-2 flex-grow-1"
+              style="text-align: center"
+              v-if="!unit.foto"
+            >
+              {{ unit.key }}
+            </div>
           </div>
-        </b-card>
-      </b-tab>
-    </b-tabs>
+        </div>
+    </div>
   </div>
 </template>
 
@@ -182,21 +193,14 @@ export default {
             if (document.getElementById("otherImage")) {
               document.getElementById("otherImage").remove();
             }
-            if (true) {
-              document.getElementById("pano").innerHTML =
-                "<a href='/units/" +
-                unit.ref +
-                "' style='width:100%;height:100%;'>" +
-                "<div id='otherImage' style='width:100%;height:100%;background: no-repeat center center url(" +
-                unit.foto +
-                "); background-size: cover;'></div>" +
-                "</a>";
-            } else {
-              document.getElementById("pano").innerHTML =
-                "<video playsinline autoplay loop><source :src='" +
-                unit.video +
-                "' type='video/mp4' />Sorry, your browser doesn't support embedded videos.</video>";
-            }
+            document.getElementById("pano").innerHTML =
+              "<a href='/units/" +
+              unit.ref +
+              "' style='width:100%;height:100%;'>" +
+              "<div id='otherImage' style='width:100%;height:100%;background: no-repeat center center url(" +
+              unit.foto +
+              "); background-size: cover;'></div>" +
+              "</a>";
           });
         }
       });
@@ -211,6 +215,12 @@ export default {
     })
   },
   mounted() {
+    // https://stackoverflow.com/a/42513893/1070215
+    $('a[data-toggle="tab"]').on('shown.bs.tab', (event) => {
+      console.log(event)
+      this.onActiveTab(+event.target.id, +event.relatedTarget.id, event)
+    })
+
     console.log(
       "MOUNTED map element >>> ",
       document.getElementById("theTitle"),
