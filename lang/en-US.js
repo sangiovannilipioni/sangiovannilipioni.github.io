@@ -27,6 +27,11 @@ export default {
   maiellaverde: "Riabitare San Giovanni",
   maiellaverde_desc: "Project Community <b>“Riabitare San Giovanni”</b> on the Maiella Verde site",
 
+  
+  googlePopup: "<b>San Giovanni Lipioni</b> is a small village and comune located at the southernmost tip of province of Chieti in the Abruzzo region of Italy, on a 545-metre (1,788 ft) hill overlooking the river Trigno valley.",
+  googlePopupLinkToWikipedia: "https://en.wikipedia.org/wiki/San_Giovanni_Lipioni", 
+  
+
   slides: "Sample Slideshow",
   schede: "Data sheet",
 

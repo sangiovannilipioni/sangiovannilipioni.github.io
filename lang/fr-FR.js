@@ -27,7 +27,9 @@ export default {
   maiellaverde: "Riabitare San Giovanni",
   maiellaverde_desc: "Communauté de projet <b>“Riabitare San Giovanni”</b> sur le site de Maiella Verde",
 
-
+  googlePopup: "<b>San Giovanni Lipioni</b> est une ville italienne de 152 habitants située dans la province de Chieti dans les Abruzzes.",
+  googlePopupLinkToWikipedia: "https://fr.wikipedia.org/wiki/San_Giovanni_Lipioni", 
+  
   slides: "Exemple de présentation",
   schede: "Fiche technique",
 

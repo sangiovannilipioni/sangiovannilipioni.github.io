@@ -27,6 +27,9 @@ export default {
   maiellaverde: "Riabitare San Giovanni",
   maiellaverde_desc: "Comunità di progetto <b>“Riabitare San Giovanni”</b> sul sito di Maiella Verde ",
 
+  googlePopup: "<b>San Giovanni Lipioni</b> è un comune italiano di 152 abitanti della provincia di Chieti in Abruzzo.",
+  googlePopupLinkToWikipedia: "https://it.wikipedia.org/wiki/San_Giovanni_Lipioni", 
+  
   slides: "Esempio di presentazione",
   schede: "Scheda tecnica",
 

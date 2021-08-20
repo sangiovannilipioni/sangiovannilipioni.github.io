@@ -10,7 +10,7 @@
         >
           <div
             id="map"
-            class="col border d-flex justify-content-center align-items-center"
+            class="col d-flex justify-content-center align-items-center"
             style="background: transparent"
           >
             <div>
@@ -19,7 +19,7 @@
           </div>
           <div
             id="pano"
-            class="col border d-flex justify-content-center align-items-center"
+            class="col d-flex justify-content-center align-items-center"
             style="background: transparent"
           >
             <font-awesome-icon :icon="['fas', 'spinner']" class="fa-spin" />
@@ -30,7 +30,7 @@
         </p><p v-html="$t('pres3')">
         </p><p v-html="$t('pres4')">          
         </p>
-        <ol style="padding-left: .75rem;">
+        <ol>
           <li v-html="$t('pres5_li1')"></li>
           <li v-html="$t('pres5_li2')"></li>
           <li v-html="$t('pres5_li3')"></li>  
@@ -111,14 +111,14 @@ export default {
       const contentString =
         '<div id="content">' +
         '<div id="siteNotice">' +
-        "</div>" +
+        '</div>' +
         '<div id="bodyContent">' +
-        "<p><b>San Giovanni Lipioni</b> è un comune italiano di 152 abitanti della provincia di Chieti in Abruzzo.</p>" +
-        '<p>cf. <a href="https://it.wikipedia.org/wiki/San_Giovanni_Lipioni">' +
-        "https://it.wikipedia.org/wiki/San_Giovanni_Lipioni</a> " +
-        "</p>" +
-        "</div>" +
-        "</div>";
+        '<p>' + this.$t('googlePopup') + '</p>' +
+        '<p>cf. <a target="_blank" href="' + this.$t('googlePopupLinkToWikipedia') + '">' +
+        '' + this.$t('googlePopupLinkToWikipedia') + '</a>' +
+        '</p>' +
+        '</div>' +
+        '</div>';
 
       const infowindow = new google.maps.InfoWindow({
         content: contentString,
