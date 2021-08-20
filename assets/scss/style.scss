@@ -92,30 +92,42 @@ a.pdf:before {
 .binome > div.border {
   border: solid 1px lightgray;
   padding: 0.25rem !important;
-  flex: 1 0 0%;
 }
 
 @media (orientation: landscape) {
   .binome {
     flex-direction: row;
+    flex-flow: row wrap;
   }
   .binome > div:first-child {
     margin-right: .5rem;
   }
   .binome > div:last-child {
     margin-left: .5rem;
+    max-width: 75%;
   }
 }
 
 @media (orientation: portrait) {
   .binome {
     flex-direction: column;
+    flex-flow: column;
   }
   .binome > div:first-child {
     margin-bottom: .5rem;
   }
   .binome > div:last-child {
     margin-top: .5rem;
+  }
+  .binome.reverse {
+    flex-direction: column;
+    flex-flow: column-reverse;
+  }
+  .binome.reverse > div:first-child {
+    margin-top: .5rem;
+  }
+  .binome.reverse > div:last-child {
+    margin-bottom: .5rem;
   }
 }
 

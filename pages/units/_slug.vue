@@ -29,20 +29,20 @@
 
     <h4 style="text-align:center;">{{ theUnit.title }} <span class="text-muted" style="font-size: smaller;">[{{ slug }}]</span></h4>
 
-    <div class="d-flex binome" v-if="theUnit">
-      <div class="col">
-        <SlidesImages
-          v-if="theUnit.slides.length"
-          :slides="theUnit.slides"
-          :imgDir="imgDir" />
-      </div>
-      <div class="col">
+    <div class="binome reverse" v-if="theUnit">
+      <div class="col" style="flex: 1;">
         <nuxt-img
           v-for="img in theUnit.imgs"
           v-bind:key="img"
           :src="`/foto/${img}`"
           class="img-fluid"
         />
+      </div>
+      <div class="col" style="flex: 2;">
+        <SlidesImages
+          v-if="theUnit.slides.length"
+          :slides="theUnit.slides"
+          :imgDir="imgDir" />
       </div>
     </div>
   </article>

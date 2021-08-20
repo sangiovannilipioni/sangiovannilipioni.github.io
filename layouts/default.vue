@@ -10,10 +10,10 @@
     
     <footer class="footer py-1" style="margin-top: auto!important;" v-if="isHomePage">
       <div class="container binome">
-        <div class="text-muted border">
+        <div class="text-muted border" style="flex: 1 0 0%;">
           <div style="whitespace: nowrap">Associazione <b>Nessuno Escluso</b> APS<br>Largo del Popolo, 50<br>66050 San Giovanni Lipioni (CH)</div>
         </div>
-        <div class="text-muted border">
+        <div class="text-muted border" style="flex: 1 0 0%;">
           <div style="whitespace: nowrap">
             <a href="mailto:nessunoesclusoaps@gmail.com"><font-awesome-icon :icon="['fas', 'envelope']" /> nessunoesclusoaps@gmail.com</a>
           </div>

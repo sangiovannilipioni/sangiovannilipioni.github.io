@@ -10,7 +10,7 @@
         >
           <div
             id="map"
-            class="col d-flex justify-content-center align-items-center"
+            class="col border d-flex justify-content-center align-items-center"
             style="background: transparent"
           >
             <div>
@@ -19,7 +19,7 @@
           </div>
           <div
             id="pano"
-            class="col d-flex justify-content-center align-items-center"
+            class="col border d-flex justify-content-center align-items-center"
             style="background: transparent"
           >
             <font-awesome-icon :icon="['fas', 'spinner']" class="fa-spin" />
