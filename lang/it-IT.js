@@ -28,7 +28,7 @@ export default {
   maiellaverde_desc: "Comunità di progetto <b>“Riabitare San Giovanni”</b> sul sito di Maiella Verde ",
 
   slides: "Esempio di presentazione",
-  schede: "Schede",
+  schede: "Scheda tecnica",
 
   loginWarning: "Per il momento, solo il Login con Facebook è disponibile",
   loginPrompt: "Login con",

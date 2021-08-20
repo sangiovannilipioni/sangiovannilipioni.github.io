@@ -1,11 +1,11 @@
 <template>
   <article class="container-fluid">
-    <div class="container d-flex" style="margin-bottom: .5rem;">
-      <b-button variant="outline-secondary" size="sm"  to="/patrimonio">
+    <div class="container d-flex" style="margin-bottom: .5rem;" v-if="theUnit.hasData || theUnit.video">
+      <!-- b-button variant="outline-secondary" size="sm"  to="/patrimonio">
         <font-awesome-icon :icon="['fas', 'arrow-left']" />
-      </b-button>
+      </!-->
 
-      <div class="flex-grow-1 text-center text-muted" style="margin: auto;">
+      <div class="flex-grow-1" style="margin: auto;">
         <b-button v-if="theUnit.hasData" variant="outline-secondary" size="sm"  :to="`/data/${slug}`">
           {{ $t("schede") }}
         </b-button>

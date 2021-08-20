@@ -29,7 +29,7 @@ export default {
 
 
   slides: "Exemple de présentation",
-  schede: "Données",
+  schede: "Fiche technique",
 
   loginWarning: "Pour le moment, seul le Login via Facebook est disponbile.",
   loginPrompt: "Login via",

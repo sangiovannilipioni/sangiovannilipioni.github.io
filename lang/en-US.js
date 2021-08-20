@@ -28,7 +28,7 @@ export default {
   maiellaverde_desc: "Project Community <b>“Riabitare San Giovanni”</b> on the Maiella Verde site",
 
   slides: "Sample Slideshow",
-  schede: "Data",
+  schede: "Data sheet",
 
   loginWarning: "For the time being, only Login through Facebook is enabled.",
   loginPrompt: "Login with",
