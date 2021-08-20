@@ -2,14 +2,25 @@
   <client-only>
     <article class="container">
       <h4 id="title" style="text-align:center;">{{ title }} <span class="text-muted" style="font-size: smaller;">[{{ $route.params.slug }}]</span></h4>
-      <b-tabs content-class="mt-3">
-        <b-tab
+      <ul role="tablist" class="nav nav-tabs">
+        <li role="presentation" class="nav-item" 
+          v-for="(sheet, sheet_index) in datum"
+          :key="sheet_index" 
+          :id="`_${sheet_index}`"
+        >
+          <a role="tab" :href="`#_${sheet.sheet.replace(' ', '_')}`" target="_self" data-toggle="tab" :class="`nav-link ${sheet_index == 0 ? 'active' : ''}`" >
+            {{ sheet.title }}
+          </a>
+        </li>
+      </ul>
+      <div class="tab-content mt-3" id="myTabContent">
+        <div 
+          :class="`tab-pane fade ${sheet_index == 0 ? 'show active' : ''}`" 
+          role="tabpanel"
           v-for="(sheet, sheet_index) in datum"
           :key="sheet_index"
-          :title="sheet.title"
-          :active="sheet_index == 0"
-          :id="'_' + sheet.sheet.replace(' ', '_')"
-        >
+          :id="'_' + sheet.sheet.replace(' ', '_')" 
+        ><!-- :id="`_${sheet_index}`" -->
           <table class="table table-sm table-responsive table-borderless">
             <tr
               v-for="(row, row_index) in sheet.rows"
@@ -26,8 +37,8 @@
               </td>
             </tr>
           </table>
-        </b-tab>
-      </b-tabs>
+        </div>
+      </div>
     </article>
   </client-only>
 </template>

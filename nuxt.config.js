@@ -98,7 +98,17 @@ export default {
         sizes: "16x16",
         href: "/favicon-16x16.png"
       }
-    ]
+    ],
+    script: [
+      {
+        src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js",
+        type: "text/javascript"
+      },
+      {
+        src: "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js", 
+        type: "text/javascript" 
+      }
+    ]    
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
