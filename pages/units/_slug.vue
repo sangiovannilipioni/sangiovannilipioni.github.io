@@ -1,66 +1,75 @@
 <template>
-  <article class="container-fluid">
-    <div class="container d-flex" style="margin-bottom: 0.5rem" v-if="theUnit.hasData || theUnit.video">
-      <div class="flex-grow-1" style="margin: auto">
-        <nuxt-link v-if="theUnit.hasData" :to="`/data/${slug}`" class="btn btn-outline-secondary btn-sm" target="_self">
-          {{ $t("schede") }}
-        </nuxt-link>
-        <span v-else>{{ slug }}</span>
-      </div>
+  <client-only>
+    <article class="container-fluid">
+      <div class="container d-flex" style="margin-bottom: 0.5rem" v-if="theUnit.hasData || theUnit.video">
+        <div class="flex-grow-1" style="margin: auto">
+          <nuxt-link
+            v-if="theUnit.hasData"
+            :to="`/data/${slug}`"
+            class="btn btn-outline-secondary btn-sm"
+            target="_self"
+          >
+            {{ $t("schede") }}
+          </nuxt-link>
+          <span v-else>{{ slug }}</span>
+        </div>
 
-      <!-- Button trigger modal -->
-      <button
-        v-if="theUnit.video"
-        type="button"
-        class="btn float-right btn-outline-secondary btn-sm"
-        data-toggle="modal"
-        data-target="#modalvideo"
-      >
-        Video
-      </button>
+        <!-- Button trigger modal 
+        <button
+          v-if="theUnit.video"
+          type="button"
+          class="btn float-right btn-outline-secondary btn-sm"
+          data-toggle="modal"
+          data-target="#modalvideo"
+        >
+          Video
+        </button>
+        -->
 
-      <!-- Modal -->
-      <div v-if="theUnit.video" class="modal fade" id="modalvideo" tabindex="-1">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modalLabel">{{ theUnit.title }}</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <vue-plyr
-                v-if="theUnit.video"
-                :options="{
-                  mute: true,
-                  volume: 0,
-                  captions: true,
-                  autoplay: true
-                }"
-              >
-                <div data-plyr-provider="youtube" :data-plyr-embed-id="theUnit.video"></div>
-              </vue-plyr>
+        <!-- Modal 
+        <div v-if="theUnit.video" class="modal fade" id="modalvideo" ref="modalvideo" tabindex="-1">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">{{ theUnit.title }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <vue-plyr
+                  v-if="theUnit.video"
+                  :options="{
+                    mute: true,
+                    volume: 0,
+                    captions: true,
+                    autoplay: false
+                  }"
+                >
+                  <div data-plyr-provider="youtube" :data-plyr-embed-id="theUnit.video"></div>
+                </vue-plyr>
+              </div>
             </div>
           </div>
         </div>
+        -->
       </div>
-    </div>
 
-    <h4 style="text-align: center">
-      {{ theUnit.title }}
-      <span class="text-muted" style="font-size: smaller">[{{ slug }}]</span>
-    </h4>
+      <h4 style="text-align: center">
+        {{ theUnit.title }}
+        <span class="text-muted" style="font-size: smaller">[{{ slug }}]</span>
+      </h4>
 
-    <div class="binome reverse" v-if="theUnit">
-      <div class="col" style="flex: 1">
-        <nuxt-img v-for="img in theUnit.imgs" v-bind:key="img" :src="`/foto/${img}`" class="img-fluid" />
+      <div class="binome reverse" v-if="theUnit">
+        <div class="col" style="flex: 1">
+          <nuxt-img v-for="img in theUnit.imgs" v-bind:key="img" :src="`/foto/${img}`" class="img-fluid" />
+        </div>
+        <div class="col" style="flex: 2">
+          <SlidesImages v-if="theUnit.slides.length" :slides="theUnit.slides" :imgDir="imgDir" />
+        </div>
       </div>
-      <div class="col" style="flex: 2">
-        <SlidesImages v-if="theUnit.slides.length" :slides="theUnit.slides" :imgDir="imgDir" />
-      </div>
-    </div>
-  </article>
+    </article>
+  </client-only>
 </template>
 
 <style lang="scss">
@@ -130,6 +139,16 @@ export default {
         }
       }
     }
+  },
+  mounted() {
+    // https://stackoverflow.com/a/42513893/1070215
+    console.log("this.$refs.modalvideo", this.$refs.modalvideo) /*
+    $(this.$refs).on("shown.bs.modal", function (e) {
+      console.log("shown.bs.modal")
+    })
+    $(this.$refs).on("hidden.bs.modal", function (e) {
+      console.log("hide.bs.modal")
+    })*/
   },
   computed: {
     slug() {
