@@ -10,7 +10,6 @@
         id="swiperThumbs"
         ref="swiperThumbs"
         class="swiper gallery-thumbs my-4"
-        style="borde: 1px dotted gray"
         :options="swiperOptionThumbs"
         @slideChange="onThumbnailChange"
       >

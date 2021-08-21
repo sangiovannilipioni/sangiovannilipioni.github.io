@@ -8,7 +8,6 @@
         class="swiper gallery-thumbs my-3"
         id="swiperThumbs"
         ref="swiperThumbs"
-        style="borde: 1px dotted gray"
       >
         <swiper-slide v-for="(slide, index) in slides" :key="index">
           <button type="button" class="btn btn-outline-secondary">

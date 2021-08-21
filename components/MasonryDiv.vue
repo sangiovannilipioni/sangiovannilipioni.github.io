@@ -11,7 +11,7 @@
           :src="`${imgDir}/${item.pathShort}`"
           :disabled="item.disabled"
         />
-        <div v-if="item.key" style="text-align: center">{{ item.key }}</div>
+        <div v-if="item.key" class="Didascalie">{{ item.key }}</div>
       </div>
     </div>
   </div>
@@ -46,6 +46,9 @@ export default {
   }
   .Img[disabled="disabled"] {
     filter: grayscale(100%);
+  }
+  .Didascalie {
+    text-align: center;
   }
 }
 </style>

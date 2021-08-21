@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <nav class="navbar container navbar-light navbar-expand-lg" style="padding: 0 rem">
+    <nav class="navbar container navbar-light navbar-expand-lg">
       <nuxt-link :to="localePath('/')" target="_self" class="navbar-brand">
         <LogoDiv :class="isHomePage ? 'home' : 'not-home'" />
       </nuxt-link>
@@ -106,14 +106,10 @@
           </li>
 
           <li v-else right="" class="nav-item">
-            <nuxt-link :to="localePath('/login')" target="_self" class="nav-link"
-              ><span style="white-space: nowrap" class="nav-item">
+            <nuxt-link :to="localePath('/login')" target="_self" class="nav-link">
+              <span style="white-space: nowrap" class="nav-item">
                 {{ $t("signIn") }}
-                <!--font-awesome-icon
-                  :icon="['fas', 'sign-in-alt']"
-                  style="margin-left: 0.25rem"
-              /--></span
-              >
+              </span>
             </nuxt-link>
           </li>
         </ul>
