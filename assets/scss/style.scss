@@ -39,7 +39,7 @@ main[role="main"] {
   padding-bottom: .5rem;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   main[role="main"].home {
     margin-top: 6rem;
   }
@@ -73,7 +73,7 @@ main[role="main"] {
     stroke-width: $logoStrokeWidth;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   main[role="main"].home {
     margin-top: 5rem;
   }

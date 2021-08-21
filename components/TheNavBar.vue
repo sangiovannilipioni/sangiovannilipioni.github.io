@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <nav
-      class="navbar container navbar-light navbar-expand-md"
+      class="navbar container navbar-light navbar-expand-lg"
       style="padding: 0 rem"
     >
       <nuxt-link :to="localePath('/')" target="_self" class="navbar-brand">
@@ -79,11 +79,13 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item d-none d-xl-block">
+            <!-- hide on screens smaller than lg https://getbootstrap.com/docs/4.6/utilities/display/ -->
             <nuxt-link
               :to="localePath('/maiellaverde')"
               target="_self"
               class="nav-link"
+              style="white-space: nowrap"
               >{{ $t("maiellaverde") }}</nuxt-link
             >
           </li>
@@ -153,12 +155,13 @@
               :to="localePath('/login')"
               target="_self"
               class="nav-link"
-              ><span style="white-space: nowrap"
-                >{{ $t("signIn")
-                }}<font-awesome-icon
+              ><span style="white-space: nowrap" class="nav-item">
+                {{ $t("signIn") }}
+                <!--font-awesome-icon
                   :icon="['fas', 'sign-in-alt']"
-                  style="margin-left: 0.25rem" /></span
-            ></nuxt-link>
+                  style="margin-left: 0.25rem"
+              /--></span>
+            </nuxt-link>
           </li>
         </ul>
       </div>
