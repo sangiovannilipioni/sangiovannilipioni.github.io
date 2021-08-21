@@ -2,12 +2,11 @@
   <client-only>
     <nav
       class="navbar container navbar-light navbar-expand-md"
-      style="padding: 0 1rem"
+      style="padding: 0 rem"
     >
       <nuxt-link :to="localePath('/')" target="_self" class="navbar-brand">
         <LogoDiv :class="isHomePage ? 'home' : 'not-home'" />
       </nuxt-link>
-
       <button
         class="navbar-toggler"
         type="button"
@@ -22,13 +21,9 @@
       <div
         class="collapse navbar-collapse"
         id="navbarSupportedContent"
-        style="
-          text-align: center;
-          border: 1px dotted gray;
-          border-radius: 0.25rem;
-          z-index: 3;
-          margin-top: -1.5rem;
-        "
+        data-toggle="collapse"
+        data-target=".navbar-collapse"
+        style="text-align: center; z-index: 3"
       >
         <ul toggleable="sm" class="navbar-nav" style="flex: auto">
           <li class="nav-item">
