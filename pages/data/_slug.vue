@@ -58,14 +58,14 @@ td:nth-child(1) {
   text-align: right;
 }
 #_03_dati_metrici_AB {
-  td:nth-child(2) {
-    width: 5%;
-  }
   td:nth-child(3) {
-    /* text-align: right; */
     width: 5%;
   }
   td:nth-child(4) {
+    /* text-align: right; */
+    width: 5%;
+  }
+  td:nth-child(5) {
     text-align: right;
     width: 5%;
   }
@@ -84,7 +84,8 @@ export default {
     }
   },
   async fetch() {
-    const data = this.massageData(await fetch("/json/SintesiO2.json").then((res) => res.json()))
+    const data = this.massageData(await fetch("/json/Sintesi_O2_v2.json").then((res) => res.json()))
+    // const data = await fetch("/json/Sintesi_O2_v2.json").then((res) => res.json())
     this.units[this.$route.params.slug] = data
   },
   fetchOnServer: false,
@@ -114,6 +115,11 @@ export default {
         }
       }
 
+      function getLevel(breadcrumb) {
+        if (!breadcrumb) return 0
+        return (breadcrumb.match(/\./g) || []).length
+      }
+
       const sheetTitles = {
         "01_id_edificio": "Identificazione",
         "02_descriz_edificio": "Descrizione",
@@ -127,6 +133,7 @@ export default {
 
       // for all sheets
       json.forEach((sheet) => {
+        console.log("sheet.sheet", sheet.sheet)
         // set title
         sheet.title = sheetTitles[sheet.sheet]
 
@@ -134,6 +141,7 @@ export default {
         sheet.rows.shift()
 
         let is__01_id_edificio = sheet.sheet === "01_id_edificio"
+        let is__02_descriz_edificio = sheet.sheet === "02_descriz_edificio"
         let is_03_dati_metrici_AB = sheet.sheet === "03_dati_metrici_AB"
         let is_04_dati_costrutt_CARENZE = sheet.sheet === "04_dati_costrutt_CARENZE"
         let is_04_dati_costrutt_VERT_IQM = sheet.sheet === "04_dati_costrutt_VERT_IQM"
@@ -145,7 +153,11 @@ export default {
         let newCellAfterSolaioDiPiano = undefined
 
         // for all rows
+        let breadcrumb = undefined
         sheet.rows.forEach((row, rowindex) => {
+
+          breadcrumb = undefined
+          
           // hide ignored rows
           if (ignoreRow) {
             appendStyle(row, { display: "none" })
@@ -156,9 +168,6 @@ export default {
             rowColor = undefined
           }
           // maxi prise de tête
-          /* else if (columnBackground === "#fff2cd") {
-                  columnBackground = "#eee";
-                } */
           if (nextColumnBackground) {
             columnBackground = nextColumnBackground
           }
@@ -178,15 +187,52 @@ export default {
             carenzestrutturali: "carenze strutturali"
           }
 
-          let piano = undefined
           let indirizzo = undefined
 
           // for all cols
           row.forEach((cell, colindex) => {
+
+            // for each column -------------------------------------------------
+
             // fix typos
             cell.text = fixTypos[cell.text] || cell.text
 
-            // special case 1
+            // if first column is column zero, and is a numeric, style the row with gray background
+            if (colindex === 0) {
+              if (cell.col === "0" && !isNaN(cell.text.replace(".", ""))) {
+
+                breadcrumb = cell.text
+
+                let bgColor = "#eee"
+
+                // for 'Carenze' and 'Qualità' sheets, darker gray for 3rd level rows (of the form 'x.y.z', that is, with two dots)
+                if (is_04_dati_costrutt_CARENZE || is_04_dati_costrutt_VERT_IQM) {
+                  if (getLevel(breadcrumb) === 2) {
+                    bgColor = "#ddd"
+                  }
+                }
+
+                appendStyle(row, {
+                  backgroundColor: bgColor,
+                  display: "table.row"
+                })
+              }
+            }
+
+            // format numbers
+            formatNumber(cell)
+
+            if (
+              cell.col <= 3 &&
+              (cell.text.startsWith("codice id. elementi costruttivi") ||
+                cell.text === "IQMv" ||
+                cell.text === "IQMo,fp" ||
+                cell.text === "IQMo,np")
+            ) {
+              appendStyle(row, { display: "none" })
+            }
+
+            // special case 1 -------------------------------------------------
             if (is__01_id_edificio) {
               if (cell.text === "DATI CATASTALI") {
                 ignoreRow = true
@@ -200,81 +246,28 @@ export default {
                 indirizzo = cell
               }
             }
-            // special case 2
-            else if (is_03_dati_metrici_AB) {
-              // ignore next rows until new section
-              if (cell.text === "nr. vani" || cell.text === "Superficie totale") {
-                ignoreRow = true
+            // special case 2 -------------------------------------------------
+            else if (is__02_descriz_edificio) {
+              // next row text will be red
+              if (cell.text === "CARATTERISTICHE EDIFICIO" || cell.text === "estremità") {
+                rowColor = "#a42424"
               }
             }
-            // special case 3
-            else if (is_04_dati_costrutt_CARENZE) {
-              // "ct" and "c" are bold
-              if (cell.text === "ct" || cell.text === "c") {
-                appendStyle(cell, { fontWeight: 600 })
-              }
-
-              // new col will be added after this row.forEach
-              if (cell.text === "solaio di piano") {
-                newCellAfterSolaioDiPiano = {
-                  col: "3",
-                  text: "",
-                  style: "font-weight: 600;"
-                }
-              }
-
-              // set text of new col
-              if (piano) {
-                if (newCellAfterSolaioDiPiano) {
-                  newCellAfterSolaioDiPiano.text = cell.text
-                  formatNumber(newCellAfterSolaioDiPiano)
-                  newCellAfterSolaioDiPiano = undefined
-                }
-                piano = undefined
-              }
-
-              // remember that we hit "piano" cell, hide text
-              if (cell.text === "piano") {
-                piano = cell
-                piano.text = "‌&zwnj;"
-              }
-
-              // stop ignoring rows when meeting full uppercase cell
-              if (ignoreRow && isUpper(cell.text)) {
-                appendStyle(row, { display: "table.row" })
-                ignoreRow = false
-                columnBackground = "#ffe699"
-              }
-
-              if (columnBackground && 1 <= cell.col && cell.col <= 3) {
-                appendStyle(cell, { backgroundColor: columnBackground })
-                // add bold for these two
-                if (columnBackground === "#ffc000" || columnBackground === "#ffe699") {
-                  appendStyle(cell, { fontWeight: 600 })
-                }
-                // add center for this
-                if (columnBackground === "#eee") {
-                  appendStyle(cell, { textAlign: "center" })
-                }
-                // loop on backgrounds (until reset section)
-                if (columnBackground === "#eee") {
-                  columnBackground = "#fff2cd"
-                  nextColumnBackground = "#eee"
-                }
-              }
-            }
-            // special case 4
+            // special case 4 -------------------------------------------------
             else if (is_04_dati_costrutt_VERT_IQM) {
               if (cell.text.match(/pareti interne/g) || cell.text.match(/pareti esterne/g)) {
                 columnBackground = undefined
                 appendStyle(cell, { fontWeight: 600 })
               }
-              if (cell.text === "A1" || cell.text === "A2") {
+              if (cell.text.match(/A[1234]/g)) {
                 columnBackground = "#c6e0b3"
                 nextColumnBackground = "#eee"
+                appendStyle(cell, { fontWeight: 600 })
               }
-              if (columnBackground && 1 <= cell.col && cell.col <= 2) {
-                appendStyle(cell, { backgroundColor: columnBackground })
+              if (columnBackground && 2 <= cell.col && cell.col <= 3) {
+                if (getLevel(breadcrumb) === 0) {
+                  appendStyle(cell, { backgroundColor: columnBackground })
+                }
 
                 // add center for this
                 if (columnBackground === "#eee") {
@@ -289,71 +282,62 @@ export default {
               }
             }
 
-            // if first column is column zero, and is a numeric, style the row with gray background
-            if (colindex === 0) {
-              if (cell.col === "0" && !isNaN(cell.text.replace(".", ""))) {
-                let bgColor = "#eee"
+            // special case 5 -------------------------------------------------
+            else if (is_04_dati_costrutt_CARENZE) {
+  
+              // "ct" and "c" are bold
+              if (getLevel(breadcrumb) === 2) {
 
-                // for 'Carenze' and 'Qualità' sheets, darker gray for 3rd level rows (of the form 'x.y.z', that is, with two dots)
-                if (is_04_dati_costrutt_CARENZE || is_04_dati_costrutt_VERT_IQM) {
-                  var dots = (cell.text.match(/\./g) || []).length
-                  if (dots == 2) {
-                    bgColor = "#ddd"
+                // next row background will be dark orange
+                nextColumnBackground = "#ffc000"
+
+                if (cell.col === "5") {
+                  cell.col = "4"
+                  appendStyle(cell, { fontWeight: 600 })
+                }
+              }
+              
+              // stop ignoring rows when meeting full uppercase cell
+              if (ignoreRow && isUpper(cell.text)) {
+                appendStyle(row, { display: "table.row" })
+                ignoreRow = false
+                columnBackground = "#ffe699"
+              }
+
+              if (getLevel(breadcrumb) === 0) {
+                if (columnBackground && 2 <= cell.col && cell.col <= 4) {
+                  appendStyle(cell, { backgroundColor: columnBackground })
+                  // add bold for these two
+                  if (columnBackground === "#ffc000" || columnBackground === "#ffe699") {
+                    appendStyle(cell, { fontWeight: 600 })
+                  }
+                  // add center for this
+                  if (columnBackground === "#eee") {
+                    appendStyle(cell, { textAlign: "center" })
+                  }
+                  // loop on backgrounds (until reset section)
+                  if (columnBackground === "#eee") {
+                    columnBackground = "#fff2cd"
+                    nextColumnBackground = "#eee"
                   }
                 }
-
-                appendStyle(row, {
-                  backgroundColor: bgColor,
-                  display: "table.row"
-                })
-
-                // new section : reset flags
-                ignoreRow = false
-                nextColumnBackground = undefined
-                columnBackground = undefined
               }
             }
-
-            // format numbers
-            formatNumber(cell)
-
-            // next row text will be red
-            if (cell.text === "CARATTERISTICHE EDIFICIO" || cell.text === "estremità") {
-              rowColor = "#a42424"
-            }
-
-            // next row background will be dark orange
-            if (cell.text.match(/4\.4\.\d/g)) {
-              nextColumnBackground = "#ffc000"
-            }
-
-            if (
-              cell.col <= 2 &&
-              (cell.text.startsWith("codice id. elementi costruttivi") ||
-                cell.text === "IQMv" ||
-                cell.text === "IQMo,fp" ||
-                cell.text === "IQMo,np")
-            ) {
-              appendStyle(row, { display: "none" })
-            }
-          })
-
-          if (newCellAfterSolaioDiPiano) {
-            row.push(newCellAfterSolaioDiPiano)
-          }
-        })
-      })
+          }) // cells
+        }) // rows
+      }) // sheets
       return json
     },
     toTrueArray(row, sheet_column_count, sheet_id) {
       sheet_column_count = +sheet_column_count
       let ret = []
       if (sheet_id === "04_dati_costrutt_CARENZE") {
-        sheet_column_count = 4
+        sheet_column_count = 5
       }
+        /*
       if (sheet_id === "04_dati_costrutt_VERT_IQM") {
-        sheet_column_count = 3
-      }
+        sheet_column_count = 4
+      } */
       row = row.filter((e) => e.col < sheet_column_count)
       let index = 0
       let lastCell = undefined
