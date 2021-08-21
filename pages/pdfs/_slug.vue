@@ -2,18 +2,10 @@
 <template>
   <client-only>
     <div class="container">
-      <vue-pdf
-        :src="pdfSrc"
-        :page="1"
-        @num-pages="pdfPageCount = $event"
-      ></vue-pdf>
+      <vue-pdf :src="pdfSrc" :page="1" @num-pages="pdfPageCount = $event"></vue-pdf>
       <div v-if="pdfPageCount > 1">
         <div v-for="(pageNum, index) in pdfPageCount" :key="index">
-          <vue-pdf
-            :src="pdfSrc"
-            :page="pageNum"
-            v-if="pageNum > 1"
-          ></vue-pdf>
+          <vue-pdf :src="pdfSrc" :page="pageNum" v-if="pageNum > 1"></vue-pdf>
         </div>
       </div>
     </div>
@@ -22,16 +14,16 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       loading: "true"
     }
   },
   async asyncData({ $content, params }) {
     return {
-      pdfSrc: "/pdf/"+params.slug+".pdf",
-      pdfPageCount: 0,
-    };
-  },
-};
+      pdfSrc: "/pdf/" + params.slug + ".pdf",
+      pdfPageCount: 0
+    }
+  }
+}
 </script>

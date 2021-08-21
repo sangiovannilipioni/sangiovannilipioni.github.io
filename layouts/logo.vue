@@ -1,15 +1,10 @@
 <template>
   <div class="p-2">
-    <div
-      v-html="src"
-      class="logo w-100 blurp d-flex justify-content-center align-items-center"
-    ></div>
+    <div v-html="src" class="logo w-100 blurp d-flex justify-content-center align-items-center"></div>
     <Nuxt style="z-index: 1000" />
     <footer class="fixed-bottom">
       <div class="text-muted px-2">
-        <div style="whitespace: nowrap">
-          Associazione <b>Nessuno Escluso</b> APS
-        </div>
+        <div style="whitespace: nowrap">Associazione <b>Nessuno Escluso</b> APS</div>
       </div>
     </footer>
   </div>
@@ -29,14 +24,13 @@
 }
 </style>
 
-
 <script>
 export default {
   computed: {
     src() {
-      const src = require(`assets/svg/Logo_qr_code.svg?raw`);
-      return src;
-    },
-  },
-};
+      const src = require(`assets/svg/Logo_qr_code.svg?raw`)
+      return src
+    }
+  }
+}
 </script>

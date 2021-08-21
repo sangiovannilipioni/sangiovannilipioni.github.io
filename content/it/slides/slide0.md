@@ -4,7 +4,6 @@
 
 Presentato:
 
-* 18 Gennaio 2020 nella sala Consiliare Comune di san Giovanni Lipioni;
+- 18 Gennaio 2020 nella sala Consiliare Comune di san Giovanni Lipioni;
 
-* 29 Marzo e 3 Maggio 2020 in videoconferenza
-
+- 29 Marzo e 3 Maggio 2020 in videoconferenza

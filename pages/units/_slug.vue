@@ -1,8 +1,7 @@
 <template>
   <article class="container-fluid">
-    <div class="container d-flex" style="margin-bottom: .5rem;" v-if="theUnit.hasData || theUnit.video">
-
-      <div class="flex-grow-1" style="margin: auto;">
+    <div class="container d-flex" style="margin-bottom: 0.5rem" v-if="theUnit.hasData || theUnit.video">
+      <div class="flex-grow-1" style="margin: auto">
         <nuxt-link v-if="theUnit.hasData" :to="`/data/${slug}`" class="btn btn-outline-secondary btn-sm" target="_self">
           {{ $t("schede") }}
         </nuxt-link>
@@ -10,14 +9,22 @@
       </div>
 
       <!-- Button trigger modal -->
-      <button v-if="theUnit.video" type="button" class="btn float-right btn-outline-secondary btn-sm" data-toggle="modal" data-target="#modalvideo">Video</button>
+      <button
+        v-if="theUnit.video"
+        type="button"
+        class="btn float-right btn-outline-secondary btn-sm"
+        data-toggle="modal"
+        data-target="#modalvideo"
+      >
+        Video
+      </button>
 
       <!-- Modal -->
       <div v-if="theUnit.video" class="modal fade" id="modalvideo" tabindex="-1">
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="modalLabel">{{theUnit.title}}</h5>
+              <h5 class="modal-title" id="modalLabel">{{ theUnit.title }}</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -25,12 +32,14 @@
             <div class="modal-body">
               <vue-plyr
                 v-if="theUnit.video"
-                :options="{ mute: true, volume: 0, captions: true, autoplay: true}"
+                :options="{
+                  mute: true,
+                  volume: 0,
+                  captions: true,
+                  autoplay: true
+                }"
               >
-                <div
-                  data-plyr-provider="youtube"
-                  :data-plyr-embed-id="theUnit.video"
-                ></div>
+                <div data-plyr-provider="youtube" :data-plyr-embed-id="theUnit.video"></div>
               </vue-plyr>
             </div>
           </div>
@@ -38,22 +47,17 @@
       </div>
     </div>
 
-    <h4 style="text-align:center;">{{ theUnit.title }} <span class="text-muted" style="font-size: smaller;">[{{ slug }}]</span></h4>
+    <h4 style="text-align: center">
+      {{ theUnit.title }}
+      <span class="text-muted" style="font-size: smaller">[{{ slug }}]</span>
+    </h4>
 
     <div class="binome reverse" v-if="theUnit">
-      <div class="col" style="flex: 1;">
-        <nuxt-img
-          v-for="img in theUnit.imgs"
-          v-bind:key="img"
-          :src="`/foto/${img}`"
-          class="img-fluid"
-        />
+      <div class="col" style="flex: 1">
+        <nuxt-img v-for="img in theUnit.imgs" v-bind:key="img" :src="`/foto/${img}`" class="img-fluid" />
       </div>
-      <div class="col" style="flex: 2;">
-        <SlidesImages
-          v-if="theUnit.slides.length"
-          :slides="theUnit.slides"
-          :imgDir="imgDir" />
+      <div class="col" style="flex: 2">
+        <SlidesImages v-if="theUnit.slides.length" :slides="theUnit.slides" :imgDir="imgDir" />
       </div>
     </div>
   </article>
@@ -70,24 +74,23 @@
 }
 
 .handle:not(.handle-mr) {
-  display:none !important;
+  display: none !important;
 }
 
 .medium-zoom-image {
   z-index: 12;
-  width:100vh;
-  height:auto;
+  width: 100vh;
+  height: auto;
 }
-
 </style>
 
 <script>
-import SlidesImages from '../../components/SlidesImages.vue';
-import VueDraggableResizable from 'vue-draggable-resizable'
+import SlidesImages from "../../components/SlidesImages.vue"
+import VueDraggableResizable from "vue-draggable-resizable"
 
 export default {
-  components: { 
-    SlidesImages 
+  components: {
+    SlidesImages
   },
   data() {
     return {
@@ -100,35 +103,41 @@ export default {
         O02: {
           hasData: true,
           slides: [
-            { img: "O1__O2-PianoTerra.jpg",        title: "Piano Terra" },
-            { img: "O1__O2-PianoPrimo.jpg",        title: "Piano Primo" },
-            { img: "O1__O2-PianoSeminterrato.jpg", title: "Piano Seminterrato" },
-            { img: "O1__O2-ProspettoNord.jpg",     title: "Prospetto Nord" },
-            { img: "O1__O2-ProspettoOvestEst.jpg", title: "Prospetto Ovest Est" },
-            { img: "O1__O2-ProspettoSud.jpg",      title: "Prospetto Sud" },
-            { img: "O1__O2-SezioneA.jpg",          title: "Sezione A" },
-            { img: "O1__O2-SezioneB.jpg",          title: "Sezione B" },
+            { img: "O1__O2-PianoTerra.jpg", title: "Piano Terra" },
+            { img: "O1__O2-PianoPrimo.jpg", title: "Piano Primo" },
+            {
+              img: "O1__O2-PianoSeminterrato.jpg",
+              title: "Piano Seminterrato"
+            },
+            { img: "O1__O2-ProspettoNord.jpg", title: "Prospetto Nord" },
+            {
+              img: "O1__O2-ProspettoOvestEst.jpg",
+              title: "Prospetto Ovest Est"
+            },
+            { img: "O1__O2-ProspettoSud.jpg", title: "Prospetto Sud" },
+            { img: "O1__O2-SezioneA.jpg", title: "Sezione A" },
+            { img: "O1__O2-SezioneB.jpg", title: "Sezione B" }
           ],
           title: "Via Roma, 37",
           imgs: ["GOPR1232_light_2.jpg"],
-          video: "https://youtu.be/pmgZcSv4Huk",
+          video: "https://youtu.be/pmgZcSv4Huk"
         },
         G01: {
           hasData: false,
           slides: [],
           title: "Via Vicenne. 4",
-          imgs: ["X2.jpg"],
-        },
-      },
-    };
+          imgs: ["X2.jpg"]
+        }
+      }
+    }
   },
   computed: {
     slug() {
-      return this.$route.params.slug;
+      return this.$route.params.slug
     },
     theUnit() {
-      return this.units[this.$route.params.slug];
-    },
+      return this.units[this.$route.params.slug]
+    }
   },
   methods: {
     onResize: function (x, y, width, height) {
@@ -142,5 +151,5 @@ export default {
       this.y = y
     }
   }
-};
+}
 </script>

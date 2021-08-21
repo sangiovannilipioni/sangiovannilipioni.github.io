@@ -13,4 +13,3 @@
 6. [riabitaresangiovanni.maiellaverde.it](https://riabitaresangiovanni.maiellaverde.it/)
 
 7. [Bibliothèque nationale de France](http://medaillesetantiques.bnf.fr/ws/catalogue/app/collection/record/ark:/12148/c33gbdnvh)
-

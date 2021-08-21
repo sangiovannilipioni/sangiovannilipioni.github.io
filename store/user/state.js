@@ -1,4 +1,4 @@
 export default () => ({
-    strokeWidth: 20.16,
-    angle: 0,
+  strokeWidth: 20.16,
+  angle: 0
 })

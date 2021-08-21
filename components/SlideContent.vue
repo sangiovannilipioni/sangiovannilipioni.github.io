@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nuxt-content :document="slide"/>
+    <nuxt-content :document="slide" />
   </div>
 </template>
 
@@ -8,26 +8,23 @@
 export default {
   data() {
     return {
-      slide: {},
-    };
+      slide: {}
+    }
   },
   async fetch() {
-    this.slide = await this.$content(
-      `${this.currentLocale}/slides`,
-      this.src
-    ).fetch();
-    return { slide: this.slide };
+    this.slide = await this.$content(`${this.currentLocale}/slides`, this.src).fetch()
+    return { slide: this.slide }
   },
   computed: {
     currentLocale() {
-      return this.$i18n.locale;
-    },
+      return this.$i18n.locale
+    }
   },
   props: {
     src: {
       type: String,
-      required: true,
-    },
-  },
-};
+      required: true
+    }
+  }
+}
 </script>

@@ -6,9 +6,9 @@
 export default {
   computed: {
     src() {
-      const src = require(`assets/svg/Logo_qr_code.svg?raw`);
-      return src;
-    },
-  },
-};
+      const src = require(`assets/svg/Logo_qr_code.svg?raw`)
+      return src
+    }
+  }
+}
 </script>

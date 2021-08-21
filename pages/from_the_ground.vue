@@ -3,20 +3,19 @@
 </template>
 
 <script>
-
 export default {
   middleware: ["auth"],
   data() {
     return {
       items: [],
-      imgDir: '/masonry/1'
-    };
+      imgDir: "/masonry/1"
+    }
   },
   mounted() {
-    const f = require.context("../static/masonry/1", true, /\.jpg$/);
+    const f = require.context("../static/masonry/1", true, /\.jpg$/)
     f.keys().forEach((key) => {
-      this.items.push({ pathLong: f(key), pathShort: key });
-    });
-  },
-};
+      this.items.push({ pathLong: f(key), pathShort: key })
+    })
+  }
+}
 </script>

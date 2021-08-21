@@ -11,7 +11,9 @@
         style="borde: 1px dotted gray"
       >
         <swiper-slide v-for="(slide, index) in slides" :key="index">
-          <button type="button" class="btn btn-outline-secondary">{{ slide.title }}</button>
+          <button type="button" class="btn btn-outline-secondary">
+            {{ slide.title }}
+          </button>
         </swiper-slide>
       </swiper>
 
@@ -30,8 +32,7 @@
   </client-only>
 </template>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
 
 <script>
 export default {
@@ -40,43 +41,42 @@ export default {
       swiperOptionTop: {
         loop: false,
         slidesPerView: 1,
-        spaceBetween: 20,
+        spaceBetween: 20
       },
       swiperOptionThumbs: {
         centeredSlides: true,
         navigation: false,
         slidesPerView: 3,
         slideToClickedSlide: true,
-        spaceBetween: 10,
+        spaceBetween: 10
       },
       swiperTop() {
-        return this.$refs.swiperTop.swiper;
+        return this.$refs.swiperTop.swiper
       },
       swiperThumbs() {
-        return this.$refs.swiperThumbs.swiper;
-      },
-    };
+        return this.$refs.swiperThumbs.swiper
+      }
+    }
   },
   props: {
     slides: {
       default: () => [],
       type: Array,
-      required: false,
+      required: false
     },
     imgDir: {
-      default: '/',
+      default: "/",
       type: String,
-      required: false,
-    },
+      required: false
+    }
   },
   methods: {
     onThumbsChange(val) {
-      this.$refs.swiperTop.$swiper.slideTo(val.activeIndex);
+      this.$refs.swiperTop.$swiper.slideTo(val.activeIndex)
     },
     onTopChange(val) {
-      this.$refs.swiperThumbs.$swiper.slideTo(val.activeIndex);
-    },
-  },
-};
+      this.$refs.swiperThumbs.$swiper.slideTo(val.activeIndex)
+    }
+  }
+}
 </script>
-

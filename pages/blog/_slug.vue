@@ -12,12 +12,9 @@
 
 <script>
 export default {
-  async asyncData({ $content, params, app, route, redirect } ) {
-    const article = await $content(
-      `${app.i18n.locale}/articles`,
-      params.slug
-    ).fetch();
-    return { article };
-  },
-};
+  async asyncData({ $content, params, app, route, redirect }) {
+    const article = await $content(`${app.i18n.locale}/articles`, params.slug).fetch()
+    return { article }
+  }
+}
 </script>
