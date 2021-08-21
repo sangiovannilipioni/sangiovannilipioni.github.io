@@ -15,6 +15,7 @@
         </div>
 
         <!-- Button trigger modal 
+        -->
         <button
           v-if="theUnit.video"
           type="button"
@@ -24,9 +25,9 @@
         >
           Video
         </button>
-        -->
 
         <!-- Modal 
+        -->
         <div v-if="theUnit.video" class="modal fade" id="modalvideo" ref="modalvideo" tabindex="-1">
           <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -38,6 +39,8 @@
               </div>
               <div class="modal-body">
                 <vue-plyr
+                  id="qwe"
+                  ref="plyr"
                   v-if="theUnit.video"
                   :options="{
                     mute: true,
@@ -52,7 +55,6 @@
             </div>
           </div>
         </div>
-        -->
       </div>
 
       <h4 style="text-align: center">
@@ -142,13 +144,18 @@ export default {
   },
   mounted() {
     // https://stackoverflow.com/a/42513893/1070215
-    console.log("this.$refs.modalvideo", this.$refs.modalvideo) /*
-    $(this.$refs).on("shown.bs.modal", function (e) {
-      console.log("shown.bs.modal")
+    // https://stackoverflow.com/a/64102684/1070215
+    this.$nextTick(() => {
+      // console.log("this.$refs.modalvideo", this.$refs.modalvideo)
+      console.log("this.$refs.plyr", this.$refs.plyr)
+      const _this = this
+      $(this.$refs.modalvideo).on("shown.bs.modal", function (e) {
+        _this.$refs.plyr.player.play()
+      })
+      $(this.$refs.modalvideo).on("hidden.bs.modal", function (e) {
+        _this.$refs.plyr.player.stop()
+      })
     })
-    $(this.$refs).on("hidden.bs.modal", function (e) {
-      console.log("hide.bs.modal")
-    })*/
   },
   computed: {
     slug() {
