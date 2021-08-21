@@ -1,94 +1,169 @@
 <template>
-  <b-navbar toggleable="md" class="container" style="padding: 0 1rem">
-    <b-navbar-brand :to="localePath('/')">
+  <nav
+    class="navbar container navbar-light navbar-expand-md"
+    style="padding: 0 1rem"
+  >
+    <nuxt-link :to="localePath('/')" target="_self" class="navbar-brand">
       <LogoDiv :class="isHomePage ? 'home' : 'not-home'" />
-    </b-navbar-brand>
+    </nuxt-link>
 
-    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-    <b-collapse
+    <button
+      type="button"
+      aria-label="Toggle navigation"
+      class="navbar-toggler collapsed"
+      aria-expanded="false"
+      aria-controls="nav-collapse"
+      style="overflow-anchor: none"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
       id="nav-collapse"
+      class="navbar-collapse collapse"
       style="
+        display: none;
         text-align: center;
         border: 1px dotted gray;
         border-radius: 0.25rem;
         z-index: 3;
         margin-top: -1.5rem;
       "
-      is-nav
     >
-      <b-navbar-nav toggleable="sm" style="flex: auto">
-        <b-nav-item :to="localePath('/slides')">{{
-          $t("presentation")
-        }}</b-nav-item>
+      <ul toggleable="sm" class="navbar-nav" style="flex: auto">
+        <li class="nav-item">
+          <nuxt-link
+            :to="localePath('/slides')"
+            target="_self"
+            class="nav-link"
+            aria-current="page"
+            >{{ $t("presentation") }}</nuxt-link
+          >
+        </li>
+        <li class="nav-item b-nav-dropdown dropdown" id="__BVID__54">
+          <a
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+            href="#"
+            target="_self"
+            data-toggle="dropdown"
+            class="nav-link dropdown-toggle"
+            id="__BVID__54__BV_toggle_"
+            >{{ $t("patrimonio") }}</a
+          >
+          <ul
+            tabindex="-1"
+            class="dropdown-menu"
+            aria-labelledby="__BVID__54__BV_toggle_"
+          >
+            <li role="presentation">
+              <nuxt-link
+                :to="localePath('/patrimonio')"
+                role="menuitem"
+                target="_self"
+                class="dropdown-item"
+                >{{ $t("patrimonio") }}</nuxt-link
+              >
+            </li>
+            <li role="presentation">
+              <hr
+                role="separator"
+                aria-orientation="horizontal"
+                class="dropdown-divider"
+              />
+            </li>
+            <li role="presentation">
+              <nuxt-link
+                :to="localePath('/collab_da')"
+                role="menuitem"
+                target="_self"
+                class="dropdown-item"
+                >{{ $t("collab_da") }}</nuxt-link
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <nuxt-link
+            :to="localePath('/maiellaverde')"
+            target="_self"
+            class="nav-link"
+            >{{ $t("maiellaverde") }}</nuxt-link
+          >
+        </li>
 
-        <b-nav-item-dropdown>
-          <template slot="button-content">{{ $t("patrimonio") }}</template>
-          <b-dropdown-item :to="localePath('/patrimonio')">{{
-            $t("patrimonio")
-          }}</b-dropdown-item>
-          <b-dropdown-divider></b-dropdown-divider>
-          <b-dropdown-item :to="localePath('/collab_da')">{{
-            $t("collab_da")
-          }}</b-dropdown-item>
-        </b-nav-item-dropdown>
-
-        <b-nav-item :to="localePath('/maiellaverde')">{{
-          $t("maiellaverde")
-        }}</b-nav-item>
-        
-        <b-nav-item id="spy" href="#" class="flex-grow-1 text-muted" disabled
-          ><span v-if="$auth.$state.loggedIn">{{
-            $route.path
-          }}</span></b-nav-item
-        >
+        <li id="spy" class="nav-item flex-grow-1 text-muted" disabled>
+          <a
+            href="#"
+            target="_self"
+            tabindex="-1"
+            aria-disabled="true"
+            class="nav-link disabled"
+          >
+            <span v-if="$auth.$state.loggedIn">{{ $route.path }}</span>
+          </a>
+        </li>
 
         <LocaleSwitcherNavItemDropdown />
 
-        <template v-if="$auth.$state.loggedIn">
-          <b-nav-item-dropdown :text="$auth.user ? $auth.user.name : ''" right>
-            <template slot="button-content"
-              ><img
-                v-if="$auth.user"
-                :src="$auth.user.picture.data.url"
-                class="mt-1"
-                rounded="circle"
-                width="30px"
-                height="30px"
-            /></template>
-            <b-dropdown-item :to="localePath('/secure')">{{
+        <li v-if="$auth.$state.loggedIn" class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <img
+              v-if="$auth.user"
+              :src="$auth.user.picture.data.url"
+              class="mt-1"
+              rounded="circle"
+              width="30px"
+              height="30px"
+            />
+            <font-awesome-icon v-else :icon="['fas', 'user']" />
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <nuxt-link class="dropdown-item" :to="localePath('/secure')">{{
               $t("gossip")
-            }}</b-dropdown-item>
-            <b-dropdown-item :to="localePath('/from_the_ground')">{{
-              $t("from_the_ground")
-            }}</b-dropdown-item>
-            <b-dropdown-item :to="localePath('/from_the_sky')">{{
-              $t("from_the_sky")
-            }}</b-dropdown-item>
-            <b-dropdown-item :to="localePath('/logos')">{{
+            }}</nuxt-link>
+            <nuxt-link
+              class="dropdown-item"
+              :to="localePath('/from_the_ground')"
+              >{{ $t("from_the_ground") }}</nuxt-link
+            >
+            <nuxt-link
+              class="dropdown-item"
+              :to="localePath('/from_the_sky')"
+              >{{ $t("from_the_sky") }}</nuxt-link
+            >
+            <nuxt-link class="dropdown-item" :to="localePath('/logos')">{{
               $t("impresa")
-            }}</b-dropdown-item>
+            }}</nuxt-link>
             <div class="dropdown-divider"></div>
-            <b-dropdown-item @click="$auth.logout()">
+            <a class="dropdown-item" @click="$auth.logout()">
               <font-awesome-icon :icon="['fas', 'sign-out-alt']" />&nbsp;{{
                 $t("signOut")
               }}
-            </b-dropdown-item>
-          </b-nav-item-dropdown>
-        </template>
-        <template v-else>
-          <b-nav-item :to="localePath('/login')" right>
-            <span style="white-space: nowrap"
+            </a>
+          </div>
+        </li>
+
+        <li v-else right="" class="nav-item">
+          <nuxt-link :to="localePath('/login')" target="_self" class="nav-link"
+            ><span style="white-space: nowrap"
               >{{ $t("signIn")
               }}<font-awesome-icon
                 :icon="['fas', 'sign-in-alt']"
-                style="margin-left: 0.5rem"
-            /></span>
-          </b-nav-item>
-        </template>
-      </b-navbar-nav>
-    </b-collapse>
-  </b-navbar>
+                style="margin-left: 0.25rem" /></span
+          ></nuxt-link>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </template>
 
 <script>

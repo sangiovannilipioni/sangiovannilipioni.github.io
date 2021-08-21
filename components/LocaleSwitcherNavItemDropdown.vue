@@ -1,29 +1,37 @@
 <template>
-  <b-nav-item-dropdown>
-    <!-- https://stackoverflow.com/a/53436065 -->
-    <template slot="button-content"
-      ><b-img
-        :src="icons[currentLocale]"
-        class=""
-        
-        width="20px"
-        height="20px"
-      />
-    </template>
-
-    <b-dropdown-item
-      v-for="locale in $i18n.locales"
-      :key="locale.code"
-      :to="switchLocalePath(locale.code)"
+  <li class="nav-item b-nav-dropdown dropdown">
+    <a
+      role="button"
+      href="#"
+      target="_self"
+      class="nav-link dropdown-toggle"
+      data-toggle="dropdown"
     >
-      <b-img :src="icons[locale.code]" 
-        class=""
-        
-        width="20px"
-        height="20px" />
-      <span class="locale-name">{{ locale.name }}</span>
-    </b-dropdown-item>
-  </b-nav-item-dropdown>
+      <img :src="icons[currentLocale]" class="" width="20px" height="20px" />
+    </a>
+    <ul tabindex="-1" class="dropdown-menu">
+      <li
+        role="presentation"
+        v-for="locale in $i18n.locales"
+        :key="locale.code"
+      >
+        <nuxt-link
+          :to="switchLocalePath(locale.code)"
+          role="menuitem"
+          target="_self"
+          class="dropdown-item"
+        >
+          <img
+            :src="icons[locale.code]"
+            class=""
+            width="20px"
+            height="20px"
+          />
+          <span class="locale-name">{{ locale.name }}</span>
+        </nuxt-link>
+      </li>
+    </ul>
+  </li>
 </template>
 
 <script>
