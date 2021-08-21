@@ -50,5 +50,8 @@
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/style-resources": "^1.2.1",
     "prettier": "2.3.2"
-  }
+  },
+  "resolutions": {
+    "**/glob-parent": "^5.1.2"
+  }  
 }
