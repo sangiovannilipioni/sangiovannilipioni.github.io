@@ -51,6 +51,9 @@
 </template>
 
 <style lang="scss" scoped>
+table {
+  overflow-y: hidden;
+}
 td:nth-child(1) {
   width: 5%;
 }
@@ -71,6 +74,11 @@ td:nth-child(1) {
   }
 }
 #_04_dati_costrutt_VERT_IQM {
+  td:nth-child(5) {
+    width: 25%;
+  }
+}
+#_04_dati_costrutt_CARENZE {
   td:nth-child(5) {
     width: 25%;
   }
@@ -123,8 +131,8 @@ export default {
       const sheetTitles = {
         "01_id_edificio": "Identificazione",
         "02_descriz_edificio": "Descrizione",
-        "03_dati_metrici_AB": "Dati metrici" /*,
-        "04_dati_costrutt_CARENZE": "Carenze costruttive" */,
+        "03_dati_metrici_AB": "Dati metrici",
+        "04_dati_costrutt_CARENZE": "Carenze costruttive",
         "04_dati_costrutt_VERT_IQM": "Qualità muraria"
       }
 
@@ -142,20 +150,33 @@ export default {
         let is_01_id_edificio = sheet.sheet === "01_id_edificio"
         let is_02_descriz_edificio = sheet.sheet === "02_descriz_edificio"
         let is_03_dati_metrici_AB = sheet.sheet === "03_dati_metrici_AB"
-        let is_04_dati_costrutt_CARENZE = sheet.sheet === "04_dati_costrutt_CARENZE"
         let is_04_dati_costrutt_VERT_IQM = sheet.sheet === "04_dati_costrutt_VERT_IQM"
+        let is_04_dati_costrutt_CARENZE = sheet.sheet === "04_dati_costrutt_CARENZE"
 
         let ignoreRow = false
         let rowColor = undefined
         let nextColumnBackground = undefined
-        let columnBackground = undefined
 
         let breadcrumb = {
           id: undefined,
           row: 0,
-          getLevel: () => {
-            if (!this.id) return 0
-            return (this.id.match(/\./g) || []).length
+          aliases: {
+            "4.2.1": "4.2.1",
+            "4.2.2": "4.2.2",
+            "4.4.2": "4.4.2_4.4.3",
+            "4.4.3": "4.4.2_4.4.3",
+            "4.4.4": "4.4.4"
+          },
+          get level() {
+            let ret = 0
+            if (this.id) {
+              ret = 1 + (this.id.match(/\./g) || []).length
+            }
+            return ret
+          },
+          get jpeg() {
+            console.log(this, this.aliases[this.id])
+            return this.aliases[this.id]
           }
         }
 
@@ -170,11 +191,6 @@ export default {
             appendStyle(row, { color: rowColor })
             rowColor = undefined
           }
-          // consume column background color
-          if (nextColumnBackground) {
-            columnBackground = nextColumnBackground
-            nextColumnBackground = undefined
-          }
 
           const fixTypos = {
             "stato di conservaz": "stato di conservazione",
@@ -182,7 +198,13 @@ export default {
           }
 
           let indirizzo = undefined
-          let appendImage = false
+          let appendImage = undefined
+          let columnBackground = undefined
+          // consume column background color
+          if (nextColumnBackground) {
+            columnBackground = nextColumnBackground
+            nextColumnBackground = undefined
+          }
           // for all cols
           row.forEach((cell, colindex) => {
             // for each column -------------------------------------------------
@@ -200,7 +222,7 @@ export default {
 
                 // for 'Carenze' and 'Qualità' sheets, darker gray for 3rd level rows (of the form 'x.y.z', that is, with two dots)
                 if (is_04_dati_costrutt_CARENZE || is_04_dati_costrutt_VERT_IQM) {
-                  if (breadcrumb.getLevel() === 2 && breadcrumb.row === 0) {
+                  if (breadcrumb.level === 3 && breadcrumb.row === 0) {
                     bgColor = "#ddd"
                   }
                 }
@@ -261,10 +283,20 @@ export default {
                 appendStyle(cell, { fontWeight: 600 })
               }
               if (cell.text.match(/materiali/g)) {
-                appendImage = true
+                let qwe = breadcrumb.jpeg
+                if (qwe) {
+                  appendImage = {
+                    col: "4",
+                    text:
+                      "<img src='/json/jpegs/" +
+                      qwe +
+                      ".jpg' class='img-fluid' style='width: 200px; height:auto; position: absolute; right:0; max-width:80%'>",
+                    style: "position: relative"
+                  }
+                }
               }
               if (columnBackground && 2 <= cell.col && cell.col <= 3) {
-                if (breadcrumb.getLevel() === 0) {
+                if (0 < breadcrumb.row) {
                   appendStyle(cell, { backgroundColor: columnBackground })
                 }
 
@@ -272,11 +304,10 @@ export default {
                 if (columnBackground === "#eee") {
                   appendStyle(cell, { textAlign: "center" })
                 }
-                // loop on backgrounds (until reset section)
+                // consume gray, prepare next row
                 if (columnBackground === "#eee") {
                   columnBackground = "#eff5e9"
-                } else if (columnBackground === "#eff5e9") {
-                  columnBackground = "#eee"
+                  nextColumnBackground = "#eee"
                 }
               }
             }
@@ -284,7 +315,7 @@ export default {
             // special case 5 -------------------------------------------------
             else if (is_04_dati_costrutt_CARENZE) {
               // "ct" and "c" are bold
-              if (breadcrumb.getLevel() === 2 && breadcrumb.row === 0) {
+              if (breadcrumb.level === 3 && breadcrumb.row === 0) {
                 // next row background will be dark orange
                 nextColumnBackground = "#ffc000"
 
@@ -301,44 +332,61 @@ export default {
                 columnBackground = "#ffe699"
               }
 
-              if (columnBackground) {
-                if (columnBackground === "#ffc000") {
-                  nextColumnBackground = "#ffe699"
-                  ignoreRow = true
-                } else if (columnBackground === "#ffe699") {
-                  nextColumnBackground = "#eee"
-                } else if (!ignoreRow) {
-                  nextColumnBackground = undefined
+              if (0 < breadcrumb.row) {
+                if (columnBackground) {
+                  if (columnBackground === "#ffc000") {
+                    nextColumnBackground = "#ffe699"
+                    ignoreRow = true
+                  } else if (columnBackground === "#ffe699") {
+                    nextColumnBackground = "#eee"
+                  }
+                  if (2 <= cell.col && cell.col <= 4) {
+                    appendStyle(cell, { backgroundColor: columnBackground })
+                    // add bold for these two
+                    if (columnBackground === "#ffc000" || columnBackground === "#ffe699") {
+                      appendStyle(cell, { fontWeight: 600 })
+                    }
+                    // add center for this one
+                    if (columnBackground === "#eee") {
+                      appendStyle(cell, { textAlign: "center" })
+                    }
+                    // consume gray, prepare next row
+                    if (columnBackground === "#eee") {
+                      columnBackground = "#fff2cd"
+                      nextColumnBackground = "#eee"
+                    }
+                  }
                 }
               }
 
-              if (0 < breadcrumb.row) {
-                if (columnBackground && 2 <= cell.col && cell.col <= 4) {
-                  appendStyle(cell, { backgroundColor: columnBackground })
-                  // add bold for these two
-                  if (columnBackground === "#ffc000" || columnBackground === "#ffe699") {
-                    appendStyle(cell, { fontWeight: 600 })
-                  }
-                  // add center for this
-                  if (columnBackground === "#eee") {
-                    appendStyle(cell, { textAlign: "center" })
-                  }
-                  // loop on backgrounds (until reset section)
-                  if (columnBackground === "#eee") {
-                    columnBackground = "#fff2cd"
-                    nextColumnBackground = "#eee"
+              if (cell.text.match(/materiali/g)) {
+                let qwe = breadcrumb.jpeg
+                if (qwe) {
+                  appendImage = {
+                    col: "4",
+                    text:
+                      "<img src='/json/jpegs/" +
+                      qwe +
+                      ".jpg' class='img-fluid' style='width: 200px; height:auto; position: absolute; right:0; max-width:80%'>",
+                    style: "position: relative; background-color: " + columnBackground + ";"
                   }
                 }
               }
-            }
+}
           }) // cells
+
+          if (is_04_dati_costrutt_CARENZE) {
+            // ignore rows after second row of third level breadcrumb until a all uppercase cell is found
+            if (breadcrumb.level === 3 && breadcrumb.row === 1) {
+              ignoreRow = true
+            }
+          }
+
           breadcrumb.row = breadcrumb.row + 1
+
           if (appendImage) {
-            row.push({
-              col: "4",
-              text: "<img src='/json/jpegs/" + breadcrumb.id + ".jpg' class='img-fluid' style='width: 200px; height:auto; position: absolute; right:0; max-width:80%'>",
-              style: "position: relative"
-            })
+            row.push(appendImage)
+            appendImage = undefined
           }
         }) // rows
       }) // sheets
@@ -352,9 +400,9 @@ export default {
       }
       if (sheet_id === "04_dati_costrutt_VERT_IQM") {
         sheet_column_count = 5
-      } 
+      }
       /*
-      */
+       */
       row = row.filter((e) => e.col < sheet_column_count)
       let index = 0
       let lastCell = undefined
