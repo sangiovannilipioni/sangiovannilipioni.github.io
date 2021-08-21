@@ -97,7 +97,8 @@ export default {
         type: "image/png",
         sizes: "16x16",
         href: "/favicon-16x16.png"
-      }
+      },
+      {rel: 'stylesheet', type: 'text/css', href: 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css'}
     ],
     script: [
       {
@@ -171,7 +172,7 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/bootstrap
-    "bootstrap-vue/nuxt",
+    // "bootstrap-vue/nuxt",
     // https://content.nuxtjs.org/
     "@nuxt/content",
     // https://auth.nuxtjs.org/guide/setup
