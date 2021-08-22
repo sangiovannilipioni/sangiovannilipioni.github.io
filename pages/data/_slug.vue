@@ -1,31 +1,17 @@
 <template>
   <client-only>
     <article class="container">
-      <h4 id="title" style="text-align: center">
+      <h4 id="title">
         {{ title }}
         <span class="text-muted" style="font-size: smaller">[{{ $route.params.slug }}]</span>
       </h4>
       <ul role="tablist" class="nav nav-tabs">
         <div type="button" class="discret btn btn-outline-secondary" @click="showBreadcrumbs = !showBreadcrumbs">
-          <span style="font-size: smaller">
-            <font-awesome-icon v-if="!showBreadcrumbs" :icon="['fas', 'plus']" />
-            <font-awesome-icon v-else :icon="['fas', 'minus']" />
-          </span>
+          <font-awesome-icon v-if="!showBreadcrumbs" :icon="['fas', 'plus']" />
+          <font-awesome-icon v-else :icon="['fas', 'minus']" />
         </div>
-        <li
-          role="presentation"
-          class="nav-item"
-          v-for="(sheet, sheet_index) in datum"
-          :key="sheet_index"
-          :id="`_${sheet_index}`"
-        >
-          <a
-            role="tab"
-            :href="`#${sheet.id}`"
-            target="_self"
-            data-toggle="tab"
-            :class="`nav-link ${sheet_index == 0 ? 'active' : ''}`"
-          >
+        <li class="nav-item" v-for="(sheet, sheet_index) in datum" :key="sheet_index">
+          <a :href="`#${sheet.id}`" data-toggle="tab" :class="`nav-link ${sheet_index == 0 ? 'active' : ''}`">
             {{ sheet.title }}
           </a>
         </li>
@@ -33,12 +19,10 @@
       <div class="tab-content mt-3" id="myTabContent">
         <div
           :class="`tab-pane fade ${sheet_index == 0 ? 'show active' : ''}`"
-          role="tabpanel"
           v-for="(sheet, sheet_index) in datum"
           :key="sheet_index"
           :id="sheet.id"
         >
-          <!-- :id="`_${sheet_index}`" -->
           <table class="table table-sm table-responsive table-borderless">
             <tr v-for="(row, row_index) in sheet.rows" :key="row_index" :style="row.style">
               <td
@@ -59,14 +43,18 @@
 </template>
 
 <style lang="scss" scoped>
-table {
-  overflow-y: hidden;
+#title {
+  text-align: center;
 }
 .discret {
   margin: auto 0.25rem;
   padding: 0 0.25rem;
   color: lightgray;
   border: none;
+  font-size: smaller;
+}
+table {
+  overflow-y: hidden;
 }
 td:nth-child(1):not(.breadcrumbs) {
   display: none;
@@ -140,13 +128,7 @@ export default {
           if (cell.col !== "0") {
             cell.text = parseFloat(cell.text).toFixed(2)
           }
-          // if text ends with ".00", remove it
-          if (cell.text.endsWith(".00")) {
-            cell.text = cell.text.substring(0, cell.text.length - 3)
-            // if text ends with ".0", remove it
-          } else if (cell.text.endsWith(".0")) {
-            cell.text = cell.text.substring(0, cell.text.length - 2)
-          }
+          cell.text = cell.text.replace(/\.0+$/, '').replace(/(\.[1-9]*)0+$/, '$1')
         }
       }
 
