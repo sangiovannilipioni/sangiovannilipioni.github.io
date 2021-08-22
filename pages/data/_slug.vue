@@ -6,7 +6,7 @@
         <span class="text-muted" style="font-size: smaller">[{{ $route.params.slug }}]</span>
       </h4>
       <ul role="tablist" class="nav nav-tabs">
-        <div id="discret" type="button" class="btn btn-outline-secondary" @click="showBreadcrumbs = !showBreadcrumbs">
+        <div type="button" class="discret btn btn-outline-secondary" @click="showBreadcrumbs = !showBreadcrumbs">
           <span style="font-size: smaller">
             <font-awesome-icon v-if="!showBreadcrumbs" :icon="['fas', 'plus']" />
             <font-awesome-icon v-else :icon="['fas', 'minus']" />
@@ -62,12 +62,11 @@
 table {
   overflow-y: hidden;
 }
-#discret,
-#discret:focus {
-  border: none;
+.discret {
   margin: auto 0.25rem;
   padding: 0 0.25rem;
   color: lightgray;
+  border: none;
 }
 td:nth-child(1):not(.breadcrumbs) {
   display: none;
