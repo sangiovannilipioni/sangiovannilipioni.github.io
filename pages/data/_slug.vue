@@ -6,6 +6,10 @@
         <span class="text-muted" style="font-size: smaller">[{{ $route.params.slug }}]</span>
       </h4>
       <ul role="tablist" class="nav nav-tabs">
+         <button type="button" class="btn btn-outline-secondary" style="border: none;"
+         @click="showBreadcrumbs = !showBreadcrumbs">
+            ±
+          </button>
         <li
           role="presentation"
           class="nav-item"
@@ -41,6 +45,7 @@
                 :style="cell.style"
                 :colspan="cell.colspan"
                 :rowspan="cell.rowspan"
+                :class="showBreadcrumbs ? cell.class : ''"
                 v-html="cell.text"
               ></td>
             </tr>
@@ -55,11 +60,15 @@
 table {
   overflow-y: hidden;
 }
-/*
-td:nth-child(1) {
+td:nth-child(1):not(.breadcrumbs) {
   display: none;
 }
-*/
+td:nth-child(1).breadcrumbs {
+  color: darkgray;
+  font-family: "Courier New", monospace;
+  font-size: 12pt;
+  white-space: nowrap;
+}
 td:nth-child(2) {
   text-align: left;
 }
@@ -94,6 +103,7 @@ td:nth-child(2) {
 export default {
   data() {
     return {
+      showBreadcrumbs: false,
       title: "",
       units: {
         O02: {},
@@ -139,7 +149,6 @@ export default {
         "04_dati_costrutt_VERT_IQM": "Caratteristiche costruttive muratura",
         "04_dati_costrutt_CARENZE": "Caratteristiche costruttive solai"
       }
-
 
       // remove all sheets that have no title
       json = json.filter((sheet) => sheetTitles[sheet.sheet])
@@ -332,7 +341,6 @@ export default {
               }
               if (cell.col === "3" && 0 < breadcrumb.row) {
                 cell.colspan = "2"
-                console.log("SET COLSPAN 2", cell)
               }
               // stop ignoring rows when meeting full uppercase cell or new section
               if (ignoreThisRow && (isUpper(cell.text) || breadcrumb.row === 0)) {
@@ -389,11 +397,11 @@ export default {
           } else {
             const breadcrumbCell = {
               col: "-1",
-              text: breadcrumb.id,
-              style: "color:gray; font-family: 'Courier New', monospace; font-size: 10pt;"
+              class: "breadcrumbs",
+              text: breadcrumb.id
             }
             formatNumber(breadcrumbCell)
-            breadcrumbCell.text = breadcrumbCell.text + " <span style='color: red;'>" + breadcrumb.row + "</span>"
+            breadcrumbCell.text = breadcrumbCell.text + " <span style='font-size: smaller'>" + breadcrumb.row + "</span>"
             row.unshift(breadcrumbCell)
             if (!(ignoreNextRows === true)) {
               breadcrumb.row = breadcrumb.row + 1
@@ -423,7 +431,7 @@ export default {
       if (sheet_id === "04_dati_costrutt_VERT_IQM") {
         sheet_column_count = 6
       }
-      sheet_column_count = sheet_column_count + 1 // (add breadcrumbs optionnal hidden column)
+      sheet_column_count = sheet_column_count + 1 // (add breadcrumbs optionally hidden column)
       row = row.filter((e) => e.col < sheet_column_count)
       let index = -1
       let lastCell = undefined
@@ -443,6 +451,9 @@ export default {
         }
         if (cell.rowspan) {
           lastCell.rowspan = cell.rowspan
+        }
+        if (cell.class) {
+          lastCell.class = cell.class
         }
         ret.push(lastCell)
         index++
