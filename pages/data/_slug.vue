@@ -32,7 +32,7 @@
                 :colspan="cell.colspan"
                 :rowspan="cell.rowspan"
                 :class="showBreadcrumbs ? cell.class : ''"
-                v-html="cell.text"
+                v-html="cell.html"
               ></td>
             </tr>
           </table>
@@ -64,12 +64,12 @@ td:nth-child(1).breadcrumbs {
   font-family: "Courier New", monospace;
   font-size: 12pt;
   white-space: nowrap;
-  min-width: 80px;
+  width: 76px;
 }
 #_04_dati_costrutt_VERT_IQM,
 #_04_dati_costrutt_CARENZE {
   td:last-child {
-    width: 20%;
+    width: 120px;
   }
 }
 </style>
@@ -171,6 +171,7 @@ export default {
         let nextRowColor = undefined
         let nextColumnBackground = undefined
         let ignoreNextNextColumns = undefined
+        let backgroundImageCellRowSpan = 0
 
         // for all rows
         sheet.rows.forEach((row, rowindex) => {
@@ -226,17 +227,17 @@ export default {
             formatNumber(cell)
 
             // function to instantiate background image cell
-            const instantiateBackgroundImageCell = (rowspan) => {
-              ignoreNextNextColumns = true
+            const createBackgroundImageCell = (rowspan) => {
               if (breadcrumb.jpeg) {
-                backgroundImageCell = {
+                return {
                   col: "5",
-                  rowspan: rowspan || "4",
+                  rowspan: rowspan,
                   text: "‌&zwnj;",
                   style:
-                    "min-width:25%; background: top right / contain no-repeat url(/json/jpegs/" + breadcrumb.jpeg + ")"
+                    "background: center right / contain no-repeat url(/json/jpegs/" + breadcrumb.jpeg + ")"
                 }
               }
+              return undefined
             }
 
             // special case 1 -------------------------------------------------
@@ -284,7 +285,11 @@ export default {
                 appendStyle(cell, { fontWeight: 600 })
               }
               if (cell.text.match(/materiali/g)) {
-                instantiateBackgroundImageCell()
+                backgroundImageCellRowSpan = 4
+                backgroundImageCell = createBackgroundImageCell(backgroundImageCellRowSpan)
+                if (backgroundImageCell) {
+                  ignoreNextNextColumns = true
+                }
               }
               if (columnBackground && 2 <= cell.col) {
                 if (0 < breadcrumb.row) {
@@ -356,7 +361,11 @@ export default {
               }
 
               if (breadcrumb.row === 2) {
-                instantiateBackgroundImageCell("5")
+                ignoreNextNextColumns = true
+                backgroundImageCell = createBackgroundImageCell(5)
+                if (backgroundImageCell) {
+                  backgroundImageCellRowSpan = 5
+                }
               }
             }
           }) // cells
@@ -392,22 +401,23 @@ export default {
             row.push(backgroundImageCell)
             backgroundImageCell = undefined
           }
+          if (backgroundImageCellRowSpan) {
+            row.colspanOffset = backgroundImageCellRowSpan
+            console.log("row.colspanOffset", row.colspanOffset)
+            
+            backgroundImageCellRowSpan = backgroundImageCellRowSpan - 1
+          }
         }) // rows
       }) // sheets
       return json
     },
     toTrueArray(row, sheet_column_count, sheet_id) {
-      sheet_column_count = +sheet_column_count
       let ret = []
-      /*
+      sheet_column_count = +sheet_column_count + 1 // (add breadcrumbs optionally hidden column)
       if (sheet_id === "04_dati_costrutt_CARENZE") {
         sheet_column_count = 6
       }
-      if (sheet_id === "04_dati_costrutt_VERT_IQM") {
-        sheet_column_count = 6
-      }
-      */
-      sheet_column_count = sheet_column_count + 1 // (add breadcrumbs optionally hidden column)
+      const colspanOffset = row.colspanOffset
       row = row.filter((e) => e.col < sheet_column_count)
       let lastCell = undefined
       let first = true
@@ -415,7 +425,7 @@ export default {
         if (cell.col != "-1") {
           if (first) {
             if (0 < +cell.col) {
-              lastCell = { text: "‌&zwnj;", col: 0 }
+              lastCell = { html: "‌&zwnj;", col: 0 }
               ret.push(lastCell)
             }
             first = false
@@ -425,24 +435,12 @@ export default {
         if (lastCell) {
           lastCell.colspan = +cell.col - lastCell.col
         }
-        lastCell = { text: cell.text, col: +cell.col }
-        if (cell.style) {
-          lastCell.style = cell.style
-        }
-        if (cell.colspan) {
-          lastCell.colspan = cell.colspan
-        }
-        if (cell.rowspan) {
-          lastCell.rowspan = cell.rowspan
-        }
-        if (cell.class) {
-          lastCell.class = cell.class
-        }
+
+        lastCell = { ...cell, ...{ text: undefined, html: cell.text, col: +cell.col } }
         ret.push(lastCell)
       })
-
       if (lastCell) {
-        lastCell.colspan = 1 + sheet_column_count - lastCell.col
+        lastCell.colspan = (colspanOffset ? -1 : 0) + sheet_column_count - lastCell.col
       }
       return ret
     }
