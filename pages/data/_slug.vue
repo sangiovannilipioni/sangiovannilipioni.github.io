@@ -40,6 +40,7 @@
                 :key="col_index"
                 :style="cell.style"
                 :colspan="cell.colspan"
+                :rowspan="cell.rowspan"
                 v-html="cell.text"
               ></td>
             </tr>
@@ -54,32 +55,36 @@
 table {
   overflow-y: hidden;
 }
+/*
 td:nth-child(1) {
-  width: 5%;
+  display: none;
 }
-#_02_descriz_edificio td:nth-child(2) {
+*/
+td:nth-child(2) {
+  text-align: left;
+}
+#_02_descriz_edificio td:nth-child(3) {
   text-align: right;
 }
 #_03_dati_metrici_AB {
-  td:nth-child(3) {
-    width: 5%;
-  }
   td:nth-child(4) {
-    /* text-align: right; */
-    width: 5%;
+    width: 25%;
   }
   td:nth-child(5) {
+    width: 5%;
+  }
+  td:nth-child(6) {
     text-align: right;
     width: 5%;
   }
 }
 #_04_dati_costrutt_VERT_IQM {
-  td:nth-child(5) {
+  td:nth-child(7) {
     width: 25%;
   }
 }
 #_04_dati_costrutt_CARENZE {
-  td:nth-child(5) {
+  td:nth-child(7) {
     width: 25%;
   }
 }
@@ -98,7 +103,6 @@ export default {
   },
   async fetch() {
     const data = this.massageData(await fetch("/json/Sintesi_O2_v2.json").then((res) => res.json()))
-    // const data = await fetch("/json/Sintesi_O2_v2.json").then((res) => res.json())
     this.units[this.$route.params.slug] = data
   },
   fetchOnServer: false,
@@ -132,9 +136,10 @@ export default {
         "01_id_edificio": "Identificazione",
         "02_descriz_edificio": "Descrizione",
         "03_dati_metrici_AB": "Dati metrici",
-        "04_dati_costrutt_CARENZE": "Carenze costruttive",
-        "04_dati_costrutt_VERT_IQM": "Qualità muraria"
+        "04_dati_costrutt_VERT_IQM": "Caratteristiche costruttive muratura",
+        "04_dati_costrutt_CARENZE": "Caratteristiche costruttive solai"
       }
+
 
       // remove all sheets that have no title
       json = json.filter((sheet) => sheetTitles[sheet.sheet])
@@ -142,7 +147,7 @@ export default {
       // for all sheets
       json.forEach((sheet) => {
         // set id
-        sheet.id = `_${sheet.sheet.replace(' ', '_')}`
+        sheet.id = `_${sheet.sheet.replace(" ", "_")}`
         // set title
         sheet.title = sheetTitles[sheet.sheet]
 
@@ -155,7 +160,7 @@ export default {
         let is_04_dati_costrutt_VERT_IQM = sheet.sheet === "04_dati_costrutt_VERT_IQM"
         let is_04_dati_costrutt_CARENZE = sheet.sheet === "04_dati_costrutt_CARENZE"
 
-        let ignoreNextRows = false
+        let ignoreNextRows = undefined
         let nextRowColor = undefined
         let nextColumnBackground = undefined
 
@@ -181,11 +186,14 @@ export default {
           }
         }
 
+        let ignoreNextNextColumns = undefined
+
         // for all rows
         sheet.rows.forEach((row, rowindex) => {
+          let ignoreThisRow = false
           // hide ignored rows
-          if (ignoreNextRows) {
-            appendStyle(row, { display: "none" })
+          if (ignoreNextRows === true) {
+            ignoreThisRow = true
           }
           // consume row color
           if (nextRowColor) {
@@ -195,7 +203,7 @@ export default {
 
           const fixTypos = {
             "stato di conservaz": "stato di conservazione",
-            "carenzestrutturali": "carenze strutturali"
+            carenzestrutturali: "carenze strutturali"
           }
 
           let indirizzo = undefined
@@ -221,10 +229,11 @@ export default {
 
                 let bgColor = "#eee"
 
-                // for 'Carenze' and 'Qualità' sheets, darker gray for 3rd level (e.g. 'x.y.z') very first row 
+                // for 'Carenze' and 'Qualità' sheets, darker gray for 3rd level (e.g. 'x.y.z') very first row
                 if (is_04_dati_costrutt_CARENZE || is_04_dati_costrutt_VERT_IQM) {
                   if (breadcrumb.level === 3 && breadcrumb.row === 0) {
                     bgColor = "#ddd"
+                    ignoreNextNextColumns = false
                   }
                 }
 
@@ -238,21 +247,27 @@ export default {
             // format numbers
             formatNumber(cell)
 
-            if (
-              cell.col <= 3 &&
-              (cell.text.startsWith("codice id. elementi costruttivi") ||
-                cell.text === "IQMv" ||
-                cell.text === "IQMo,fp" ||
-                cell.text === "IQMo,np")
-            ) {
-              appendStyle(row, { display: "none" })
+            const appendBackgroundImage = () => {
+              ignoreNextNextColumns = true
+              if (breadcrumb.jpeg) {
+                appendImage = {
+                  col: "5",
+                  rowspan: "4",
+                  text: "‌&zwnj;",
+                  style:
+                    "position: relative; background: center / cover no-repeat url(/json/jpegs/" +
+                    breadcrumb.jpeg +
+                    ".jpg)"
+                }
+              }
             }
 
             // special case 1 -------------------------------------------------
             if (is_01_id_edificio) {
               if (cell.text === "DATI CATASTALI") {
                 ignoreNextRows = true
-                appendStyle(row, { display: "none" })
+                ignoreThisRow = true
+                // appendStyle(row, { display: "none" })
               }
               if (indirizzo) {
                 this.title = cell.text
@@ -269,14 +284,22 @@ export default {
                 nextRowColor = "#a42424"
               }
             }
+
             // special case 4 -------------------------------------------------
             else if (is_04_dati_costrutt_VERT_IQM) {
+              if (ignoreNextNextColumns && 4 < cell.col) {
+                appendStyle(cell, { display: "none" })
+              }
+              if (cell.col <= 3 && cell.text.match(/(codice id. elementi costruttivi|IQMv|IQMo,fp|IQMo,np)/g)) {
+                ignoreThisRow = true
+              }
+
               if (cell.text.match(/pareti (interne|esterne)/g)) {
                 columnBackground = undefined
                 appendStyle(cell, { fontWeight: 600 })
               }
               if (cell.text.match(/CATEGORIA/g)) {
-                appendStyle(row, { display: "none" })
+                ignoreThisRow = true
               }
               if (cell.text.match(/A[1234]/g)) {
                 columnBackground = "#c6e0b3"
@@ -284,25 +307,14 @@ export default {
                 appendStyle(cell, { fontWeight: 600 })
               }
               if (cell.text.match(/materiali/g)) {
-                let qwe = breadcrumb.jpeg
-                if (qwe) {
-                  appendImage = {
-                    col: "4",
-                    text:
-                      "<img src='/json/jpegs/" +
-                      qwe +
-                      ".jpg' class='img-fluid' style='width: 200px; height:auto; position: absolute; right:0; max-width:80%'>",
-                    style: "position: relative"
-                  }
-                }
+                appendBackgroundImage()
               }
-              if (columnBackground && 2 <= cell.col && cell.col <= 3) {
+              if (columnBackground && 1 <= cell.col && cell.col <= 3) {
                 if (0 < breadcrumb.row) {
                   appendStyle(cell, { backgroundColor: columnBackground })
                 }
-
                 // add center for this
-                if (columnBackground === "#eee") {
+                if (columnBackground === "#eee" && 0 < breadcrumb.row) {
                   appendStyle(cell, { textAlign: "center" })
                 }
                 // consume gray, prepare next row
@@ -315,6 +327,20 @@ export default {
 
             // special case 5 -------------------------------------------------
             else if (is_04_dati_costrutt_CARENZE) {
+              if (ignoreNextNextColumns && 4 < cell.col) {
+                appendStyle(cell, { display: "none" })
+              }
+              if (cell.col === "3" && 0 < breadcrumb.row) {
+                cell.colspan = "2"
+                console.log("SET COLSPAN 2", cell)
+              }
+              // stop ignoring rows when meeting full uppercase cell or new section
+              if (ignoreThisRow && (isUpper(cell.text) || breadcrumb.row === 0)) {
+                ignoreThisRow = false
+                ignoreNextRows = false
+                columnBackground = "#ffe699"
+              }
+
               // "ct" and "c" are bold
               if (breadcrumb.level === 3 && breadcrumb.row === 0) {
                 // next row background will be dark orange
@@ -326,18 +352,10 @@ export default {
                 }
               }
 
-              // stop ignoring rows when meeting full uppercase cell
-              if (ignoreNextRows && isUpper(cell.text)) {
-                appendStyle(row, { display: "table.row" })
-                ignoreNextRows = false
-                columnBackground = "#ffe699"
-              }
-
               if (0 < breadcrumb.row) {
                 if (columnBackground) {
                   if (columnBackground === "#ffc000") {
                     nextColumnBackground = "#ffe699"
-                    ignoreNextRows = true
                   } else if (columnBackground === "#ffe699") {
                     nextColumnBackground = "#eee"
                   }
@@ -360,30 +378,33 @@ export default {
                 }
               }
 
-              if (cell.text.match(/materiali/g)) {
-                let qwe = breadcrumb.jpeg
-                if (qwe) {
-                  appendImage = {
-                    col: "4",
-                    text:
-                      "<img src='/json/jpegs/" +
-                      qwe +
-                      ".jpg' class='img-fluid' style='width: 200px; height:auto; position: absolute; right:0; max-width:80%'>",
-                    style: "position: relative; background-color: " + columnBackground + ";"
-                  }
-                }
+              if (breadcrumb.row === 2) {
+                appendBackgroundImage()
               }
-}
+            }
           }) // cells
 
-          if (is_04_dati_costrutt_CARENZE) {
-            // ignore rows after second row of third level breadcrumb until a all uppercase cell is found
-            if (breadcrumb.level === 3 && breadcrumb.row === 1) {
-              ignoreNextRows = true
+          if (ignoreThisRow) {
+            appendStyle(row, { display: "none" })
+          } else {
+            const breadcrumbCell = {
+              col: "-1",
+              text: breadcrumb.id,
+              style: "color:gray; font-family: 'Courier New', monospace; font-size: 10pt;"
+            }
+            formatNumber(breadcrumbCell)
+            breadcrumbCell.text = breadcrumbCell.text + " <span style='color: red;'>" + breadcrumb.row + "</span>"
+            row.unshift(breadcrumbCell)
+            if (!(ignoreNextRows === true)) {
+              breadcrumb.row = breadcrumb.row + 1
+              if (is_04_dati_costrutt_CARENZE) {
+                // ignore rows after second row of third level breadcrumb until an all uppercase cell is found
+                if (breadcrumb.level === 3 && breadcrumb.row === 2) {
+                  ignoreNextRows = true
+                }
+              }
             }
           }
-
-          breadcrumb.row = breadcrumb.row + 1
 
           if (appendImage) {
             row.push(appendImage)
@@ -400,12 +421,11 @@ export default {
         sheet_column_count = 5
       }
       if (sheet_id === "04_dati_costrutt_VERT_IQM") {
-        sheet_column_count = 5
+        sheet_column_count = 6
       }
-      /*
-       */
+      sheet_column_count = sheet_column_count + 1 // (add breadcrumbs optionnal hidden column)
       row = row.filter((e) => e.col < sheet_column_count)
-      let index = 0
+      let index = -1
       let lastCell = undefined
       row.forEach((cell) => {
         for (let i = index; i < cell.col; i++) {
@@ -418,12 +438,18 @@ export default {
         } else {
           lastCell = { text: cell.text }
         }
+        if (cell.colspan) {
+          lastCell.colspan = cell.colspan
+        }
+        if (cell.rowspan) {
+          lastCell.rowspan = cell.rowspan
+        }
         ret.push(lastCell)
         index++
       })
 
       if (lastCell && index < sheet_column_count) {
-        lastCell.colspan = 1 + sheet_column_count - index
+        lastCell.colspan = 2 + sheet_column_count - index
       }
       return ret
     }
