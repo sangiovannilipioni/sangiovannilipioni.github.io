@@ -60,37 +60,16 @@ td:nth-child(1):not(.breadcrumbs) {
   display: none;
 }
 td:nth-child(1).breadcrumbs {
-  color: darkgray;
+  color: gray;
   font-family: "Courier New", monospace;
   font-size: 12pt;
   white-space: nowrap;
+  min-width: 80px;
 }
-td:nth-child(2) {
-  text-align: left;
-}
-#_02_descriz_edificio td:nth-child(3) {
-  text-align: right;
-}
-#_03_dati_metrici_AB {
-  td:nth-child(4) {
-    width: 25%;
-  }
-  td:nth-child(5) {
-    width: 5%;
-  }
-  td:nth-child(6) {
-    text-align: right;
-    width: 5%;
-  }
-}
-#_04_dati_costrutt_VERT_IQM {
-  td:nth-child(7) {
-    width: 25%;
-  }
-}
+#_04_dati_costrutt_VERT_IQM,
 #_04_dati_costrutt_CARENZE {
-  td:nth-child(7) {
-    width: 25%;
+  td:last-child {
+    width: 20%;
   }
 }
 </style>
@@ -255,10 +234,7 @@ export default {
                   rowspan: rowspan || "4",
                   text: "‌&zwnj;",
                   style:
-                    "position: relative; background: center / cover no-repeat " +
-                    "url(/json/jpegs/" +
-                    breadcrumb.jpeg +
-                    ")"
+                    "min-width:25%; background: top right / contain no-repeat url(/json/jpegs/" + breadcrumb.jpeg + ")"
                 }
               }
             }
@@ -331,9 +307,11 @@ export default {
               if (ignoreNextNextColumns && 4 < cell.col) {
                 appendStyle(cell, { display: "none" })
               }
+              /*
               if (cell.col === "3" && 0 < breadcrumb.row) {
-                cell.colspan = "2"
+                cell.colspan = "1"
               }
+              */
               // stop ignoring rows when meeting full uppercase cell or new section
               if (ignoreThisRow && (isUpper(cell.text) || breadcrumb.row === 0)) {
                 ignoreThisRow = false
@@ -393,7 +371,10 @@ export default {
             }
             formatNumber(breadcrumbCell)
             breadcrumbCell.text =
-              breadcrumbCell.text + " <span style='font-size: smaller'>" + breadcrumb.row + "</span>"
+              breadcrumbCell.text +
+              "<span style='float: right; margin-left: 0.5rem; color: lightgray;'>" +
+              breadcrumb.row +
+              "</span>"
             row.unshift(breadcrumbCell)
             if (!(ignoreNextRows === true)) {
               breadcrumb.row = breadcrumb.row + 1
@@ -418,26 +399,35 @@ export default {
     toTrueArray(row, sheet_column_count, sheet_id) {
       sheet_column_count = +sheet_column_count
       let ret = []
+      /*
       if (sheet_id === "04_dati_costrutt_CARENZE") {
-        sheet_column_count = 5
+        sheet_column_count = 6
       }
       if (sheet_id === "04_dati_costrutt_VERT_IQM") {
         sheet_column_count = 6
       }
+      */
       sheet_column_count = sheet_column_count + 1 // (add breadcrumbs optionally hidden column)
       row = row.filter((e) => e.col < sheet_column_count)
-      let index = -1
       let lastCell = undefined
+      let first = true
       row.forEach((cell) => {
-        for (let i = index; i < cell.col; i++) {
-          lastCell = { text: "‌&zwnj;" }
-          ret.push(lastCell)
-          index++
+        if (cell.col != "-1") {
+          if (first) {
+            if (0 < +cell.col) {
+              lastCell = { text: "‌&zwnj;", col: 0 }
+              ret.push(lastCell)
+            }
+            first = false
+          }
         }
+
+        if (lastCell) {
+          lastCell.colspan = +cell.col - lastCell.col
+        }
+        lastCell = { text: cell.text, col: +cell.col }
         if (cell.style) {
-          lastCell = { text: cell.text, style: cell.style }
-        } else {
-          lastCell = { text: cell.text }
+          lastCell.style = cell.style
         }
         if (cell.colspan) {
           lastCell.colspan = cell.colspan
@@ -449,19 +439,15 @@ export default {
           lastCell.class = cell.class
         }
         ret.push(lastCell)
-        index++
       })
 
-      if (lastCell && index < sheet_column_count) {
-        lastCell.colspan = 2 + sheet_column_count - index
+      if (lastCell) {
+        lastCell.colspan = 1 + sheet_column_count - lastCell.col
       }
       return ret
     }
   },
   computed: {
-    slug() {
-      return this.$route.params.slug
-    },
     datum() {
       return this.units[this.$route.params.slug]
     }
