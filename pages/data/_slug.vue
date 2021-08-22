@@ -256,12 +256,12 @@ export default {
             // format numbers
             formatNumber(cell)
 
-            const appendBackgroundImage = () => {
+            const appendBackgroundImage = (rowspan) => {
               ignoreNextNextColumns = true
               if (breadcrumb.jpeg) {
                 appendImage = {
                   col: "5",
-                  rowspan: "4",
+                  rowspan: rowspan || "4",
                   text: "‌&zwnj;",
                   style:
                     "position: relative; background: center / cover no-repeat url(/json/jpegs/" +
@@ -387,7 +387,7 @@ export default {
               }
 
               if (breadcrumb.row === 2) {
-                appendBackgroundImage()
+                appendBackgroundImage("5")
               }
             }
           }) // cells
