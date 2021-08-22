@@ -6,10 +6,12 @@
         <span class="text-muted" style="font-size: smaller">[{{ $route.params.slug }}]</span>
       </h4>
       <ul role="tablist" class="nav nav-tabs">
-         <button type="button" class="btn btn-outline-secondary" style="border: none;"
-         @click="showBreadcrumbs = !showBreadcrumbs">
-            ±
-          </button>
+        <div id="discret" type="button" class="btn btn-outline-secondary" @click="showBreadcrumbs = !showBreadcrumbs">
+          <span style="font-size: smaller">
+            <font-awesome-icon v-if="!showBreadcrumbs" :icon="['fas', 'plus']" />
+            <font-awesome-icon v-else :icon="['fas', 'minus']" />
+          </span>
+        </div>
         <li
           role="presentation"
           class="nav-item"
@@ -59,6 +61,13 @@
 <style lang="scss" scoped>
 table {
   overflow-y: hidden;
+}
+#discret,
+#discret:focus {
+  border: none;
+  margin: auto 0.25rem;
+  padding: 0 0.25rem;
+  color: lightgray;
 }
 td:nth-child(1):not(.breadcrumbs) {
   display: none;
@@ -401,7 +410,8 @@ export default {
               text: breadcrumb.id
             }
             formatNumber(breadcrumbCell)
-            breadcrumbCell.text = breadcrumbCell.text + " <span style='font-size: smaller'>" + breadcrumb.row + "</span>"
+            breadcrumbCell.text =
+              breadcrumbCell.text + " <span style='font-size: smaller'>" + breadcrumb.row + "</span>"
             row.unshift(breadcrumbCell)
             if (!(ignoreNextRows === true)) {
               breadcrumb.row = breadcrumb.row + 1
