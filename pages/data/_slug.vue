@@ -15,7 +15,7 @@
         >
           <a
             role="tab"
-            :href="`#_${sheet.sheet.replace(' ', '_')}`"
+            :href="`#${sheet.id}`"
             target="_self"
             data-toggle="tab"
             :class="`nav-link ${sheet_index == 0 ? 'active' : ''}`"
@@ -30,7 +30,7 @@
           role="tabpanel"
           v-for="(sheet, sheet_index) in datum"
           :key="sheet_index"
-          :id="'_' + sheet.sheet.replace(' ', '_')"
+          :id="sheet.id"
         >
           <!-- :id="`_${sheet_index}`" -->
           <table class="table table-sm table-responsive table-borderless">
@@ -141,6 +141,8 @@ export default {
 
       // for all sheets
       json.forEach((sheet) => {
+        // set id
+        sheet.id = `_${sheet.sheet.replace(' ', '_')}`
         // set title
         sheet.title = sheetTitles[sheet.sheet]
 
@@ -153,8 +155,8 @@ export default {
         let is_04_dati_costrutt_VERT_IQM = sheet.sheet === "04_dati_costrutt_VERT_IQM"
         let is_04_dati_costrutt_CARENZE = sheet.sheet === "04_dati_costrutt_CARENZE"
 
-        let ignoreRow = false
-        let rowColor = undefined
+        let ignoreNextRows = false
+        let nextRowColor = undefined
         let nextColumnBackground = undefined
 
         let breadcrumb = {
@@ -175,7 +177,6 @@ export default {
             return ret
           },
           get jpeg() {
-            console.log(this, this.aliases[this.id])
             return this.aliases[this.id]
           }
         }
@@ -183,18 +184,18 @@ export default {
         // for all rows
         sheet.rows.forEach((row, rowindex) => {
           // hide ignored rows
-          if (ignoreRow) {
+          if (ignoreNextRows) {
             appendStyle(row, { display: "none" })
           }
           // consume row color
-          if (rowColor) {
-            appendStyle(row, { color: rowColor })
-            rowColor = undefined
+          if (nextRowColor) {
+            appendStyle(row, { color: nextRowColor })
+            nextRowColor = undefined
           }
 
           const fixTypos = {
             "stato di conservaz": "stato di conservazione",
-            carenzestrutturali: "carenze strutturali"
+            "carenzestrutturali": "carenze strutturali"
           }
 
           let indirizzo = undefined
@@ -220,7 +221,7 @@ export default {
 
                 let bgColor = "#eee"
 
-                // for 'Carenze' and 'Qualità' sheets, darker gray for 3rd level rows (of the form 'x.y.z', that is, with two dots)
+                // for 'Carenze' and 'Qualità' sheets, darker gray for 3rd level (e.g. 'x.y.z') very first row 
                 if (is_04_dati_costrutt_CARENZE || is_04_dati_costrutt_VERT_IQM) {
                   if (breadcrumb.level === 3 && breadcrumb.row === 0) {
                     bgColor = "#ddd"
@@ -250,7 +251,7 @@ export default {
             // special case 1 -------------------------------------------------
             if (is_01_id_edificio) {
               if (cell.text === "DATI CATASTALI") {
-                ignoreRow = true
+                ignoreNextRows = true
                 appendStyle(row, { display: "none" })
               }
               if (indirizzo) {
@@ -265,7 +266,7 @@ export default {
             else if (is_02_descriz_edificio) {
               // next row text will be red
               if (cell.text === "CARATTERISTICHE EDIFICIO" || cell.text === "estremità") {
-                rowColor = "#a42424"
+                nextRowColor = "#a42424"
               }
             }
             // special case 4 -------------------------------------------------
@@ -326,9 +327,9 @@ export default {
               }
 
               // stop ignoring rows when meeting full uppercase cell
-              if (ignoreRow && isUpper(cell.text)) {
+              if (ignoreNextRows && isUpper(cell.text)) {
                 appendStyle(row, { display: "table.row" })
-                ignoreRow = false
+                ignoreNextRows = false
                 columnBackground = "#ffe699"
               }
 
@@ -336,7 +337,7 @@ export default {
                 if (columnBackground) {
                   if (columnBackground === "#ffc000") {
                     nextColumnBackground = "#ffe699"
-                    ignoreRow = true
+                    ignoreNextRows = true
                   } else if (columnBackground === "#ffe699") {
                     nextColumnBackground = "#eee"
                   }
@@ -378,7 +379,7 @@ export default {
           if (is_04_dati_costrutt_CARENZE) {
             // ignore rows after second row of third level breadcrumb until a all uppercase cell is found
             if (breadcrumb.level === 3 && breadcrumb.row === 1) {
-              ignoreRow = true
+              ignoreNextRows = true
             }
           }
 
