@@ -233,8 +233,7 @@ export default {
                   col: "5",
                   rowspan: rowspan,
                   text: "‌&zwnj;",
-                  style:
-                    "background: center right / contain no-repeat url(/json/jpegs/" + breadcrumb.jpeg + ")"
+                  style: "background: center right / contain no-repeat url(/json/jpegs/" + breadcrumb.jpeg + ")"
                 }
               }
               return undefined
@@ -285,9 +284,9 @@ export default {
                 appendStyle(cell, { fontWeight: 600 })
               }
               if (cell.text.match(/materiali/g)) {
-                backgroundImageCellRowSpan = 4
-                backgroundImageCell = createBackgroundImageCell(backgroundImageCellRowSpan)
+                backgroundImageCell = createBackgroundImageCell(4)
                 if (backgroundImageCell) {
+                  backgroundImageCellRowSpan = 4
                   ignoreNextNextColumns = true
                 }
               }
@@ -404,7 +403,7 @@ export default {
           if (backgroundImageCellRowSpan) {
             row.colspanOffset = backgroundImageCellRowSpan
             console.log("row.colspanOffset", row.colspanOffset)
-            
+
             backgroundImageCellRowSpan = backgroundImageCellRowSpan - 1
           }
         }) // rows
