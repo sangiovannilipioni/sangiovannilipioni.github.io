@@ -27,7 +27,7 @@
             <tbody>
               <tr v-for="(row, row_index) in sheet.rows" :key="row_index" :style="row.style">
                 <td
-                  v-for="(cell, col_index) in toTrueArray(row, sheet.columnCount, sheet.sheet)"
+                  v-for="(cell, col_index) in toTrueArray(row, sheet)"
                   :class="showBreadcrumbs ? cell.class : ''"
                   :colspan="cell.colspan"
                   :key="col_index"
@@ -178,8 +178,8 @@ export default {
         let ignoreNextRows = undefined
         let nextRowColor = undefined
         let nextColumnBackground = undefined
-        let ignoreNextNextColumns = undefined
-        // let backgroundImageCellRowSpan = 0
+        let ignoreNextTrailingColumns = 0
+        let decrementColumnCountToMakeSpaceForImage = 0
 
         // for all rows
         sheet.rows.forEach((row, rowindex) => {
@@ -194,13 +194,20 @@ export default {
 
           // declare cell iteration flags
           let indirizzo = undefined
-          // let backgroundImageCell = undefined
+          let backgroundImageCell = undefined
           let columnBackground = undefined
 
           // consume column background color
           if (nextColumnBackground) {
             columnBackground = nextColumnBackground
             nextColumnBackground = undefined
+          }
+
+          console.log(decrementColumnCountToMakeSpaceForImage, row)
+          if (decrementColumnCountToMakeSpaceForImage) {
+            row.makeSpaceForImage = true
+
+            decrementColumnCountToMakeSpaceForImage = decrementColumnCountToMakeSpaceForImage - 1
           }
 
           // for all cols
@@ -225,7 +232,7 @@ export default {
                 if (is_04_dati_costrutt_CARENZE || is_04_dati_costrutt_VERT_IQM) {
                   if (breadcrumb.level === 3 && breadcrumb.row === 0) {
                     bgColor = "#ddd"
-                    ignoreNextNextColumns = false // reset flag
+                    ignoreNextTrailingColumns = 0 // reset flag
                   }
                 }
 
@@ -236,12 +243,11 @@ export default {
             // format numbers
             formatNumber(cell)
 
-            /*
             // function to instantiate background image cell
-            const createBackgroundImageCell = (rowspan) => {
+            const createBackgroundImageCell = (column, rowspan) => {
               if (breadcrumb.jpeg) {
                 return {
-                  col: "5",
+                  col: column,
                   rowspan: rowspan,
                   text: "‌&zwnj;",
                   style: "background: center right / contain no-repeat url(/json/jpegs/" + breadcrumb.jpeg + ")"
@@ -249,7 +255,6 @@ export default {
               }
               return undefined
             }
-            */
 
             // special case 1 -------------------------------------------------
             if (is_01_id_edificio) {
@@ -279,12 +284,6 @@ export default {
 
             // special case 4 -------------------------------------------------
             else if (is_04_dati_costrutt_VERT_IQM) {
-              /*
-              if (ignoreNextNextColumns && 4 < cell.col) {
-                appendStyle(cell, { display: "none" })
-              }
-              */
-
               if (cell.col <= 3 && cell.text.match(/(codice id. elementi costruttivi|IQMv|IQMo,fp|IQMo,np)/g)) {
                 ignoreThisRow = true
               }
@@ -300,45 +299,45 @@ export default {
                 nextColumnBackground = "#eee"
                 appendStyle(cell, { fontWeight: 600 })
               }
-              /*
+              // insert image
+              if (ignoreNextTrailingColumns && sheet.columnCount - cell.col <= ignoreNextTrailingColumns) {
+                appendStyle(cell, { display: "none" })
+              }
               if (cell.text.match(/materiali/g)) {
-                backgroundImageCell = createBackgroundImageCell(4)
+                backgroundImageCell = createBackgroundImageCell(5, 4) // insert at column 5 with rowspan 4
                 if (backgroundImageCell) {
-                  backgroundImageCellRowSpan = 4
-                  ignoreNextNextColumns = true
+                  decrementColumnCountToMakeSpaceForImage = backgroundImageCell.rowspan - 1
+                  ignoreNextTrailingColumns = 3
                 }
               }
-              */
-              if (columnBackground && 1 < cell.col) {
-                // if not on section row
-                if (breadcrumb.row !== 0) {
+              // when not on section row
+              if (breadcrumb.row !== 0) {
+                if (columnBackground && 1 < cell.col) {
                   appendStyle(cell, { backgroundColor: columnBackground })
                   // add center for this one
                   if (columnBackground === "#eee") {
                     appendStyle(cell, { textAlign: "center" })
                   }
-                }
-                // consume gray, prepare next row
-                if (columnBackground === "#eee") {
-                  columnBackground = "#eff5e9"
-                  nextColumnBackground = "#eee"
+
+                  // consume gray, prepare next row
+                  if (columnBackground === "#eee") {
+                    columnBackground = "#eff5e9"
+                    nextColumnBackground = "#eee"
+                  }
                 }
               }
             }
 
             // special case 5 -------------------------------------------------
             else if (is_04_dati_costrutt_CARENZE) {
-              /*
-              if (ignoreNextNextColumns && 4 < cell.col) {
-                appendStyle(cell, { display: "none" })
-              }
-              */
-
               // stop ignoring rows when meeting full uppercase cell or new section
               if (ignoreThisRow && (isUpper(cell.text) || breadcrumb.row === 0)) {
                 ignoreThisRow = false
                 ignoreNextRows = false
                 columnBackground = "#ffe699"
+              }
+              if (cell.text.match(/(1\:ottimo|2\:medio|3\:scarso)/g)) {
+                appendStyle(cell, { display: "none" })
               }
               if (breadcrumb.level === 3 && breadcrumb.row === 0) {
                 // next row background will be dark orange
@@ -350,42 +349,37 @@ export default {
                   appendStyle(cell, { fontWeight: 600 })
                 }
               }
-
+              // insert image
+              if (cell.text.match(/materiali/g)) {
+                backgroundImageCell = createBackgroundImageCell(5, 4) // insert at column 5 with rowspan 4
+                if (backgroundImageCell) {
+                  decrementColumnCountToMakeSpaceForImage = backgroundImageCell.rowspan - 1
+                }
+              }
+              // when not on section row
               if (breadcrumb.row !== 0) {
-                if (columnBackground) {
+                if (columnBackground && 1 < cell.col) {
                   if (columnBackground === "#ffc000") {
                     nextColumnBackground = "#ffe699"
                   } else if (columnBackground === "#ffe699") {
                     nextColumnBackground = "#eee"
                   }
-                  if (1 < cell.col) {
-                    appendStyle(cell, { backgroundColor: columnBackground })
-                    // add bold for these two
-                    if (columnBackground === "#ffc000" || columnBackground === "#ffe699") {
-                      appendStyle(cell, { fontWeight: 600 })
-                    }
-                    // add center for this one
-                    if (columnBackground === "#eee") {
-                      appendStyle(cell, { textAlign: "center" })
-                    }
-                    // consume gray, prepare next row
-                    if (columnBackground === "#eee") {
-                      columnBackground = "#fff2cd"
-                      nextColumnBackground = "#eee"
-                    }
+                  appendStyle(cell, { backgroundColor: columnBackground })
+                  // add bold for these two
+                  if (columnBackground === "#ffc000" || columnBackground === "#ffe699") {
+                    appendStyle(cell, { fontWeight: 600 })
+                  }
+                  // add center for this one
+                  if (columnBackground === "#eee") {
+                    appendStyle(cell, { textAlign: "center" })
+                  }
+                  // consume gray, prepare next row
+                  if (columnBackground === "#eee") {
+                    columnBackground = "#fff2cd"
+                    nextColumnBackground = "#eee"
                   }
                 }
               }
-
-              /*
-              if (breadcrumb.row === 2) {
-                ignoreNextNextColumns = true
-                backgroundImageCell = createBackgroundImageCell(5)
-                if (backgroundImageCell) {
-                  backgroundImageCellRowSpan = 5
-                }
-              }
-              */
             }
           }) // cells
 
@@ -417,43 +411,32 @@ export default {
             }
           }
 
-          /*
-          // consume background image cell          
+          // consume background image cell
           if (backgroundImageCell) {
             row.push(backgroundImageCell)
             backgroundImageCell = undefined
           }
-
-          if (backgroundImageCellRowSpan) {
-            row.colspanOffset = backgroundImageCellRowSpan
-
-            backgroundImageCellRowSpan = backgroundImageCellRowSpan - 1
-          }
-          */
         }) // rows
 
         sheet.columnCount = +sheet.columnCount + 1 // (add breadcrumbs optionally hidden column)
       }) // sheets
       return json
     },
-    toTrueArray(row, sheet_column_count, sheet_sheet) {
+    toTrueArray(row, sheet) {
+      // column count manipulation
+      let columnCount = sheet.columnCount
+      const is_04_dati_costrutt_CARENZE = sheet.sheet === "04_dati_costrutt_CARENZE"
+      const is_04_dati_costrutt_VERT_IQM = sheet.sheet === "04_dati_costrutt_VERT_IQM"
+      if (is_04_dati_costrutt_VERT_IQM) {
+        columnCount = 6
+      }
+      if (is_04_dati_costrutt_CARENZE) {
+        columnCount = 6
+      }
+
       let ret = []
-      // const colspanOffset = row.colspanOffset
       let lastCell = undefined
       let first = true
-      /*
-      {
-        const is_04_dati_costrutt_CARENZE = sheet_sheet === "04_dati_costrutt_CARENZE"
-        if (is_04_dati_costrutt_CARENZE) {
-          sheet_column_count = 5
-          console.log("before", row);
-          row = row.filter((cell) => {
-            return +cell.col <= sheet_column_count
-          })
-          console.log("after", row);
-        }
-      }
-      */
       row.forEach((cell) => {
         if (cell.col !== -1) {
           if (first) {
@@ -468,18 +451,21 @@ export default {
           }
         }
 
-        if (lastCell) {
-          if (1 < cell.col - lastCell.col) {
-            lastCell.colspan = cell.col - lastCell.col
+        if (cell.col < columnCount + (row.makeSpaceForImage?-1:0)) {
+          
+          if (lastCell) {
+            if (lastCell.col + 1 < cell.col ) {
+              lastCell.colspan = cell.col - lastCell.col
+            }
           }
-        }
 
-        lastCell = { ...cell, ...{ text: undefined, html: cell.text } }
-        ret.push(lastCell)
+          lastCell = { ...cell, ...{ text: undefined, html: cell.text } }
+          ret.push(lastCell)
+        }
       })
       if (lastCell) {
-        if (1 < sheet_column_count - lastCell.col) {
-          lastCell.colspan = sheet_column_count - lastCell.col
+        if (lastCell.col + 1 < columnCount ) {
+          lastCell.colspan = (row.makeSpaceForImage?-1:0) + columnCount - lastCell.col
         }
       }
       return ret
