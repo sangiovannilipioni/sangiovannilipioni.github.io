@@ -6,9 +6,9 @@
         <span class="text-muted" style="font-size: smaller">[{{ $route.params.slug }}]</span>
       </h4>
       <ul role="tablist" class="nav nav-tabs">
-        <div type="button" class="discret btn btn-outline-secondary" @click="showBreadcrumbs = !showBreadcrumbs">
-          <font-awesome-icon v-if="!showBreadcrumbs" :icon="['fas', 'plus']" />
-          <font-awesome-icon v-else :icon="['fas', 'minus']" />
+        <div type="button" class="discretButton btn btn-outline-secondary" @click="showBreadcrumbs = !showBreadcrumbs">
+          <font-awesome-icon v-if="showBreadcrumbs" :icon="['fas', 'minus']" />
+          <font-awesome-icon v-else :icon="['fas', 'plus']" />
         </div>
         <li class="nav-item" v-for="(sheet, sheet_index) in datum" :key="sheet_index">
           <a :href="`#${sheet.id}`" data-toggle="tab" :class="`nav-link ${sheet_index == 0 ? 'active' : ''}`">
@@ -18,23 +18,25 @@
       </ul>
       <div class="tab-content mt-3" id="myTabContent">
         <div
-          :class="`tab-pane fade ${sheet_index == 0 ? 'show active' : ''}`"
           v-for="(sheet, sheet_index) in datum"
-          :key="sheet_index"
+          :class="`tab-pane fade ${sheet_index == 0 ? 'show active' : ''}`"
           :id="sheet.id"
+          :key="sheet_index"
         >
-          <table class="table table-sm table-responsive table-borderless">
-            <tr v-for="(row, row_index) in sheet.rows" :key="row_index" :style="row.style">
-              <td
-                v-for="(cell, col_index) in toTrueArray(row, sheet.columnCount, sheet.sheet)"
-                :key="col_index"
-                :style="cell.style"
-                :colspan="cell.colspan"
-                :rowspan="cell.rowspan"
-                :class="showBreadcrumbs ? cell.class : ''"
-                v-html="cell.html"
-              ></td>
-            </tr>
+          <table class="excel table table-sm table-responsive table-borderless">
+            <tbody>
+              <tr v-for="(row, row_index) in sheet.rows" :key="row_index" :style="row.style">
+                <td
+                  v-for="(cell, col_index) in toTrueArray(row, sheet.columnCount, sheet.sheet)"
+                  :class="showBreadcrumbs ? cell.class : ''"
+                  :colspan="cell.colspan"
+                  :key="col_index"
+                  :rowspan="cell.rowspan"
+                  :style="cell.style"
+                  v-html="cell.html"
+                ></td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
@@ -46,30 +48,36 @@
 #title {
   text-align: center;
 }
-.discret {
+
+.discretButton {
+  border: none;
+  color: lightgray;
+  font-size: smaller;
   margin: auto 0.25rem;
   padding: 0 0.25rem;
-  color: lightgray;
-  border: none;
-  font-size: smaller;
 }
-table {
+
+table.excel {
   overflow-y: hidden;
-}
-td:nth-child(1):not(.breadcrumbs) {
-  display: none;
-}
-td:nth-child(1).breadcrumbs {
-  color: gray;
-  font-family: "Courier New", monospace;
-  font-size: 12pt;
-  white-space: nowrap;
-  width: 76px;
+
+  td:nth-child(1):not(.breadcrumbs) {
+    display: none;
+  }
+  td:nth-child(1).breadcrumbs {
+    color: gray;
+    font-family: "Courier New", monospace;
+    font-size: 12pt;
+    white-space: nowrap;
+    width: 76px;
+  }
 }
 #_04_dati_costrutt_VERT_IQM,
 #_04_dati_costrutt_CARENZE {
+  td:nth-child(5) {
+    white-space: nowrap;
+  }
   td:last-child {
-    width: 120px;
+    width: 140px;
   }
 }
 </style>
@@ -137,11 +145,11 @@ export default {
         sheet.rows.shift()
 
         // helpers
-        let is_01_id_edificio = sheet.sheet === "01_id_edificio"
-        let is_02_descriz_edificio = sheet.sheet === "02_descriz_edificio"
-        let is_03_dati_metrici_AB = sheet.sheet === "03_dati_metrici_AB"
-        let is_04_dati_costrutt_VERT_IQM = sheet.sheet === "04_dati_costrutt_VERT_IQM"
-        let is_04_dati_costrutt_CARENZE = sheet.sheet === "04_dati_costrutt_CARENZE"
+        const is_01_id_edificio = sheet.sheet === "01_id_edificio"
+        const is_02_descriz_edificio = sheet.sheet === "02_descriz_edificio"
+        const is_03_dati_metrici_AB = sheet.sheet === "03_dati_metrici_AB"
+        const is_04_dati_costrutt_VERT_IQM = sheet.sheet === "04_dati_costrutt_VERT_IQM"
+        const is_04_dati_costrutt_CARENZE = sheet.sheet === "04_dati_costrutt_CARENZE"
 
         // the mythical breadcrum class
         let breadcrumb = {
@@ -171,7 +179,7 @@ export default {
         let nextRowColor = undefined
         let nextColumnBackground = undefined
         let ignoreNextNextColumns = undefined
-        let backgroundImageCellRowSpan = 0
+        // let backgroundImageCellRowSpan = 0
 
         // for all rows
         sheet.rows.forEach((row, rowindex) => {
@@ -186,7 +194,7 @@ export default {
 
           // declare cell iteration flags
           let indirizzo = undefined
-          let backgroundImageCell = undefined
+          // let backgroundImageCell = undefined
           let columnBackground = undefined
 
           // consume column background color
@@ -197,25 +205,27 @@ export default {
 
           // for all cols
           row.forEach((cell, colindex) => {
-            // for each column -------------------------------------------------
+            // for each cell -------------------------------------------------
+            cell.col = +cell.col
             // fix typos
             cell.text = fixTypos[cell.text] || cell.text
 
-            // if first column is column zero, and is a numeric, style the row with gray background
+            // if first column is column zero, and is a numeric : start of section
             if (colindex === 0) {
-              if (cell.col === "0" && !isNaN(cell.text.replace(".", ""))) {
-                ignoreThisRow = false
+              if (cell.col === 0 && !isNaN(cell.text.replace(".", ""))) {
+                ignoreThisRow = false // always show start of section
 
                 breadcrumb.id = cell.text
                 breadcrumb.row = 0
 
+                // style the row with gray background
                 let bgColor = "#eee"
 
                 // for 'Carenze' and 'Qualità' sheets, darker gray for 3rd level (e.g. 'x.y.z') very first row
                 if (is_04_dati_costrutt_CARENZE || is_04_dati_costrutt_VERT_IQM) {
                   if (breadcrumb.level === 3 && breadcrumb.row === 0) {
                     bgColor = "#ddd"
-                    ignoreNextNextColumns = false
+                    ignoreNextNextColumns = false // reset flag
                   }
                 }
 
@@ -226,6 +236,7 @@ export default {
             // format numbers
             formatNumber(cell)
 
+            /*
             // function to instantiate background image cell
             const createBackgroundImageCell = (rowspan) => {
               if (breadcrumb.jpeg) {
@@ -238,6 +249,7 @@ export default {
               }
               return undefined
             }
+            */
 
             // special case 1 -------------------------------------------------
             if (is_01_id_edificio) {
@@ -245,12 +257,15 @@ export default {
                 ignoreNextRows = true
                 ignoreThisRow = true
               }
-              if (indirizzo) {
-                this.title = cell.text
-                indirizzo = undefined
-              }
-              if (cell.text === "INDIRIZZO") {
-                indirizzo = cell
+              // calc title
+              {
+                if (indirizzo) {
+                  this.title = cell.text
+                  indirizzo = undefined
+                }
+                if (cell.text === "INDIRIZZO") {
+                  indirizzo = cell
+                }
               }
             }
 
@@ -264,9 +279,11 @@ export default {
 
             // special case 4 -------------------------------------------------
             else if (is_04_dati_costrutt_VERT_IQM) {
+              /*
               if (ignoreNextNextColumns && 4 < cell.col) {
                 appendStyle(cell, { display: "none" })
               }
+              */
 
               if (cell.col <= 3 && cell.text.match(/(codice id. elementi costruttivi|IQMv|IQMo,fp|IQMo,np)/g)) {
                 ignoreThisRow = true
@@ -283,6 +300,7 @@ export default {
                 nextColumnBackground = "#eee"
                 appendStyle(cell, { fontWeight: 600 })
               }
+              /*
               if (cell.text.match(/materiali/g)) {
                 backgroundImageCell = createBackgroundImageCell(4)
                 if (backgroundImageCell) {
@@ -290,13 +308,15 @@ export default {
                   ignoreNextNextColumns = true
                 }
               }
-              if (columnBackground && 2 <= cell.col) {
-                if (0 < breadcrumb.row) {
+              */
+              if (columnBackground && 1 < cell.col) {
+                // if not on section row
+                if (breadcrumb.row !== 0) {
                   appendStyle(cell, { backgroundColor: columnBackground })
-                }
-                // add center for this
-                if (columnBackground === "#eee" && 0 < breadcrumb.row) {
-                  appendStyle(cell, { textAlign: "center" })
+                  // add center for this one
+                  if (columnBackground === "#eee") {
+                    appendStyle(cell, { textAlign: "center" })
+                  }
                 }
                 // consume gray, prepare next row
                 if (columnBackground === "#eee") {
@@ -308,14 +328,12 @@ export default {
 
             // special case 5 -------------------------------------------------
             else if (is_04_dati_costrutt_CARENZE) {
+              /*
               if (ignoreNextNextColumns && 4 < cell.col) {
                 appendStyle(cell, { display: "none" })
               }
-              /*
-              if (cell.col === "3" && 0 < breadcrumb.row) {
-                cell.colspan = "1"
-              }
               */
+
               // stop ignoring rows when meeting full uppercase cell or new section
               if (ignoreThisRow && (isUpper(cell.text) || breadcrumb.row === 0)) {
                 ignoreThisRow = false
@@ -326,21 +344,21 @@ export default {
                 // next row background will be dark orange
                 nextColumnBackground = "#ffc000"
 
-                if (cell.col === "5") {
-                  cell.col = "4"
+                if (cell.col === 5) {
+                  cell.col = 4
                   // "ct", "c", "-1", "0", etc. are bold
                   appendStyle(cell, { fontWeight: 600 })
                 }
               }
 
-              if (0 < breadcrumb.row) {
+              if (breadcrumb.row !== 0) {
                 if (columnBackground) {
                   if (columnBackground === "#ffc000") {
                     nextColumnBackground = "#ffe699"
                   } else if (columnBackground === "#ffe699") {
                     nextColumnBackground = "#eee"
                   }
-                  if (2 <= cell.col && cell.col <= 4) {
+                  if (1 < cell.col) {
                     appendStyle(cell, { backgroundColor: columnBackground })
                     // add bold for these two
                     if (columnBackground === "#ffc000" || columnBackground === "#ffe699") {
@@ -359,6 +377,7 @@ export default {
                 }
               }
 
+              /*
               if (breadcrumb.row === 2) {
                 ignoreNextNextColumns = true
                 backgroundImageCell = createBackgroundImageCell(5)
@@ -366,14 +385,17 @@ export default {
                   backgroundImageCellRowSpan = 5
                 }
               }
+              */
             }
           }) // cells
 
           if (ignoreThisRow) {
             appendStyle(row, { display: "none" })
-          } else {
+          }
+
+          if (!ignoreThisRow) {
             const breadcrumbCell = {
-              col: "-1",
+              col: -1,
               class: "breadcrumbs",
               text: breadcrumb.id
             }
@@ -395,51 +417,70 @@ export default {
             }
           }
 
-          // consume background image cell
+          /*
+          // consume background image cell          
           if (backgroundImageCell) {
             row.push(backgroundImageCell)
             backgroundImageCell = undefined
           }
+
           if (backgroundImageCellRowSpan) {
             row.colspanOffset = backgroundImageCellRowSpan
-            console.log("row.colspanOffset", row.colspanOffset)
 
             backgroundImageCellRowSpan = backgroundImageCellRowSpan - 1
           }
+          */
         }) // rows
+
+        sheet.columnCount = +sheet.columnCount + 1 // (add breadcrumbs optionally hidden column)
       }) // sheets
       return json
     },
-    toTrueArray(row, sheet_column_count, sheet_id) {
+    toTrueArray(row, sheet_column_count, sheet_sheet) {
       let ret = []
-      sheet_column_count = +sheet_column_count + 1 // (add breadcrumbs optionally hidden column)
-      if (sheet_id === "04_dati_costrutt_CARENZE") {
-        sheet_column_count = 6
-      }
-      const colspanOffset = row.colspanOffset
-      row = row.filter((e) => e.col < sheet_column_count)
+      // const colspanOffset = row.colspanOffset
       let lastCell = undefined
       let first = true
+      /*
+      {
+        const is_04_dati_costrutt_CARENZE = sheet_sheet === "04_dati_costrutt_CARENZE"
+        if (is_04_dati_costrutt_CARENZE) {
+          sheet_column_count = 5
+          console.log("before", row);
+          row = row.filter((cell) => {
+            return +cell.col <= sheet_column_count
+          })
+          console.log("after", row);
+        }
+      }
+      */
       row.forEach((cell) => {
-        if (cell.col != "-1") {
+        if (cell.col !== -1) {
           if (first) {
-            if (0 < +cell.col) {
-              lastCell = { html: "‌&zwnj;", col: 0 }
+            first = false
+            if (0 < cell.col) {
+              lastCell = {
+                col: 0,
+                html: "‌&zwnj;"
+              }
               ret.push(lastCell)
             }
-            first = false
           }
         }
 
         if (lastCell) {
-          lastCell.colspan = +cell.col - lastCell.col
+          if (1 < cell.col - lastCell.col) {
+            lastCell.colspan = cell.col - lastCell.col
+          }
         }
 
-        lastCell = { ...cell, ...{ text: undefined, html: cell.text, col: +cell.col } }
+        lastCell = { ...cell, ...{ text: undefined, html: cell.text } }
         ret.push(lastCell)
       })
       if (lastCell) {
-        lastCell.colspan = (colspanOffset ? -1 : 0) + sheet_column_count - lastCell.col
+        if (1 < sheet_column_count - lastCell.col) {
+          lastCell.colspan = sheet_column_count - lastCell.col
+        }
       }
       return ret
     }
