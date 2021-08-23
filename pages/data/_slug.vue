@@ -58,7 +58,7 @@
 }
 
 table.excel {
-  overflow-y: hidden;
+  overflow-y: scroll;
 
   td:nth-child(1):not(.breadcrumbs) {
     display: none;
@@ -76,8 +76,8 @@ table.excel {
   td:nth-child(5) {
     white-space: nowrap;
   }
-  td:last-child {
-    width: 140px;
+  td:last-child div {
+    width: 20vw;
   }
 }
 </style>
@@ -203,7 +203,6 @@ export default {
             nextColumnBackground = undefined
           }
 
-          console.log(decrementColumnCountToMakeSpaceForImage, row)
           if (decrementColumnCountToMakeSpaceForImage) {
             row.makeSpaceForImage = true
 
@@ -249,8 +248,8 @@ export default {
                 return {
                   col: column,
                   rowspan: rowspan,
-                  text: "‌&zwnj;",
-                  style: "background: center right / contain no-repeat url(/json/jpegs/" + breadcrumb.jpeg + ")"
+                  text: "‌<div style='width:120px; height:120px; background: center center / contain no-repeat url(/json/jpegs/" + breadcrumb.jpeg + ")'></div>",
+                  style: {position:"relative", "padding-left": "1rem"}
                 }
               }
               return undefined
@@ -350,10 +349,14 @@ export default {
                 }
               }
               // insert image
+              if (ignoreNextTrailingColumns && sheet.columnCount - cell.col <= ignoreNextTrailingColumns) {
+                appendStyle(cell, { display: "none" })
+              }
               if (cell.text.match(/materiali/g)) {
                 backgroundImageCell = createBackgroundImageCell(5, 4) // insert at column 5 with rowspan 4
                 if (backgroundImageCell) {
                   decrementColumnCountToMakeSpaceForImage = backgroundImageCell.rowspan - 1
+                  ignoreNextTrailingColumns = 3
                 }
               }
               // when not on section row
@@ -433,39 +436,44 @@ export default {
       if (is_04_dati_costrutt_CARENZE) {
         columnCount = 6
       }
+      /*
+      */
 
       let ret = []
       let lastCell = undefined
       let first = true
       row.forEach((cell) => {
-        if (cell.col !== -1) {
-          if (first) {
-            first = false
-            if (0 < cell.col) {
-              lastCell = {
-                col: 0,
-                html: "‌&zwnj;"
+        if (!row.style || !(row.style.display === "none")) {
+          if (cell.col !== -1) {
+            if (first) {
+              first = false
+              if (0 < cell.col) {
+                lastCell = {
+                  col: 0,
+                  html: "‌&zwnj;"
+                }
+                ret.push(lastCell)
               }
+            }
+          }
+
+          if (!cell.style || !(cell.style.display === "none")) {
+            if (cell.col < columnCount + (row.makeSpaceForImage ? -1 : 0)) {
+              if (lastCell) {
+                if (lastCell.col + 1 < cell.col) {
+                  lastCell.colspan = cell.col - lastCell.col
+                }
+              }
+
+              lastCell = { ...cell, ...{ text: undefined, html: cell.text } }
               ret.push(lastCell)
             }
           }
         }
-
-        if (cell.col < columnCount + (row.makeSpaceForImage?-1:0)) {
-          
-          if (lastCell) {
-            if (lastCell.col + 1 < cell.col ) {
-              lastCell.colspan = cell.col - lastCell.col
-            }
-          }
-
-          lastCell = { ...cell, ...{ text: undefined, html: cell.text } }
-          ret.push(lastCell)
-        }
       })
       if (lastCell) {
-        if (lastCell.col + 1 < columnCount ) {
-          lastCell.colspan = (row.makeSpaceForImage?-1:0) + columnCount - lastCell.col
+        if (lastCell.col + 1 < columnCount) {
+          lastCell.colspan = (row.makeSpaceForImage ? -1 : 0) + columnCount - lastCell.col
         }
       }
       return ret
