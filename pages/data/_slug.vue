@@ -75,10 +75,7 @@ table.excel {
 #_04_dati_costrutt_CARENZE {
   td:nth-child(5) {
     white-space: nowrap;
-  }
-  td:last-child div {
-    width: 20vw;
-  }
+  } 
 }
 </style>
 
@@ -248,8 +245,12 @@ export default {
                 return {
                   col: column,
                   rowspan: rowspan,
-                  text: "‌<div style='width:120px; height:120px; background: center center / contain no-repeat url(/json/jpegs/" + breadcrumb.jpeg + ")'></div>",
-                  style: {position:"relative", "padding-left": "1rem"}
+                  text: "<img style='object-fit: scale-down; width:120px; height:120px;' src='/json/jpegs/" +
+                    breadcrumb.jpeg +
+                    "'>",
+                  style: {
+                    "padding": "1rem 0 1rem 1rem"
+                  }
                 }
               }
               return undefined
@@ -436,8 +437,6 @@ export default {
       if (is_04_dati_costrutt_CARENZE) {
         columnCount = 6
       }
-      /*
-      */
 
       let ret = []
       let lastCell = undefined
