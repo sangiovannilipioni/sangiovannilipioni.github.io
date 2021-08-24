@@ -90,7 +90,7 @@
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
-  padding: 0.25rem;
+  padding: 0.25rem 0.5rem;
 }
 
 table.excel {
