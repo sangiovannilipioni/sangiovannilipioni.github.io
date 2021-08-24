@@ -134,7 +134,6 @@
     <script>
     // <![CDATA[
         function freeze() {
-            console.log("freezed");
             document.getElementById("gear").setAttribute('transform', "translate(2425.5 3604.17)");
         }
         document.getElementById("restart").addEventListener(

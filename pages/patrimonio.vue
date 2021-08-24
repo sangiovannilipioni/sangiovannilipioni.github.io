@@ -91,13 +91,9 @@ export default {
   methods: {
     append() {},
     onActiveTab(newTab, previousTab, event) {
-      // console.log("onActiveTab", this.tabIndex, newTab, previousTab, event);
-
-      console.log("before store", this.tab)
       this.$store.commit("tab/setTab", {
         tab: newTab
       })
-      console.log("after store", this.tab)
 
       if (newTab === 1) {
         if (typeof this.$redrawVueMasonry === "function") {
@@ -109,21 +105,18 @@ export default {
       }
     },
     onScriptLoaded(event = null) {
-      console.log("onScriptLoaded", event)
       // YOU HAVE ACCESS TO "new google" now, ADD YOUR GOOGLE MAPS FUNCTIONS HERE.
       if (event) {
-        console.log("google was added")
+        // google was added
       } else {
-        console.log("google already existed")
+        // google already existed
       }
       if (process.client) {
         this.initialize()
       }
     },
     async initialize() {
-      console.log("initializing google maps ...")
       const mapElement = this.mapElement || document.getElementById("map")
-      console.log("about to const map = await new google.maps.Map", mapElement, document.getElementById("map"))
       const map = await new google.maps.Map(mapElement, {
         center: { lat: 41.8442301, lng: 14.5618596 },
         zoom: this.zoom,
@@ -170,8 +163,6 @@ export default {
 
       this.units.forEach((unit) => {
         if (unit.foto) {
-          console.log(unit)
-
           const infowindow = new google.maps.InfoWindow({
             content: `<p>${unit.key}</p><p><a href="${this.localePath(`/units/${unit.ref}`)}">${this.$t(
               "goToPiantina"
@@ -205,30 +196,25 @@ export default {
           })
         }
       })
-
-      console.log("google maps initialized !")
     }
   },
   created() {
     this.$nextTick(() => {
-      console.log("this.$store.tab", this.tab)
       this.tabIndex = this.tab
     })
   },
   mounted() {
     // https://stackoverflow.com/a/42513893/1070215
     $('a[data-toggle="tab"]').on("shown.bs.tab", (event) => {
-      console.log(event)
       this.onActiveTab(+event.target.id, +event.relatedTarget.id, event)
     })
 
-    console.log("MOUNTED map element >>> ", document.getElementById("theTitle"), this.mapElement)
     if (typeof google === "undefined") {
       __nuxt
       const script0 = document.createElement("script")
       script0.appendChild(
         document.createTextNode(
-          "function gm_authFailure() {console.log('ouille');document.getElementById('map').remove();document.getElementById('pano').remove();}"
+          "function gm_authFailure() {console.log('gm_authFailure!');document.getElementById('map').remove();document.getElementById('pano').remove();}"
         )
       )
       script0.type = "text/javascript"

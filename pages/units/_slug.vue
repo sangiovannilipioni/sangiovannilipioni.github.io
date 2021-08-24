@@ -97,7 +97,6 @@
 
 <script>
 import SlidesImages from "../../components/SlidesImages.vue"
-import VueDraggableResizable from "vue-draggable-resizable"
 
 export default {
   components: {
@@ -146,8 +145,6 @@ export default {
     // https://stackoverflow.com/a/42513893/1070215
     // https://stackoverflow.com/a/64102684/1070215
     this.$nextTick(() => {
-      // console.log("this.$refs.modalvideo", this.$refs.modalvideo)
-      console.log("this.$refs.plyr", this.$refs.plyr)
       const _this = this
       $(this.$refs.modalvideo).on("shown.bs.modal", function (e) {
         _this.$refs.plyr.player.play()
@@ -163,18 +160,6 @@ export default {
     },
     theUnit() {
       return this.units[this.$route.params.slug]
-    }
-  },
-  methods: {
-    onResize: function (x, y, width, height) {
-      this.x = x
-      this.y = y
-      this.width = width
-      this.height = height
-    },
-    onDrag: function (x, y) {
-      this.x = x
-      this.y = y
     }
   }
 }

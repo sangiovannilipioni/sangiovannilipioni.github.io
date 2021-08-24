@@ -35,7 +35,7 @@ h1 {
 
 <script>
 function gm_authFailure() {
-  console.log("ouille")
+  console.log("gm_authFailure!")
 }
 </script>
 
@@ -45,19 +45,17 @@ export default {
   // https://dev.to/bawa_geek/how-to-use-google-maps-in-nuxt-js-project-without-any-package-or-heavy-library-26gh
   methods: {
     onScriptLoaded(event = null) {
-      console.log("onScriptLoaded", event)
       // YOU HAVE ACCESS TO "new google" now, ADD YOUR GOOGLE MAPS FUNCTIONS HERE.
       if (event) {
-        console.log("google was added")
+        // google was added
       } else {
-        console.log("google already existed")
+        // google already existed
       }
       if (process.client) {
         this.initialize()
       }
     },
     async initialize() {
-      console.log("initializing google maps ...")
       const piazza = {
         position: { lat: 41.8442301, lng: 14.5618596 },
         heading: 189.53
@@ -67,7 +65,6 @@ export default {
         heading: 159.68
       }
       const mapElement = this.mapElement || document.getElementById("map")
-      console.log("about to const map = await new google.maps.Map", mapElement, document.getElementById("map"))
       const map = await new google.maps.Map(mapElement, {
         center: farmacia.position,
         zoom: this.zoom,
@@ -75,7 +72,6 @@ export default {
         mapTypeControl: false,
         streetViewControl: false
       })
-      console.log("about to const panorama = new google.maps.StreetViewPanorama")
       const panorama = new google.maps.StreetViewPanorama(document.getElementById("pano"), {
         position: farmacia.position,
         pov: {
@@ -128,21 +124,16 @@ export default {
         })
       })
 
-      console.log("about to map.setStreetView(panorama)")
-
       await map.setStreetView(panorama)
-
-      console.log("google maps initialized !")
     }
   },
   mounted() {
-    console.log("MOUNTED map element >>> ", document.getElementById("theTitle"), this.mapElement)
     if (typeof google === "undefined") {
       __nuxt
       const script0 = document.createElement("script")
       script0.appendChild(
         document.createTextNode(
-          "function gm_authFailure() {console.log('ouille');document.getElementById('map').remove();document.getElementById('pano').remove();}"
+          "function gm_authFailure() {console.log('gm_authFailure!');document.getElementById('map').remove();document.getElementById('pano').remove();}"
         )
       )
       script0.type = "text/javascript"
