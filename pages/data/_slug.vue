@@ -268,11 +268,13 @@ export default {
                   col: column,
                   rowspan: rowspan,
                   text:
-                    "<img style='object-fit: scale-down; width:120px; height:120px;' src='/json/jpegs/" +
+                    "<img style='width:120px;' src='/json/jpegs/" +
                     breadcrumb.jpeg +
                     "'>",
                   style: {
-                    padding: "1rem 0 1rem 1rem"
+                    padding: "1rem 0 1rem 1rem",
+                    display: 'table-cell',
+                    verticalAlign: 'middle'
                   }
                 }
               }
@@ -356,6 +358,7 @@ export default {
               }
               if (cell.text.match(/materiali/g)) {
                 backgroundImageCell = createBackgroundImageCell(5, 4) // insert at column 5 with rowspan 4
+                appendStyle(row, {position: "relative"})
                 if (backgroundImageCell) {
                   decrementColumnCountToMakeSpaceForImage = backgroundImageCell.rowspan - 1
                   ignoreNextTrailingColumns = 3
