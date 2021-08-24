@@ -132,24 +132,56 @@ export default {
     }
   },
   async asyncData({ app, params, error }) {
-    let units
-    await app.$axios.get("/json/units.json").then((response) => {
-      if (!response.data[params.slug]) error({ statusCode: 404 })
-      units = response.data
-    })
+    let units = {}
     await app.$axios
-      .get(`/json/${params.slug}.json`)
-      .catch((err) => {
-        units[params.slug] = {rawData:[]}
+      .get("/json/units.json")
+      .then((response) => {
+        if (!response || !response.data || !response.data[params.slug]) {
+          return error({ statusCode: 404 })
+        }         
+        units = response.data
+        return app.$axios.get(`/json/${params.slug}.json`)
+      },
+      err => {
+        return error({ statusCode: 500 })
       })
       .then((response) => {
-        if (response && response.status === 200) {
-          units[params.slug].rawData = response.data
-        } else {
-          units[params.slug].rawData = []
-        }
+        units[params.slug].rawData = response.data
+      },
+      err => {
+        return error({ statusCode: 404 })
       })
-      .catch()
+      .catch((err) => console.log(err.response))
+    /*    
+    await app.$axios.get("/json/units.json").then(
+      (response) => {
+        if (!response || !response.data || !response.data[params.slug]) {
+          return error({ statusCode: 404 })
+        } else {
+          units = response.data
+          if (!units[params.slug].hasData) {
+            units[params.slug].rawData = []
+          } else {
+            await .then(
+              (response) => {
+                if (response && response.status === 200) {
+                  
+                } else {
+                  units[params.slug].rawData = []
+                }
+              },
+              (err) => {
+                return error({ statusCode: 404 })
+              }
+            )
+          }
+        }
+      },
+      (err) => {
+        return error({ statusCode: 500 })
+      }
+    )
+    */
     return { units }
   },
   fetch() {

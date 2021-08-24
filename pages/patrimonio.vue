@@ -44,22 +44,22 @@
       <div id="c" role="tabpanel" :class="`tab-pane fade ${tabIndex === 2 ? ' show active' : ''}`">
         <div
           class="card"
-          v-for="unit in units"
-          v-bind:key="unit.index"
+          v-for="(unit, key) in units"
+          v-bind:key="key"
           style="margin-bottom: 0.75rem; overflow: hidden"
         >
           <div class="d-flex" v-if="unit.foto">
             <div class="p-2 flex-grow-1">
-              <span>{{ unit.key }}</span>
+              <span>{{ unit.title }} [{{ key }}]</span>
             </div>
             <div class="p-2" style="max-width: 30%; text-align: right">
-              <NuxtLink :to="localePath(`/units/${unit.ref}`)">
+              <NuxtLink :to="localePath(`/units/${key}`)">
                 <nuxt-img class="thmb" :src="unit.foto" alt="" />
               </NuxtLink>
             </div>
           </div>
           <div class="p-2 flex-grow-1" style="text-align: center" v-if="!unit.foto">
-            {{ unit.key }}
+            {{ unit.title }}
           </div>
         </div>
       </div>
@@ -161,41 +161,44 @@ export default {
         ]
       })
 
-      this.units.forEach((unit) => {
-        if (unit.foto) {
-          const infowindow = new google.maps.InfoWindow({
-            content: `<p>${unit.key}</p><p><a href="${this.localePath(`/units/${unit.ref}`)}">${this.$t(
-              "goToPiantina"
-            )}</a></p><p><a href="${this.localePath(`/data/${unit.ref}`)}">${this.$t("goToSchede")}</a></p>`,
-            maxWidth: 400
-          })
-
-          const marker = new google.maps.Marker({
-            position: unit.position,
-            map,
-            label: unit.key
-          })
-
-          marker.addListener("click", () => {
-            infowindow.open({
-              anchor: marker,
-              map,
-              shouldFocus: false
+      for (var key in this.units) {
+        if (this.units.hasOwnProperty(key)) {
+          let unit = this.units[key]
+          if (unit.foto) {
+            const infowindow = new google.maps.InfoWindow({
+              content: `<p>${unit.title} [${key}]</p><p><a href="${this.localePath(`/units/${key}`)}">${this.$t(
+                "goToPiantina"
+              )}</a></p><p><a href="${this.localePath(`/data/${key}`)}">${this.$t("goToSchede")}</a></p>`,
+              maxWidth: 400
             })
-            if (document.getElementById("otherImage")) {
-              document.getElementById("otherImage").remove()
-            }
-            document.getElementById("pano").innerHTML =
-              "<a href='" +
-              this.localePath(`/units/${unit.ref}`) +
-              "' style='width:100%;height:100%;'>" +
-              "<div id='otherImage' style='width:100%;height:100%;background: no-repeat center center url(" +
-              unit.foto +
-              "); background-size: cover;'></div>" +
-              "</a>"
-          })
+
+            const marker = new google.maps.Marker({
+              position: unit.position,
+              map,
+              label: unit.title + " [" + key + "]"
+            })
+
+            marker.addListener("click", () => {
+              infowindow.open({
+                anchor: marker,
+                map,
+                shouldFocus: false
+              })
+              if (document.getElementById("otherImage")) {
+                document.getElementById("otherImage").remove()
+              }
+              document.getElementById("pano").innerHTML =
+                "<a href='" +
+                this.localePath(`/units/${key}`) +
+                "' style='width:100%;height:100%;'>" +
+                "<div id='otherImage' style='width:100%;height:100%;background: no-repeat center center url(" +
+                unit.foto +
+                "); background-size: cover;'></div>" +
+                "</a>"
+            })
+          }
         }
-      })
+      }
     }
   },
   created() {
@@ -242,36 +245,31 @@ export default {
   data() {
     return {
       tabIndex: 0,
-      units: [
-        {
-          key: "Via Roma, 37",
-          value: "qwe",
+      units: {
+        O02: {
+          title: "Via Roma, 37",
           foto: "/foto/GOPR1232_light_2.jpg",
-          position: { lat: 41.84247, lng: 14.56213 },
-          ref: "O02",
-          video: "https://storage.googleapis.com/sangiovannilipioni/SGL_DA_silent_1080.mov"
+          position: { lat: 41.84247, lng: 14.56213 }
         },
-        {
-          key: "Via Vicenne, 4",
-          value: "asd",
+        G01: {
+          title: "Via Vicenne, 4",
           foto: "/foto/X2.jpg",
-          position: { lat: 41.84821126881966, lng: 14.562941327400237 },
-          ref: "G01"
+          position: { lat: 41.84821126881966, lng: 14.562941327400237 }
         },
-        { key: "⋮" }
-      ],
+        _: { title: "⋮" }
+      },
       mapElement: undefined,
       zoom: 16.8,
 
       // masonry
       items: [
         {
-          key: "Via Roma, 37",
+          title: "Via Roma, 37",
           to: "/units/O02",
           pathShort: "foto/GOPR1232_light_2.jpg"
         },
         {
-          key: "Via Vicenne, 4",
+          title: "Via Vicenne, 4",
           to: "/units/G01",
           pathShort: "foto/X2.jpg"
         }
