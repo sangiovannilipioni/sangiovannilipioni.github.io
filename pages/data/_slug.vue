@@ -10,7 +10,12 @@
         <font-awesome-icon v-else :icon="['fas', 'plus']" />
       </div>
       <li class="nav-item" v-for="(sheet, sheet_index) in datum" :key="sheet_index">
-        <a :href="`#${sheet.id}`" data-toggle="tab" :class="`nav-link ${sheet_index == 0 ? 'active' : ''}`">
+        <a
+          :class="`nav-link ${sheet_index == 0 ? 'active' : ''}`"
+          :href="`#${sheet.id}`"
+          data-placement="top"
+          data-toggle="tab"
+        >
           {{ sheet.title }}
         </a>
       </li>
@@ -32,6 +37,8 @@
                 :colspan="cell.colspan"
                 :rowspan="cell.rowspan"
                 :style="cell.style"
+                :title="cell.title"
+                :class="cell.class"
                 v-html="cell.html"
               ></td>
             </tr>
@@ -272,6 +279,22 @@ export default {
               return undefined
             }
 
+            // function to create badge
+            const createBadge = (cell) => {
+              if (!cell.text.match(/^[ABC123]$/g)) {
+                return cell.text
+              }
+              return `<a class="badge badge-pill ${
+                cell.text === "1" || cell.text === "A"
+                  ? "badge-success"
+                  : cell.text === "2" || cell.text === "B"
+                  ? "badge-warning"
+                  : cell.text === "3" || cell.text === "C"
+                  ? "badge-danger"
+                  : "badge-light"
+              }" title="1:ottimo 2:medio 3:scarso">${cell.text}</a>`
+            }
+
             // special case 1 -------------------------------------------------
             if (is_01_id_edificio) {
               if (cell.text === "DATI CATASTALI") {
@@ -323,6 +346,9 @@ export default {
               if (cell.text.match(/^IQMv, o/g)) {
                 appendStyle(cell, { whiteSpace: "nowrap" })
               }
+              if (breadcrumb.row !== 0 && cell.col === 4) {
+                cell.text = createBadge(cell)
+              }
 
               // insert image
               if (ignoreNextTrailingColumns && sheet.columnCount - cell.col <= ignoreNextTrailingColumns) {
@@ -364,14 +390,16 @@ export default {
               if (cell.text.match(/(1\:ottimo|2\:medio|3\:scarso)/g)) {
                 appendStyle(cell, { display: "none" })
               }
+              if (breadcrumb.row !== 0 && cell.col === 4) {
+                cell.text = createBadge(cell)
+              }
               if (breadcrumb.level === 3 && breadcrumb.row === 0) {
                 // next row background will be dark orange
                 nextColumnBackground = colorMap.amber
 
                 if (cell.col === 5) {
-                  cell.col = 4
                   // "ct", "c", "-1", "0", etc. are bold
-                  appendStyle(cell, { fontWeight: 600 })
+                  appendStyle(cell, { fontWeight: 600, textAlign: "right" })
                 }
               }
               // insert image

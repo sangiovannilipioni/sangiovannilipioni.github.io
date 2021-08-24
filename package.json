@@ -53,5 +53,5 @@
   },
   "resolutions": {
     "**/glob-parent": "^5.1.2"
-  }  
+  }
 }

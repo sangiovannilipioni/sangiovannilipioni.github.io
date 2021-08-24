@@ -122,7 +122,7 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    "~plugins/persistedState",
+    "~/plugins/persistedState",
     { src: "./plugins/vue-awesome-swiper.client.js", mode: "client" },
     { src: "@plugins/vue-draggable-resizable", mode: "client" },
     { src: "~/plugins/medium-zoom", mode: "client" },
