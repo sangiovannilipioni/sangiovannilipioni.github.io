@@ -33,6 +33,9 @@ export default {
 
   slides: "Exemple de présentation",
   schede: "Fiche technique",
+  piantina: "Carte",
+  goToSchede: "ouvrir la fiche technique",
+  goToPiantina: "ouvrir la carte",
 
   loginWarning: "Pour le moment, seul le Login via Facebook est disponbile.",
   loginPrompt: "Login via",

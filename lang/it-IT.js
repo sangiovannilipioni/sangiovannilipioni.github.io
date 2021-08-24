@@ -32,6 +32,9 @@ export default {
 
   slides: "Esempio di presentazione",
   schede: "Scheda tecnica",
+  piantina: "Piantina",
+  goToSchede: "vai alla scheda tecnica",
+  goToPiantina: "vai alla piantina",
 
   loginWarning: "Per il momento, solo il Login con Facebook è disponibile",
   loginPrompt: "Login con",

@@ -5,7 +5,7 @@
         <div class="flex-grow-1" style="margin: auto">
           <nuxt-link
             v-if="theUnit.hasData"
-            :to="`/data/${slug}`"
+            :to="localePath(`/data/${slug}`)"
             class="btn btn-outline-secondary btn-sm"
             target="_self"
           >

@@ -2,7 +2,7 @@
   <div class="container">
     <div class="container d-flex" style="margin-bottom: 0.5rem">
       <div class="flex-grow-1" style="margin: auto">
-        <nuxt-link :to="`/units/${slug}`" class="btn btn-outline-secondary btn-sm" target="_self">
+        <nuxt-link :to="localePath(`/units/${slug}`)" class="btn btn-outline-secondary btn-sm" target="_self">
           {{ $t("piantina") }}
         </nuxt-link>
       </div>

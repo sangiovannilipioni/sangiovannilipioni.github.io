@@ -33,6 +33,9 @@ export default {
 
   slides: "Sample Slideshow",
   schede: "Data sheet",
+  piantina: "Map",
+  goToSchede: "to data sheet",
+  goToPiantina: "to map",
 
   loginWarning: "For the time being, only Login through Facebook is enabled.",
   loginPrompt: "Login with",

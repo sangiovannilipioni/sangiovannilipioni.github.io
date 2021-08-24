@@ -53,7 +53,7 @@
               <span>{{ unit.key }}</span>
             </div>
             <div class="p-2" style="max-width: 30%; text-align: right">
-              <NuxtLink :to="`/units/${unit.ref}`">
+              <NuxtLink :to="localePath(`/units/${unit.ref}`)">
                 <nuxt-img class="thmb" :src="unit.foto" alt="" />
               </NuxtLink>
             </div>
@@ -173,7 +173,9 @@ export default {
           console.log(unit)
 
           const infowindow = new google.maps.InfoWindow({
-            content: `<p>${unit.key}</p><p><a href="/units/${unit.ref}">Vai alla piantina</a></p><p><a href="/data/${unit.ref}">Vai alla scheda tecnica</a></p>`,
+            content: `<p>${unit.key}</p><p><a href="${this.localePath(`/units/${unit.ref}`)}">${this.$t(
+              "goToPiantina"
+            )}</a></p><p><a href="${this.localePath(`/data/${unit.ref}`)}">${this.$t("goToSchede")}</a></p>`,
             maxWidth: 400
           })
 
@@ -193,8 +195,8 @@ export default {
               document.getElementById("otherImage").remove()
             }
             document.getElementById("pano").innerHTML =
-              "<a href='/units/" +
-              unit.ref +
+              "<a href='" +
+              this.localePath(`/units/${unit.ref}`) +
               "' style='width:100%;height:100%;'>" +
               "<div id='otherImage' style='width:100%;height:100%;background: no-repeat center center url(" +
               unit.foto +
