@@ -264,10 +264,11 @@ export default {
                 ignoreNextRows = true
                 ignoreThisRow = true
               }
-              if (cell.text.match(/\d+\.\d+,\s+\d+\.\d+/g)) {
+              // google maps coordinates
+              // https://stackoverflow.com/a/3518546/1070215
+              if (cell.text.match(/^(-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)$/g)) {
                 cell.text = `<a href="https://www.google.com/maps/search/?api=1&query=${cell.text}" target="_blank">${cell.text}</a>`
               }
-              // https://www.google.com/maps/search/?api=1&query=
               // calc title
               {
                 if (indirizzo) {
