@@ -1,47 +1,45 @@
 <template>
-  <client-only>
-    <article class="container">
-      <h4 id="title">
-        {{ title }}
-        <span class="text-muted" style="font-size: smaller">[{{ $route.params.slug }}]</span>
-      </h4>
-      <ul role="tablist" class="nav nav-tabs">
-        <div type="button" class="discretButton btn btn-outline-secondary" @click="showBreadcrumbs = !showBreadcrumbs">
-          <font-awesome-icon v-if="showBreadcrumbs" :icon="['fas', 'minus']" />
-          <font-awesome-icon v-else :icon="['fas', 'plus']" />
-        </div>
-        <li class="nav-item" v-for="(sheet, sheet_index) in datum" :key="sheet_index">
-          <a :href="`#${sheet.id}`" data-toggle="tab" :class="`nav-link ${sheet_index == 0 ? 'active' : ''}`">
-            {{ sheet.title }}
-          </a>
-        </li>
-      </ul>
-      <div class="tab-content mt-3" id="myTabContent">
-        <div
-          v-for="(sheet, sheet_index) in datum"
-          :class="`tab-pane fade ${sheet_index == 0 ? 'show active' : ''}`"
-          :id="sheet.id"
-          :key="sheet_index"
-        >
-          <table class="excel table table-sm table-responsive table-borderless">
-            <tbody>
-              <tr v-for="(row, row_index) in sheet.rows" :key="row_index" :style="row.style">
-                <td
-                  v-for="(cell, col_index) in toTrueArray(row, sheet)"
-                  :class="showBreadcrumbs ? cell.class : ''"
-                  :colspan="cell.colspan"
-                  :key="col_index"
-                  :rowspan="cell.rowspan"
-                  :style="cell.style"
-                  v-html="cell.html"
-                ></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  <div class="container">
+    <h4 id="title">
+      {{ title }}
+      <span class="text-muted" style="font-size: smaller">[{{ $route.params.slug }}]</span>
+    </h4>
+    <ul class="nav nav-tabs">
+      <div type="button" class="discreet btn btn-outline-secondary" @click="showBreadcrumbs = !showBreadcrumbs">
+        <font-awesome-icon v-if="showBreadcrumbs" :icon="['fas', 'minus']" />
+        <font-awesome-icon v-else :icon="['fas', 'plus']" />
       </div>
-    </article>
-  </client-only>
+      <li class="nav-item" v-for="(sheet, sheet_index) in datum" :key="sheet_index">
+        <a :href="`#${sheet.id}`" data-toggle="tab" :class="`nav-link ${sheet_index == 0 ? 'active' : ''}`">
+          {{ sheet.title }}
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content mt-2">
+      <div
+        v-for="(sheet, sheet_index) in datum"
+        :key="sheet_index"
+        :class="`tab-pane fade ${sheet_index == 0 ? 'show active' : ''}`"
+        :id="sheet.id"
+      >
+        <table class="excel table table-sm table-responsive table-borderless">
+          <thead />
+          <tbody :class="showBreadcrumbs ? 'breadcrumbs' : ''">
+            <tr v-for="(row, row_index) in sheet.rows" :key="row_index" :style="row.style">
+              <td
+                v-for="(cell, col_index) in toTrueArray(row, sheet)"
+                :key="col_index"
+                :colspan="cell.colspan"
+                :rowspan="cell.rowspan"
+                :style="cell.style"
+                v-html="cell.html"
+              ></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -49,7 +47,7 @@
   text-align: center;
 }
 
-.discretButton {
+.discreet {
   border: none;
   color: lightgray;
   font-size: smaller;
@@ -60,10 +58,10 @@
 table.excel {
   overflow-y: scroll;
 
-  td:nth-child(1):not(.breadcrumbs) {
+  tbody:not(.breadcrumbs) td:nth-child(1) {
     display: none;
   }
-  td:nth-child(1).breadcrumbs {
+  tbody.breadcrumbs td:nth-child(1) {
     color: gray;
     font-family: "Courier New", monospace;
     font-size: 12pt;
@@ -71,11 +69,12 @@ table.excel {
     width: 76px;
   }
 }
-#_04_dati_costrutt_VERT_IQM,
-#_04_dati_costrutt_CARENZE {
+
+#_03_dati_metrici_AB {
   td:nth-child(5) {
-    white-space: nowrap;
-  } 
+    text-align: right;
+    font-family: monospace;
+  }
 }
 </style>
 
@@ -103,15 +102,17 @@ export default {
         elem.style = { ...elem.style, ...style }
       }
 
+      // https://stackoverflow.com/a/17572933/1070215
       function isUpper(str) {
         return !/[a-z]/.test(str) && /[A-Z]/.test(str)
       }
 
       function formatNumber(cell) {
         if (!isNaN(cell.text)) {
-          if (cell.col !== "0") {
+          if (cell.col !== 0) {
             cell.text = parseFloat(cell.text).toFixed(2)
           }
+          // remove trailing zeroes
           cell.text = cell.text.replace(/\.0+$/, "").replace(/(\.[1-9]*)0+$/, "$1")
         }
       }
@@ -245,11 +246,12 @@ export default {
                 return {
                   col: column,
                   rowspan: rowspan,
-                  text: "<img style='object-fit: scale-down; width:120px; height:120px;' src='/json/jpegs/" +
+                  text:
+                    "<img style='object-fit: scale-down; width:120px; height:120px;' src='/json/jpegs/" +
                     breadcrumb.jpeg +
                     "'>",
                   style: {
-                    "padding": "1rem 0 1rem 1rem"
+                    padding: "1rem 0 1rem 1rem"
                   }
                 }
               }
@@ -262,6 +264,10 @@ export default {
                 ignoreNextRows = true
                 ignoreThisRow = true
               }
+              if (cell.text.match(/\d+\.\d+,\s+\d+\.\d+/g)) {
+                cell.text = `<a href="https://www.google.com/maps/search/?api=1&query=${cell.text}" target="_blank">${cell.text}</a>`
+              }
+              // https://www.google.com/maps/search/?api=1&query=
               // calc title
               {
                 if (indirizzo) {
@@ -299,6 +305,10 @@ export default {
                 nextColumnBackground = "#eee"
                 appendStyle(cell, { fontWeight: 600 })
               }
+              if (cell.text.match(/^IQMv, o/g)) {
+                appendStyle(cell, { whiteSpace: "nowrap" })
+              }
+
               // insert image
               if (ignoreNextTrailingColumns && sheet.columnCount - cell.col <= ignoreNextTrailingColumns) {
                 appendStyle(cell, { display: "none" })
@@ -394,7 +404,6 @@ export default {
           if (!ignoreThisRow) {
             const breadcrumbCell = {
               col: -1,
-              class: "breadcrumbs",
               text: breadcrumb.id
             }
             formatNumber(breadcrumbCell)
