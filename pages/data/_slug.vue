@@ -120,8 +120,8 @@ table.excel {
 export default {
   data() {
     return {
-      showBreadcrumbs: false,
       title: "",
+      showBreadcrumbs: false,
       units: {
         O02: {},
         G01: {}
@@ -226,38 +226,42 @@ export default {
         }
 
         // declare row iteration flags
-        let ignoreNextRows = undefined
-        let nextRowColor = undefined
-        let nextColumnBackground = undefined
-        let ignoreNextTrailingColumns = 0
-        let decrementColumnCountToMakeSpaceForImage = 0
+        const nextRow = {
+          ignore: undefined,
+          color: undefined,
+          cellBackground: undefined,
+          ignoreTrailingColumns: 0,
+          shrinkColumnCountToMakeSpaceForImage: 0
+        }
 
         // for all rows
         sheet.rows.forEach((row, rowindex) => {
           // hide ignored rows
-          let ignoreThisRow = ignoreNextRows === true
+          let ignoreThisRow = nextRow.ignore === true
 
           // consume row color
-          if (nextRowColor) {
-            appendStyle(row, { color: nextRowColor })
-            nextRowColor = undefined
+          if (nextRow.color) {
+            appendStyle(row, { color: nextRow.color })
+            nextRow.color = undefined
           }
 
           // declare cell iteration flags
-          let indirizzo = undefined
-          let backgroundImageCell = undefined
-          let columnBackground = undefined
-
-          // consume column background color
-          if (nextColumnBackground) {
-            columnBackground = nextColumnBackground
-            nextColumnBackground = undefined
+          const nextCell = {
+            indirizzo: undefined,
+            imageCell: undefined,
+            background: undefined
           }
 
-          if (decrementColumnCountToMakeSpaceForImage) {
+          // consume next row cell background color
+          if (nextRow.cellBackground) {
+            nextCell.background = nextRow.cellBackground
+            nextRow.cellBackground = undefined
+          }
+
+          if (nextRow.shrinkColumnCountToMakeSpaceForImage) {
             row.makeSpaceForImage = true
 
-            decrementColumnCountToMakeSpaceForImage = decrementColumnCountToMakeSpaceForImage - 1
+            nextRow.shrinkColumnCountToMakeSpaceForImage = nextRow.shrinkColumnCountToMakeSpaceForImage - 1
           }
 
           // for all cols
@@ -282,7 +286,7 @@ export default {
                 if (is_04_dati_costrutt_CARENZE || is_04_dati_costrutt_VERT_IQM) {
                   if (breadcrumb.level === 3 && breadcrumb.row === 0) {
                     bgColor = colorMap.sectionDarker
-                    ignoreNextTrailingColumns = 0 // reset flag
+                    nextRow.ignoreTrailingColumns = 0 // reset
                   }
                 }
 
@@ -294,7 +298,7 @@ export default {
             formatNumber(cell)
 
             // function to instantiate background image cell
-            const createBackgroundImageCell = (column, rowspan) => {
+            const createImageCell = (column, rowspan) => {
               if (breadcrumb.jpeg) {
                 return {
                   col: column,
@@ -329,8 +333,8 @@ export default {
 
             // special case 1 -------------------------------------------------
             if (is_01_id_edificio) {
-              if (cell.text === "DATI CATASTALI") {
-                ignoreNextRows = true
+              if (cell.text.match(/^DATI CATASTALI$/g)) {
+                nextRow.ignore = true
                 ignoreThisRow = true
               }
               // google maps coordinates
@@ -340,12 +344,12 @@ export default {
               }
               // calc title
               {
-                if (indirizzo) {
+                if (nextCell.indirizzo) {
                   this.title = cell.text
-                  indirizzo = undefined
+                  nextCell.indirizzo = undefined
                 }
                 if (cell.text === "INDIRIZZO") {
-                  indirizzo = cell
+                  nextCell.indirizzo = cell
                 }
               }
             }
@@ -353,8 +357,8 @@ export default {
             // special case 2 -------------------------------------------------
             else if (is_02_descriz_edificio) {
               // next row text will be red (the mexican kind of)
-              if (cell.text === "CARATTERISTICHE EDIFICIO" || cell.text === "estremità") {
-                nextRowColor = colorMap.mexicanRed
+              if (cell.text.match(/^(CARATTERISTICHE EDIFICIO|estremità)$/g)) {
+                nextRow.color = colorMap.mexicanRed
               }
             }
 
@@ -364,18 +368,18 @@ export default {
                 ignoreThisRow = true
               }
               if (cell.text.match(/pareti (interne|esterne)/g)) {
-                columnBackground = undefined
+                nextCell.background = undefined
                 appendStyle(cell, { fontWeight: "bold" })
               }
               if (cell.text.match(/CATEGORIA/g)) {
                 ignoreThisRow = true
               }
-              if (cell.text.match(/[ABC][1234]/g)) {
-                columnBackground = colorMap.sprout
-                nextColumnBackground = colorMap.leftRowHeader
+              if (cell.text.match(/^[ABC][123]$/g)) {
+                nextCell.background = colorMap.sprout
+                nextRow.cellBackground = colorMap.leftRowHeader
                 appendStyle(cell, { fontWeight: "bold" })
               }
-              if (cell.text.match(/^IQMv, o/g)) {
+              if (cell.text.match(/^IQMv,/g)) {
                 appendStyle(cell, { whiteSpace: "nowrap" })
               }
               if (breadcrumb.row !== 0 && cell.col === 4) {
@@ -383,30 +387,33 @@ export default {
               }
 
               // insert image
-              if (ignoreNextTrailingColumns && sheet.columnCount - cell.col <= ignoreNextTrailingColumns) {
+              if (
+                nextRow.ignoreTrailingColumns &&
+                sheet.columnCount <= cell.col + nextRow.ignoreTrailingColumns
+              ) {
                 appendStyle(cell, { display: "none" })
               }
               if (cell.text.match(/materiali/g)) {
-                backgroundImageCell = createBackgroundImageCell(5, 4) // insert at column 5 with rowspan 4
+                nextCell.imageCell = createImageCell(5, 4) // insert at column 5 with rowspan 4
                 appendStyle(row, { position: "relative" })
-                if (backgroundImageCell) {
-                  decrementColumnCountToMakeSpaceForImage = backgroundImageCell.rowspan - 1
-                  ignoreNextTrailingColumns = 3
+                if (nextCell.imageCell) {
+                  nextRow.shrinkColumnCountToMakeSpaceForImage = nextCell.imageCell.rowspan - 1
+                  nextRow.ignoreTrailingColumns = 3
                 }
               }
               // when not on section row
               if (breadcrumb.row !== 0) {
-                if (columnBackground && 1 < cell.col) {
-                  appendStyle(cell, { backgroundColor: columnBackground })
+                if (nextCell.background && 1 < cell.col) {
+                  appendStyle(cell, { backgroundColor: nextCell.background })
                   // add center for this one
-                  if (columnBackground === colorMap.leftRowHeader) {
+                  if (nextCell.background === colorMap.leftRowHeader) {
                     appendStyle(cell, { textAlign: "center" })
                   }
 
                   // consume gray, prepare next row
-                  if (columnBackground === colorMap.leftRowHeader) {
-                    columnBackground = colorMap.kidnapper
-                    nextColumnBackground = colorMap.leftRowHeader
+                  if (nextCell.background === colorMap.leftRowHeader) {
+                    nextCell.background = colorMap.kidnapper
+                    nextRow.cellBackground = colorMap.leftRowHeader
                   }
                 }
               }
@@ -417,8 +424,8 @@ export default {
               // stop ignoring rows when meeting full uppercase cell or new section
               if (ignoreThisRow && (isUpper(cell.text) || breadcrumb.row === 0)) {
                 ignoreThisRow = false
-                ignoreNextRows = false
-                columnBackground = colorMap.creamBrulee
+                nextRow.ignore = false
+                nextCell.background = colorMap.creamBrulee
               }
               if (cell.text.match(/(1\:ottimo|2\:medio|3\:scarso)/g)) {
                 appendStyle(cell, { display: "none" })
@@ -428,7 +435,7 @@ export default {
               }
               if (breadcrumb.level === 3 && breadcrumb.row === 0) {
                 // next row background will be dark orange
-                nextColumnBackground = colorMap.amber
+                nextRow.cellBackground = colorMap.amber
 
                 if (cell.col === 5) {
                   // "ct", "c", "-1", "0", etc. are bold
@@ -436,37 +443,40 @@ export default {
                 }
               }
               // insert image
-              if (ignoreNextTrailingColumns && sheet.columnCount - cell.col <= ignoreNextTrailingColumns) {
+              if (
+                nextRow.ignoreTrailingColumns &&
+                sheet.columnCount <= cell.col + nextRow.ignoreTrailingColumns
+              ) {
                 appendStyle(cell, { display: "none" })
               }
               if (cell.text.match(/materiali/g)) {
-                backgroundImageCell = createBackgroundImageCell(5, 4) // insert at column 5 with rowspan 4
-                if (backgroundImageCell) {
-                  decrementColumnCountToMakeSpaceForImage = backgroundImageCell.rowspan - 1
-                  ignoreNextTrailingColumns = 3
+                nextCell.imageCell = createImageCell(5, 4) // insert at column 5 with rowspan 4
+                if (nextCell.imageCell) {
+                  nextRow.shrinkColumnCountToMakeSpaceForImage = nextCell.imageCell.rowspan - 1
+                  nextRow.ignoreTrailingColumns = 3
                 }
               }
               // when not on section row
               if (breadcrumb.row !== 0) {
-                if (columnBackground && 1 < cell.col) {
-                  if (columnBackground === colorMap.amber) {
-                    nextColumnBackground = colorMap.creamBrulee
-                  } else if (columnBackground === colorMap.creamBrulee) {
-                    nextColumnBackground = colorMap.leftRowHeader
+                if (nextCell.background && 1 < cell.col) {
+                  if (nextCell.background === colorMap.amber) {
+                    nextRow.cellBackground = colorMap.creamBrulee
+                  } else if (nextCell.background === colorMap.creamBrulee) {
+                    nextRow.cellBackground = colorMap.leftRowHeader
                   }
-                  appendStyle(cell, { backgroundColor: columnBackground })
+                  appendStyle(cell, { backgroundColor: nextCell.background })
                   // add bold for these two
-                  if (columnBackground === colorMap.amber || columnBackground === colorMap.creamBrulee) {
+                  if (nextCell.background === colorMap.amber || nextCell.background === colorMap.creamBrulee) {
                     appendStyle(cell, { fontWeight: "bold" })
                   }
                   // add center for this one
-                  if (columnBackground === colorMap.leftRowHeader) {
+                  if (nextCell.background === colorMap.leftRowHeader) {
                     appendStyle(cell, { textAlign: "center" })
                   }
                   // consume gray, prepare next row
-                  if (columnBackground === colorMap.leftRowHeader) {
-                    columnBackground = colorMap.barleyWhite
-                    nextColumnBackground = colorMap.leftRowHeader
+                  if (nextCell.background === colorMap.leftRowHeader) {
+                    nextCell.background = colorMap.barleyWhite
+                    nextRow.cellBackground = colorMap.leftRowHeader
                   }
                 }
               }
@@ -489,21 +499,21 @@ export default {
               breadcrumb.row +
               "</span>"
             row.unshift(breadcrumbCell)
-            if (!(ignoreNextRows === true)) {
+            if (!(nextRow.ignore === true)) {
               breadcrumb.row = breadcrumb.row + 1
               if (is_04_dati_costrutt_CARENZE) {
                 // ignore rows after second row of third level breadcrumb (until an all uppercase cell is found)
                 if (breadcrumb.level === 3 && breadcrumb.row === 2) {
-                  ignoreNextRows = true
+                  nextRow.ignore = true
                 }
               }
             }
           }
 
           // consume background image cell
-          if (backgroundImageCell) {
-            row.push(backgroundImageCell)
-            backgroundImageCell = undefined
+          if (nextCell.imageCell) {
+            row.push(nextCell.imageCell)
+            nextCell.imageCell = undefined
           }
         }) // rows
 
