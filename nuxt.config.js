@@ -148,7 +148,7 @@ export default {
   googleFonts: {
     /*download: true,*/
     families: {
-      Poppins: [400, 700]
+      Poppins: [400, 600]
     }
   },
 
