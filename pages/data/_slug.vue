@@ -51,7 +51,7 @@
           <div>Stato di conservazione</div>
           <div>
             <span class="badge badge-pill badge-success">1</span>
-            <span class="text-success">ottimo</span>
+            <span class="text-success">buono</span>
             <span class="badge badge-pill badge-warning">2</span>
             <span class="text-warning">medio</span>
             <span class="badge badge-pill badge-danger">3</span>
@@ -60,7 +60,7 @@
           <div>Comportamento strutturale</div>
           <div>
             <span class="badge badge-pill badge-success">A</span>
-            <span class="text-success">buon</span>
+            <span class="text-success">buono</span>
             <span class="badge badge-pill badge-warning">B</span>
             <span class="text-warning">medio</span>
             <span class="badge badge-pill badge-danger">C</span>
