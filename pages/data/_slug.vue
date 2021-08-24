@@ -522,6 +522,11 @@ export default {
       return json
     },
     toTrueArray(row, sheet) {
+      // helper
+      function isVisible(element) {
+        return !element.style || !(element.style.display === "none")
+      }
+
       // column count manipulation
       let columnCount = sheet.columnCount
       const is_04_dati_costrutt_CARENZE = sheet.sheet === "04_dati_costrutt_CARENZE"
@@ -537,11 +542,12 @@ export default {
       let lastCell = undefined
       let first = true
       row.forEach((cell) => {
-        if (!row.style || !(row.style.display === "none")) {
-          if (cell.col !== -1) {
+        if (isVisible(row)) {
+          if (cell.col !== -1) { // not a breadcrumb cell
             if (first) {
               first = false
-              if (0 < cell.col) {
+              // first cell is not at col zero : add a void first cell at col zero
+              if (0 < cell.col) { 
                 lastCell = {
                   col: 0,
                   html: "‌&zwnj;"
@@ -551,7 +557,7 @@ export default {
             }
           }
 
-          if (!cell.style || !(cell.style.display === "none")) {
+          if (isVisible(cell)) {
             if (cell.col < columnCount + (row.makeSpaceForImage ? -1 : 0)) {
               if (lastCell) {
                 if (lastCell.col + 1 < cell.col) {
@@ -564,7 +570,7 @@ export default {
             }
           }
         }
-      })
+      }) // row
       if (lastCell) {
         if (lastCell.col + 1 < columnCount) {
           lastCell.colspan = (row.makeSpaceForImage ? -1 : 0) + columnCount - lastCell.col
