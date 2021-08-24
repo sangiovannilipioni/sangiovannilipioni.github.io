@@ -48,7 +48,7 @@
           class="float-right didascalia text-muted"
           v-if="sheet.sheet === '04_dati_costrutt_VERT_IQM' || sheet.sheet === '04_dati_costrutt_CARENZE'"
         >
-          <div>Stato di conservazione</div>
+          <div>stato di conservazione</div>
           <div>
             <span class="badge badge-pill badge-success">1</span>
             <span class="text-success">buono</span>
@@ -57,7 +57,7 @@
             <span class="badge badge-pill badge-danger">3</span>
             <span class="text-danger">scarso</span>
           </div>
-          <div>Comportamento strutturale</div>
+          <div>comportamento strutturale</div>
           <div>
             <span class="badge badge-pill badge-success">A</span>
             <span class="text-success">buono</span>
@@ -179,7 +179,8 @@ export default {
 
       const fixTypos = {
         "stato di conservaz": "stato di conservazione",
-        carenzestrutturali: "carenze strutturali"
+        carenzestrutturali: "carenze strutturali",
+        IQM: "indice di qualità muraria"
       }
 
       // remove all sheets that have no title
