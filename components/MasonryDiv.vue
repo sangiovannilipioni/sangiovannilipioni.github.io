@@ -11,7 +11,7 @@
           :src="`${imgDir}/${item.pathShort}`"
           :disabled="item.disabled"
         />
-        <div v-if="item.key" class="Didascalie">{{ item.key }}</div>
+        <div v-if="item.title" class="Didascalie">{{ item.title }}</div>
       </div>
     </div>
   </div>

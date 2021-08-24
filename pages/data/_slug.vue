@@ -636,7 +636,6 @@ export default {
           if (lastCell.col + 1 < columnCount - 1) {
             lastCell.colspan = columnCount - 1 - lastCell.col
           }
-          console.log(row[0].text, lastCell.col, lastCell.colspan, columnCount)
         } else {
           if (lastCell.col + 1 < columnCount) {
             lastCell.colspan = columnCount - lastCell.col
