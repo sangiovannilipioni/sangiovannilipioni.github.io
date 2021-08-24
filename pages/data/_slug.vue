@@ -48,12 +48,24 @@
           class="float-right didascalia text-muted"
           v-if="sheet.sheet === '04_dati_costrutt_VERT_IQM' || sheet.sheet === '04_dati_costrutt_CARENZE'"
         >
-          <span class="badge badge-pill badge-success">A | 1</span> 
-          <span class="text-success">ottimo</span>
-          <span class="badge badge-pill badge-warning">B | 2</span> 
-          <span class="text-warning">medio</span> 
-          <span class="badge badge-pill badge-danger">C | 3</span> 
-          <span class="text-danger">scarso</span> 
+          <div>Stato di conservazione</div>
+          <div>
+            <span class="badge badge-pill badge-success">1</span>
+            <span class="text-success">ottimo</span>
+            <span class="badge badge-pill badge-warning">2</span>
+            <span class="text-warning">medio</span>
+            <span class="badge badge-pill badge-danger">3</span>
+            <span class="text-danger">scarso</span>
+          </div>
+          <div>Comportamento strutturale</div>
+          <div>
+            <span class="badge badge-pill badge-success">A</span>
+            <span class="text-success">buon</span>
+            <span class="badge badge-pill badge-warning">B</span>
+            <span class="text-warning">medio</span>
+            <span class="badge badge-pill badge-danger">C</span>
+            <span class="text-danger">scarso</span>
+          </div>
         </div>
       </div>
     </div>
@@ -352,7 +364,7 @@ export default {
               }
               if (cell.text.match(/pareti (interne|esterne)/g)) {
                 columnBackground = undefined
-                appendStyle(cell, { fontWeight: 600 })
+                appendStyle(cell, { fontWeight: "bold" })
               }
               if (cell.text.match(/CATEGORIA/g)) {
                 ignoreThisRow = true
@@ -360,7 +372,7 @@ export default {
               if (cell.text.match(/[ABC][1234]/g)) {
                 columnBackground = colorMap.sprout
                 nextColumnBackground = colorMap.leftRowHeader
-                appendStyle(cell, { fontWeight: 600 })
+                appendStyle(cell, { fontWeight: "bold" })
               }
               if (cell.text.match(/^IQMv, o/g)) {
                 appendStyle(cell, { whiteSpace: "nowrap" })
@@ -419,7 +431,7 @@ export default {
 
                 if (cell.col === 5) {
                   // "ct", "c", "-1", "0", etc. are bold
-                  appendStyle(cell, { fontWeight: 600, textAlign: "right" })
+                  appendStyle(cell, { fontWeight: "bold", textAlign: "right" })
                 }
               }
               // insert image
@@ -444,7 +456,7 @@ export default {
                   appendStyle(cell, { backgroundColor: columnBackground })
                   // add bold for these two
                   if (columnBackground === colorMap.amber || columnBackground === colorMap.creamBrulee) {
-                    appendStyle(cell, { fontWeight: 600 })
+                    appendStyle(cell, { fontWeight: "bold" })
                   }
                   // add center for this one
                   if (columnBackground === colorMap.leftRowHeader) {
