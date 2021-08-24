@@ -64,7 +64,7 @@
 
       <div class="binome reverse" v-if="theUnit">
         <div class="col" style="flex: 1">
-          <nuxt-img v-for="img in theUnit.imgs" v-bind:key="img" :src="`/foto/${img}`" class="img-fluid" />
+          <nuxt-img v-for="img in theUnit.imgs" v-bind:key="img" :src="`${img}`" class="img-fluid" />
         </div>
         <div class="col" style="flex: 2">
           <SlidesImages v-if="theUnit.slides.length" :slides="theUnit.slides" :imgDir="imgDir" />

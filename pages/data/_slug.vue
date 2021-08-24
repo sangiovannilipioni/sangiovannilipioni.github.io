@@ -157,7 +157,7 @@ export default {
       )
       .catch((err) => err)
     /*    
-    await app.$axios.get("/json/units.json").then(
+    await app.$axios.get("https://sangiovannilipioni.net/json/units.json").then(
       (response) => {
         if (!response || !response.data || !response.data[params.slug]) {
           return error({ statusCode: 404 })

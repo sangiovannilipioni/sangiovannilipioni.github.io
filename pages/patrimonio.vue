@@ -39,7 +39,7 @@
         </div>
       </div>
       <div id="b" role="tabpanel" :class="`tab-pane fade ${tabIndex === 1 ? ' show active' : ''}`">
-        <masonry-div :items="items" :imgDir="imgDir" />
+        <masonry-div :items="masonryItems" :imgDir="imgDir" />
       </div>
       <div id="c" role="tabpanel" :class="`tab-pane fade ${tabIndex === 2 ? ' show active' : ''}`">
         <div
@@ -48,17 +48,17 @@
           v-bind:key="key"
           style="margin-bottom: 0.75rem; overflow: hidden"
         >
-          <div class="d-flex" v-if="unit.foto">
+          <div class="d-flex" v-if="unit.imgs[0]">
             <div class="p-2 flex-grow-1">
               <span>{{ unit.title }} [{{ key }}]</span>
             </div>
             <div class="p-2" style="max-width: 30%; text-align: right">
               <NuxtLink :to="localePath(`/units/${key}`)">
-                <nuxt-img class="thmb" :src="unit.foto" alt="" />
+                <nuxt-img class="thmb" :src="unit.imgs[0]" alt="" />
               </NuxtLink>
             </div>
           </div>
-          <div class="p-2 flex-grow-1" style="text-align: center" v-if="!unit.foto">
+          <div class="p-2 flex-grow-1" style="text-align: center" v-if="!unit.imgs[0]">
             {{ unit.title }}
           </div>
         </div>
@@ -164,11 +164,15 @@ export default {
       for (var key in this.units) {
         if (this.units.hasOwnProperty(key)) {
           let unit = this.units[key]
-          if (unit.foto) {
+          if (unit.imgs[0]) {
+            let content = `<p>${unit.title} [${key}]</p><p><a href="${this.localePath(`/units/${key}`)}">${this.$t(
+              "goToPiantina"
+            )}</a></p>`
+            if (unit.hasData) {
+              content = content + `<p><a href="${this.localePath(`/data/${key}`)}">${this.$t("goToSchede")}</a></p>`
+            }
             const infowindow = new google.maps.InfoWindow({
-              content: `<p>${unit.title} [${key}]</p><p><a href="${this.localePath(`/units/${key}`)}">${this.$t(
-                "goToPiantina"
-              )}</a></p><p><a href="${this.localePath(`/data/${key}`)}">${this.$t("goToSchede")}</a></p>`,
+              content: content,
               maxWidth: 400
             })
 
@@ -192,7 +196,7 @@ export default {
                 this.localePath(`/units/${key}`) +
                 "' style='width:100%;height:100%;'>" +
                 "<div id='otherImage' style='width:100%;height:100%;background: no-repeat center center url(" +
-                unit.foto +
+                unit.imgs[0] +
                 "); background-size: cover;'></div>" +
                 "</a>"
             })
@@ -233,47 +237,42 @@ export default {
     }
 
     // masonry
+    for (var key in this.units) {
+      if (this.units.hasOwnProperty(key)) {
+        const unit = this.units[key]
+        if (unit.imgs[0]) {
+          this.masonryItems.push({
+            title: unit.title,
+            to: "/units/" + key,
+            pathShort: unit.imgs[0].slice(1)
+          })
+        }
+      }
+    }
     const f = require.context("../static/masonry", true, /\.jpg$/)
     f.keys().forEach((key) => {
-      this.items.push({
+      this.masonryItems.push({
         pathLong: f(key),
         pathShort: "masonry/" + key,
         disabled: true
       })
     })
   },
+  async asyncData({ app, params, error }) {
+    let units
+    await app.$axios.get("https://sangiovannilipioni.net/json/units.json").then((response) => {
+      return (units = response.data)
+    })
+    return { units }
+  },
   data() {
     return {
       tabIndex: 0,
-      units: {
-        O02: {
-          title: "Via Roma, 37",
-          foto: "/foto/GOPR1232_light_2.jpg",
-          position: { lat: 41.84247, lng: 14.56213 }
-        },
-        G01: {
-          title: "Via Vicenne, 4",
-          foto: "/foto/X2.jpg",
-          position: { lat: 41.84821126881966, lng: 14.562941327400237 }
-        },
-        _: { title: "⋮" }
-      },
       mapElement: undefined,
-      zoom: 16.8,
+      zoom: 16.5,
 
       // masonry
-      items: [
-        {
-          title: "Via Roma, 37",
-          to: "/units/O02",
-          pathShort: "foto/GOPR1232_light_2.jpg"
-        },
-        {
-          title: "Via Vicenne, 4",
-          to: "/units/G01",
-          pathShort: "foto/X2.jpg"
-        }
-      ],
+      masonryItems: [],
       imgDir: ""
     }
   }
