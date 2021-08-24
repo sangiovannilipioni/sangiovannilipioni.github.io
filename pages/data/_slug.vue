@@ -306,7 +306,9 @@ export default {
                   : cell.text === "3" || cell.text === "C"
                   ? "badge-danger"
                   : "d-none"
-              }" title="1/A:ottimo 2/B:medio 3/C:scarso">${cell.text}</a>`
+              }" title="1/A:ottimo 2/B:medio 3/C:scarso" onclick="window.scrollTo(0,document.body.scrollHeight);">${
+                cell.text
+              }</a>`
             }
 
             // special case 1 -------------------------------------------------
