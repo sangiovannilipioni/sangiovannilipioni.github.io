@@ -44,6 +44,14 @@
             </tr>
           </tbody>
         </table>
+        <div
+          class="float-right legend"
+          v-if="sheet.sheet === '04_dati_costrutt_VERT_IQM' || sheet.sheet === '04_dati_costrutt_CARENZE'"
+        >
+          <span class="badge badge-pill badge-success">A | 1</span> ottimo
+          <span class="badge badge-pill badge-warning">B | 2</span> medio
+          <span class="badge badge-pill badge-danger">C | 3</span> scarso
+        </div>
       </div>
     </div>
   </div>
@@ -60,6 +68,14 @@
   font-size: smaller;
   margin: auto 0.25rem;
   padding: 0 0.25rem;
+}
+
+.legend {
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  padding: 0.25rem;
 }
 
 table.excel {
@@ -267,13 +283,10 @@ export default {
                 return {
                   col: column,
                   rowspan: rowspan,
-                  text:
-                    "<img style='width:120px;' src='/json/jpegs/" +
-                    breadcrumb.jpeg +
-                    "'>",
+                  text: "<img style='width:120px;' src='/json/jpegs/" + breadcrumb.jpeg + "'>",
                   style: {
                     padding: "1rem 0 1rem 1rem",
-                    verticalAlign: 'middle'
+                    verticalAlign: "middle"
                   }
                 }
               }
@@ -293,7 +306,7 @@ export default {
                   : cell.text === "3" || cell.text === "C"
                   ? "badge-danger"
                   : "d-none"
-              }" title="1:ottimo 2:medio 3:scarso">${cell.text}</a>`
+              }" title="1/A:ottimo 2/B:medio 3/C:scarso">${cell.text}</a>`
             }
 
             // special case 1 -------------------------------------------------
@@ -357,7 +370,7 @@ export default {
               }
               if (cell.text.match(/materiali/g)) {
                 backgroundImageCell = createBackgroundImageCell(5, 4) // insert at column 5 with rowspan 4
-                appendStyle(row, {position: "relative"})
+                appendStyle(row, { position: "relative" })
                 if (backgroundImageCell) {
                   decrementColumnCountToMakeSpaceForImage = backgroundImageCell.rowspan - 1
                   ignoreNextTrailingColumns = 3
