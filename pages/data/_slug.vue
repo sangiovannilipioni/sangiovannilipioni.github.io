@@ -128,19 +128,42 @@ export default {
   data() {
     return {
       title: "",
-      showBreadcrumbs: false,
-      units: {
-        O02: {},
-        G01: {}
-      }
+      showBreadcrumbs: false
     }
   },
-  async fetch() {
-    const data = this.massageData(await fetch("/json/Sintesi_O2_v2.json").then((res) => res.json()))
-    this.units[this.$route.params.slug] = data
+  async asyncData({ app, params, error }) {
+    let units
+    await app.$axios.get("/json/units.json").then((response) => {
+      if (!response.data[params.slug]) error({ statusCode: 404 })
+      units = response.data
+    })
+    await app.$axios
+      .get(`/json/${params.slug}.json`)
+      .catch((err) => {
+        units[params.slug] = {rawData:[]}
+      })
+      .then((response) => {
+        if (response && response.status === 200) {
+          units[params.slug].rawData = response.data
+        } else {
+          units[params.slug].rawData = []
+        }
+      })
+      .catch()
+    return { units }
   },
-  fetchOnServer: false,
-  fetchKey: "dugenou",
+  fetch() {
+    const data = this.massageData(this.units[this.$route.params.slug].rawData)
+    this.units[this.$route.params.slug].massaged = data
+  },
+  computed: {
+    slug() {
+      return this.$route.params.slug
+    },
+    datum() {
+      return this.units[this.$route.params.slug].massaged
+    }
+  },
   methods: {
     massageData(json) {
       function appendStyle(elem, style) {
@@ -579,14 +602,6 @@ export default {
         }
       }
       return ret
-    }
-  },
-  computed: {
-    slug() {
-      return this.$route.params.slug
-    },
-    datum() {
-      return this.units[this.$route.params.slug]
     }
   }
 }

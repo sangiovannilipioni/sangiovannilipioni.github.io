@@ -1,0 +1,54 @@
+{
+    "O02":{
+      "hasData":true,
+      "slides":[
+        {
+          "img":"O1__O2-PianoTerra.jpg",
+          "title":"Piano Terra "
+        },
+        {
+          "img":"O1__O2-PianoPrimo.jpg",
+          "title":"Piano Primo "
+        },
+        {
+          "img":"O1__O2-PianoSeminterrato.jpg",
+          "title":"Piano Seminterrato"
+        },
+        {
+          "img":"O1__O2-ProspettoNord.jpg",
+          "title":"Prospetto Nord "
+        },
+        {
+          "img":"O1__O2-ProspettoOvestEst.jpg",
+          "title":"Prospetto Ovest Est"
+        },
+        {
+          "img":"O1__O2-ProspettoSud.jpg",
+          "title":"Prospetto Sud "
+        },
+        {
+          "img":"O1__O2-SezioneA.jpg",
+          "title":"Sezione A "
+        },
+        {
+          "img":"O1__O2-SezioneB.jpg",
+          "title":"Sezione B "
+        }
+      ],
+      "title":"Via Roma, 37",
+      "imgs":[
+        "GOPR1232_light_2.jpg"
+      ],
+      "video":"https://youtu.be/pmgZcSv4Huk"
+    },
+    "G01":{
+      "hasData":false,
+      "slides":[
+        
+      ],
+      "title":"Via Vicenne. 4",
+      "imgs":[
+        "X2.jpg"
+      ]
+    }
+  }
