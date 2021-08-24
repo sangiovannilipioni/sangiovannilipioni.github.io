@@ -96,10 +96,10 @@
 table.excel {
   overflow-y: scroll;
 
-  tbody:not(.breadcrumbs) td:nth-child(1) {
+  tbody:not(.breadcrumbs) td:first-child {
     display: none;
   }
-  tbody.breadcrumbs td:nth-child(1) {
+  tbody.breadcrumbs td:first-child {
     color: gray;
     font-family: "Courier New", monospace;
     font-size: 12pt;
