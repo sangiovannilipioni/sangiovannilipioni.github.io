@@ -125,6 +125,20 @@ export default {
         "04_dati_costrutt_CARENZE": "Caratteristiche costruttive solai"
       }
 
+      // for weird color names, cf. https://chir.ag/projects/name-that-color
+      // for official color name, cf. https://shallowsky.com/colormatch/index.php
+      const colorMap = {
+        amber: "#ffc000",
+        barleyWhite: "#fff2cd",
+        creamBrulee: "#ffe699",
+        kidnapper: "#eff5e9",
+        leftRowHeader: "#ededed",
+        mexicanRed: "#a42424",
+        section: "#ededed",
+        sectionDarker: "#dddddd",
+        sprout: "#c6e0b3"
+      }
+
       const fixTypos = {
         "stato di conservaz": "stato di conservazione",
         carenzestrutturali: "carenze strutturali"
@@ -223,12 +237,12 @@ export default {
                 breadcrumb.row = 0
 
                 // style the row with gray background
-                let bgColor = "#eee"
+                let bgColor = colorMap.section
 
                 // for 'Carenze' and 'Qualità' sheets, darker gray for 3rd level (e.g. 'x.y.z') very first row
                 if (is_04_dati_costrutt_CARENZE || is_04_dati_costrutt_VERT_IQM) {
                   if (breadcrumb.level === 3 && breadcrumb.row === 0) {
-                    bgColor = "#ddd"
+                    bgColor = colorMap.sectionDarker
                     ignoreNextTrailingColumns = 0 // reset flag
                   }
                 }
@@ -283,9 +297,9 @@ export default {
 
             // special case 2 -------------------------------------------------
             else if (is_02_descriz_edificio) {
-              // next row text will be red
+              // next row text will be red (the mexican kind of)
               if (cell.text === "CARATTERISTICHE EDIFICIO" || cell.text === "estremità") {
-                nextRowColor = "#a42424"
+                nextRowColor = colorMap.mexicanRed
               }
             }
 
@@ -302,8 +316,8 @@ export default {
                 ignoreThisRow = true
               }
               if (cell.text.match(/[ABC][1234]/g)) {
-                columnBackground = "#c6e0b3"
-                nextColumnBackground = "#eee"
+                columnBackground = colorMap.sprout
+                nextColumnBackground = colorMap.leftRowHeader
                 appendStyle(cell, { fontWeight: 600 })
               }
               if (cell.text.match(/^IQMv, o/g)) {
@@ -326,14 +340,14 @@ export default {
                 if (columnBackground && 1 < cell.col) {
                   appendStyle(cell, { backgroundColor: columnBackground })
                   // add center for this one
-                  if (columnBackground === "#eee") {
+                  if (columnBackground === colorMap.leftRowHeader) {
                     appendStyle(cell, { textAlign: "center" })
                   }
 
                   // consume gray, prepare next row
-                  if (columnBackground === "#eee") {
-                    columnBackground = "#eff5e9"
-                    nextColumnBackground = "#eee"
+                  if (columnBackground === colorMap.leftRowHeader) {
+                    columnBackground = colorMap.kidnapper
+                    nextColumnBackground = colorMap.leftRowHeader
                   }
                 }
               }
@@ -345,14 +359,14 @@ export default {
               if (ignoreThisRow && (isUpper(cell.text) || breadcrumb.row === 0)) {
                 ignoreThisRow = false
                 ignoreNextRows = false
-                columnBackground = "#ffe699"
+                columnBackground = colorMap.creamBrulee
               }
               if (cell.text.match(/(1\:ottimo|2\:medio|3\:scarso)/g)) {
                 appendStyle(cell, { display: "none" })
               }
               if (breadcrumb.level === 3 && breadcrumb.row === 0) {
                 // next row background will be dark orange
-                nextColumnBackground = "#ffc000"
+                nextColumnBackground = colorMap.amber
 
                 if (cell.col === 5) {
                   cell.col = 4
@@ -374,24 +388,24 @@ export default {
               // when not on section row
               if (breadcrumb.row !== 0) {
                 if (columnBackground && 1 < cell.col) {
-                  if (columnBackground === "#ffc000") {
-                    nextColumnBackground = "#ffe699"
-                  } else if (columnBackground === "#ffe699") {
-                    nextColumnBackground = "#eee"
+                  if (columnBackground === colorMap.amber) {
+                    nextColumnBackground = colorMap.creamBrulee
+                  } else if (columnBackground === colorMap.creamBrulee) {
+                    nextColumnBackground = colorMap.leftRowHeader
                   }
                   appendStyle(cell, { backgroundColor: columnBackground })
                   // add bold for these two
-                  if (columnBackground === "#ffc000" || columnBackground === "#ffe699") {
+                  if (columnBackground === colorMap.amber || columnBackground === colorMap.creamBrulee) {
                     appendStyle(cell, { fontWeight: 600 })
                   }
                   // add center for this one
-                  if (columnBackground === "#eee") {
+                  if (columnBackground === colorMap.leftRowHeader) {
                     appendStyle(cell, { textAlign: "center" })
                   }
                   // consume gray, prepare next row
-                  if (columnBackground === "#eee") {
-                    columnBackground = "#fff2cd"
-                    nextColumnBackground = "#eee"
+                  if (columnBackground === colorMap.leftRowHeader) {
+                    columnBackground = colorMap.barleyWhite
+                    nextColumnBackground = colorMap.leftRowHeader
                   }
                 }
               }
