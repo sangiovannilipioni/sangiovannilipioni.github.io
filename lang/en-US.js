@@ -39,7 +39,7 @@ export default {
 
   loginWarning: "For the time being, only Login through Facebook is enabled.",
   loginPrompt: "Login with",
-  secureMessage: "CThis is a secure page!",
+  secureMessage: "This is a secure page!",
 
   pres1:
     "The Association <b>Nessuno Escluso</b> (No One Excluded) was founded by a group of Sangiovannese with the aim of promoting the regeneration and re-inhabitation of the country in accordance with the principles of sustainable development.",
