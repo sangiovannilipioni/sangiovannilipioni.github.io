@@ -45,12 +45,15 @@
           </tbody>
         </table>
         <div
-          class="float-right legend text-muted"
+          class="float-right didascalia text-muted"
           v-if="sheet.sheet === '04_dati_costrutt_VERT_IQM' || sheet.sheet === '04_dati_costrutt_CARENZE'"
         >
-          <span class="badge badge-pill badge-success">A | 1</span> ottimo
-          <span class="badge badge-pill badge-warning">B | 2</span> medio
-          <span class="badge badge-pill badge-danger">C | 3</span> scarso
+          <span class="badge badge-pill badge-success">A | 1</span> 
+          <span class="text-success">ottimo</span>
+          <span class="badge badge-pill badge-warning">B | 2</span> 
+          <span class="text-warning">medio</span> 
+          <span class="badge badge-pill badge-danger">C | 3</span> 
+          <span class="text-danger">scarso</span> 
         </div>
       </div>
     </div>
@@ -70,7 +73,7 @@
   padding: 0 0.25rem;
 }
 
-.legend {
+.didascalia {
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
