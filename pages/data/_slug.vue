@@ -281,7 +281,7 @@ export default {
 
             // function to create badge
             const createBadge = (cell) => {
-              if (!cell.text.match(/^[ABC123]$/g)) {
+              if (!cell.text.match(/^[ABC123\-]$/g)) {
                 return cell.text
               }
               return `<a class="badge badge-pill ${
@@ -291,7 +291,7 @@ export default {
                   ? "badge-warning"
                   : cell.text === "3" || cell.text === "C"
                   ? "badge-danger"
-                  : "badge-light"
+                  : "d-none"
               }" title="1:ottimo 2:medio 3:scarso">${cell.text}</a>`
             }
 
