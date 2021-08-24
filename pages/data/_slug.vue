@@ -135,23 +135,27 @@ export default {
     let units = {}
     await app.$axios
       .get("/json/units.json")
-      .then((response) => {
-        if (!response || !response.data || !response.data[params.slug]) {
+      .then(
+        (response) => {
+          if (!response || !response.data || !response.data[params.slug]) {
+            return error({ statusCode: 404 })
+          }
+          units = response.data
+          return app.$axios.get(`/json/${params.slug}.json`)
+        },
+        (err) => {
+          return error({ statusCode: 500 })
+        }
+      )
+      .then(
+        (response) => {
+          units[params.slug].rawData = response.data
+        },
+        (err) => {
           return error({ statusCode: 404 })
-        }         
-        units = response.data
-        return app.$axios.get(`/json/${params.slug}.json`)
-      },
-      err => {
-        return error({ statusCode: 500 })
-      })
-      .then((response) => {
-        units[params.slug].rawData = response.data
-      },
-      err => {
-        return error({ statusCode: 404 })
-      })
-      .catch((err) => console.log(err.response))
+        }
+      )
+      .catch((err) => err)
     /*    
     await app.$axios.get("/json/units.json").then(
       (response) => {
@@ -613,7 +617,6 @@ export default {
               }
             }
           }
-
           if (isVisible(cell)) {
             if (cell.col < columnCount + (row.makeSpaceForImage ? -1 : 0)) {
               if (lastCell) {
@@ -629,8 +632,15 @@ export default {
         }
       }) // row
       if (lastCell) {
-        if (lastCell.col + 1 < columnCount) {
-          lastCell.colspan = (row.makeSpaceForImage ? -1 : 0) + columnCount - lastCell.col
+        if (row.makeSpaceForImage) {
+          if (lastCell.col + 1 < columnCount - 1) {
+            lastCell.colspan = columnCount - 1 - lastCell.col
+          }
+          console.log(row[0].text, lastCell.col, lastCell.colspan, columnCount)
+        } else {
+          if (lastCell.col + 1 < columnCount) {
+            lastCell.colspan = columnCount - lastCell.col
+          }
         }
       }
       return ret
