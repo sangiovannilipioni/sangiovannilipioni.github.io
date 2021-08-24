@@ -45,7 +45,7 @@
           </tbody>
         </table>
         <div
-          class="float-right legend"
+          class="float-right legend text-muted"
           v-if="sheet.sheet === '04_dati_costrutt_VERT_IQM' || sheet.sheet === '04_dati_costrutt_CARENZE'"
         >
           <span class="badge badge-pill badge-success">A | 1</span> ottimo
