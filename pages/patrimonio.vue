@@ -173,7 +173,7 @@ export default {
           console.log(unit)
 
           const infowindow = new google.maps.InfoWindow({
-            content: `<p>${unit.key}</p><p><a href="/units/${unit.ref}">Vai alla scheda</a></p>`,
+            content: `<p>${unit.key}</p><p><a href="/units/${unit.ref}">Vai alla piantina</a></p><p><a href="/data/${unit.ref}">Vai alla scheda tecnica</a></p>`,
             maxWidth: 400
           })
 

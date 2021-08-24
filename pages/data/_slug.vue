@@ -1,5 +1,12 @@
 <template>
   <div class="container">
+    <div class="container d-flex" style="margin-bottom: 0.5rem">
+      <div class="flex-grow-1" style="margin: auto">
+        <nuxt-link :to="`/units/${slug}`" class="btn btn-outline-secondary btn-sm" target="_self">
+          {{ $t("piantina") }}
+        </nuxt-link>
+      </div>
+    </div>
     <h4 id="title">
       {{ title }}
       <span class="text-muted" style="font-size: smaller">[{{ $route.params.slug }}]</span>
@@ -387,10 +394,7 @@ export default {
               }
 
               // insert image
-              if (
-                nextRow.ignoreTrailingColumns &&
-                sheet.columnCount <= cell.col + nextRow.ignoreTrailingColumns
-              ) {
+              if (nextRow.ignoreTrailingColumns && sheet.columnCount <= cell.col + nextRow.ignoreTrailingColumns) {
                 appendStyle(cell, { display: "none" })
               }
               if (cell.text.match(/materiali/g)) {
@@ -443,10 +447,7 @@ export default {
                 }
               }
               // insert image
-              if (
-                nextRow.ignoreTrailingColumns &&
-                sheet.columnCount <= cell.col + nextRow.ignoreTrailingColumns
-              ) {
+              if (nextRow.ignoreTrailingColumns && sheet.columnCount <= cell.col + nextRow.ignoreTrailingColumns) {
                 appendStyle(cell, { display: "none" })
               }
               if (cell.text.match(/materiali/g)) {
@@ -543,11 +544,12 @@ export default {
       let first = true
       row.forEach((cell) => {
         if (isVisible(row)) {
-          if (cell.col !== -1) { // not a breadcrumb cell
+          if (cell.col !== -1) {
+            // not a breadcrumb cell
             if (first) {
               first = false
               // first cell is not at col zero : add a void first cell at col zero
-              if (0 < cell.col) { 
+              if (0 < cell.col) {
                 lastCell = {
                   col: 0,
                   html: "‌&zwnj;"
@@ -580,6 +582,9 @@ export default {
     }
   },
   computed: {
+    slug() {
+      return this.$route.params.slug
+    },
     datum() {
       return this.units[this.$route.params.slug]
     }
