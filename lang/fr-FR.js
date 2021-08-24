@@ -39,6 +39,7 @@ export default {
 
   loginWarning: "Pour le moment, seul le Login via Facebook est disponbile.",
   loginPrompt: "Login via",
+  secureMessage: "Ceci est une page sécurisée !",
 
   pres1:
     "L'association <b>Nessuno Escluso</b> (Pas d'Exclu) a été fondée par un groupe de Sangiovannesi dans le but de promouvoir la régénération et la ré-habitation du village selon les principes du développement durable.",
