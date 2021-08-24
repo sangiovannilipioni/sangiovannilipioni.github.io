@@ -38,6 +38,7 @@ export default {
 
   loginWarning: "Per il momento, solo il Login con Facebook è disponibile",
   loginPrompt: "Login con",
+  secureMessage: "Questa è una pagina sicura!",
 
   pres1:
     "L’Associazione <b>Nessuno Escluso</b> è stata fondata da un gruppo di sangiovannesi con l’obiettivo di promuovere la rigenerazione e la riabitazione del paese nel rispetto dei principi dello sviluppo sostenibile.",
