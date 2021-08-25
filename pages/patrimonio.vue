@@ -248,7 +248,7 @@ export default {
           this.masonryItems.push({
             title: unit.title,
             to: "/units/" + key,
-            pathShort: `/api/v1/unit/${key}/image/${unit.imgs[0]}`
+            pathShort: `api/v1/unit/${key}/image/${unit.imgs[0]}`
           })
         }
       }
