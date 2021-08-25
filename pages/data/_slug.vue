@@ -307,6 +307,7 @@ export default {
           row.cells.forEach((cell, colindex) => {
             // for each cell -------------------------------------------------
             cell.col = +cell.col
+            if (typeof cell.text === "undefined") cell.text = ""
             // fix typos
             cell.text = fixTypos[cell.text] || cell.text
 
