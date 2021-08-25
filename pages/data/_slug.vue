@@ -527,7 +527,7 @@ export default {
               text: breadcrumb.id
             }
             formatNumber(breadcrumbCell)
-            breadcrumbCell.text =
+            breadcrumbCell.html =
               breadcrumbCell.text +
               "<span style='float: right; margin-left: 0.5rem; color: lightgray;'>" +
               breadcrumb.row +
