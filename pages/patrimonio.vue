@@ -51,10 +51,8 @@
           <div class="d-flex" v-if="unit.imgs[0]">
             <div class="p-2 flex-grow-1">
               <span>{{ unit.title }}</span>
-              <nuxt-link v-if="unit.hasData" :to="localePath(`/data/${key}`)">
-                [{{ key }}]
-              </nuxt-link>
-              <span v-else class="text-muted">[{{ key }}]</span>         
+              <nuxt-link v-if="unit.hasData" :to="localePath(`/data/${key}`)"> [{{ key }}] </nuxt-link>
+              <span v-else class="text-muted">[{{ key }}]</span>
             </div>
             <div class="p-2" style="max-width: 30%; text-align: right">
               <nuxt-link :to="localePath(`/units/${key}`)">
@@ -165,16 +163,28 @@ export default {
         ]
       })
 
-      for (var key in this.units) {
+      for (const key in this.units) {
         if (this.units.hasOwnProperty(key)) {
-          let unit = this.units[key]
+          const unit = this.units[key]
+          const unitkey = key
           if (unit.imgs[0]) {
-            let content = `<p>${unit.title} [${key}]</p><p><a href="${this.localePath(`/units/${key}`)}">${this.$t(
-              "goToPiantina"
-            )}</a></p>`
+            let content = `<p>
+                ${unit.title} [${key}]
+              </p>
+              <p>
+                <a href="${this.localePath(`/units/${unitkey}`)}">
+                  ${this.$t("goToPiantina")}
+                </a>
+              </p>`
+            const contentPlus = `<p>
+                <a href="${this.localePath(`/data/${unitkey}`)}">
+                  ${this.$t("goToSchede")}
+                </a>
+              </p>`
             if (unit.hasData) {
-              content = content + `<p><a href="${this.localePath(`/data/${key}`)}">${this.$t("goToSchede")}</a></p>`
+              content = content + contentPlus
             }
+
             const infowindow = new google.maps.InfoWindow({
               content: content,
               maxWidth: 400
@@ -183,10 +193,14 @@ export default {
             const marker = new google.maps.Marker({
               position: unit.position,
               map,
-              label: unit.title + " [" + key + "]"
+              label: {
+                text: unit.title,
+                fontSize: "16px",
+                fontFamily: '"Poppins", sans-serif'
+              }
             })
 
-            marker.addListener("click", () => {
+            marker.addListener("click", (e) => {
               infowindow.open({
                 anchor: marker,
                 map,
@@ -195,14 +209,24 @@ export default {
               if (document.getElementById("otherImage")) {
                 document.getElementById("otherImage").remove()
               }
-              document.getElementById("pano").innerHTML =
-                "<a href='" +
-                this.localePath(`/units/${key}`) +
-                "' style='width:100%;height:100%;'>" +
-                "<div id='otherImage' style='width:100%;height:100%;background: no-repeat center center url(" +
-                `/api/v1/unit/${key}/image/${unit.imgs[0]}` +
-                "); background-size: cover;'></div>" +
-                "</a>"
+              const innerHTML = `<a href="${this.localePath(`/units/${unitkey}`)}" style="
+                    width: 100%;
+                    height: 100%;
+                  "
+                >
+                <div 
+                  id="otherImage" 
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    background-size: cover;
+                    background: no-repeat center center url(/api/v1/unit/${unitkey}/image/${unit.imgs[0]});
+                  "
+                >
+                </div>
+              </a>
+              `
+              document.getElementById("pano").innerHTML = innerHTML
             })
           }
         }
