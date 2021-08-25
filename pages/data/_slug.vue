@@ -54,25 +54,25 @@
           </tbody>
         </table>
         <div
-          class="float-right didascalia text-muted"
+          class="card float-end d-inline didascalia text-muted"
           v-if="sheet.name === '04_dati_costrutt_VERT_IQM' || sheet.name === '04_dati_costrutt_CARENZE'"
         >
           <div>stato di conservazione</div>
           <div>
-            <span class="badge badge-pill badge-success">1</span>
+            <span class="badge rounded-pill bg-success">1</span>
             <span class="text-success">buono</span>
-            <span class="badge badge-pill badge-warning">2</span>
+            <span class="badge rounded-pill bg-warning">2</span>
             <span class="text-warning">medio</span>
-            <span class="badge badge-pill badge-danger">3</span>
+            <span class="badge rounded-pill bg-danger">3</span>
             <span class="text-danger">scarso</span>
           </div>
           <div>comportamento strutturale</div>
           <div>
-            <span class="badge badge-pill badge-success">A</span>
+            <span class="badge rounded-pill bg-success">A</span>
             <span class="text-success">buono</span>
-            <span class="badge badge-pill badge-warning">B</span>
+            <span class="badge rounded-pill bg-warning">B</span>
             <span class="text-warning">medio</span>
-            <span class="badge badge-pill badge-danger">C</span>
+            <span class="badge rounded-pill bg-danger">C</span>
             <span class="text-danger">scarso</span>
           </div>
         </div>
@@ -122,6 +122,10 @@ table.excel {
     text-align: right;
     font-family: monospace;
   }
+}
+
+.badge.rounded-pill {
+  font-family: Courier New, monospace;
 }
 </style>
 
@@ -357,17 +361,19 @@ export default {
               if (!cell.text.match(/^[ABC123\-]$/g)) {
                 return cell.text
               }
-              return `<a class="badge badge-pill ${
+              return `<div class="badge rounded-pill ${
                 cell.text === "1" || cell.text === "A"
-                  ? "badge-success"
+                  ? "bg-success"
                   : cell.text === "2" || cell.text === "B"
-                  ? "badge-warning"
+                  ? "bg-warning"
                   : cell.text === "3" || cell.text === "C"
-                  ? "badge-danger"
+                  ? "bg-danger"
                   : "d-none"
-              }" title="1/A:ottimo 2/B:medio 3/C:scarso" onclick="window.scrollTo(0,document.body.scrollHeight);">${
+              }" title="1/A:ottimo 2/B:medio 3/C:scarso" 
+              onclick="window.scrollTo(0,document.body.scrollHeight);"
+              style="font-family: Courier New, monospace; cursor: pointer;">${
                 cell.text
-              }</a>`
+              }</div>`
             }
 
             // special case 1 -------------------------------------------------
