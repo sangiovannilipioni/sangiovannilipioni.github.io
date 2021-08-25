@@ -174,7 +174,6 @@ export default {
   },
   methods: {
     massageData(json) {
-      console.log(json)
       function appendStyle(elem, style) {
         elem.style = { ...elem.style, ...style }
       }
@@ -557,8 +556,8 @@ export default {
         sheet.columnCount = +sheet.columnCount + 1 // (add breadcrumbs optionally hidden column)
       }) // sheets
 
+      // to true table
       json.forEach((sheet) => {
-        sheet.trueRows = []
         sheet.rows.forEach((row) => {
           const newCells = this.toTrueArray(row, sheet)
           row.cells = newCells
