@@ -174,6 +174,7 @@ export default {
   },
   methods: {
     massageData(json) {
+      console.log(json)
       function appendStyle(elem, style) {
         elem.style = { ...elem.style, ...style }
       }
