@@ -106,12 +106,6 @@ export default {
       }
     ],
     script: [
-      /*
-      {
-        src: "https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js",
-        type: "text/javascript"
-      },
-      */
       {
         src: "https://cdn.jsdelivr.net/npm/@popperjs/core@latest/dist/umd/popper.min.js",
         type: "text/javascript"
@@ -166,8 +160,18 @@ export default {
 
   fontawesome: {
     icons: {
-      solid: true,
-      brands: true
+      solid: [
+        'faExternalLinkAlt',
+        'faMinus',
+        'faPlus',
+        'faSignOutAlt',
+        'faSpinner',
+        'faUser',
+      ],
+      brands: [
+        'faFacebook',
+        'faGithub',
+      ]
     }
   },
 
