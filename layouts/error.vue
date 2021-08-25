@@ -12,7 +12,7 @@
       <b>Internal Server Error</b> The server has encountered a situation it doesn't know how to handle.
       <div class="text-muted">That's all I can say.</div>
     </div>
-    <NuxtLink to="/">Go back to home page</NuxtLink>
+    <nuxt-link to="/">Go back to home page</nuxt-link>
     <div>
       <nuxt-img src="/svg/Logo_sad.svg" class="float-right img-fluid" style="max-width: 25vh" />
     </div>

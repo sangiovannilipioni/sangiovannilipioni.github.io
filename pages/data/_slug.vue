@@ -12,10 +12,10 @@
       <span class="text-muted" style="font-size: smaller">[{{ $route.params.slug }}]</span>
     </h4>
     <ul class="nav nav-tabs">
-      <div type="button" class="discreet btn btn-outline-secondary" @click="showBreadcrumbs = !showBreadcrumbs">
+      <span type="button" class="discreet btn btn-outline-secondary" @click="showBreadcrumbs = !showBreadcrumbs">
         <font-awesome-icon v-if="showBreadcrumbs" :icon="['fas', 'minus']" />
         <font-awesome-icon v-else :icon="['fas', 'plus']" />
-      </div>
+      </span>
       <li class="nav-item" v-for="(sheet, sheet_index) in datum" :key="sheet_index">
         <a
           :class="`nav-link ${sheet_index == 0 ? 'active' : ''}`"
@@ -39,15 +39,18 @@
           <tbody :class="showBreadcrumbs ? 'breadcrumbs' : ''">
             <tr v-for="(row, row_index) in sheet.rows" :key="row_index" :style="row.style">
               <td
-                v-for="(cell, col_index) in toTrueArray(row, sheet)"
+                v-for="(cell, col_index) in row.cells" 
                 :key="col_index"
                 :colspan="cell.colspan"
                 :rowspan="cell.rowspan"
                 :style="cell.style"
                 :title="cell.title"
                 :class="cell.class"
-                v-html="cell.html"
-              ></td>
+              >
+                
+                <span v-if="cell.html" v-html="cell.html"></span>
+                <span v-else>{{ cell.text }}</span>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -156,36 +159,6 @@ export default {
         }
       )
       .catch((err) => err)
-    /*    
-    await app.$axios.get("https://sangiovannilipioni.net/json/units.json").then(
-      (response) => {
-        if (!response || !response.data || !response.data[params.slug]) {
-          return error({ statusCode: 404 })
-        } else {
-          units = response.data
-          if (!units[params.slug].hasData) {
-            units[params.slug].rawData = []
-          } else {
-            await .then(
-              (response) => {
-                if (response && response.status === 200) {
-                  
-                } else {
-                  units[params.slug].rawData = []
-                }
-              },
-              (err) => {
-                return error({ statusCode: 404 })
-              }
-            )
-          }
-        }
-      },
-      (err) => {
-        return error({ statusCode: 500 })
-      }
-    )
-    */
     return { units }
   },
   fetch() {
@@ -302,6 +275,7 @@ export default {
 
         // for all rows
         sheet.rows.forEach((row, rowindex) => {
+
           // hide ignored rows
           let ignoreThisRow = nextRow.ignore === true
 
@@ -331,7 +305,7 @@ export default {
           }
 
           // for all cols
-          row.forEach((cell, colindex) => {
+          row.cells.forEach((cell, colindex) => {
             // for each cell -------------------------------------------------
             cell.col = +cell.col
             // fix typos
@@ -369,7 +343,7 @@ export default {
                 return {
                   col: column,
                   rowspan: rowspan,
-                  text: "<img style='width:120px;' src='/json/jpegs/" + breadcrumb.jpeg + "'>",
+                  html: "<img style='width:120px;' src='/json/jpegs/" + breadcrumb.jpeg + "'>",
                   style: {
                     padding: "1rem 0 1rem 1rem",
                     verticalAlign: "middle"
@@ -406,7 +380,7 @@ export default {
               // google maps coordinates
               // https://stackoverflow.com/a/3518546/1070215
               if (cell.text.match(/^(-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)$/g)) {
-                cell.text = `<a href="https://www.google.com/maps/search/?api=1&query=${cell.text}" target="_blank">${cell.text}</a>`
+                cell.html = `<a href="https://www.google.com/maps/search/?api=1&query=${cell.text.replace(' ', '')}" target="_blank">${cell.text}</a>`
               }
               // calc title
               {
@@ -449,7 +423,7 @@ export default {
                 appendStyle(cell, { whiteSpace: "nowrap" })
               }
               if (breadcrumb.row !== 0 && cell.col === 4) {
-                cell.text = createBadge(cell)
+                cell.html = createBadge(cell)
               }
 
               // insert image
@@ -494,7 +468,7 @@ export default {
                 appendStyle(cell, { display: "none" })
               }
               if (breadcrumb.row !== 0 && cell.col === 4) {
-                cell.text = createBadge(cell)
+                cell.html = createBadge(cell)
               }
               if (breadcrumb.level === 3 && breadcrumb.row === 0) {
                 // next row background will be dark orange
@@ -558,7 +532,7 @@ export default {
               "<span style='float: right; margin-left: 0.5rem; color: lightgray;'>" +
               breadcrumb.row +
               "</span>"
-            row.unshift(breadcrumbCell)
+            row.cells.unshift(breadcrumbCell)
             if (!(nextRow.ignore === true)) {
               breadcrumb.row = breadcrumb.row + 1
               if (is_04_dati_costrutt_CARENZE) {
@@ -572,13 +546,22 @@ export default {
 
           // consume background image cell
           if (nextCell.imageCell) {
-            row.push(nextCell.imageCell)
+            row.cells.push(nextCell.imageCell)
             nextCell.imageCell = undefined
           }
         }) // rows
 
         sheet.columnCount = +sheet.columnCount + 1 // (add breadcrumbs optionally hidden column)
+
       }) // sheets
+
+      json.forEach((sheet) => {
+        sheet.trueRows = []
+        sheet.rows.forEach((row) => {
+          const newCells = this.toTrueArray(row, sheet)
+          row.cells = newCells
+        })
+      })
       return json
     },
     toTrueArray(row, sheet) {
@@ -601,7 +584,7 @@ export default {
       let ret = []
       let lastCell = undefined
       let first = true
-      row.forEach((cell) => {
+      row.cells.forEach((cell) => {
         if (isVisible(row)) {
           if (cell.col !== -1) {
             // not a breadcrumb cell
@@ -625,7 +608,7 @@ export default {
                 }
               }
 
-              lastCell = { ...cell, ...{ text: undefined, html: cell.text } }
+              lastCell = cell
               ret.push(lastCell)
             }
           }

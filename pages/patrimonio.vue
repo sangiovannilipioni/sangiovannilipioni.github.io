@@ -50,12 +50,16 @@
         >
           <div class="d-flex" v-if="unit.imgs[0]">
             <div class="p-2 flex-grow-1">
-              <span>{{ unit.title }} [{{ key }}]</span>
+              <span>{{ unit.title }}</span>
+              <nuxt-link v-if="unit.hasData" :to="localePath(`/data/${key}`)">
+                [{{ key }}]
+              </nuxt-link>
+              <span v-else class="text-muted">[{{ key }}]</span>         
             </div>
             <div class="p-2" style="max-width: 30%; text-align: right">
-              <NuxtLink :to="localePath(`/units/${key}`)">
+              <nuxt-link :to="localePath(`/units/${key}`)">
                 <nuxt-img class="thmb" :src="unit.imgs[0]" alt="" />
-              </NuxtLink>
+              </nuxt-link>
             </div>
           </div>
           <div class="p-2 flex-grow-1" style="text-align: center" v-if="!unit.imgs[0]">
