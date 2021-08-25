@@ -73,7 +73,7 @@
             <LocaleSwitcherNavItemDropdown />
 
             <!-- area riservata -->
-            <li v-if="!$auth.$state.loggedIn" class="nav-item dropdown">
+            <li v-if="$auth.$state.loggedIn" class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
                 href="#"
