@@ -74,19 +74,17 @@ main[role="main"] {
 }
 @media (max-width: 992px) {
   main[role="main"].home {
-    margin-top: 5rem;
+    margin-top: 1rem;
   }
   main[role="main"].not-home {
-    margin-top: 5rem;
+    margin-top: 1rem;
   }
   .navbar {
-    max-height: 0px;
     overflow: visible;
   }
   .navbar .logo {
-    padding-top: 11.5rem;
     z-index: 2;
-    padding: 1rem;
+    padding: 0;
   }
   .navbar .logo svg {
     width: 50px;

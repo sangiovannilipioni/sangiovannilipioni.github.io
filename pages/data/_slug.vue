@@ -20,8 +20,8 @@
         <a
           :class="`nav-link ${sheet_index == 0 ? 'active' : ''}`"
           :href="`#${sheet.id}`"
-          data-placement="top"
-          data-toggle="tab"
+          data-bs-placement="top"
+          data-bs-toggle="tab"
         >
           {{ sheet.title }}
         </a>

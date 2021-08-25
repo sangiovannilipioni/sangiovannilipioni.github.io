@@ -20,8 +20,8 @@
           v-if="theUnit.video"
           type="button"
           class="btn float-right btn-outline-secondary btn-sm"
-          data-toggle="modal"
-          data-target="#modalvideo"
+          data-bs-toggle="modal"
+          data-bs-target="#modalvideo"
         >
           Video
         </button>
@@ -33,7 +33,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="modalLabel">{{ theUnit.title }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
@@ -115,10 +115,11 @@ export default {
     // https://stackoverflow.com/a/64102684/1070215
     this.$nextTick(() => {
       const _this = this
-      $(this.$refs.modalvideo).on("shown.bs.modal", function (e) {
+      console.log(this.$refs.modalvideo)
+      this.$refs.modalvideo.addEventListener("shown.bs.modal", () => {
         _this.$refs.plyr.player.play()
       })
-      $(this.$refs.modalvideo).on("hidden.bs.modal", function (e) {
+      this.$refs.modalvideo.addEventListener("hidden.bs.modal", () => {
         _this.$refs.plyr.player.stop()
       })
     })

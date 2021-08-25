@@ -1,7 +1,8 @@
 <!-- https://merrymaker.github.io/bs4-holygrail-layout/ -->
 <template>
   <div class="d-flex flex-column vh-100">
-    <TheNavBar />
+
+    <TheNavBar2 />
 
     <main role="main" :class="isHomePage ? 'home' : 'not-home'">
       <Nuxt />

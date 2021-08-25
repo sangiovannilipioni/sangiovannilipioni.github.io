@@ -18,14 +18,7 @@
                 <p v-else class="card-text" style="">
                   {{ c.name }}
                 </p>
-                <!--
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <a type="button" :id="'watch_'+key" title="title" class="vid btn btn-sm btn-outline-secondary" :data-id="key" data-text="watch">watch</a>
-                  </div>
-                  <span class="text-muted" style="font-family:'Courier New', Courier, monospace">0:0</span>
-                </div>
-              --></div>
+              </div>
             </div>
           </div>
         </div>

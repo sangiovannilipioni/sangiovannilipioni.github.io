@@ -7,8 +7,8 @@
       <button
         class="navbar-toggler"
         type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
         aria-label="Toggle navigation"
@@ -18,8 +18,8 @@
       <div
         class="collapse navbar-collapse"
         id="navbarSupportedContent"
-        data-toggle="collapse"
-        data-target=".navbar-collapse"
+        data-bs-toggle="collapse"
+        data-bs-target=".navbar-collapse"
         style="text-align: center; z-index: 3"
       >
         <ul toggleable="sm" class="navbar-nav" style="flex: auto">
@@ -28,34 +28,33 @@
               $t("presentation")
             }}</nuxt-link>
           </li>
-          <li class="nav-item b-nav-dropdown dropdown" id="__BVID__54">
+
+          <li class="nav-item dropdown">
             <a
-              role="button"
-              aria-haspopup="true"
-              aria-expanded="false"
-              href="#"
-              target="_self"
-              data-toggle="dropdown"
               class="nav-link dropdown-toggle"
-              id="__BVID__54__BV_toggle_"
-              >{{ $t("patrimonio") }}</a
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
             >
-            <ul tabindex="-1" class="dropdown-menu" aria-labelledby="__BVID__54__BV_toggle_">
-              <li role="presentation">
+              {{ $t("patrimonio") }}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
                 <nuxt-link :to="localePath('/patrimonio')" role="menuitem" target="_self" class="dropdown-item">{{
                   $t("patrimonio")
                 }}</nuxt-link>
               </li>
-              <li role="presentation">
-                <hr role="separator" aria-orientation="horizontal" class="dropdown-divider" />
-              </li>
-              <li role="presentation">
+              <li><hr class="dropdown-divider" /></li>
+              <li>
                 <nuxt-link :to="localePath('/collab_da')" role="menuitem" target="_self" class="dropdown-item">{{
                   $t("collab_da")
                 }}</nuxt-link>
               </li>
             </ul>
           </li>
+
           <li class="nav-item d-none d-xl-block">
             <!-- hide on screens smaller than lg https://getbootstrap.com/docs/4.6/utilities/display/ -->
             <nuxt-link :to="localePath('/maiellaverde')" target="_self" class="nav-link" style="white-space: nowrap">{{
@@ -77,7 +76,7 @@
               href="#"
               id="navbarDropdown"
               role="button"
-              data-toggle="dropdown"
+              data-bs-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
             >
@@ -104,7 +103,6 @@
               </a>
             </div>
           </li>
-
           <li v-else right="" class="nav-item">
             <nuxt-link :to="localePath('/login')" target="_self" class="nav-link">
               <span style="white-space: nowrap" class="nav-item">

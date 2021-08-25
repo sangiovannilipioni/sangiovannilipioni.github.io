@@ -102,16 +102,22 @@ export default {
       {
         rel: "stylesheet",
         type: "text/css",
-        href: "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css"
+        href: "https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css"
       }
     ],
     script: [
+      /*
       {
-        src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js",
+        src: "https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js",
+        type: "text/javascript"
+      },
+      */
+      {
+        src: "https://cdn.jsdelivr.net/npm/@popperjs/core@latest/dist/umd/popper.min.js",
         type: "text/javascript"
       },
       {
-        src: "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js",
+        src: "https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.min.js",
         type: "text/javascript"
       }
     ]

@@ -1,24 +1,57 @@
 <template>
   <div id="patrimonio" class="container">
-    <ul role="tablist" class="nav nav-tabs">
-      <li role="presentation" class="nav-item">
-        <a role="tab" id="0" href="#a" data-toggle="tab" :class="`nav-link ${tabIndex === 0 ? 'active' : ''}`">{{
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button
+          :class="`nav-link ${tabIndex === 0 ? 'active' : ''}`"
+          id="li_map"
+          data-bs-toggle="tab"
+          data-bs-target="#home"
+          type="button"
+          role="tab"
+          aria-controls="home"
+          aria-selected="true"
+        >{{
           $t("map")
-        }}</a>
+        }}</button>
       </li>
-      <li role="presentation" class="nav-item">
-        <a role="tab" id="1" href="#b" data-toggle="tab" :class="`nav-link ${tabIndex === 1 ? 'active' : ''}`">{{
+      <li class="nav-item" role="presentation">
+        <button
+          :class="`nav-link ${tabIndex === 1 ? 'active' : ''}`"
+          id="li_masonry"
+          data-bs-toggle="tab"
+          data-bs-target="#profile"
+          type="button"
+          role="tab"
+          aria-controls="profile"
+          aria-selected="false"
+        >{{
           $t("photos")
-        }}</a>
+        }}</button>
       </li>
-      <li role="presentation" class="nav-item">
-        <a role="tab" id="2" href="#c" data-toggle="tab" :class="`nav-link ${tabIndex === 2 ? 'active' : ''}`">{{
+      <li class="nav-item" role="presentation">
+        <button
+          :class="`nav-link ${tabIndex === 2 ? 'active' : ''}`"
+          id="li_list"
+          data-bs-toggle="tab"
+          data-bs-target="#contact"
+          type="button"
+          role="tab"
+          aria-controls="contact"
+          aria-selected="false"
+        >{{
           $t("list")
-        }}</a>
+        }}</button>
       </li>
     </ul>
-    <div class="tab-content mt-3" id="myTabContent">
-      <div id="a" role="tabpanel" :class="`tab-pane fade ${tabIndex === 0 ? ' show active' : ''}`">
+    <div class="tab-content" id="myTabContent">
+      <div
+        :class="`tab-pane fade ${tabIndex === 0 ? ' show active' : ''}`"
+        id="home"
+        role="tabpanel"
+        aria-labelledby="li_map"
+      >
+        <!-- TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 -->
         <div style="width: 100%; margin: 2rem 0" class="binome">
           <div
             id="map"
@@ -37,11 +70,25 @@
             ></div>
           </client-only>
         </div>
+        <!-- TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 -->
       </div>
-      <div id="b" role="tabpanel" :class="`tab-pane fade ${tabIndex === 1 ? ' show active' : ''}`">
+      <div
+        :class="`tab-pane fade ${tabIndex === 1 ? ' show active' : ''}`"
+        id="profile"
+        role="tabpanel"
+        aria-labelledby="li_masonry"
+      >
+        <!-- TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 -->
         <masonry-div :items="masonryItems" :imgDir="imgDir" />
+        <!-- TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 -->
       </div>
-      <div id="c" role="tabpanel" :class="`tab-pane fade ${tabIndex === 2 ? ' show active' : ''}`">
+      <div
+        :class="`tab-pane fade ${tabIndex === 2 ? ' show active' : ''}`"
+        id="contact"
+        role="tabpanel"
+        aria-labelledby="li_list"
+      >
+        <!-- TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 -->
         <div
           class="card"
           v-for="(unit, key) in units"
@@ -64,6 +111,7 @@
             {{ unit.title }}
           </div>
         </div>
+        <!-- TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 -->
       </div>
     </div>
   </div>
@@ -91,21 +139,26 @@ export default {
     }
   },
   methods: {
-    append() {},
-    onActiveTab(newTab, previousTab, event) {
-      this.$store.commit("tab/setTab", {
-        tab: newTab
-      })
+    onTabShown(event) {
+      for (let i = 0; i < this.lis.length; i++) {
+        if (event.target.id === this.lis[i]) {
+          this.$store.commit("tab/setTab", {
+            tab: i
+          })
 
-      if (newTab === 1) {
-        if (typeof this.$redrawVueMasonry === "function") {
-          const redrawVueMasonry = this.$redrawVueMasonry
-          setTimeout(function () {
-            redrawVueMasonry()
-          }, 200)
+          if (i === 1) {
+            if (typeof this.$redrawVueMasonry === "function") {
+              const redrawVueMasonry = this.$redrawVueMasonry
+              this.$nextTick(() => {
+                redrawVueMasonry()
+              })
+            }
+          }
+          return
         }
       }
     },
+    append() {},
     onScriptLoaded(event = null) {
       // YOU HAVE ACCESS TO "new google" now, ADD YOUR GOOGLE MAPS FUNCTIONS HERE.
       if (event) {
@@ -238,10 +291,23 @@ export default {
       this.tabIndex = this.tab
     })
   },
+  beforeDestroy() {
+    for (let i = 0; i < this.lis.length; i++) {
+      const li = document.querySelector("#" + this.lis[i])
+      if (li) {
+        li.removeEventListener("shown.bs.tab", this.onTabShown)
+      }
+    }
+  },
   mounted() {
     // https://stackoverflow.com/a/42513893/1070215
-    $('a[data-toggle="tab"]').on("shown.bs.tab", (event) => {
-      this.onActiveTab(+event.target.id, +event.relatedTarget.id, event)
+    this.$nextTick(() => {
+      for (let i = 0; i < this.lis.length; i++) {
+        const li = document.querySelector("#" + this.lis[i])
+        if (li) {
+          li.addEventListener("shown.bs.tab", this.onTabShown)
+        }
+      }
     })
 
     if (typeof google === "undefined") {
@@ -296,6 +362,7 @@ export default {
   data() {
     return {
       tabIndex: 0,
+      lis: ["li_map", "li_masonry", "li_list"],
       mapElement: undefined,
       zoom: 16.5,
 
