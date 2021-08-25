@@ -2,12 +2,12 @@
 
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="LocaleSwitcherNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      <nuxt-img :src="icons[currentLocale]" class="" width="20px" height="20px" style="vertical-align: sub;"/>
+      <img :src="icons[currentLocale]" class="" width="20px" height="20px" style="vertical-align: sub;"/>
     </a>
     <ul class="dropdown-menu" aria-labelledby="LocaleSwitcherNavbarDropdown">
       <li role="presentation" v-for="locale in $i18n.locales" :key="locale.code">
         <nuxt-link :to="switchLocalePath(locale.code)" role="menuitem" target="_self" class="dropdown-item">
-          <nuxt-img :src="icons[locale.code]" class="" width="20px" height="20px" style="vertical-align: sub;"/>
+          <img :src="icons[locale.code]" class="" width="20px" height="20px" style="vertical-align: sub;"/>
           <span class="locale-name">{{ locale.name }}</span>
         </nuxt-link>
       </li>
