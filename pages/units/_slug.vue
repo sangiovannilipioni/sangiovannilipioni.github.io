@@ -67,7 +67,7 @@
           <nuxt-img v-for="img in theUnit.imgs" v-bind:key="img" :src="`${img}`" class="img-fluid" />
         </div>
         <div class="col" style="flex: 2">
-          <SlidesImages v-if="theUnit.slides.length" :slides="theUnit.slides" :imgDir="imgDir" />
+          <SlidesImages v-if="theUnit.slides.length" :slides="theUnit.slides" :imgDir="`/api/v1/unit/${slug}/blueprint`" />
         </div>
       </div>
     </article>
@@ -108,7 +108,6 @@ export default {
       height: 0,
       x: 0,
       y: 0,
-      imgDir: "/foto/cropped-images/"
     }
   },
   mounted() {

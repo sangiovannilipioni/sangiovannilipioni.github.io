@@ -24,7 +24,7 @@
         ref="swiperTop"
       >
         <swiper-slide v-for="(slide, index) in slides" :key="index">
-          <nuxt-img class="img-fluid zoom" :src="imgDir + slide.img" />
+          <nuxt-img class="img-fluid zoom" :src="`${imgDir}/${slide.img}`" />
         </swiper-slide>
       </swiper>
     </div>
