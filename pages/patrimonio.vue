@@ -58,7 +58,7 @@
             </div>
             <div class="p-2" style="max-width: 30%; text-align: right">
               <nuxt-link :to="localePath(`/units/${key}`)">
-                <nuxt-img class="thmb" :src="unit.imgs[0]" alt="" />
+                <nuxt-img class="thmb" :src="`/api/v1/unit/${key}/image/${unit.imgs[0]}`" alt="" />
               </nuxt-link>
             </div>
           </div>
@@ -200,7 +200,7 @@ export default {
                 this.localePath(`/units/${key}`) +
                 "' style='width:100%;height:100%;'>" +
                 "<div id='otherImage' style='width:100%;height:100%;background: no-repeat center center url(" +
-                unit.imgs[0] +
+                `/api/v1/unit/${key}/image/${unit.imgs[0]}` +
                 "); background-size: cover;'></div>" +
                 "</a>"
             })
@@ -248,7 +248,7 @@ export default {
           this.masonryItems.push({
             title: unit.title,
             to: "/units/" + key,
-            pathShort: unit.imgs[0].slice(1)
+            pathShort: `/api/v1/unit/${key}/image/${unit.imgs[0]}`
           })
         }
       }
