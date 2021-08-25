@@ -126,7 +126,7 @@ export default {
   },
   async asyncData({ app, params, error }) {
     let units
-    await app.$axios.get("https://sangiovannilipioni.net/json/units.json").then((response) => {
+    await app.$axios.get("https://sangiovannilipioni.net/api/v1/units.json").then((response) => {
       if (!response.data[params.slug]) error({ statusCode: 404 })
       return (units = response.data)
     })

@@ -39,7 +39,7 @@
           <tbody :class="showBreadcrumbs ? 'breadcrumbs' : ''">
             <tr v-for="(row, row_index) in sheet.rows" :key="row_index" :style="row.style">
               <td
-                v-for="(cell, col_index) in row.cells" 
+                v-for="(cell, col_index) in row.cells"
                 :key="col_index"
                 :colspan="cell.colspan"
                 :rowspan="cell.rowspan"
@@ -47,7 +47,6 @@
                 :title="cell.title"
                 :class="cell.class"
               >
-                
                 <span v-if="cell.html" v-html="cell.html"></span>
                 <span v-else>{{ cell.text }}</span>
               </td>
@@ -56,7 +55,7 @@
         </table>
         <div
           class="float-right didascalia text-muted"
-          v-if="sheet.sheet === '04_dati_costrutt_VERT_IQM' || sheet.sheet === '04_dati_costrutt_CARENZE'"
+          v-if="sheet.name === '04_dati_costrutt_VERT_IQM' || sheet.name === '04_dati_costrutt_CARENZE'"
         >
           <div>stato di conservazione</div>
           <div>
@@ -137,14 +136,14 @@ export default {
   async asyncData({ app, params, error }) {
     let units = {}
     await app.$axios
-      .get("https://sangiovannilipioni.net/json/units.json")
+      .get("https://sangiovannilipioni.net/api/v1/units.json")
       .then(
         (response) => {
           if (!response || !response.data || !response.data[params.slug]) {
             return error({ statusCode: 404 })
           }
           units = response.data
-          return app.$axios.get(`https://sangiovannilipioni.net/json/${params.slug}.json`)
+          return app.$axios.get(`https://sangiovannilipioni.net/api/v1/unit/${params.slug}.json`)
         },
         (err) => {
           return error({ statusCode: 500 })
@@ -223,23 +222,23 @@ export default {
       }
 
       // remove all sheets that have no title
-      json = json.filter((sheet) => sheetTitles[sheet.sheet])
+      json = json.filter((sheet) => sheetTitles[sheet.name])
 
       // for all sheets
       json.forEach((sheet) => {
         // set id & title
-        sheet.id = `_${sheet.sheet.replace(" ", "_")}`
-        sheet.title = sheetTitles[sheet.sheet]
+        sheet.id = `_${sheet.name.replace(" ", "_")}`
+        sheet.title = sheetTitles[sheet.name]
 
         // remove first row
         sheet.rows.shift()
 
         // helpers
-        const is_01_id_edificio = sheet.sheet === "01_id_edificio"
-        const is_02_descriz_edificio = sheet.sheet === "02_descriz_edificio"
-        const is_03_dati_metrici_AB = sheet.sheet === "03_dati_metrici_AB"
-        const is_04_dati_costrutt_VERT_IQM = sheet.sheet === "04_dati_costrutt_VERT_IQM"
-        const is_04_dati_costrutt_CARENZE = sheet.sheet === "04_dati_costrutt_CARENZE"
+        const is_01_id_edificio = sheet.name === "01_id_edificio"
+        const is_02_descriz_edificio = sheet.name === "02_descriz_edificio"
+        const is_03_dati_metrici_AB = sheet.name === "03_dati_metrici_AB"
+        const is_04_dati_costrutt_VERT_IQM = sheet.name === "04_dati_costrutt_VERT_IQM"
+        const is_04_dati_costrutt_CARENZE = sheet.name === "04_dati_costrutt_CARENZE"
 
         // the mythical breadcrum class
         let breadcrumb = {
@@ -275,7 +274,6 @@ export default {
 
         // for all rows
         sheet.rows.forEach((row, rowindex) => {
-
           // hide ignored rows
           let ignoreThisRow = nextRow.ignore === true
 
@@ -343,7 +341,7 @@ export default {
                 return {
                   col: column,
                   rowspan: rowspan,
-                  html: "<img style='width:120px;' src='/json/jpegs/" + breadcrumb.jpeg + "'>",
+                  html: "<img style='width:120px;' src='/api/v1/image/" + breadcrumb.jpeg + "'>",
                   style: {
                     padding: "1rem 0 1rem 1rem",
                     verticalAlign: "middle"
@@ -380,7 +378,10 @@ export default {
               // google maps coordinates
               // https://stackoverflow.com/a/3518546/1070215
               if (cell.text.match(/^(-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)$/g)) {
-                cell.html = `<a href="https://www.google.com/maps/search/?api=1&query=${cell.text.replace(' ', '')}" target="_blank">${cell.text}</a>`
+                cell.html = `<a href="https://www.google.com/maps/search/?api=1&query=${cell.text.replace(
+                  " ",
+                  ""
+                )}" target="_blank">${cell.text}</a>`
               }
               // calc title
               {
@@ -552,7 +553,6 @@ export default {
         }) // rows
 
         sheet.columnCount = +sheet.columnCount + 1 // (add breadcrumbs optionally hidden column)
-
       }) // sheets
 
       json.forEach((sheet) => {
@@ -572,8 +572,8 @@ export default {
 
       // column count manipulation
       let columnCount = sheet.columnCount
-      const is_04_dati_costrutt_CARENZE = sheet.sheet === "04_dati_costrutt_CARENZE"
-      const is_04_dati_costrutt_VERT_IQM = sheet.sheet === "04_dati_costrutt_VERT_IQM"
+      const is_04_dati_costrutt_CARENZE = sheet.name === "04_dati_costrutt_CARENZE"
+      const is_04_dati_costrutt_VERT_IQM = sheet.name === "04_dati_costrutt_VERT_IQM"
       if (is_04_dati_costrutt_VERT_IQM) {
         columnCount = 6
       }
