@@ -14,7 +14,7 @@
     </div>
     <nuxt-link to="/">Go back to home page</nuxt-link>
     <div>
-      <nuxt-img src="/svg/Logo_sad.svg" class="float-right img-fluid" style="max-width: 25vh" />
+      <nuxt-img src="/svg/Logo_sad.svg" class="float-end img-fluid" style="max-width: 25vh" />
     </div>
   </div>
 </template>

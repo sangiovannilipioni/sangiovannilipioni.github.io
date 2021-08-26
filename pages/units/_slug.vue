@@ -19,7 +19,7 @@
         <button
           v-if="theUnit.video"
           type="button"
-          class="btn float-right btn-outline-secondary btn-sm"
+          class="btn float-end btn-outline-secondary btn-sm"
           data-bs-toggle="modal"
           data-bs-target="#modalvideo"
         >
