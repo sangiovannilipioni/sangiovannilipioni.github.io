@@ -291,7 +291,7 @@ export default {
   // https://nuxtjs.org/blog/moving-from-nuxtjs-dotenv-to-runtime-config/
   publicRuntimeConfig: {
     axios: {
-      baseURL: 'http://api.sangiosleague.it/api/v1'
+      baseURL: 'https://api.sangiovannilipioni.net/api/v1'
     }
   },
   privateRuntimeConfig: {},

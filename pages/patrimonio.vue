@@ -105,7 +105,7 @@
               <nuxt-link :to="localePath(`/units/${key}`)">
                 <img
                   class="thmb"
-                  :src="`http://api.sangiosleague.it/api/v1/unit/${key}/image/${unit.imgs[0]}`"
+                  :src="`https://api.sangiovannilipioni.net/api/v1/unit/${key}/image/${unit.imgs[0]}`"
                   alt=""
                 />
               </nuxt-link>
@@ -277,7 +277,7 @@ export default {
                     width: 100%;
                     height: 100%;
                     background-size: cover;
-                    background: no-repeat center center url(http://api.sangiosleague.it/api/v1/unit/${unitkey}/image/${
+                    background: no-repeat center center url(https://api.sangiovannilipioni.net/api/v1/unit/${unitkey}/image/${
                 unit.imgs[0]
               });
                   "
@@ -351,7 +351,7 @@ export default {
             },
             to: `/units/${key}`,
             title: `[${key}]`,
-            src: `http://api.sangiosleague.it/api/v1/unit/${key}/image/${unit.imgs[0]}`
+            src: `https://api.sangiovannilipioni.net/api/v1/unit/${key}/image/${unit.imgs[0]}`
           })
         }
       }

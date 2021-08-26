@@ -64,10 +64,10 @@
 
       <div class="binome reverse" v-if="theUnit">
         <div class="col" style="flex: 1">
-          <img v-for="img in theUnit.imgs" v-bind:key="img" :src="`http://api.sangiosleague.it/api/v1/unit/${slug}/image/${img}`" class="img-fluid" />
+          <img v-for="img in theUnit.imgs" v-bind:key="img" :src="`https://api.sangiovannilipioni.net/api/v1/unit/${slug}/image/${img}`" class="img-fluid" />
         </div>
         <div class="col" style="flex: 2">
-          <SlidesImages v-if="theUnit.slides.length" :slides="theUnit.slides" :imgURL="`http://api.sangiosleague.it/api/v1/unit/${slug}/blueprint`" />
+          <SlidesImages v-if="theUnit.slides.length" :slides="theUnit.slides" :imgURL="`https://api.sangiovannilipioni.net/api/v1/unit/${slug}/blueprint`" />
         </div>
       </div>
     </article>
