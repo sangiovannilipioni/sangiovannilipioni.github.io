@@ -289,7 +289,11 @@ export default {
   },
 
   // https://nuxtjs.org/blog/moving-from-nuxtjs-dotenv-to-runtime-config/
-  publicRuntimeConfig: {},
+  publicRuntimeConfig: {
+    axios: {
+      baseURL: 'http://api.sangiosleague.it/api/v1'
+    }
+  },
   privateRuntimeConfig: {},
 
   // https://nuxtjs.org/docs/2.x/deployment/netlify-deployment/

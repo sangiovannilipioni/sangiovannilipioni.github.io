@@ -140,14 +140,14 @@ export default {
   async asyncData({ app, params, error }) {
     let units = {}
     await app.$axios
-      .get("https://sangiovannilipioni.net/api/v1/units.json")
+      .get("/units.json")
       .then(
         (response) => {
           if (!response || !response.data || !response.data[params.slug]) {
             return error({ statusCode: 404 })
           }
           units = response.data
-          return app.$axios.get(`https://sangiovannilipioni.net/api/v1/unit/${params.slug}.json`)
+          return app.$axios.get(`/unit/${params.slug}.json`)
         },
         (err) => {
           return error({ statusCode: 500 })
