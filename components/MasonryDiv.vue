@@ -3,15 +3,19 @@
     <div id="VueMasonry" v-masonry fit-width="true">
       <div v-masonry-tile class="Item" :key="index" v-for="(item, index) in items">
         <nuxt-link v-if="item.to" :to="localePath(item.to)">
-          <nuxt-img class="Img Content masonryImage" :src="`${imgDir}/${item.pathShort}`" :disabled="item.disabled" />
+          <img class="Img Content masonryImage" :src="item.src" :title="item.title" />
         </nuxt-link>
-        <nuxt-img
-          v-else
-          class="Img Content zoom masonryImage"
-          :src="`${imgDir}/${item.pathShort}`"
-          :disabled="item.disabled"
-        />
-        <div v-if="item.title" class="Didascalie">{{ item.title }}</div>
+        <img v-else class="Img Content zoom masonryImage" :src="item.src" :title="item.title" data-color="gray" />
+        <div v-if="item.didascalia" class="Didascalie">
+          {{ item.didascalia.text }}
+          <nuxt-link v-if="item.didascalia.link.to" :to="localePath(item.didascalia.link.to)">
+            {{ item.didascalia.link.text }}
+          </nuxt-link>
+          <span v-else class="text-muted">
+            {{ item.didascalia.link.text }}
+          </span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -44,7 +48,7 @@ export default {
     line-height: 0;
     display: block;
   }
-  .Img[disabled="disabled"] {
+  .Img[data-color="gray"] {
     filter: grayscale(100%);
   }
   .Didascalie {
@@ -59,11 +63,6 @@ export default {
     items: {
       default: () => [],
       type: Array,
-      required: false
-    },
-    imgDir: {
-      default: "/",
-      type: String,
       required: false
     }
   },

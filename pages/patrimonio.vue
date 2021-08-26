@@ -11,9 +11,9 @@
           role="tab"
           aria-controls="home"
           aria-selected="true"
-        >{{
-          $t("map")
-        }}</button>
+        >
+          {{ $t("map") }}
+        </button>
       </li>
       <li class="nav-item" role="presentation">
         <button
@@ -25,9 +25,9 @@
           role="tab"
           aria-controls="profile"
           aria-selected="false"
-        >{{
-          $t("photos")
-        }}</button>
+        >
+          {{ $t("photos") }}
+        </button>
       </li>
       <li class="nav-item" role="presentation">
         <button
@@ -39,9 +39,9 @@
           role="tab"
           aria-controls="contact"
           aria-selected="false"
-        >{{
-          $t("list")
-        }}</button>
+        >
+          {{ $t("list") }}
+        </button>
       </li>
     </ul>
     <div class="tab-content" id="myTabContent">
@@ -79,7 +79,7 @@
         aria-labelledby="li_masonry"
       >
         <!-- TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 -->
-        <masonry-div :items="masonryItems" :imgDir="imgDir" />
+        <masonry-div :items="masonryItems" />
         <!-- TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 -->
       </div>
       <div
@@ -103,7 +103,11 @@
             </div>
             <div class="p-2" style="max-width: 30%; text-align: right">
               <nuxt-link :to="localePath(`/units/${key}`)">
-                <nuxt-img class="thmb" :src="`/api/v1/unit/${key}/image/${unit.imgs[0]}`" alt="" />
+                <img
+                  class="thmb"
+                  :src="`http://api.sangiosleague.it/api/v1/unit/${key}/image/${unit.imgs[0]}`"
+                  alt=""
+                />
               </nuxt-link>
             </div>
           </div>
@@ -273,7 +277,9 @@ export default {
                     width: 100%;
                     height: 100%;
                     background-size: cover;
-                    background: no-repeat center center url(/api/v1/unit/${unitkey}/image/${unit.imgs[0]});
+                    background: no-repeat center center url(http://api.sangiosleague.it/api/v1/unit/${unitkey}/image/${
+                unit.imgs[0]
+              });
                   "
                 >
                 </div>
@@ -336,9 +342,16 @@ export default {
         const unit = this.units[key]
         if (unit.imgs[0]) {
           this.masonryItems.push({
-            title: unit.title,
-            to: "/units/" + key,
-            pathShort: `api/v1/unit/${key}/image/${unit.imgs[0]}`
+            didascalia: {
+              text: unit.title,
+              link: {
+                text: `[${key}]`,
+                to: unit.hasData ? `/data/${key}` : undefined
+              }
+            },
+            to: `/units/${key}`,
+            title: `[${key}]`,
+            src: `http://api.sangiosleague.it/api/v1/unit/${key}/image/${unit.imgs[0]}`
           })
         }
       }
@@ -346,9 +359,7 @@ export default {
     const f = require.context("../static/masonry", true, /\.jpg$/)
     f.keys().forEach((key) => {
       this.masonryItems.push({
-        pathLong: f(key),
-        pathShort: "masonry/" + key,
-        disabled: true
+        src: `/masonry/${key}`
       })
     })
   },

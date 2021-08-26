@@ -346,7 +346,7 @@ export default {
                 return {
                   col: column,
                   rowspan: rowspan,
-                  html: "<img style='width:120px;' src='/api/v1/image/" + breadcrumb.jpeg + "' />",
+                  html: "<img style='width:120px;' src='http://api.sangiosleague.it/api/v1/image/" + breadcrumb.jpeg + "' />",
                   style: {
                     padding: "1rem 0 1rem 1rem",
                     verticalAlign: "middle"
