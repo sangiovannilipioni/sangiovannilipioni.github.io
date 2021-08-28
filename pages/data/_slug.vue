@@ -8,7 +8,7 @@
       </div>
     </div>
     <h4 id="title">
-      {{ title }}
+      <span>{{ title }}</span>
       <span class="text-muted" style="font-size: smaller">[{{ $route.params.slug }}]</span>
     </h4>
     <ul class="nav nav-tabs">
@@ -16,7 +16,7 @@
         <font-awesome-icon v-if="showBreadcrumbs" :icon="['fas', 'minus']" />
         <font-awesome-icon v-else :icon="['fas', 'plus']" />
       </span>
-      <li class="nav-item" v-for="(sheet, sheet_index) in datum" :key="sheet_index">
+      <li class="nav-item" v-for="(sheet, sheet_index) in sheets" :key="sheet_index">
         <a
           :class="`nav-link ${sheet_index == 0 ? 'active' : ''}`"
           :href="`#${sheet.id}`"
@@ -29,7 +29,7 @@
     </ul>
     <div class="tab-content mt-2">
       <div
-        v-for="(sheet, sheet_index) in datum"
+        v-for="(sheet, sheet_index) in sheets"
         :key="sheet_index"
         :class="`tab-pane fade ${sheet_index == 0 ? 'show active' : ''}`"
         :id="sheet.id"
@@ -172,7 +172,7 @@ export default {
     slug() {
       return this.$route.params.slug
     },
-    datum() {
+    sheets() {
       return this.units[this.$route.params.slug].massaged
     }
   },
@@ -346,7 +346,10 @@ export default {
                 return {
                   col: column,
                   rowspan: rowspan,
-                  html: "<img style='width:120px;' src='https://api.sangiovannilipioni.net/api/v1/image/" + breadcrumb.jpeg + "' />",
+                  html:
+                    "<img style='width:120px;' src='https://api.sangiovannilipioni.net/api/v1/image/" +
+                    breadcrumb.jpeg +
+                    "' />",
                   style: {
                     padding: "1rem 0 1rem 1rem",
                     verticalAlign: "middle"
@@ -371,9 +374,7 @@ export default {
                   : "d-none"
               }" title="1/A:ottimo 2/B:medio 3/C:scarso" 
               onclick="window.scrollTo(0,document.body.scrollHeight);"
-              style="font-family: Courier New, monospace; cursor: pointer;">${
-                cell.text
-              }</div>`
+              style="font-family: Courier New, monospace; cursor: pointer;">${cell.text}</div>`
             }
 
             // special case 1 -------------------------------------------------
