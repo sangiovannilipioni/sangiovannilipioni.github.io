@@ -28,7 +28,7 @@
     "nuxt-i18n": "^6.28.1",
     "push-dir": "^0.4.1",
     "remark": "^14.0.1",
-    "sass": "^1.38.0",
+    "sass": "^1.39.0",
     "sass-loader": "10.1.1",
     "svg-country-flags": "^1.2.10",
     "swiper": "^6.8.3",
