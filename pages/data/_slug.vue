@@ -248,23 +248,23 @@ export default {
         let breadcrumb = {
           id: undefined,
           row: 0,
-          jpegNameMap: {
+          /* jpegNameMap: {
             "4.2.1": "4.2.1.jpg",
             "4.2.2": "4.2.2.jpg",
             "4.4.2": "4.4.2_4.4.3.jpg",
             "4.4.3": "4.4.2_4.4.3.jpg",
             "4.4.4": "4.4.4.jpg"
-          },
+          }, */
           get level() {
             let ret = 0
             if (this.id) {
               ret = 1 + (this.id.match(/\./g) || []).length
             }
             return ret
-          },
-          get jpeg() {
-            return this.jpegNameMap[this.id]
           }
+          /* get jpeg() {
+            return this.jpegNameMap[this.id]
+          } */
         }
 
         // declare row iteration flags
@@ -342,13 +342,13 @@ export default {
 
             // function to instantiate background image cell
             const createImageCell = (column, rowspan) => {
-              if (breadcrumb.jpeg) {
+              if (this.units[this.$route.params.slug].inserts[breadcrumb.id]) {
                 return {
                   col: column,
                   rowspan: rowspan,
                   html:
                     "<img style='width:120px;' src='https://api.sangiovannilipioni.net/api/v1/image/" +
-                    breadcrumb.jpeg +
+                    this.units[this.$route.params.slug].inserts[breadcrumb.id] +
                     "' />",
                   style: {
                     padding: "1rem 0 1rem 1rem",

@@ -64,10 +64,19 @@
 
       <div class="binome reverse" v-if="theUnit">
         <div class="col" style="flex: 1">
-          <img v-for="img in theUnit.imgs" v-bind:key="img" :src="`https://api.sangiovannilipioni.net/api/v1/unit/${slug}/image/${img}`" class="img-fluid" />
+          <img
+            v-for="img in theUnit.imgs"
+            v-bind:key="img"
+            :src="`https://api.sangiovannilipioni.net/api/v1/unit/${slug}/image/${img}`"
+            class="img-fluid"
+          />
         </div>
         <div class="col" style="flex: 2">
-          <SlidesImages v-if="theUnit.slides.length" :slides="theUnit.slides" :imgURL="`https://api.sangiovannilipioni.net/api/v1/unit/${slug}/blueprint`" />
+          <SlidesImages
+            v-if="theUnit.slides.length"
+            :slides="theUnit.slides"
+            :imgURL="`https://api.sangiovannilipioni.net/api/v1/unit/${slug}/blueprint`"
+          />
         </div>
       </div>
     </article>
@@ -107,7 +116,7 @@ export default {
       width: 0,
       height: 0,
       x: 0,
-      y: 0,
+      y: 0
     }
   },
   mounted() {
@@ -115,13 +124,14 @@ export default {
     // https://stackoverflow.com/a/64102684/1070215
     this.$nextTick(() => {
       const _this = this
-      console.log(this.$refs.modalvideo)
-      this.$refs.modalvideo.addEventListener("shown.bs.modal", () => {
-        _this.$refs.plyr.player.play()
-      })
-      this.$refs.modalvideo.addEventListener("hidden.bs.modal", () => {
-        _this.$refs.plyr.player.stop()
-      })
+      if (this.$refs.modalvideo) {
+        this.$refs.modalvideo.addEventListener("shown.bs.modal", () => {
+          _this.$refs.plyr.player.play()
+        })
+        this.$refs.modalvideo.addEventListener("hidden.bs.modal", () => {
+          _this.$refs.plyr.player.stop()
+        })
+      }
     })
   },
   async asyncData({ app, params, error }) {
