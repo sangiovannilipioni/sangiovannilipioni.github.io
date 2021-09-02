@@ -100,6 +100,15 @@
                 }}</nuxt-link>
                 <nuxt-link class="dropdown-item" :to="localePath('/from_the_sky')">{{ $t("from_the_sky") }}</nuxt-link>
                 <nuxt-link class="dropdown-item" :to="localePath('/logos')">{{ $t("impresa") }}</nuxt-link>
+                <div v-if="$auth.user.email==='christophe.thiebaud@alumni.insead.edu'">
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" :href="gitUrl" target="_github">
+                    <font-awesome-icon
+                      :icon="['fab', 'github']"
+                      style="width: 24px; height: 24px; "
+                    />
+                  </a>
+                </div>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" @click="$auth.logout()">
                   <font-awesome-icon :icon="['fas', 'sign-out-alt']" />&nbsp;{{ $t("signOut") }}
@@ -122,6 +131,11 @@
 
 <script>
 export default {
+  data () {
+    return {
+      gitUrl: `https://github.com/sangiovannilipioni/sangiovannilipioni.github.io/commit/${process.env.NUXT_ENV_CURRENT_GIT_SHA}`
+    }
+  },
   computed: {
     isHomePage() {
       return this.$route.path === "/" || this.$route.path === "/fr" || this.$route.path === "/en"
