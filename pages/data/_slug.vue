@@ -248,13 +248,6 @@ export default {
         let breadcrumb = {
           id: undefined,
           row: 0,
-          /* jpegNameMap: {
-            "4.2.1": "4.2.1.jpg",
-            "4.2.2": "4.2.2.jpg",
-            "4.4.2": "4.4.2_4.4.3.jpg",
-            "4.4.3": "4.4.2_4.4.3.jpg",
-            "4.4.4": "4.4.4.jpg"
-          }, */
           get level() {
             let ret = 0
             if (this.id) {
@@ -262,9 +255,6 @@ export default {
             }
             return ret
           }
-          /* get jpeg() {
-            return this.jpegNameMap[this.id]
-          } */
         }
 
         // declare row iteration flags
@@ -542,10 +532,11 @@ export default {
               breadcrumb.row +
               "</span>"
             row.cells.unshift(breadcrumbCell)
+
             if (!(nextRow.ignore === true)) {
               breadcrumb.row = breadcrumb.row + 1
               if (is_04_dati_costrutt_CARENZE) {
-                // ignore rows after second row of third level breadcrumb (until an all uppercase cell is found)
+                // ignore next rows after second row of third level breadcrumb (until an all uppercase cell is found)
                 if (breadcrumb.level === 3 && breadcrumb.row === 2) {
                   nextRow.ignore = true
                 }
