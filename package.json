@@ -29,7 +29,7 @@
     "push-dir": "^0.4.1",
     "remark": "^14.0.1",
     "sass": "^1.39.0",
-    "sass-loader": "10.1.1",
+    "sass-loader": "11.1.1",
     "svg-country-flags": "^1.2.10",
     "swiper": "^6.8.3",
     "vue-awesome-swiper": "^4.1.1",
