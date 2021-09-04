@@ -1,6 +1,6 @@
 <template>
   <div class="container-lg">
-    <UnitBanner :unit="units[$route.params.slug]" :units="units" to="units"/>
+    <UnitBanner :unit="units[$route.params.slug]" :units="units" to="units" />
 
     <ul id="myTabs" class="nav nav-tabs">
       <span type="button" class="discreet btn btn-outline-secondary" @click="showBreadcrumbs = !showBreadcrumbs">
@@ -129,7 +129,7 @@ export default {
       tabNodes: [],
       tabIndex: 0,
       next: undefined,
-      prev: undefined, 
+      prev: undefined,
       showBreadcrumbs: false
     }
   },
@@ -191,8 +191,8 @@ export default {
     this.prev = this.previousUnit()
     // https://stackoverflow.com/a/42513893/1070215
     this.$nextTick(() => {
-      const tabsNode = document.getElementById('myTabs');
-      this.tabNodes = tabsNode.getElementsByTagName('A');
+      const tabsNode = document.getElementById("myTabs")
+      this.tabNodes = tabsNode.getElementsByTagName("A")
       for (let i = 0; i < this.tabNodes.length; i++) {
         this.tabNodes[i].addEventListener("shown.bs.tab", this.onTabShown)
       }
@@ -204,23 +204,23 @@ export default {
       let i = 0
       for (; i < this.unitArray.length; i++) {
         if (this.unitArray[i].id === this.$route.params.slug) {
-          break;
+          break
         }
       }
       return i
     },
     nextUnit() {
       let i = this.thisUnitIndex()
-      return this.unitArray[(i+1)%this.unitArray.length].id
+      return this.unitArray[(i + 1) % this.unitArray.length].id
     },
     previousUnit() {
       let i = this.thisUnitIndex()
-      return this.unitArray[(i+this.unitArray.length-1)%this.unitArray.length].id
+      return this.unitArray[(i + this.unitArray.length - 1) % this.unitArray.length].id
     },
     onTabShown(event) {
       this.tabIndex = parseInt(event.target.id.substring(1))
       this.$store.commit("tab/setTab2", {
-        tab2: this.tabIndex 
+        tab2: this.tabIndex
       })
     },
     massageData(json) {
@@ -268,7 +268,10 @@ export default {
       const fixTypos = {
         "stato di conservaz": "stato di conservazione",
         carenzestrutturali: "carenze strutturali",
-        IQM: "indice di qualità muraria"
+        IQM: "indice di qualità muraria",
+        "1:ottimo": "",
+        "2:medio": "",
+        "3:scarso": ""
       }
 
       // remove all sheets that have no title
@@ -476,7 +479,7 @@ export default {
                 appendStyle(cell, { display: "none" })
               }
               if (cell.text.match(/materiali/g)) {
-                nextCell.imageCell = createImageCell(sheet.columnCount-1, 4) // insert at column 5 with rowspan 4
+                nextCell.imageCell = createImageCell(sheet.columnCount - 1, 4) // insert at column 5 with rowspan 4
                 appendStyle(row, { position: "relative" })
                 if (nextCell.imageCell) {
                   nextRow.shrinkColumnCountToMakeSpaceForImage = nextCell.imageCell.rowspan - 1
@@ -529,7 +532,7 @@ export default {
                 appendStyle(cell, { display: "none" })
               }
               if (cell.text.match(/materiali/g)) {
-                nextCell.imageCell = createImageCell(sheet.columnCount-1, 4) // insert at column 5 with rowspan 4
+                nextCell.imageCell = createImageCell(sheet.columnCount - 1, 4) // insert at column 5 with rowspan 4
                 if (nextCell.imageCell) {
                   nextRow.shrinkColumnCountToMakeSpaceForImage = nextCell.imageCell.rowspan - 1
                   // nextRow.ignoreTrailingColumns = 3
