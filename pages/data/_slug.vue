@@ -49,23 +49,27 @@
           class="card float-end d-inline didascalia text-muted"
           v-if="sheet.name === '04_dati_costrutt_VERT_IQM' || sheet.name === '04_dati_costrutt_CARENZE'"
         >
-          <div>stato di conservazione</div>
-          <div>
-            <span class="badge rounded-pill bg-success">1</span>
-            <span class="text-success">buono</span>
-            <span class="badge rounded-pill bg-warning">2</span>
-            <span class="text-warning">medio</span>
-            <span class="badge rounded-pill bg-danger">3</span>
-            <span class="text-danger">scarso</span>
+          <div v-if="sheet.name === '04_dati_costrutt_VERT_IQM'">
+            <div>comportamento strutturale</div>
+            <div>
+              <span class="badge rounded-pill bg-success">A</span>
+              <span class="text-success">buono</span>
+              <span class="badge rounded-pill bg-warning">B</span>
+              <span class="text-warning">medio</span>
+              <span class="badge rounded-pill bg-danger">C</span>
+              <span class="text-danger">scarso</span>
+            </div>
           </div>
-          <div>comportamento strutturale</div>
           <div>
-            <span class="badge rounded-pill bg-success">A</span>
-            <span class="text-success">buono</span>
-            <span class="badge rounded-pill bg-warning">B</span>
-            <span class="text-warning">medio</span>
-            <span class="badge rounded-pill bg-danger">C</span>
-            <span class="text-danger">scarso</span>
+            <div>stato di conservazione</div>
+            <div>
+              <span class="badge rounded-pill bg-success">1</span>
+              <span class="text-success">buono</span>
+              <span class="badge rounded-pill bg-warning">2</span>
+              <span class="text-warning">medio</span>
+              <span class="badge rounded-pill bg-danger">3</span>
+              <span class="text-danger">scarso</span>
+            </div>
           </div>
         </div>
       </div>
@@ -270,7 +274,7 @@ export default {
       const fixTypos = {
         "stato di conservaz": "stato di conservazione",
         carenzestrutturali: "carenze strutturali",
-        IQM: "indice di qualità muraria",
+        IQM: "indice di qualità muraria (IQM)",
         "1:ottimo": "&nbsp;",
         "2:medio": "&nbsp;",
         "3:scarso": "&nbsp;"
