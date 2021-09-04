@@ -196,7 +196,7 @@ export default {
       for (let i = 0; i < this.tabNodes.length; i++) {
         this.tabNodes[i].addEventListener("shown.bs.tab", this.onTabShown)
       }
-      console.log("this unit", this.thisUnitIndex(), "next unit", this.nextUnit(), "previous unit", this.previousUnit())
+      // console.log("this unit", this.thisUnitIndex(), "next unit", this.nextUnit(), "previous unit", this.previousUnit())
     })
   },
   methods: {
@@ -257,13 +257,14 @@ export default {
         amber: "#ffc000",
         barleyWhite: "#fff2cd",
         creamBrulee: "#ffe699",
-        kidnapper: "#eff5e9",
         gallery: "#ededed",
+        kidnapper: "#eff5e9",
+        lightsilver: "#d7d7d7",
         mexicanRed: "#a42424",
         section: "#ededed",
         sectionDarker: "#dddddd",
-        lightsilver: "#d7d7d7",
-        sprout: "#c6e0b3"
+        sprout: "#c6e0b3",
+        white: "#fffff"
       }
 
       const fixTypos = {
@@ -283,6 +284,7 @@ export default {
         // set id & title
         sheet.id = `_${sheet.name.replace(" ", "_")}`
         sheet.title = sheetTitles[sheet.name]
+        sheet.columnCount = +sheet.columnCount
 
         // remove first row
         sheet.rows.shift()
@@ -312,7 +314,6 @@ export default {
           ignore: undefined,
           color: undefined,
           cellBackground: undefined,
-          ignoreTrailingColumns: 0,
           shrinkColumnCountToMakeSpaceForImage: 0
         }
 
@@ -371,7 +372,6 @@ export default {
                 if (is_04_dati_costrutt_CARENZE || is_04_dati_costrutt_VERT_IQM) {
                   if (breadcrumb.level === 3 && breadcrumb.row === 0) {
                     bgColor = colorMap.sectionDarker
-                    nextRow.ignoreTrailingColumns = 0 // reset
                   }
                 }
 
@@ -413,7 +413,7 @@ export default {
                   ? "bg-warning"
                   : cell.text === "3" || cell.text === "C"
                   ? "bg-danger"
-                  : "d-none"
+                  : "bg-light text-dark"
               }" title="1/A:ottimo 2/B:medio 3/C:scarso" 
               onclick="window.scrollTo(0,document.body.scrollHeight);"
               style="font-family: Courier New, monospace; cursor: pointer;">${cell.text}</div>`
@@ -481,15 +481,14 @@ export default {
               }
 
               // insert image
-              if (nextRow.ignoreTrailingColumns && sheet.columnCount <= cell.col + nextRow.ignoreTrailingColumns) {
-                appendStyle(cell, { display: "none" })
-              }
               if (cell.text.match(/materiali/g)) {
-                nextCell.imageCell = createImageCell(sheet.columnCount - 1, 4) // insert at column 5 with rowspan 4
-                appendStyle(row, { position: "relative" })
+                nextCell.imageCell = createImageCell(sheet.columnCount, 4) // insert at column 5 with rowspan 4
+                // appendStyle(row, { position: "relative" })
                 if (nextCell.imageCell) {
+                  row.makeSpaceForImage = true
                   nextRow.shrinkColumnCountToMakeSpaceForImage = nextCell.imageCell.rowspan - 1
-                  // nextRow.ignoreTrailingColumns = 3
+                  appendStyle(nextCell.imageCell, { backgroundColor: colorMap.white })
+                  sheet.hasImage = row.hasImage = true
                 }
               }
               // when not on section row
@@ -509,7 +508,7 @@ export default {
                 }
               }
               if (cell.text.match(/^IQM[vo]/g)) {
-                  appendStyle(cell, { backgroundColor: colorMap.lightsilver})
+                appendStyle(cell, { backgroundColor: colorMap.lightsilver })
               }
             }
 
@@ -540,14 +539,13 @@ export default {
                 }
               }
               // insert image
-              if (nextRow.ignoreTrailingColumns && sheet.columnCount <= cell.col + nextRow.ignoreTrailingColumns) {
-                appendStyle(cell, { display: "none" })
-              }
               if (cell.text.match(/materiali/g)) {
-                nextCell.imageCell = createImageCell(sheet.columnCount - 1, 4) // insert at column 5 with rowspan 4
+                nextCell.imageCell = createImageCell(sheet.columnCount, 4) // insert at column 5 with rowspan 4
                 if (nextCell.imageCell) {
+                  row.makeSpaceForImage = true
                   nextRow.shrinkColumnCountToMakeSpaceForImage = nextCell.imageCell.rowspan - 1
-                  // nextRow.ignoreTrailingColumns = 3
+                  appendStyle(nextCell.imageCell, { backgroundColor: colorMap.white })
+                  sheet.hasImage = true
                 }
               }
               // when not on section row
@@ -612,7 +610,6 @@ export default {
           }
         }) // rows
 
-        sheet.columnCount = +sheet.columnCount + 1 // (add breadcrumbs optionally hidden column)
       }) // sheets
 
       // to true table
@@ -632,22 +629,23 @@ export default {
 
       // column count manipulation
       let columnCount = sheet.columnCount
-      /*
-      const is_04_dati_costrutt_CARENZE = sheet.name === "04_dati_costrutt_CARENZE"
-      const is_04_dati_costrutt_VERT_IQM = sheet.name === "04_dati_costrutt_VERT_IQM"
-      if (is_04_dati_costrutt_VERT_IQM) {
-        columnCount = 6
+      if (sheet.hasImage) {
+        columnCount = columnCount + 1
       }
-      if (is_04_dati_costrutt_CARENZE) {
-        columnCount = 6
+      if (row.hasImage) {
+        // console.log(row)
       }
-      */
+      console.log("------------")
 
       let ret = []
       let lastCell = undefined
+      let penultimateCell = undefined
       let first = true
       row.cells.forEach((cell) => {
         if (isVisible(row)) {
+          if (lastCell) {
+            penultimateCell = lastCell
+          }
           if (cell.col !== -1) {
             // not a breadcrumb cell
             if (first) {
@@ -663,28 +661,20 @@ export default {
             }
           }
           if (isVisible(cell)) {
-            if (cell.col < columnCount + (row.makeSpaceForImage ? -1 : 0)) {
-              if (lastCell) {
-                if (lastCell.col + 1 < cell.col) {
-                  lastCell.colspan = cell.col - lastCell.col
-                }
+            if (lastCell) {
+              if (lastCell.col + 1 < cell.col) {
+                lastCell.colspan = cell.col - lastCell.col
               }
-
-              lastCell = cell
-              ret.push(lastCell)
             }
+            ret.push(cell)
+            lastCell = cell
           }
         }
       }) // row
+
       if (lastCell) {
-        if (row.makeSpaceForImage) {
-          if (lastCell.col + 1 < columnCount - 1) {
-            lastCell.colspan = columnCount - 1 - lastCell.col
-          }
-        } else {
-          if (lastCell.col + 1 < columnCount) {
-            lastCell.colspan = columnCount - lastCell.col
-          }
+        if (lastCell.col + 1 < columnCount - (row.makeSpaceForImage ? 1 : 0)) {
+          lastCell.colspan = +columnCount - lastCell.col - (row.makeSpaceForImage ? 1 : 0)
         }
       }
       return ret
