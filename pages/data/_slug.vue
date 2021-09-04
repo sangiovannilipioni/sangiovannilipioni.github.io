@@ -419,7 +419,7 @@ export default {
               if (!cell.text.match(/^[ABC123\-]$/g)) {
                 return undefined
               }
-              return `<div class="badge rounded-pill ${
+              return `<span class="badge rounded-pill ${
                 cell.text === "1" || cell.text === "A"
                   ? "bg-success"
                   : cell.text === "2" || cell.text === "B"
@@ -429,7 +429,7 @@ export default {
                   : "bg-info"
               }" title="1/A:ottimo 2/B:medio 3/C:scarso" 
               onclick="window.scrollTo(0,document.body.scrollHeight);"
-              style="font-family: Courier New, monospace; cursor: pointer;">${cell.text}</div>`
+              style="font-family: Courier New, monospace; cursor: pointer;">${cell.text}</span>`
             }
 
             // special case 1 -------------------------------------------------
