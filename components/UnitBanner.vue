@@ -49,17 +49,17 @@
       </div>
     </div>
 
-    <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem">
-      <nuxt-link :to="localePath(`/${here}/${prev}`)" class="btn btn-outline-secondary btn-sm" target="_self">
+    <div class="d-flex justify-content-center" style="margin-bottom: 0.5rem">
+      <nuxt-link :to="localePath(`/${here}/${prev}`)" class="btn btn-outline-secondary btn-sm" target="_self" :style="`visibility: ${prev ? 'visible' : 'hidden'}`">
         <font-awesome-icon :icon="['fas', 'arrow-left']" />&nbsp;<span class="text-muted" style="font-size: smaller"
           >[{{ prev }}]</span
         >
       </nuxt-link>
-      <div id="title">
+      <div id="title" class="mx-4">
         <b style="font-size: larger">{{ unit.title }}</b>
         <span class="text-muted" style="font-size: smaller">[{{ unit.id }}]</span>
       </div>
-      <nuxt-link :to="localePath(`/${here}/${next}`)" class="btn btn-outline-secondary btn-sm" target="_self">
+      <nuxt-link :to="localePath(`/${here}/${next}`)" class="btn btn-outline-secondary btn-sm" target="_self" :style="`visibility: ${next ? 'visible' : 'hidden'}`">
         <span class="text-muted" style="font-size: smaller">[{{ next }}]</span>&nbsp;<font-awesome-icon
           :icon="['fas', 'arrow-right']"
         />
@@ -106,11 +106,17 @@ export default {
     },
     nextUnit() {
       let i = this.unitIndex
-      return this.unitArray[(i + 1) % this.unitArray.length].id
+      if (i + 1 < this.unitArray.length)  {
+        return this.unitArray[(i + 1) % this.unitArray.length].id
+      }
+      return undefined
     },
     previousUnit() {
       let i = this.unitIndex
-      return this.unitArray[(i + this.unitArray.length - 1) % this.unitArray.length].id
+      if (0 < i) {
+        return this.unitArray[(i + this.unitArray.length - 1) % this.unitArray.length].id
+      }
+      return undefined
     }
   },
   props: {
