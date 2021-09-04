@@ -258,10 +258,11 @@ export default {
         barleyWhite: "#fff2cd",
         creamBrulee: "#ffe699",
         kidnapper: "#eff5e9",
-        leftRowHeader: "#ededed",
+        gallery: "#ededed",
         mexicanRed: "#a42424",
         section: "#ededed",
         sectionDarker: "#dddddd",
+        lightsilver: "#d7d7d7",
         sprout: "#c6e0b3"
       }
 
@@ -466,7 +467,7 @@ export default {
               }
               if (cell.text.match(/^[ABC][123]$/g)) {
                 nextCell.background = colorMap.sprout
-                nextRow.cellBackground = colorMap.leftRowHeader
+                nextRow.cellBackground = colorMap.gallery
                 appendStyle(cell, { fontWeight: "bold" })
               }
               if (cell.text.match(/^IQMv,/g)) {
@@ -496,16 +497,19 @@ export default {
                 if (nextCell.background && 1 < cell.col) {
                   appendStyle(cell, { backgroundColor: nextCell.background })
                   // add center for this one
-                  if (nextCell.background === colorMap.leftRowHeader) {
+                  if (nextCell.background === colorMap.gallery) {
                     appendStyle(cell, { textAlign: "center" })
                   }
 
                   // consume gray, prepare next row
-                  if (nextCell.background === colorMap.leftRowHeader) {
+                  if (nextCell.background === colorMap.gallery) {
                     nextCell.background = colorMap.kidnapper
-                    nextRow.cellBackground = colorMap.leftRowHeader
+                    nextRow.cellBackground = colorMap.gallery
                   }
                 }
+              }
+              if (cell.text.match(/^IQM[vo]/g)) {
+                  appendStyle(cell, { backgroundColor: colorMap.lightsilver})
               }
             }
 
@@ -552,7 +556,7 @@ export default {
                   if (nextCell.background === colorMap.amber) {
                     nextRow.cellBackground = colorMap.creamBrulee
                   } else if (nextCell.background === colorMap.creamBrulee) {
-                    nextRow.cellBackground = colorMap.leftRowHeader
+                    nextRow.cellBackground = colorMap.gallery
                   }
                   appendStyle(cell, { backgroundColor: nextCell.background })
                   // add bold for these two
@@ -560,13 +564,13 @@ export default {
                     appendStyle(cell, { fontWeight: "bold" })
                   }
                   // add center for this one
-                  if (nextCell.background === colorMap.leftRowHeader) {
+                  if (nextCell.background === colorMap.gallery) {
                     appendStyle(cell, { textAlign: "center" })
                   }
                   // consume gray, prepare next row
-                  if (nextCell.background === colorMap.leftRowHeader) {
+                  if (nextCell.background === colorMap.gallery) {
                     nextCell.background = colorMap.barleyWhite
-                    nextRow.cellBackground = colorMap.leftRowHeader
+                    nextRow.cellBackground = colorMap.gallery
                   }
                 }
               }
