@@ -43,6 +43,20 @@
           {{ $t("list") }}
         </button>
       </li>
+      <li class="nav-item" role="presentation">
+        <button
+          :class="`nav-link ${tabIndex === 3 ? 'active' : ''}`"
+          id="li_collab_da"
+          data-bs-toggle="tab"
+          data-bs-target="#collab_da"
+          type="button"
+          role="tab"
+          aria-controls="collab_da"
+          aria-selected="false"
+        >
+          {{ $t("collab_da") }}
+        </button>
+      </li>
     </ul>
     <div class="tab-content" id="myTabContent">
       <div
@@ -116,6 +130,16 @@
           </div>
         </div>
         <!-- TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 -->
+      </div>
+      <div
+        :class="`tab-pane fade ${tabIndex === 3 ? ' show active' : ''}`"
+        id="collab_da"
+        role="tabpanel"
+        aria-labelledby="li_collab_da"
+      >
+        <!-- TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 -->
+        <CollabDA/>
+        <!-- TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 -->
       </div>
     </div>
   </div>
@@ -373,7 +397,7 @@ export default {
   data() {
     return {
       tabIndex: 0,
-      lis: ["li_map", "li_masonry", "li_list"],
+      lis: ["li_map", "li_masonry", "li_list", "li_collab_da"],
       mapElement: undefined,
       zoom: 16.5,
 

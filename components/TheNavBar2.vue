@@ -25,30 +25,8 @@
             </li>
 
             <!-- patrimonio -->
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                {{ $t("patrimonio") }}
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <nuxt-link :to="localePath('/patrimonio')" role="menuitem" target="_self" class="dropdown-item">{{
-                    $t("patrimonio")
-                  }}</nuxt-link>
-                </li>
-                <li><hr class="dropdown-divider" /></li>
-                <li>
-                  <nuxt-link :to="localePath('/collab_da')" role="menuitem" target="_self" class="dropdown-item">{{
-                    $t("collab_da")
-                  }}</nuxt-link>
-                </li>
-              </ul>
+            <li class="nav-item">
+              <nuxt-link :to="localePath('/patrimonio')" class="nav-link">{{ $t("patrimonio") }}</nuxt-link>
             </li>
 
             <!-- maiellaverde -->

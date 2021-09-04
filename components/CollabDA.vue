@@ -1,5 +1,5 @@
 <template>
-  <div class="container-lg">
+  <div id="collab_da" style="margin-top:1rem">
     <p style="font-size: larger">
       <a href="https://da.unibo.it/it" target="_blank">
         <nuxt-img
@@ -22,10 +22,11 @@
       </a>
     </p>
   </div>
+    
 </template>
 
 <style scoped>
-.container :last-child {
+#collab_da :last-child {
   margin-bottom: 0;
 }
 @media (min-width: 540px) {
@@ -39,7 +40,3 @@
   }
 }
 </style>
-
-<script>
-export default {}
-</script>
