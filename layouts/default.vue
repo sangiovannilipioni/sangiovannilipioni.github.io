@@ -4,11 +4,11 @@
 
     <TheNavBar2 />
 
-    <main role="main" :class="isHomePage ? 'home' : 'not-home'">
+    <main role="main" :class="$store.$isHomePage($route.path) ? 'home' : 'not-home'">
       <Nuxt />
     </main>
 
-    <footer class="footer py-1" style="margin-top: auto !important" v-if="isHomePage">
+    <footer class="footer py-1" style="margin-top: auto !important" v-if="$store.$isHomePage($route.path)">
       <div class="container-lg binome">
         <div class="text-muted border" style="flex: 1 0 0%">
           <div style="whitespace: nowrap">
@@ -44,10 +44,5 @@
 import { mapState } from "vuex"
 
 export default {
-  computed: {
-    isHomePage() {
-      return this.$route.path === "/" || this.$route.path === "/fr" || this.$route.path === "/en"
-    }
-  }
 }
 </script>

@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-lg">
         <nuxt-link :to="localePath('/')" class="navbar-brand">
-          <LogoDiv :class="isHomePage ? 'home' : 'not-home'" />
+          <LogoDiv :class="$store.$isHomePage($route.path) ? 'home' : 'not-home'" />
         </nuxt-link>
         <button
           class="navbar-toggler"
@@ -100,13 +100,10 @@
                 }}</nuxt-link>
                 <nuxt-link class="dropdown-item" :to="localePath('/from_the_sky')">{{ $t("from_the_sky") }}</nuxt-link>
                 <nuxt-link class="dropdown-item" :to="localePath('/logos')">{{ $t("impresa") }}</nuxt-link>
-                <div v-if="$auth.user.email==='christophe.thiebaud@alumni.insead.edu'">
+                <div v-if="$auth.user.email === 'christophe.thiebaud@alumni.insead.edu'">
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" :href="gitUrl" target="_github">
-                    <font-awesome-icon
-                      :icon="['fab', 'github']"
-                      style="width: 24px; height: 24px; "
-                    />
+                    <font-awesome-icon :icon="['fab', 'github']" style="width: 24px; height: 24px" />
                   </a>
                 </div>
                 <div class="dropdown-divider"></div>
@@ -131,14 +128,9 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       gitUrl: `https://github.com/sangiovannilipioni/sangiovannilipioni.github.io/commit/${process.env.NUXT_ENV_CURRENT_GIT_SHA}`
-    }
-  },
-  computed: {
-    isHomePage() {
-      return this.$route.path === "/" || this.$route.path === "/fr" || this.$route.path === "/en"
     }
   }
 }

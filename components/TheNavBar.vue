@@ -2,7 +2,7 @@
   <client-only>
     <nav class="navbar container-lg navbar-light navbar-expand-lg">
       <nuxt-link :to="localePath('/')" target="_self" class="navbar-brand">
-        <LogoDiv :class="isHomePage ? 'home' : 'not-home'" />
+        <LogoDiv :class="$store.$isHomePage($route.path) ? 'home' : 'not-home'" />
       </nuxt-link>
       <button
         class="navbar-toggler"
@@ -118,10 +118,5 @@
 
 <script>
 export default {
-  computed: {
-    isHomePage() {
-      return this.$route.path === "/" || this.$route.path === "/fr" || this.$route.path === "/en"
-    }
-  }
 }
 </script>

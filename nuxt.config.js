@@ -122,12 +122,13 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    '~/plugins/global.js',
     "~/plugins/persistedState",
     { src: "./plugins/vue-awesome-swiper.client.js", mode: "client" },
     { src: "~/plugins/medium-zoom", mode: "client" },
     { src: "~/plugins/vue-masonry.js", mode: "client" },
     { src: "~/plugins/vue-pdf.client.js", mode: "client" },
-    { src: "~/plugins/vue-plyr.js", mode: "client" }
+    { src: "~/plugins/vue-plyr.js", mode: "client" },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
