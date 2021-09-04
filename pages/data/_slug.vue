@@ -269,9 +269,9 @@ export default {
         "stato di conservaz": "stato di conservazione",
         carenzestrutturali: "carenze strutturali",
         IQM: "indice di qualità muraria",
-        "1:ottimo": "",
-        "2:medio": "",
-        "3:scarso": ""
+        "1:ottimo": "&nbsp;",
+        "2:medio": "&nbsp;",
+        "3:scarso": "&nbsp;"
       }
 
       // remove all sheets that have no title
@@ -351,7 +351,7 @@ export default {
             cell.col = +cell.col
             if (typeof cell.text === "undefined") cell.text = ""
             // fix typos
-            cell.text = fixTypos[cell.text] || cell.text
+            cell.html = fixTypos[cell.text] /* || cell.text */
 
             // if first column is column zero, and is a numeric : start of section
             if (colindex === 0) {
@@ -470,7 +470,7 @@ export default {
               if (cell.text.match(/^IQMv,/g)) {
                 appendStyle(cell, { whiteSpace: "nowrap" })
               }
-              if (breadcrumb.row !== 0 && cell.col === 4) {
+              if (breadcrumb.row !== 0 && (cell.col === 4 || cell.col === 5 || cell.col === 6)) {
                 cell.html = createBadge(cell)
               }
 
