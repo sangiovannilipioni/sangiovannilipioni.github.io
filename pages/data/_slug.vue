@@ -353,7 +353,6 @@ export default {
             // fix typos
             if (fixTypos[cell.text]) {
               cell.html = fixTypos[cell.text]
-              console.log(sheet.title, cell)
             }
 
             // if first column is column zero, and is a numeric : start of section
