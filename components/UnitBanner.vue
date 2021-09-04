@@ -17,6 +17,7 @@
         </button>
       </div>
     </div>
+    
     <div class="d-flex justify-content-center" style="margin-bottom: 0.5rem">
       <nuxt-link
         v-if="prev"
@@ -28,11 +29,15 @@
           >[{{ prev }}]</span
         >
       </nuxt-link>
-      <font-awesome-icon v-else :icon="['fas', 'arrow-left']" style="visibility: hidden" />
+      <button v-else  class="btn btn-outline-secondary btn-sm" disabled>
+        <font-awesome-icon :icon="['fas', 'arrow-left']" />
+      </button>
+
       <div id="title" class="mx-4">
         <b style="font-size: larger">{{ unit.title }}</b>
         <span class="text-muted" style="font-size: smaller">[{{ unit.id }}]</span>
       </div>
+
       <nuxt-link
         v-if="next"
         :to="localePath(`/${here}/${next}`)"
@@ -43,35 +48,37 @@
           :icon="['fas', 'arrow-right']"
         />
       </nuxt-link>
-      <font-awesome-icon v-else :icon="['fas', 'arrow-right']" style="visibility: hidden" />
+      <button v-else  class="btn btn-outline-secondary btn-sm" disabled>
+        <font-awesome-icon :icon="['fas', 'arrow-right']" />
+      </button>
+    </div>
 
-      <div class="modal fade" id="modalvideo" ref="modalvideo" tabindex="-1">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modalLabel">{{ unit.title }}</h5>
-              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <client-only>
-                <!-- need client-only; otherwise, we get "Vuejs Error: The client-side rendered virtual DOM tree is not matching server-rendered" -->
-                <vue-plyr
-                  id="qwe"
-                  ref="plyr"
-                  v-if="unit.video"
-                  :options="{
-                    mute: true,
-                    volume: 0,
-                    captions: true,
-                    autoplay: false
-                  }"
-                >
-                  <div data-plyr-provider="youtube" :data-plyr-embed-id="unit.video"></div>
-                </vue-plyr>
-              </client-only>
-            </div>
+    <div class="modal fade" id="modalvideo" ref="modalvideo" tabindex="-1">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel">{{ unit.title }}</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <client-only>
+              <!-- need client-only; otherwise, we get "Vuejs Error: The client-side rendered virtual DOM tree is not matching server-rendered" -->
+              <vue-plyr
+                id="qwe"
+                ref="plyr"
+                v-if="unit.video"
+                :options="{
+                  mute: true,
+                  volume: 0,
+                  captions: true,
+                  autoplay: false
+                }"
+              >
+                <div data-plyr-provider="youtube" :data-plyr-embed-id="unit.video"></div>
+              </vue-plyr>
+            </client-only>
           </div>
         </div>
       </div>
