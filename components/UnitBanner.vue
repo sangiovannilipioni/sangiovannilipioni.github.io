@@ -6,8 +6,6 @@
           {{ $t(to) }}
         </nuxt-link>
       </div>
-
-      <!-- Button trigger modal -->
       <div v-if="unit.video">
         <button
           type="button"
@@ -17,18 +15,48 @@
         >
           Video
         </button>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center" style="margin-bottom: 0.5rem">
+      <nuxt-link
+        v-if="prev"
+        :to="localePath(`/${here}/${prev}`)"
+        class="btn btn-outline-secondary btn-sm"
+        target="_self"
+      >
+        <font-awesome-icon :icon="['fas', 'arrow-left']" />&nbsp;<span class="text-muted" style="font-size: smaller"
+          >[{{ prev }}]</span
+        >
+      </nuxt-link>
+      <font-awesome-icon v-else :icon="['fas', 'arrow-left']" style="visibility: hidden" />
+      <div id="title" class="mx-4">
+        <b style="font-size: larger">{{ unit.title }}</b>
+        <span class="text-muted" style="font-size: smaller">[{{ unit.id }}]</span>
+      </div>
+      <nuxt-link
+        v-if="next"
+        :to="localePath(`/${here}/${next}`)"
+        class="btn btn-outline-secondary btn-sm"
+        target="_self"
+      >
+        <span class="text-muted" style="font-size: smaller">[{{ next }}]</span>&nbsp;<font-awesome-icon
+          :icon="['fas', 'arrow-right']"
+        />
+      </nuxt-link>
+      <font-awesome-icon v-else :icon="['fas', 'arrow-right']" style="visibility: hidden" />
 
-        <!-- Modal -->
-        <div class="modal fade" id="modalvideo" ref="modalvideo" tabindex="-1">
-          <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel">{{ unit.title }}</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
+      <div class="modal fade" id="modalvideo" ref="modalvideo" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel">{{ unit.title }}</h5>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <client-only>
+                <!-- need client-only; otherwise, we get "Vuejs Error: The client-side rendered virtual DOM tree is not matching server-rendered" -->
                 <vue-plyr
                   id="qwe"
                   ref="plyr"
@@ -42,28 +70,11 @@
                 >
                   <div data-plyr-provider="youtube" :data-plyr-embed-id="unit.video"></div>
                 </vue-plyr>
-              </div>
+              </client-only>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="d-flex justify-content-center" style="margin-bottom: 0.5rem">
-      <nuxt-link :to="localePath(`/${here}/${prev}`)" class="btn btn-outline-secondary btn-sm" target="_self" :style="`visibility: ${prev ? 'visible' : 'hidden'}`">
-        <font-awesome-icon :icon="['fas', 'arrow-left']" />&nbsp;<span class="text-muted" style="font-size: smaller"
-          >[{{ prev }}]</span
-        >
-      </nuxt-link>
-      <div id="title" class="mx-4">
-        <b style="font-size: larger">{{ unit.title }}</b>
-        <span class="text-muted" style="font-size: smaller">[{{ unit.id }}]</span>
-      </div>
-      <nuxt-link :to="localePath(`/${here}/${next}`)" class="btn btn-outline-secondary btn-sm" target="_self" :style="`visibility: ${next ? 'visible' : 'hidden'}`">
-        <span class="text-muted" style="font-size: smaller">[{{ next }}]</span>&nbsp;<font-awesome-icon
-          :icon="['fas', 'arrow-right']"
-        />
-      </nuxt-link>
     </div>
   </div>
 </template>
@@ -106,7 +117,7 @@ export default {
     },
     nextUnit() {
       let i = this.unitIndex
-      if (i + 1 < this.unitArray.length)  {
+      if (i + 1 < this.unitArray.length) {
         return this.unitArray[(i + 1) % this.unitArray.length].id
       }
       return undefined
