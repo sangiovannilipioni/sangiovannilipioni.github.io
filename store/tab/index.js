@@ -1,6 +1,7 @@
 export const state = () => ({
   tab: 0,
-  tab2: 0
+  tab2: 0,
+  breadcrumbs: false
 })
 
 export const getters = {
@@ -9,6 +10,9 @@ export const getters = {
   },
   getTab2: (state) => {
     return state.tab2
+  },
+  getBreadcrumbs: (state) => {
+    return state.breadcrumbs
   }
 }
 
@@ -18,5 +22,8 @@ export const mutations = {
   },
   setTab2(state, payload) {
     state.tab2 = payload.tab2
+  },
+  setBreadcrumbs(state, payload) {
+    state.breadcrumbs = payload.breadcrumbs
   }
 }

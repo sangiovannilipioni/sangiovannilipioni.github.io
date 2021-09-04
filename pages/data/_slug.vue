@@ -3,7 +3,7 @@
     <UnitBanner :unit="units[$route.params.slug]" :units="units" to="units" />
 
     <ul id="myTabs" class="nav nav-tabs">
-      <span type="button" class="discreet btn btn-outline-secondary" @click="showBreadcrumbs = !showBreadcrumbs">
+      <span type="button" class="discreet btn btn-outline-secondary" @click="toggleBreadcrumbs()">
         <font-awesome-icon v-if="showBreadcrumbs" :icon="['fas', 'minus']" />
         <font-awesome-icon v-else :icon="['fas', 'plus']" />
       </span>
@@ -185,6 +185,7 @@ export default {
   created() {
     this.$nextTick(() => {
       this.tabIndex = this.$store.state.tab.tab2
+      this.showBreadcrumbs = this.$store.state.tab.breadcrumbs
     })
   },
   beforeDestroy() {
@@ -222,6 +223,12 @@ export default {
     previousUnit() {
       let i = this.thisUnitIndex()
       return this.unitArray[(i + this.unitArray.length - 1) % this.unitArray.length].id
+    },
+    toggleBreadcrumbs() {
+      this.showBreadcrumbs = !this.showBreadcrumbs
+      this.$store.commit("tab/setBreadcrumbs", {
+        breadcrumbs: this.showBreadcrumbs
+      })
     },
     onTabShown(event) {
       this.tabIndex = parseInt(event.target.id.substring(1))
@@ -641,7 +648,6 @@ export default {
       if (row.hasImage) {
         // console.log(row)
       }
-      console.log("------------")
 
       let ret = []
       let lastCell = undefined
