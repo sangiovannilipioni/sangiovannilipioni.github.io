@@ -351,7 +351,10 @@ export default {
             cell.col = +cell.col
             if (typeof cell.text === "undefined") cell.text = ""
             // fix typos
-            cell.html = fixTypos[cell.text] /* || cell.text */
+            if (fixTypos[cell.text]) {
+              cell.html = fixTypos[cell.text]
+              console.log(sheet.title, cell)
+            }
 
             // if first column is column zero, and is a numeric : start of section
             if (colindex === 0) {
@@ -401,7 +404,7 @@ export default {
             // function to create badge
             const createBadge = (cell) => {
               if (!cell.text.match(/^[ABC123\-]$/g)) {
-                return cell.text
+                return undefined
               }
               return `<div class="badge rounded-pill ${
                 cell.text === "1" || cell.text === "A"
@@ -471,7 +474,10 @@ export default {
                 appendStyle(cell, { whiteSpace: "nowrap" })
               }
               if (breadcrumb.row !== 0 && (cell.col === 4 || cell.col === 5 || cell.col === 6)) {
-                cell.html = createBadge(cell)
+                const badge = createBadge(cell)
+                if (badge) {
+                  cell.html = badge
+                }
               }
 
               // insert image
@@ -516,7 +522,10 @@ export default {
                 appendStyle(cell, { display: "none" })
               }
               if (breadcrumb.row !== 0 && cell.col === 4) {
-                cell.html = createBadge(cell)
+                const badge = createBadge(cell)
+                if (badge) {
+                  cell.html = badge
+                }
               }
               if (breadcrumb.level === 3 && breadcrumb.row === 0) {
                 // next row background will be dark orange
