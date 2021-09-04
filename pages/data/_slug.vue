@@ -69,6 +69,8 @@
               <span class="text-warning">medio</span>
               <span class="badge rounded-pill bg-danger">3</span>
               <span class="text-danger">scarso</span>
+              <span class="badge rounded-pill bg-info">-</span>
+              <span class="">n/a</span>
             </div>
           </div>
         </div>
@@ -417,7 +419,7 @@ export default {
                   ? "bg-warning"
                   : cell.text === "3" || cell.text === "C"
                   ? "bg-danger"
-                  : "bg-light text-dark"
+                  : "bg-info"
               }" title="1/A:ottimo 2/B:medio 3/C:scarso" 
               onclick="window.scrollTo(0,document.body.scrollHeight);"
               style="font-family: Courier New, monospace; cursor: pointer;">${cell.text}</div>`
