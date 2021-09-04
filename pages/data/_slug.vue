@@ -3,10 +3,10 @@
     <UnitBanner :unit="units[$route.params.slug]" :units="units" to="units" />
 
     <ul id="myTabs" class="nav nav-tabs">
-      <span type="button" class="discreet btn btn-outline-secondary" @click="toggleBreadcrumbs()">
+      <li type="button" class="discreet btn btn-outline-secondary" @click="toggleBreadcrumbs()">
         <font-awesome-icon v-if="showBreadcrumbs" :icon="['fas', 'minus']" />
         <font-awesome-icon v-else :icon="['fas', 'plus']" />
-      </span>
+      </li>
       <li class="nav-item" v-for="(sheet, sheet_index) in sheets" :key="sheet_index">
         <a
           :id="`_${sheet_index}`"
