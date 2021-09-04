@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container flex">
+    <div class="-lg flex">
       <h1 id="theTitle">Associazione <span style="font-weight: 700">Nessuno Escluso</span> APS</h1>
       <div style="height: 400px; max-height: 30%; width: 100%; margin: 2rem 0" class="binome">
         <div id="map" class="col d-flex justify-content-center align-items-center" style="background: transparent">

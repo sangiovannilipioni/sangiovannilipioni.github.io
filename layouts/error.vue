@@ -1,6 +1,6 @@
 <!-- https://www.damirscorner.com/blog/posts/20200904-ErrorHandlingInNuxtjs.html -->
 <template>
-  <div class="container mt-4">
+  <div class="container-lg mt-4">
     <h4>
       <b>{{ error.statusCode }}.</b> That’s an error.
     </h4>

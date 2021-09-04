@@ -1,24 +1,16 @@
 <template>
-  <div class="container">
-    <div class="container d-flex" style="margin-bottom: 0.5rem">
-      <div class="flex-grow-1" style="margin: auto">
-        <nuxt-link :to="localePath(`/units/${slug}`)" class="btn btn-outline-secondary btn-sm" target="_self">
-          {{ $t("piantina") }}
-        </nuxt-link>
-      </div>
-    </div>
-    <h4 id="title">
-      <span>{{ title }}</span>
-      <span class="text-muted" style="font-size: smaller">[{{ $route.params.slug }}]</span>
-    </h4>
-    <ul class="nav nav-tabs">
+  <div class="container-lg">
+    <UnitBanner :unit="units[$route.params.slug]" :units="units" to="units"/>
+
+    <ul id="myTabs" class="nav nav-tabs">
       <span type="button" class="discreet btn btn-outline-secondary" @click="showBreadcrumbs = !showBreadcrumbs">
         <font-awesome-icon v-if="showBreadcrumbs" :icon="['fas', 'minus']" />
         <font-awesome-icon v-else :icon="['fas', 'plus']" />
       </span>
       <li class="nav-item" v-for="(sheet, sheet_index) in sheets" :key="sheet_index">
         <a
-          :class="`nav-link ${sheet_index == 0 ? 'active' : ''}`"
+          :id="`_${sheet_index}`"
+          :class="`nav-link ${sheet_index == tabIndex ? 'active' : ''}`"
           :href="`#${sheet.id}`"
           data-bs-placement="top"
           data-bs-toggle="tab"
@@ -31,7 +23,7 @@
       <div
         v-for="(sheet, sheet_index) in sheets"
         :key="sheet_index"
-        :class="`tab-pane fade ${sheet_index == 0 ? 'show active' : ''}`"
+        :class="`tab-pane fade ${sheet_index == tabIndex ? 'show active' : ''}`"
         :id="sheet.id"
       >
         <table class="excel table table-sm table-responsive table-borderless">
@@ -134,6 +126,10 @@ export default {
   data() {
     return {
       title: "",
+      tabNodes: [],
+      tabIndex: 0,
+      next: undefined,
+      prev: undefined, 
       showBreadcrumbs: false
     }
   },
@@ -169,6 +165,10 @@ export default {
     this.units[this.$route.params.slug].massaged = data
   },
   computed: {
+    unitArray() {
+      // https://stackoverflow.com/a/58684114/1070215
+      return Object.entries(this.units).map(([key, val]) => ({ key, ...val }))
+    },
     slug() {
       return this.$route.params.slug
     },
@@ -176,7 +176,53 @@ export default {
       return this.units[this.$route.params.slug].massaged
     }
   },
+  created() {
+    this.$nextTick(() => {
+      this.tabIndex = this.$store.state.tab.tab2
+    })
+  },
+  beforeDestroy() {
+    for (let i = 0; i < this.tabNodes.length; i++) {
+      this.tabNodes[i].removeEventListener("shown.bs.tab", this.onTabShown)
+    }
+  },
+  mounted() {
+    this.next = this.nextUnit()
+    this.prev = this.previousUnit()
+    // https://stackoverflow.com/a/42513893/1070215
+    this.$nextTick(() => {
+      const tabsNode = document.getElementById('myTabs');
+      this.tabNodes = tabsNode.getElementsByTagName('A');
+      for (let i = 0; i < this.tabNodes.length; i++) {
+        this.tabNodes[i].addEventListener("shown.bs.tab", this.onTabShown)
+      }
+      console.log("this unit", this.thisUnitIndex(), "next unit", this.nextUnit(), "previous unit", this.previousUnit())
+    })
+  },
   methods: {
+    thisUnitIndex() {
+      let i = 0
+      for (; i < this.unitArray.length; i++) {
+        if (this.unitArray[i].id === this.$route.params.slug) {
+          break;
+        }
+      }
+      return i
+    },
+    nextUnit() {
+      let i = this.thisUnitIndex()
+      return this.unitArray[(i+1)%this.unitArray.length].id
+    },
+    previousUnit() {
+      let i = this.thisUnitIndex()
+      return this.unitArray[(i+this.unitArray.length-1)%this.unitArray.length].id
+    },
+    onTabShown(event) {
+      this.tabIndex = parseInt(event.target.id.substring(1))
+      this.$store.commit("tab/setTab2", {
+        tab2: this.tabIndex 
+      })
+    },
     massageData(json) {
       function appendStyle(elem, style) {
         elem.style = { ...elem.style, ...style }
@@ -430,11 +476,11 @@ export default {
                 appendStyle(cell, { display: "none" })
               }
               if (cell.text.match(/materiali/g)) {
-                nextCell.imageCell = createImageCell(5, 4) // insert at column 5 with rowspan 4
+                nextCell.imageCell = createImageCell(sheet.columnCount-1, 4) // insert at column 5 with rowspan 4
                 appendStyle(row, { position: "relative" })
                 if (nextCell.imageCell) {
                   nextRow.shrinkColumnCountToMakeSpaceForImage = nextCell.imageCell.rowspan - 1
-                  nextRow.ignoreTrailingColumns = 3
+                  // nextRow.ignoreTrailingColumns = 3
                 }
               }
               // when not on section row
@@ -483,10 +529,10 @@ export default {
                 appendStyle(cell, { display: "none" })
               }
               if (cell.text.match(/materiali/g)) {
-                nextCell.imageCell = createImageCell(5, 4) // insert at column 5 with rowspan 4
+                nextCell.imageCell = createImageCell(sheet.columnCount-1, 4) // insert at column 5 with rowspan 4
                 if (nextCell.imageCell) {
                   nextRow.shrinkColumnCountToMakeSpaceForImage = nextCell.imageCell.rowspan - 1
-                  nextRow.ignoreTrailingColumns = 3
+                  // nextRow.ignoreTrailingColumns = 3
                 }
               }
               // when not on section row
@@ -571,6 +617,7 @@ export default {
 
       // column count manipulation
       let columnCount = sheet.columnCount
+      /*
       const is_04_dati_costrutt_CARENZE = sheet.name === "04_dati_costrutt_CARENZE"
       const is_04_dati_costrutt_VERT_IQM = sheet.name === "04_dati_costrutt_VERT_IQM"
       if (is_04_dati_costrutt_VERT_IQM) {
@@ -579,6 +626,7 @@ export default {
       if (is_04_dati_costrutt_CARENZE) {
         columnCount = 6
       }
+      */
 
       let ret = []
       let lastCell = undefined

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-lg">
     <div class="binome card p-2">
       <div class="flex-grow-1">
         <span v-html="$t('maiellaverde_desc')" />

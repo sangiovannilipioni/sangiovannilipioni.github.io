@@ -33,7 +33,9 @@ export default {
 
   slides: "Sample Slideshow",
   schede: "Data sheet",
+  data: "Data sheet",
   piantina: "Map",
+  units: "Map",
   goToSchede: "to data sheet",
   goToPiantina: "to map",
 

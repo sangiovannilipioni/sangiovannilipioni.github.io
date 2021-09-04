@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <nav class="navbar container navbar-light navbar-expand-lg">
+    <nav class="navbar container-lg navbar-light navbar-expand-lg">
       <nuxt-link :to="localePath('/')" target="_self" class="navbar-brand">
         <LogoDiv :class="isHomePage ? 'home' : 'not-home'" />
       </nuxt-link>

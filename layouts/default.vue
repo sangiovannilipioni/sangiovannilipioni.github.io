@@ -9,7 +9,7 @@
     </main>
 
     <footer class="footer py-1" style="margin-top: auto !important" v-if="isHomePage">
-      <div class="container binome">
+      <div class="container-lg binome">
         <div class="text-muted border" style="flex: 1 0 0%">
           <div style="whitespace: nowrap">
             Associazione <b>Nessuno Escluso</b> APS<br />Largo del Popolo, 50<br />66050 San Giovanni Lipioni (CH)

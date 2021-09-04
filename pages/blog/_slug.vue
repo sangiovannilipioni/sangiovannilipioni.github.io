@@ -1,5 +1,5 @@
 <template>
-  <article class="container">
+  <article class="-lg">
     <nuxt-content :document="article" />
   </article>
 </template>

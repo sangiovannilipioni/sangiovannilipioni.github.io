@@ -1,66 +1,7 @@
 <template>
   <client-only>
-    <article class="container-fluid">
-      <div class="container d-flex" style="margin-bottom: 0.5rem" v-if="theUnit.hasData || theUnit.video">
-        <div class="flex-grow-1" style="margin: auto">
-          <nuxt-link
-            v-if="theUnit.hasData"
-            :to="localePath(`/data/${slug}`)"
-            class="btn btn-outline-secondary btn-sm"
-            target="_self"
-          >
-            {{ $t("schede") }}
-          </nuxt-link>
-          <span v-else>{{ slug }}</span>
-        </div>
-
-        <!-- Button trigger modal 
-        -->
-        <button
-          v-if="theUnit.video"
-          type="button"
-          class="btn float-end btn-outline-secondary btn-sm"
-          data-bs-toggle="modal"
-          data-bs-target="#modalvideo"
-        >
-          Video
-        </button>
-
-        <!-- Modal 
-        -->
-        <div v-if="theUnit.video" class="modal fade" id="modalvideo" ref="modalvideo" tabindex="-1">
-          <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel">{{ theUnit.title }}</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <vue-plyr
-                  id="qwe"
-                  ref="plyr"
-                  v-if="theUnit.video"
-                  :options="{
-                    mute: true,
-                    volume: 0,
-                    captions: true,
-                    autoplay: false
-                  }"
-                >
-                  <div data-plyr-provider="youtube" :data-plyr-embed-id="theUnit.video"></div>
-                </vue-plyr>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <h4 style="text-align: center">
-        {{ theUnit.title }}
-        <span class="text-muted" style="font-size: smaller">[{{ slug }}]</span>
-      </h4>
+    <article class="container-lg">
+      <UnitBanner :unit="theUnit" :units="units" to="data"/>
 
       <div class="binome reverse" v-if="theUnit">
         <div class="col" style="flex: 1">
@@ -84,15 +25,6 @@
 </template>
 
 <style lang="scss">
-#modalvideo {
-  .modal-header {
-    padding: 0.5rem !important;
-  }
-  .modal-body {
-    padding: 0 !important;
-  }
-}
-
 .handle:not(.handle-mr) {
   display: none !important;
 }
@@ -118,21 +50,6 @@ export default {
       x: 0,
       y: 0
     }
-  },
-  mounted() {
-    // https://stackoverflow.com/a/42513893/1070215
-    // https://stackoverflow.com/a/64102684/1070215
-    this.$nextTick(() => {
-      const _this = this
-      if (this.$refs.modalvideo) {
-        this.$refs.modalvideo.addEventListener("shown.bs.modal", () => {
-          _this.$refs.plyr.player.play()
-        })
-        this.$refs.modalvideo.addEventListener("hidden.bs.modal", () => {
-          _this.$refs.plyr.player.stop()
-        })
-      }
-    })
   },
   async asyncData({ app, params, error }) {
     let units

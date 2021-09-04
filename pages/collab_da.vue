@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-lg">
     <p style="font-size: larger">
       <a href="https://da.unibo.it/it" target="_blank">
         <nuxt-img

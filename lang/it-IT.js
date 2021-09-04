@@ -32,7 +32,9 @@ export default {
 
   slides: "Esempio di presentazione",
   schede: "Scheda tecnica",
+  data: "Scheda tecnica",
   piantina: "Piantina",
+  units: "Piantina",
   goToSchede: "vai alla scheda tecnica",
   goToPiantina: "vai alla piantina",
 

@@ -33,7 +33,9 @@ export default {
 
   slides: "Exemple de présentation",
   schede: "Fiche technique",
+  data: "Fiche technique",
   piantina: "Carte",
+  units: "Carte",
   goToSchede: "ouvrir la fiche technique",
   goToPiantina: "ouvrir la carte",
 

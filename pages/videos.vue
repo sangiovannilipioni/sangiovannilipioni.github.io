@@ -1,6 +1,6 @@
 <template>
   <div class="album py-5">
-    <div class="container">
+    <div class="container-lg">
       <div id="cards" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div v-for="c in cards" :key="c.key">
           <div :id="c.key + '_'" class="col">

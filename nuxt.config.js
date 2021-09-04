@@ -167,6 +167,8 @@ export default {
         'faSignOutAlt',
         'faSpinner',
         'faUser',
+        'faArrowLeft',
+        'faArrowRight',
       ],
       brands: [
         'faFacebook',

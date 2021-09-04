@@ -1,5 +1,5 @@
 <template>
-  <div id="photoGallery" class="container d-flex justify-content-center">
+  <div id="photoGallery" class="container-lg d-flex justify-content-center">
     <div id="VueMasonry" v-masonry fit-width="true">
       <div v-masonry-tile class="Item" :key="index" v-for="(item, index) in items">
         <nuxt-link v-if="item.to" :to="localePath(item.to)">

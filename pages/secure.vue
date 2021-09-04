@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-lg">
     <div role="alert" class="alert alert-warning">{{ this.$t("secureMessage") }}</div>
   </div>
 </template>

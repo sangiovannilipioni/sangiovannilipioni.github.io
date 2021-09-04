@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
+      <div class="container-lg">
         <nuxt-link :to="localePath('/')" class="navbar-brand">
           <LogoDiv :class="isHomePage ? 'home' : 'not-home'" />
         </nuxt-link>

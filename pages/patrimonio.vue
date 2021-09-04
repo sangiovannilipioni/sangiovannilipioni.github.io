@@ -1,5 +1,5 @@
 <template>
-  <div id="patrimonio" class="container">
+  <div id="patrimonio" class="container-lg">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
         <button
