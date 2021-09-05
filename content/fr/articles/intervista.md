@@ -5,7 +5,7 @@ disponible sur le site de **Maiella Verde**, [maiellaverde.it](https://maiellave
 
 ---
 
-## Régénérer San Giovanni, quels défis ? Entretien avec l'ingénieur Felice Monaco
+## "Riabitare San Giovanni", quels défis ? Entretien avec l'ingénieur Felice Monaco
 
 La communauté de projet [**Riabitare San Giovanni**](https://riabitaresangiovanni.maiellaverde.it/) a pour objectif
 d'arrêter le processus de dépeuplement du village de San Giovanni. San Giovanni Lipioni et activer toutes les actions
