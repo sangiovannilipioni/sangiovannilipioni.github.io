@@ -109,7 +109,7 @@ export default {
   },
   computed: {
     here() {
-      return this.to === "data" ? "units" : "data"
+      return this.to === "datasheets" ? "blueprints" : "datasheets"
     },
     unit() {
       return this.units[this.unit_key]

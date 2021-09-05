@@ -12,10 +12,6 @@ export default {
   signIn: "Sign In",
   signOut: "Sign Out",
 
-  map: "Map",
-  photos: "Photos",
-  list: "List",
-
   exordium: "Summary",
   dictators: "Committee Members",
   administrivia: "Constitutive Act and Statute",
@@ -31,13 +27,16 @@ export default {
     "<b>San Giovanni Lipioni</b> is a small village and comune located at the southernmost tip of province of Chieti in the Abruzzo region of Italy, on a 545-metre (1,788 ft) hill overlooking the river Trigno valley.",
   googlePopupLinkToWikipedia: "https://en.wikipedia.org/wiki/San_Giovanni_Lipioni",
 
+  helpPatrimoine: "click on a marker on the other window",
+  map: "Map",
+  photos: "Photos",
+  list: "List",
+
   slides: "Sample Slideshow",
-  schede: "Data sheet",
-  data: "Data sheet",
-  piantina: "Map",
-  units: "Map",
-  goToSchede: "to data sheet",
-  goToPiantina: "to map",
+  datasheets: "Data sheets",
+  blueprints: "Blueprints",
+  gotoDatasheets: "to data sheets",
+  gotoBlueprints: "to blueprints",
 
   loginWarning: "For the time being, only Login through Facebook is enabled.",
   loginPrompt: "Login with",

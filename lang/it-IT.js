@@ -12,10 +12,6 @@ export default {
   signIn: "Area Riservata",
   signOut: "Esci",
 
-  map: "Carta",
-  photos: "Immagini",
-  list: "Elenco",
-
   exordium: "Presentazione",
   dictators: "Consiglio Direttivo",
   administrivia: "Atto Costitutivo e Statuto",
@@ -30,13 +26,16 @@ export default {
   googlePopup: "<b>San Giovanni Lipioni</b> è un comune italiano di 152 abitanti della provincia di Chieti in Abruzzo.",
   googlePopupLinkToWikipedia: "https://it.wikipedia.org/wiki/San_Giovanni_Lipioni",
 
+  helpPatrimoine: "cliccare su un marcatore nell'altra finestra",
+  map: "Carta",
+  photos: "Fotografie",
+  list: "Elenco",
+
   slides: "Esempio di presentazione",
-  schede: "Scheda tecnica",
-  data: "Scheda tecnica",
-  piantina: "Piantina",
-  units: "Piantina",
-  goToSchede: "vai alla scheda tecnica",
-  goToPiantina: "vai alla piantina",
+  datasheets: "Scheda tecnica",
+  blueprints: "Planimetria",
+  gotoDatasheets: "vai alla scheda tecnica",
+  gotoBlueprints: "vai alla planimetria",
 
   loginWarning: "Per il momento, solo il Login con Facebook è disponibile",
   loginPrompt: "Login con",

@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <article class="container-lg">
-      <UnitBanner :unit_key="$route.params.slug" :units="units" to="data"/>
+      <UnitBanner :unit_key="$route.params.slug" :units="units" to="datasheets"/>
 
       <div class="binome reverse" v-if="theUnit">
         <div class="col" style="flex: 1">

@@ -12,6 +12,7 @@
           aria-controls="home"
           aria-selected="true"
         >
+          <font-awesome-icon class="text-muted" :icon="['fas', 'map-marker']" />
           {{ $t("map") }}
         </button>
       </li>
@@ -26,6 +27,7 @@
           aria-controls="profile"
           aria-selected="false"
         >
+          <font-awesome-icon class="text-muted" :icon="['fas', 'images']" />
           {{ $t("photos") }}
         </button>
       </li>
@@ -40,6 +42,7 @@
           aria-controls="contact"
           aria-selected="false"
         >
+          <font-awesome-icon class="text-muted" :icon="['fas', 'list']" />
           {{ $t("list") }}
         </button>
       </li>
@@ -54,6 +57,7 @@
           aria-controls="collab_da"
           aria-selected="false"
         >
+          <font-awesome-icon class="text-muted" :icon="['fas', 'info-circle']" />
           {{ $t("collab_da") }}
         </button>
       </li>
@@ -81,7 +85,7 @@
               id="pano"
               class="col border d-flex justify-content-center align-items-center"
               style="background: transparent; padding: 0 !important"
-            ></div>
+            ><span class="text-muted">{{ $t("helpPatrimoine") }}</span></div>
           </client-only>
         </div>
         <!-- TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 -->
@@ -113,11 +117,11 @@
             <div class="d-flex">
               <div class="p-2 flex-grow-1">
                 <span>{{ unit.title || key }}</span>
-                <nuxt-link v-if="unit.hasData" :to="localePath(`/data/${key}`)"> [{{ key }}] </nuxt-link>
+                <nuxt-link v-if="unit.hasData" :to="localePath(`/datasheets/${key}`)"> [{{ key }}] </nuxt-link>
                 <span v-else class="text-muted">[{{ key }}]</span>
               </div>
               <div v-if="unit.imgs && unit.imgs[0]" class="p-2" style="max-width: 30%; text-align: right">
-                <nuxt-link :to="localePath(`/units/${key}`)">
+                <nuxt-link :to="localePath(`/blueprints/${key}`)">
                   <img class="thmb" :src="`${$axios.defaults.baseURL}/unit/${key}/image/${unit.imgs[0]}`" alt="" />
                 </nuxt-link>
               </div>
@@ -260,13 +264,13 @@ export default {
                     ${unititle} [${key}]
                   </p>
                   <p>
-                    <a href="${this.localePath(`/units/${unitkey}`)}">
-                      ${this.$t("goToPiantina")}
+                    <a href="${this.localePath(`/blueprints/${unitkey}`)}">
+                      ${this.$t("gotoBlueprints")}
                     </a>
                   </p>`
                 const contentPlus = `<p>
-                    <a href="${this.localePath(`/data/${unitkey}`)}">
-                      ${this.$t("goToSchede")}
+                    <a href="${this.localePath(`/datasheets/${unitkey}`)}">
+                      ${this.$t("gotoDatasheets")}
                     </a>
                   </p>`
                 if (unit.hasData) {
@@ -297,7 +301,7 @@ export default {
                   if (document.getElementById("otherImage")) {
                     document.getElementById("otherImage").remove()
                   }
-                  const innerHTML = `<a href="${this.localePath(`/units/${unitkey}`)}" style="
+                  const innerHTML = `<a href="${this.localePath(`/blueprints/${unitkey}`)}" style="
                         width: 100%;
                         height: 100%;
                       "
@@ -382,10 +386,10 @@ export default {
               text: unititle,
               link: {
                 text: `[${unitkey}]`,
-                to: unit.hasData ? `/data/${unitkey}` : undefined
+                to: unit.hasData ? `/datasheets/${unitkey}` : undefined
               }
             },
-            to: `/units/${unitkey}`,
+            to: `/blueprints/${unitkey}`,
             title: `[${unitkey}]`,
             src: `${this.$axios.defaults.baseURL}/unit/${unitkey}/image/${unit.imgs[0]}`
           })

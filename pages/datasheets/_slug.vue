@@ -1,6 +1,6 @@
 <template>
   <div class="container-lg">
-    <UnitBanner :unit_key="$route.params.slug" :units="units" to="units" />
+    <UnitBanner :unit_key="$route.params.slug" :units="units" to="blueprints" />
 
     <div v-if="units[$route.params.slug].massaged">
       <ul id="myTabs" class="nav nav-tabs">

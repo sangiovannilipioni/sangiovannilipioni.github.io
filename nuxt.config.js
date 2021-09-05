@@ -122,13 +122,13 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    '~/plugins/global.js',
+    "~/plugins/global.js",
     "~/plugins/persistedState",
     { src: "./plugins/vue-awesome-swiper.client.js", mode: "client" },
     { src: "~/plugins/medium-zoom", mode: "client" },
     { src: "~/plugins/vue-masonry.js", mode: "client" },
     { src: "~/plugins/vue-pdf.client.js", mode: "client" },
-    { src: "~/plugins/vue-plyr.js", mode: "client" },
+    { src: "~/plugins/vue-plyr.js", mode: "client" }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -162,19 +162,20 @@ export default {
   fontawesome: {
     icons: {
       solid: [
-        'faExternalLinkAlt',
-        'faMinus',
-        'faPlus',
-        'faSignOutAlt',
-        'faSpinner',
-        'faUser',
-        'faArrowLeft',
-        'faArrowRight',
+        "faArrowLeft",
+        "faArrowRight",
+        "faExternalLinkAlt",
+        "faImages",
+        "faInfoCircle",
+        "faList",
+        "faMapMarker",
+        "faMinus",
+        "faPlus",
+        "faSignOutAlt",
+        "faSpinner",
+        "faUser"
       ],
-      brands: [
-        'faFacebook',
-        'faGithub',
-      ]
+      brands: ["faFacebook", "faGithub"]
     }
   },
 
@@ -294,7 +295,7 @@ export default {
   // https://nuxtjs.org/blog/moving-from-nuxtjs-dotenv-to-runtime-config/
   publicRuntimeConfig: {
     axios: {
-      baseURL: process.env.SGL_API_URL || 'https://api.sangiovannilipioni.net/api/v1'
+      baseURL: process.env.SGL_API_URL || "https://api.sangiovannilipioni.net/api/v1"
     }
   },
   privateRuntimeConfig: {},

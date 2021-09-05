@@ -12,10 +12,6 @@ export default {
   signIn: "Se connecter",
   signOut: "Se déconnecter",
 
-  map: "Carte",
-  photos: "Photos",
-  list: "Liste",
-
   exordium: "Prolégomènes",
   dictators: "Conseil d'administration",
   administrivia: "Acte constitutif et statuts",
@@ -31,13 +27,16 @@ export default {
     "<b>San Giovanni Lipioni</b> est une ville italienne de 152 habitants située dans la province de Chieti dans les Abruzzes.",
   googlePopupLinkToWikipedia: "https://fr.wikipedia.org/wiki/San_Giovanni_Lipioni",
 
+  helpPatrimoine: "cliquez sur un marqueur dans l'autre fenêtre",
+  map: "Carte",
+  photos: "Photos",
+  list: "Liste",
+
   slides: "Exemple de présentation",
-  schede: "Fiche technique",
-  data: "Fiche technique",
-  piantina: "Carte",
-  units: "Carte",
-  goToSchede: "ouvrir la fiche technique",
-  goToPiantina: "ouvrir la carte",
+  datasheets: "Fiche technique",
+  blueprints: "Plans",
+  gotoDatasheets: "ouvrir la fiche technique",
+  gotoBlueprints: "ouvrir les plans",
 
   loginWarning: "Pour le moment, seul le Login via Facebook est disponbile.",
   loginPrompt: "Login via",
