@@ -33,9 +33,9 @@ export default {
   list: "List",
 
   slides: "Sample Slideshow",
-  datasheets: "Data sheets",
+  datasheets: "Datasheets",
   blueprints: "Blueprints",
-  gotoDatasheets: "to data sheets",
+  gotoDatasheets: "to datasheets",
   gotoBlueprints: "to blueprints",
 
   loginWarning: "For the time being, only Login through Facebook is enabled.",
