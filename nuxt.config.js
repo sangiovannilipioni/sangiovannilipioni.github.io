@@ -294,7 +294,7 @@ export default {
   // https://nuxtjs.org/blog/moving-from-nuxtjs-dotenv-to-runtime-config/
   publicRuntimeConfig: {
     axios: {
-      baseURL: 'https://api.sangiovannilipioni.net/api/v1'
+      baseURL: process.env.SGL_API_URL || 'https://api.sangiovannilipioni.net/api/v1'
     }
   },
   privateRuntimeConfig: {},
