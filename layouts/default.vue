@@ -2,7 +2,7 @@
 <template>
   <div class="d-flex flex-column vh-100">
 
-    <TheNavBar2 />
+    <TheNavBar />
 
     <main role="main" :class="$store.$isHomePage($route.path) ? 'home' : 'not-home'">
       <Nuxt />
