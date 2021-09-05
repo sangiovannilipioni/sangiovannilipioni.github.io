@@ -18,7 +18,7 @@ tra i promotori e referente della comunità, per conoscere meglio il progetto Ri
 
 #### Conosciamo l’Ing. Felice Monaco, referente e coordinatore del progetto.
 
-<img class="float-start me-3" src="/fmonaco.jpg"></img>
+<img class="float-start me-3" src="/jpg/fmonaco.jpg"></img>
 
 Ingegnere civile, è originario di San Giovanni Lipioni dove ha vissuto fino a 14 anni. Trascorre gli anni delle
 superiori a L’Aquila e terminati gli studi si trasferisce a Bologna e si iscrive all’Università di Ingegneria. Negli

@@ -19,7 +19,7 @@ Riabitare San Giovanni.
 
 #### Rencontrons l'ingénieur Felice Monaco, contact et coordinateur du projet.
 
-<img class="float-start me-3" src="/fmonaco.jpg"></img>
+<img class="float-start me-3" src="/jpg/fmonaco.jpg"></img>
 
 Ingénieur civil, il est né à San Giovanni Lipioni, où il a vécu jusqu'à l'âge de 14 ans. Il a passé ses années de lycée
 à L'Aquila et après avoir terminé ses études, il s'est installé à Bologne et s'est inscrit à l'université d'ingénierie.
