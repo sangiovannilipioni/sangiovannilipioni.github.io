@@ -51,7 +51,7 @@
             <LocaleSwitcherNavItemDropdown />
 
             <!-- area riservata -->
-            <li v-if="!$auth.$state.loggedIn" class="nav-item dropdown">
+            <li v-if="$auth.$state.loggedIn" class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
                 href="#"
@@ -62,7 +62,7 @@
                 aria-expanded="false"
               >
                 <img
-                  v-if="$auth.user"
+                  v-if="$auth.user && $auth.user.picture && $auth.user.picture.data && $auth.user.picture.data.url"
                   :src="$auth.user.picture.data.url"
                   class="mt-1"
                   rounded="circle"
