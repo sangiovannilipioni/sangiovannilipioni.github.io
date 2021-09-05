@@ -2,10 +2,7 @@
   <div class="mx-auto container-lg">
     <!-- https://github.com/nuxt/nuxt.js/issues/6645#issuecomment-550111141 -->
     <component :is="'style'">
-      @media (min-width: 540px) { .logo svg path { stroke-width:
-      {{ strokeWidth }}; } } @media (max-width: 540px) { .logo svg path { stroke-width: {{ strokeWidth }}; } } .logo svg
-      path { filter: blur({{ blur }}px); stroke-width: {{ strokeWidth }}; } .logo svg > g { transform:
-      {{ getMatrixForRotation(310, 535) }}; }
+      {{ style }}
     </component>
     <form id="strokeWidthForm" class="form-inline">
       <div class="white-space-nowrap d-flex w-100">
@@ -77,7 +74,7 @@ import { mapGetters, mapMutations } from "vuex"
 
 export default {
   name: "Icon",
-  middleware: ["auth"],
+  // middleware: ["auth"],
   layout: "void",
   data() {
     return {
@@ -115,7 +112,7 @@ export default {
     ...mapMutations({
       setStrokeWidth: "user/setStrokeWidth",
       setAngle: "user/setAngle",
-      setBlur: "user/setBlur",
+      setBlur: "user/setBlur"
     })
   },
   computed: {
@@ -126,6 +123,15 @@ export default {
     ...mapGetters({
       user: "user/user"
     }),
+    style() {
+      return `.logo svg path { 
+        filter: blur(${this.blur}px); 
+        stroke-width: ${this.strokeWidth}; 
+      } 
+      .logo svg > g { 
+        transform: ${this.getMatrixForRotation(310, 535)};
+      }`
+    },
     strokeWidth: {
       get() {
         return this.user.strokeWidth
