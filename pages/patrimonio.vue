@@ -109,24 +109,26 @@
           v-bind:key="key"
           style="margin-bottom: 0.75rem; overflow: hidden"
         >
-          <div class="d-flex" v-if="unit.imgs[0]">
-            <div class="p-2 flex-grow-1">
-              <span>{{ unit.title }}</span>
-              <nuxt-link v-if="unit.hasData" :to="localePath(`/data/${key}`)"> [{{ key }}] </nuxt-link>
-              <span v-else class="text-muted">[{{ key }}]</span>
-            </div>
-            <div class="p-2" style="max-width: 30%; text-align: right">
-              <nuxt-link :to="localePath(`/units/${key}`)">
-                <img
-                  class="thmb"
-                  :src="`https://api.sangiovannilipioni.net/api/v1/unit/${key}/image/${unit.imgs[0]}`"
-                  alt=""
-                />
-              </nuxt-link>
+          <div v-if="unit">
+            <div class="d-flex">
+              <div class="p-2 flex-grow-1">
+                <span>{{ unit.title || key }}</span>
+                <nuxt-link v-if="unit.hasData" :to="localePath(`/data/${key}`)"> [{{ key }}] </nuxt-link>
+                <span v-else class="text-muted">[{{ key }}]</span>
+              </div>
+              <div v-if="unit.imgs && unit.imgs[0]" class="p-2" style="max-width: 30%; text-align: right">
+                <nuxt-link :to="localePath(`/units/${key}`)">
+                  <img
+                    class="thmb"
+                    :src="`https://api.sangiovannilipioni.net/api/v1/unit/${key}/image/${unit.imgs[0]}`"
+                    alt=""
+                  />
+                </nuxt-link>
+              </div>
             </div>
           </div>
-          <div class="p-2 flex-grow-1" style="text-align: center" v-if="!unit.imgs[0]">
-            {{ unit.title }}
+          <div v-else class="p-2 flex-grow-1" style="text-align: center" >
+            {{ key }}
           </div>
         </div>
         <!-- TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 -->
@@ -178,6 +180,7 @@ export default {
             if (typeof this.$redrawVueMasonry === "function") {
               const redrawVueMasonry = this.$redrawVueMasonry
               this.$nextTick(() => {
+                console.log("redrawVueMasonry")
                 redrawVueMasonry()
               })
             }
@@ -191,126 +194,137 @@ export default {
       // YOU HAVE ACCESS TO "new google" now, ADD YOUR GOOGLE MAPS FUNCTIONS HERE.
       if (event) {
         // google was added
+        // console.log("google was added")
       } else {
         // google already existed
+        // console.log("google already existed")
       }
       if (process.client) {
+        // console.log("about to initialize!")
         this.initialize()
       }
     },
     async initialize() {
-      const mapElement = this.mapElement || document.getElementById("map")
-      const map = await new google.maps.Map(mapElement, {
-        center: { lat: 41.8442301, lng: 14.5618596 },
-        zoom: this.zoom,
-        /* disableDefaultUI: true, */
-        mapTypeControl: false,
-        streetViewControl: false,
-        styles: [
-          {
-            featureType: "administrative",
-            elementType: "geometry",
-            stylers: [
+      if (typeof google !== "undefined") {
+        // console.log("google in initialize()", typeof google)
+        const mapElement = this.mapElement || document.getElementById("map")
+        if (mapElement) {
+          // console.log("mapElement", typeof mapElement)
+          const map = await new google.maps.Map(mapElement, {
+            center: { lat: 41.8442301, lng: 14.5618596 },
+            zoom: this.zoom,
+            /* disableDefaultUI: true, */
+            mapTypeControl: false,
+            streetViewControl: false,
+            styles: [
               {
-                visibility: "on"
+                featureType: "administrative",
+                elementType: "geometry",
+                stylers: [
+                  {
+                    visibility: "on"
+                  }
+                ]
+              },
+              {
+                featureType: "poi",
+                stylers: [
+                  {
+                    visibility: "off"
+                  }
+                ]
+              },
+              {
+                featureType: "road",
+                elementType: "labels.icon",
+                stylers: [
+                  {
+                    visibility: "on"
+                  }
+                ]
+              },
+              {
+                featureType: "transit",
+                stylers: [
+                  {
+                    visibility: "on"
+                  }
+                ]
               }
             ]
-          },
-          {
-            featureType: "poi",
-            stylers: [
-              {
-                visibility: "off"
-              }
-            ]
-          },
-          {
-            featureType: "road",
-            elementType: "labels.icon",
-            stylers: [
-              {
-                visibility: "on"
-              }
-            ]
-          },
-          {
-            featureType: "transit",
-            stylers: [
-              {
-                visibility: "on"
-              }
-            ]
-          }
-        ]
-      })
+          })
 
-      for (const key in this.units) {
-        if (this.units.hasOwnProperty(key)) {
-          const unit = this.units[key]
-          const unitkey = key
-          if (unit.imgs[0]) {
-            let content = `<p>
-                ${unit.title} [${key}]
-              </p>
-              <p>
-                <a href="${this.localePath(`/units/${unitkey}`)}">
-                  ${this.$t("goToPiantina")}
-                </a>
-              </p>`
-            const contentPlus = `<p>
-                <a href="${this.localePath(`/data/${unitkey}`)}">
-                  ${this.$t("goToSchede")}
-                </a>
-              </p>`
-            if (unit.hasData) {
-              content = content + contentPlus
+          for (const key in this.units) {
+            if (this.units.hasOwnProperty(key)) {
+              const unit = this.units[key]
+              const unitkey = key
+              const unititle = unit.title || key
+              if (unit && unitkey && unititle) {
+                // console.log(key, unit, unititle, unit.imgs)
+                let content = `<p>
+                    ${unititle} [${key}]
+                  </p>
+                  <p>
+                    <a href="${this.localePath(`/units/${unitkey}`)}">
+                      ${this.$t("goToPiantina")}
+                    </a>
+                  </p>`
+                const contentPlus = `<p>
+                    <a href="${this.localePath(`/data/${unitkey}`)}">
+                      ${this.$t("goToSchede")}
+                    </a>
+                  </p>`
+                if (unit.hasData) {
+                  content = content + contentPlus
+                }
+
+                const infowindow = new google.maps.InfoWindow({
+                  content: content,
+                  maxWidth: 400
+                })
+
+                const marker = new google.maps.Marker({
+                  position: unit.position,
+                  map,
+                  label: {
+                    text: unititle,
+                    fontSize: "16px",
+                    fontFamily: '"Poppins", sans-serif'
+                  }
+                })
+
+                marker.addListener("click", (e) => {
+                  infowindow.open({
+                    anchor: marker,
+                    map,
+                    shouldFocus: false
+                  })
+                  if (document.getElementById("otherImage")) {
+                    document.getElementById("otherImage").remove()
+                  }
+                  const innerHTML = `<a href="${this.localePath(`/units/${unitkey}`)}" style="
+                        width: 100%;
+                        height: 100%;
+                      "
+                    >
+                    <div 
+                      id="otherImage" 
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        background-size: cover;
+                        background: no-repeat center center url(https://api.sangiovannilipioni.net/api/v1/unit/${unitkey}/image/${
+                    unit.imgs[0]
+                  });
+                      "
+                    >
+                    </div>
+                  </a>
+                  `
+                  document.getElementById("pano").innerHTML = innerHTML
+                })
+              }
             }
-
-            const infowindow = new google.maps.InfoWindow({
-              content: content,
-              maxWidth: 400
-            })
-
-            const marker = new google.maps.Marker({
-              position: unit.position,
-              map,
-              label: {
-                text: unit.title,
-                fontSize: "16px",
-                fontFamily: '"Poppins", sans-serif'
-              }
-            })
-
-            marker.addListener("click", (e) => {
-              infowindow.open({
-                anchor: marker,
-                map,
-                shouldFocus: false
-              })
-              if (document.getElementById("otherImage")) {
-                document.getElementById("otherImage").remove()
-              }
-              const innerHTML = `<a href="${this.localePath(`/units/${unitkey}`)}" style="
-                    width: 100%;
-                    height: 100%;
-                  "
-                >
-                <div 
-                  id="otherImage" 
-                  style="
-                    width: 100%;
-                    height: 100%;
-                    background-size: cover;
-                    background: no-repeat center center url(https://api.sangiovannilipioni.net/api/v1/unit/${unitkey}/image/${
-                unit.imgs[0]
-              });
-                  "
-                >
-                </div>
-              </a>
-              `
-              document.getElementById("pano").innerHTML = innerHTML
-            })
           }
         }
       }
@@ -341,6 +355,7 @@ export default {
     })
 
     if (typeof google === "undefined") {
+      // console.log("map", document.getElementById("map"), "pano", document.getElementById("pano"))
       __nuxt
       const script0 = document.createElement("script")
       script0.appendChild(
@@ -364,18 +379,21 @@ export default {
     for (var key in this.units) {
       if (this.units.hasOwnProperty(key)) {
         const unit = this.units[key]
-        if (unit.imgs[0]) {
+        const unitkey = key
+        const unititle = unit.title || key
+        if (unit && unitkey && unititle && unit.imgs && unit.imgs[0]) {
+          console.log(" image found!")
           this.masonryItems.push({
             didascalia: {
-              text: unit.title,
+              text: unititle,
               link: {
-                text: `[${key}]`,
-                to: unit.hasData ? `/data/${key}` : undefined
+                text: `[${unitkey}]`,
+                to: unit.hasData ? `/data/${unitkey}` : undefined
               }
             },
-            to: `/units/${key}`,
-            title: `[${key}]`,
-            src: `https://api.sangiovannilipioni.net/api/v1/unit/${key}/image/${unit.imgs[0]}`
+            to: `/units/${unitkey}`,
+            title: `[${unitkey}]`,
+            src: `https://api.sangiovannilipioni.net/api/v1/unit/${unitkey}/image/${unit.imgs[0]}`
           })
         }
       }
@@ -386,6 +404,7 @@ export default {
         src: `/masonry/${key}`
       })
     })
+    console.log(this.masonryItems)
   },
   async asyncData({ app, params, error }) {
     let units
