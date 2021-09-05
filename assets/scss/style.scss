@@ -26,6 +26,10 @@ body {
     background-image: url("/svg/mail_icon.svg");
     vertical-align: middle;
   }
+  a.info:before {
+    background-image: url("/svg/OOjs_UI_icon_info.svg");
+    vertical-align: text-top;
+  }
 }
 
 /* navbar */

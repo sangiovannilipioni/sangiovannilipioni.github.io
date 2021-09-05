@@ -29,10 +29,9 @@
             /></a>
           </div>
           <div class="d-block d-xl-none">
-            <a href="https://riabitaresangiovanni.maiellaverde.it/" target="_blank">
+            <nuxt-link class="info" :to="localePath('/blog/intervista')">
               {{ $t("maiellaverde") }}
-              <font-awesome-icon :icon="['fas', 'external-link-alt']" />
-            </a>
+            </nuxt-link>
           </div>
         </div>
       </div>

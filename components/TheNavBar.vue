@@ -33,7 +33,7 @@
             <li class="nav-item d-none d-xl-block">
               <!-- hide on screens smaller than lg https://getbootstrap.com/docs/4.6/utilities/display/ -->
               <nuxt-link
-                :to="localePath('/maiellaverde')"
+                :to="localePath('/blog/intervista')"
                 target="_self"
                 class="nav-link"
                 style="white-space: nowrap"
