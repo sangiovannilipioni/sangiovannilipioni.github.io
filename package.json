@@ -31,7 +31,7 @@
     "sass": "^1.39.0",
     "sass-loader": "10.1.1",
     "svg-country-flags": "^1.2.10",
-    "swiper": "^6.8.3",
+    "swiper": "^6.8.4",
     "vue-awesome-swiper": "^4.1.1",
     "vue-masonry": "^0.13.0",
     "vue-pdf": "^4.2.0",
