@@ -8,7 +8,7 @@
           <img
             v-for="img in theUnit.imgs"
             v-bind:key="img"
-            :src="`https://api.sangiovannilipioni.net/api/v1/unit/${slug}/image/${img}`"
+            :src="`${$axios.defaults.baseURL}/unit/${slug}/image/${img}`"
             class="img-fluid"
           />
         </div>
@@ -16,7 +16,7 @@
           <SlidesImages
             v-if="theUnit && theUnit.slides && theUnit.slides.length"
             :slides="theUnit.slides"
-            :imgURL="`https://api.sangiovannilipioni.net/api/v1/unit/${slug}/blueprint`"
+            :imgURL="`${$axios.defaults.baseURL}/unit/${slug}/blueprint`"
           />
         </div>
       </div>

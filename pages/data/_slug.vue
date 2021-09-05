@@ -385,13 +385,11 @@ export default {
             // function to instantiate background image cell
             const createImageCell = (column, rowspan) => {
               if (this.units[this.$route.params.slug].inserts[breadcrumb.id]) {
+                const html = `<img style='width:120px;' src='${this.$axios.defaults.baseURL}/image/${this.units[this.$route.params.slug].inserts[breadcrumb.id]}' />`
                 return {
                   col: column,
                   rowspan: rowspan,
-                  html:
-                    "<img style='width:120px;' src='https://api.sangiovannilipioni.net/api/v1/image/" +
-                    this.units[this.$route.params.slug].inserts[breadcrumb.id] +
-                    "' />",
+                  html: html,
                   style: {
                     padding: "1rem 0 1rem 1rem",
                     verticalAlign: "middle"

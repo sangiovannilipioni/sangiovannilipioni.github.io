@@ -1,5 +1,6 @@
 <template>
   <div id="patrimonio" class="container-lg">
+    <h1 v-html="$axios.defaults.baseURL"></h1>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
         <button
@@ -120,7 +121,7 @@
                 <nuxt-link :to="localePath(`/units/${key}`)">
                   <img
                     class="thmb"
-                    :src="`https://api.sangiovannilipioni.net/api/v1/unit/${key}/image/${unit.imgs[0]}`"
+                    :src="`${$axios.defaults.baseURL}/unit/${key}/image/${unit.imgs[0]}`"
                     alt=""
                   />
                 </nuxt-link>
@@ -312,7 +313,7 @@ export default {
                         width: 100%;
                         height: 100%;
                         background-size: cover;
-                        background: no-repeat center center url(https://api.sangiovannilipioni.net/api/v1/unit/${unitkey}/image/${
+                        background: no-repeat center center url(${$axios.defaults.baseURL}/unit/${unitkey}/image/${
                     unit.imgs[0]
                   });
                       "
@@ -391,7 +392,7 @@ export default {
             },
             to: `/units/${unitkey}`,
             title: `[${unitkey}]`,
-            src: `https://api.sangiovannilipioni.net/api/v1/unit/${unitkey}/image/${unit.imgs[0]}`
+            src: `${this.$axios.defaults.baseURL}/unit/${unitkey}/image/${unit.imgs[0]}`
           })
         }
       }
