@@ -4,7 +4,8 @@
     <component :is="'style'">
       @media (min-width: 540px) { .logo svg path { stroke-width:
       {{ strokeWidth }}; } } @media (max-width: 540px) { .logo svg path { stroke-width: {{ strokeWidth }}; } } .logo svg
-      path { stroke-width: {{ strokeWidth }}; } .logo svg > g { transform: {{ getMatrixForRotation(310, 535) }}; }
+      path { filter: blur({{ blur }}px); stroke-width: {{ strokeWidth }}; } .logo svg > g { transform:
+      {{ getMatrixForRotation(310, 535) }}; }
     </component>
     <form id="strokeWidthForm" class="form-inline">
       <div class="white-space-nowrap d-flex w-100">
@@ -31,6 +32,19 @@
           style="padding: 7px 12px"
         />
         <div class="feedback ml-3">{{ angle }}°</div>
+      </div>
+      <div class="d-flex w-100">
+        <label class="mr-3" for="blur">Blur</label>
+        <vue-slider
+          id="blur"
+          v-model="blur"
+          :min="0"
+          :max="128"
+          :interval="1"
+          class="d-inline-flex flex-grow-1"
+          style="padding: 7px 12px"
+        />
+        <div class="feedback ml-3">{{ blur }}px</div>
       </div>
     </form>
     <div v-html="src" class="logo blurp2 d-flex justify-content-center align-items-center"></div>
@@ -67,8 +81,6 @@ export default {
   layout: "void",
   data() {
     return {
-      // angle: 0,
-      // strokeWidth: Math.pow(2, 4),
       scale: 4,
       angleFormatter: "{value}°",
       options: {
@@ -102,7 +114,8 @@ export default {
     },
     ...mapMutations({
       setStrokeWidth: "user/setStrokeWidth",
-      setAngle: "user/setAngle"
+      setAngle: "user/setAngle",
+      setBlur: "user/setBlur",
     })
   },
   computed: {
@@ -127,6 +140,14 @@ export default {
       },
       set(angle) {
         this.setAngle(angle)
+      }
+    },
+    blur: {
+      get() {
+        return this.user.blur
+      },
+      set(blur) {
+        this.setBlur(blur)
       }
     }
   }

@@ -74,6 +74,7 @@ main[role="main"] {
   }
   .navbar .logo svg path {
     stroke-width: $logoStrokeWidth;
+    filter: blur($logoBlur+"px");
   }
 }
 @media (max-width: 992px) {
@@ -96,6 +97,7 @@ main[role="main"] {
   }
   .navbar .logo svg path {
     stroke-width: $logoStrokeWidth;
+    filter: blur($logoBlur+"px");
   }
 }
 

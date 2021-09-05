@@ -5,3 +5,7 @@ export const setStrokeWidth = (state, strokeWidth) => {
 export const setAngle = (state, angle) => {
   state.angle = angle
 }
+
+export const setBlur = (state, blur) => {
+  state.blur = blur
+}
