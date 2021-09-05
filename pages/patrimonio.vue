@@ -1,6 +1,5 @@
 <template>
   <div id="patrimonio" class="container-lg">
-    <h1 v-html="$axios.defaults.baseURL"></h1>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
         <button
@@ -119,16 +118,12 @@
               </div>
               <div v-if="unit.imgs && unit.imgs[0]" class="p-2" style="max-width: 30%; text-align: right">
                 <nuxt-link :to="localePath(`/units/${key}`)">
-                  <img
-                    class="thmb"
-                    :src="`${$axios.defaults.baseURL}/unit/${key}/image/${unit.imgs[0]}`"
-                    alt=""
-                  />
+                  <img class="thmb" :src="`${$axios.defaults.baseURL}/unit/${key}/image/${unit.imgs[0]}`" alt="" />
                 </nuxt-link>
               </div>
             </div>
           </div>
-          <div v-else class="p-2 flex-grow-1" style="text-align: center" >
+          <div v-else class="p-2 flex-grow-1" style="text-align: center">
             {{ key }}
           </div>
         </div>
@@ -141,7 +136,7 @@
         aria-labelledby="li_collab_da"
       >
         <!-- TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 -->
-        <CollabDA/>
+        <CollabDA />
         <!-- TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 TAB 4 -->
       </div>
     </div>
@@ -313,7 +308,7 @@ export default {
                         width: 100%;
                         height: 100%;
                         background-size: cover;
-                        background: no-repeat center center url(${$axios.defaults.baseURL}/unit/${unitkey}/image/${
+                        background: no-repeat center center url(${this.$axios.defaults.baseURL}/unit/${unitkey}/image/${
                     unit.imgs[0]
                   });
                       "
