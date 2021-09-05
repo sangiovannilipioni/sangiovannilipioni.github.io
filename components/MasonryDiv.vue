@@ -8,27 +8,19 @@
         <img v-else class="Img Content zoom masonryImage" :src="item.src" :title="item.title" data-color="gray" />
         <div v-if="item.didascalia" class="Didascalie">
           {{ item.didascalia.text }}
-          <nuxt-link v-if="item.didascalia.link.to" :to="localePath(item.didascalia.link.to)">
-            {{ item.didascalia.link.text }}
-          </nuxt-link>
-          <span v-else class="text-muted">
-            {{ item.didascalia.link.text }}
+          <span v-if="item.didascalia.link">
+            <nuxt-link v-if="item.didascalia.link.to" :to="localePath(item.didascalia.link.to)">
+              {{ item.didascalia.link.text }}
+            </nuxt-link>
+            <span v-else class="text-muted">
+              {{ item.didascalia.link.text }}
+            </span>
           </span>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
-
-<script>
-import MasonryDiv from "./MasonryDiv.vue"
-export default {
-  components: { MasonryDiv }
-}
-</script>
-
-<style></style>
 
 <style lang="scss" scoped>
 #photoGallery {
