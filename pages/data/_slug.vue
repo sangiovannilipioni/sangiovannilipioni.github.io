@@ -199,7 +199,7 @@ export default {
       const tabsNode = document.getElementById("myTabs")
       if (tabsNode) {
         this.tabNodes = tabsNode.getElementsByTagName("A")
-        if (this.tabNodes && Array.isArray(this.tabNodes)) {
+        if (this.tabNodes && this.tabNodes.length) {
           for (let i = 0; i < this.tabNodes.length; i++) {
             this.tabNodes[i].addEventListener("shown.bs.tab", this.onTabShown)
           }
