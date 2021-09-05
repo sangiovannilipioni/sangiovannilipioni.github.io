@@ -1,76 +1,79 @@
 <template>
   <div class="container-lg">
-    <UnitBanner :unit="units[$route.params.slug]" :units="units" to="units" />
+    <UnitBanner :unit_key="$route.params.slug" :units="units" to="units" />
 
-    <ul id="myTabs" class="nav nav-tabs">
-      <li type="button" class="discreet btn btn-outline-secondary" @click="toggleBreadcrumbs()">
-        <font-awesome-icon v-if="showBreadcrumbs" :icon="['fas', 'minus']" />
-        <font-awesome-icon v-else :icon="['fas', 'plus']" />
-      </li>
-      <li class="nav-item" v-for="(sheet, sheet_index) in sheets" :key="sheet_index">
-        <a
-          :id="`_${sheet_index}`"
-          :class="`nav-link ${sheet_index == tabIndex ? 'active' : ''}`"
-          :href="`#${sheet.id}`"
-          data-bs-placement="top"
-          data-bs-toggle="tab"
-        >
-          {{ sheet.title }}
-        </a>
-      </li>
-    </ul>
-    <div class="tab-content mt-2">
-      <div
-        v-for="(sheet, sheet_index) in sheets"
-        :key="sheet_index"
-        :class="`tab-pane fade ${sheet_index == tabIndex ? 'show active' : ''}`"
-        :id="sheet.id"
-      >
-        <table class="excel table table-sm table-responsive table-borderless">
-          <thead />
-          <tbody :class="showBreadcrumbs ? 'breadcrumbs' : ''">
-            <tr v-for="(row, row_index) in sheet.rows" :key="row_index" :style="row.style">
-              <td
-                v-for="(cell, col_index) in row.cells"
-                :key="col_index"
-                :colspan="cell.colspan"
-                :rowspan="cell.rowspan"
-                :style="cell.style"
-                :title="cell.title"
-                :class="cell.class"
-              >
-                <span v-if="cell.html" v-html="cell.html"></span>
-                <span v-else>{{ cell.text }}</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+    <div v-if="units[$route.params.slug].massaged">
+      <ul id="myTabs" class="nav nav-tabs">
+        <li type="button" class="discreet btn btn-outline-secondary" @click="toggleBreadcrumbs()">
+          <font-awesome-icon v-if="showBreadcrumbs" :icon="['fas', 'minus']" />
+          <font-awesome-icon v-else :icon="['fas', 'plus']" />
+        </li>
+        <li class="nav-item" v-for="(sheet, sheet_index) in sheets" :key="sheet_index">
+          <a
+            :id="`_${sheet_index}`"
+            :class="`nav-link ${sheet_index == tabIndex ? 'active' : ''}`"
+            :href="`#${sheet.id}`"
+            data-bs-placement="top"
+            data-bs-toggle="tab"
+          >
+            {{ sheet.title }}
+          </a>
+        </li>
+      </ul>
+
+      <div class="tab-content mt-2">
         <div
-          class="card float-end d-inline didascalia text-muted"
-          v-if="sheet.name === '04_dati_costrutt_VERT_IQM' || sheet.name === '04_dati_costrutt_CARENZE'"
+          v-for="(sheet, sheet_index) in sheets"
+          :key="sheet_index"
+          :class="`tab-pane fade ${sheet_index == tabIndex ? 'show active' : ''}`"
+          :id="sheet.id"
         >
-          <div v-if="sheet.name === '04_dati_costrutt_VERT_IQM'">
-            <div>comportamento strutturale</div>
-            <div>
-              <span class="badge rounded-pill bg-success">A</span>
-              <span class="text-success">buono</span>
-              <span class="badge rounded-pill bg-warning">B</span>
-              <span class="text-warning">medio</span>
-              <span class="badge rounded-pill bg-danger">C</span>
-              <span class="text-danger">scarso</span>
+          <table class="excel table table-sm table-responsive table-borderless">
+            <thead />
+            <tbody :class="showBreadcrumbs ? 'breadcrumbs' : ''">
+              <tr v-for="(row, row_index) in sheet.rows" :key="row_index" :style="row.style">
+                <td
+                  v-for="(cell, col_index) in row.cells"
+                  :key="col_index"
+                  :colspan="cell.colspan"
+                  :rowspan="cell.rowspan"
+                  :style="cell.style"
+                  :title="cell.title"
+                  :class="cell.class"
+                >
+                  <span v-if="cell.html" v-html="cell.html"></span>
+                  <span v-else>{{ cell.text }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div
+            class="card float-end d-inline didascalia text-muted"
+            v-if="sheet.name === '04_dati_costrutt_VERT_IQM' || sheet.name === '04_dati_costrutt_CARENZE'"
+          >
+            <div v-if="sheet.name === '04_dati_costrutt_VERT_IQM'">
+              <div>comportamento strutturale</div>
+              <div>
+                <span class="badge rounded-pill bg-success">A</span>
+                <span class="text-success">buono</span>
+                <span class="badge rounded-pill bg-warning">B</span>
+                <span class="text-warning">medio</span>
+                <span class="badge rounded-pill bg-danger">C</span>
+                <span class="text-danger">scarso</span>
+              </div>
             </div>
-          </div>
-          <div>
-            <div>stato di conservazione</div>
             <div>
-              <span class="badge rounded-pill bg-success">1</span>
-              <span class="text-success">buono</span>
-              <span class="badge rounded-pill bg-warning">2</span>
-              <span class="text-warning">medio</span>
-              <span class="badge rounded-pill bg-danger">3</span>
-              <span class="text-danger">scarso</span>
-              <span class="badge rounded-pill bg-info">-</span>
-              <span class="">n/a</span>
+              <div>stato di conservazione</div>
+              <div>
+                <span class="badge rounded-pill bg-success">1</span>
+                <span class="text-success">buono</span>
+                <span class="badge rounded-pill bg-warning">2</span>
+                <span class="text-warning">medio</span>
+                <span class="badge rounded-pill bg-danger">3</span>
+                <span class="text-danger">scarso</span>
+                <span class="badge rounded-pill bg-info">-</span>
+                <span class="">n/a</span>
+              </div>
             </div>
           </div>
         </div>
@@ -134,8 +137,6 @@ export default {
       title: "",
       tabNodes: [],
       tabIndex: 0,
-      next: undefined,
-      prev: undefined,
       showBreadcrumbs: false
     }
   },
@@ -160,7 +161,8 @@ export default {
           units[params.slug].rawData = response.data
         },
         (err) => {
-          return error({ statusCode: 404 })
+          units[params.slug].rawData = undefined
+          // return error({ statusCode: 404 })
         }
       )
       .catch((err) => err)
@@ -171,10 +173,6 @@ export default {
     this.units[this.$route.params.slug].massaged = data
   },
   computed: {
-    unitArray() {
-      // https://stackoverflow.com/a/58684114/1070215
-      return Object.entries(this.units).map(([key, val]) => ({ key, ...val }))
-    },
     slug() {
       return this.$route.params.slug
     },
@@ -189,41 +187,27 @@ export default {
     })
   },
   beforeDestroy() {
-    for (let i = 0; i < this.tabNodes.length; i++) {
-      this.tabNodes[i].removeEventListener("shown.bs.tab", this.onTabShown)
+    if (this.tabNodes && Array.isArray(this.tabNodes)) {
+      for (let i = 0; i < this.tabNodes.length; i++) {
+        this.tabNodes[i].removeEventListener("shown.bs.tab", this.onTabShown)
+      }
     }
   },
   mounted() {
-    this.next = this.nextUnit()
-    this.prev = this.previousUnit()
     // https://stackoverflow.com/a/42513893/1070215
     this.$nextTick(() => {
       const tabsNode = document.getElementById("myTabs")
-      this.tabNodes = tabsNode.getElementsByTagName("A")
-      for (let i = 0; i < this.tabNodes.length; i++) {
-        this.tabNodes[i].addEventListener("shown.bs.tab", this.onTabShown)
+      if (tabsNode) {
+        this.tabNodes = tabsNode.getElementsByTagName("A")
+        if (this.tabNodes && Array.isArray(this.tabNodes)) {
+          for (let i = 0; i < this.tabNodes.length; i++) {
+            this.tabNodes[i].addEventListener("shown.bs.tab", this.onTabShown)
+          }
+        }
       }
-      // console.log("this unit", this.thisUnitIndex(), "next unit", this.nextUnit(), "previous unit", this.previousUnit())
     })
   },
   methods: {
-    thisUnitIndex() {
-      let i = 0
-      for (; i < this.unitArray.length; i++) {
-        if (this.unitArray[i].id === this.$route.params.slug) {
-          break
-        }
-      }
-      return i
-    },
-    nextUnit() {
-      let i = this.thisUnitIndex()
-      return this.unitArray[(i + 1) % this.unitArray.length].id
-    },
-    previousUnit() {
-      let i = this.thisUnitIndex()
-      return this.unitArray[(i + this.unitArray.length - 1) % this.unitArray.length].id
-    },
     toggleBreadcrumbs() {
       this.showBreadcrumbs = !this.showBreadcrumbs
       this.$store.commit("tab/setBreadcrumbs", {
@@ -237,6 +221,9 @@ export default {
       })
     },
     massageData(json) {
+      if (!json) {
+        return json
+      }
       function appendStyle(elem, style) {
         elem.style = { ...elem.style, ...style }
       }
@@ -622,7 +609,6 @@ export default {
             nextCell.imageCell = undefined
           }
         }) // rows
-
       }) // sheets
 
       // to true table

@@ -180,7 +180,6 @@ export default {
             if (typeof this.$redrawVueMasonry === "function") {
               const redrawVueMasonry = this.$redrawVueMasonry
               this.$nextTick(() => {
-                console.log("redrawVueMasonry")
                 redrawVueMasonry()
               })
             }
@@ -382,7 +381,6 @@ export default {
         const unitkey = key
         const unititle = unit.title || key
         if (unit && unitkey && unititle && unit.imgs && unit.imgs[0]) {
-          console.log(" image found!")
           this.masonryItems.push({
             didascalia: {
               text: unititle,
@@ -404,7 +402,6 @@ export default {
         src: `/masonry/${key}`
       })
     })
-    console.log(this.masonryItems)
   },
   async asyncData({ app, params, error }) {
     let units

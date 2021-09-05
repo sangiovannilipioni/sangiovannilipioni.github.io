@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <article class="container-lg">
-      <UnitBanner :unit="theUnit" :units="units" to="data"/>
+      <UnitBanner :unit_key="$route.params.slug" :units="units" to="data"/>
 
       <div class="binome reverse" v-if="theUnit">
         <div class="col" style="flex: 1">
@@ -14,7 +14,7 @@
         </div>
         <div class="col" style="flex: 2">
           <SlidesImages
-            v-if="theUnit.slides.length"
+            v-if="theUnit && theUnit.slides && theUnit.slides.length"
             :slides="theUnit.slides"
             :imgURL="`https://api.sangiovannilipioni.net/api/v1/unit/${slug}/blueprint`"
           />

@@ -2,11 +2,11 @@
   <div>
     <div class="d-flex" style="margin-bottom: 0.5rem">
       <div class="flex-grow-1" style="margin: auto">
-        <nuxt-link :to="localePath(`/${to}/${unit.id}`)" class="btn btn-outline-secondary btn-sm" target="_self">
+        <nuxt-link v-if="to && unit_key" :to="localePath(`/${to}/${unit_key}`)" class="btn btn-outline-secondary btn-sm" target="_self">
           {{ $t(to) }}
         </nuxt-link>
       </div>
-      <div v-if="unit.video">
+      <div v-if="unit && unit.video">
         <button
           type="button"
           class="btn float-end btn-outline-secondary btn-sm"
@@ -20,7 +20,7 @@
     
     <div class="d-flex justify-content-center" style="margin-bottom: 0.5rem">
       <nuxt-link
-        v-if="prev"
+        v-if="here && prev"
         :to="localePath(`/${here}/${prev}`)"
         class="btn btn-outline-secondary btn-sm"
         target="_self"
@@ -29,17 +29,17 @@
           >[{{ prev }}]</span
         >
       </nuxt-link>
-      <button v-else  class="btn btn-outline-secondary btn-sm" disabled>
+      <button v-else class="btn btn-outline-secondary btn-sm" disabled>
         <font-awesome-icon :icon="['fas', 'arrow-left']" />
       </button>
 
       <div id="title" class="mx-4">
-        <b style="font-size: larger">{{ unit.title }}</b>
-        <span class="text-muted" style="font-size: smaller">[{{ unit.id }}]</span>
+        <b v-if="unit && unit.title" style="font-size: larger">{{ unit.title }}</b>
+        <span v-if="unit_key" class="text-muted" style="font-size: smaller">[{{ unit_key }}]</span>
       </div>
 
       <nuxt-link
-        v-if="next"
+        v-if="here && next"
         :to="localePath(`/${here}/${next}`)"
         class="btn btn-outline-secondary btn-sm"
         target="_self"
@@ -53,11 +53,11 @@
       </button>
     </div>
 
-    <div class="modal fade" id="modalvideo" ref="modalvideo" tabindex="-1">
+    <div v-if="unit && unit.video" class="modal fade" id="modalvideo" ref="modalvideo" tabindex="-1">
       <div class="modal-dialog modal-xl">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="modalLabel">{{ unit.title }}</h5>
+            <h5 v-if="unit && unit.title" class="modal-title" id="modalLabel">{{ unit.title }}</h5>
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -110,13 +110,16 @@ export default {
   computed: {
     here() {
       return this.to === "data" ? "units" : "data"
+    },
+    unit() {
+      return this.units[this.unit_key]
     }
   },
   methods: {
     thisUnitIndex() {
       let i = 0
       for (; i < this.unitArray.length; i++) {
-        if (this.unitArray[i].id === this.$route.params.slug) {
+        if (this.unitArray[i].key === this.$route.params.slug) {
           break
         }
       }
@@ -125,14 +128,14 @@ export default {
     nextUnit() {
       let i = this.unitIndex
       if (i + 1 < this.unitArray.length) {
-        return this.unitArray[(i + 1) % this.unitArray.length].id
+        return this.unitArray[(i + 1) % this.unitArray.length].key
       }
       return undefined
     },
     previousUnit() {
       let i = this.unitIndex
       if (0 < i) {
-        return this.unitArray[(i + this.unitArray.length - 1) % this.unitArray.length].id
+        return this.unitArray[(i + this.unitArray.length - 1) % this.unitArray.length].key
       }
       return undefined
     }
@@ -141,11 +144,11 @@ export default {
     to: {
       default: undefined,
       type: String,
-      required: true
+      required: false
     },
-    unit: {
+    unit_key: {
       default: undefined,
-      type: Object,
+      type: String,
       required: true
     },
     units: {
