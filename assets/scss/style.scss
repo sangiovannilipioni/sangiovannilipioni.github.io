@@ -74,7 +74,6 @@ main[role="main"] {
   }
   .navbar .logo svg path {
     stroke-width: $logoStrokeWidth;
-    filter: blur($logoBlur+"px");
   }
 }
 @media (max-width: 992px) {
@@ -97,7 +96,6 @@ main[role="main"] {
   }
   .navbar .logo svg path {
     stroke-width: $logoStrokeWidth;
-    filter: blur($logoBlur+"px");
   }
 }
 
@@ -146,10 +144,7 @@ main[role="main"] {
   }
   .binome.reverse > div:first-child {
     margin-top: 0.5rem;
-  } /* 
-  .binome.reverse > div:last-child {
-    margin-bottom: .5rem;
-  } */
+  }
 }
 
 .mySlides {

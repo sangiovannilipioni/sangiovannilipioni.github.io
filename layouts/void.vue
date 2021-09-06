@@ -1,3 +1,5 @@
 <template>
-  <div class="p-2"><Nuxt /></div>
+  <div>
+    <Nuxt />
+  </div>
 </template>

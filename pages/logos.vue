@@ -1,64 +1,92 @@
 <template>
-  <div class="mx-auto container-lg">
-    <!-- https://github.com/nuxt/nuxt.js/issues/6645#issuecomment-550111141 -->
-    <component :is="'style'">
-      {{ style }}
-    </component>
-    <form id="strokeWidthForm" class="form-inline">
-      <div class="white-space-nowrap d-flex w-100">
-        <label class="mr-3" for="strokeWidth">Stroke Width</label>
-        <vue-slider
-          id="strokeWidth"
-          v-model="strokeWidth"
-          v-bind="options"
-          class="d-inline-flex flex-grow-1 p-7"
-          style="padding: 7px 12px"
-        />
-        <div class="feedback ml-3">{{ formatnum(strokeWidth) }}</div>
+  <div class="vh-100 p-2 container-lg">
+    <div class="d-flex flex-column h-100">
+      <div>
+        <div class="d-flex w-100 text-nowrap">
+          <label for="strokeWidth">Stroke Width</label>
+          <vue-slider
+            id="strokeWidth"
+            class="mx-2 flex-grow-1"
+            :contained="true"
+            tooltip="none"
+            v-bind="optionsStrokeWidth"
+            v-model="strokeWidth"
+          />
+          <div class="feedback">{{ strokeWidth.toFixed(0) }}</div>
+        </div>
+        <div class="d-flex w-100 text-nowrap">
+          <label for="angle">Angle</label>
+          <vue-slider
+            id="angle"
+            :contained="true"
+            :interval="1"
+            :max="360"
+            :min="0"
+            :tooltip-formatter="angleFormatter"
+            class="mx-2 flex-grow-1"
+            tooltip="none"
+            v-model="angle"
+          />
+          <div class="feedback">{{ angle }}°</div>
+        </div>
+        <div class="d-flex w-100 text-nowrap">
+          <label for="scale">Scale</label>
+          <vue-slider
+            id="scale"
+            class="mx-2 flex-grow-1"
+            :contained="true"
+            :interval="1"
+            :max="4"
+            :min="-4"
+            tooltip="none"
+            v-bind="optionsScale"
+            v-model="scale"
+          />
+          <div class="feedback">x{{ scale.toFixed(2) }}</div>
+        </div>
+        <div class="d-flex w-100 text-nowrap">
+          <label for="blur">Blur</label>
+          <vue-slider
+            id="blur"
+            class="mx-2 flex-grow-1"
+            :contained="true"
+            :interval="1"
+            :max="128"
+            :min="0"
+            tooltip="none"
+            v-model="blur"
+          />
+          <div class="feedback">{{ blur }}</div>
+        </div>
       </div>
-      <div class="d-flex w-100">
-        <label class="mr-3" for="angle">Angle</label>
-        <vue-slider
-          id="angle"
-          v-model="angle"
-          :min="0"
-          :max="360"
-          :interval="1"
-          :tooltip-formatter="angleFormatter"
-          class="d-inline-flex flex-grow-1"
-          style="padding: 7px 12px"
-        />
-        <div class="feedback ml-3">{{ angle }}°</div>
+      <div id="svgWrapperParent" class="flex-grow-1 my-2">
+        <component :is="'style'">
+          {{ style }}
+        </component>
+        <div id="svgWrapper" v-html="src" style="visibility: hidden"></div>
       </div>
-      <div class="d-flex w-100">
-        <label class="mr-3" for="blur">Blur</label>
-        <vue-slider
-          id="blur"
-          v-model="blur"
-          :min="0"
-          :max="128"
-          :interval="1"
-          class="d-inline-flex flex-grow-1"
-          style="padding: 7px 12px"
-        />
-        <div class="feedback ml-3">{{ blur }}px</div>
-      </div>
-    </form>
-    <div v-html="src" class="logo blurp2 d-flex justify-content-center align-items-center"></div>
+      <div class="text-center text-muted fs-6">© 2021 Christophe Thiebaud</div>
+    </div>
   </div>
 </template>
 
-<style>
-.blurp2 svg {
-  width: 100%;
-  height: calc(100vh - 80px);
-}
-.white-space-nowrap {
-  white-space: nowrap;
+<style lang="scss">
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 .feedback {
   font-family: monospace;
-  font-size: larger;
+  font-size: smaller;
+  width: 50px;
+  text-align: right;
+}
+#svgWrapperParent {
+  position: relative;
+}
+#svgWrapper {
+  position: absolute;
 }
 </style>
 
@@ -67,10 +95,17 @@ import VueSlider from "vue-slider-component/dist-css/vue-slider-component.umd.mi
 import "vue-slider-component/dist-css/vue-slider-component.css"
 import "vue-slider-component/theme/default.css"
 
-const MIN_SCALE = 0
-const MAX_SCALE = 12
-
 import { mapGetters, mapMutations } from "vuex"
+import { SVG } from "@svgdotjs/svg.js"
+import { cover, contain } from "intrinsic-scale"
+
+const MIN_STROKEWIDTH = 0
+const MAX_STROKEWIDTH = Math.round(800 / 100)
+
+const SCALES_NUM = 64
+const SCALES_MIDDLE = 40
+const SCALE_FACTOR = 1.05
+const SCALE_DIVIDER = Math.pow(SCALE_FACTOR, SCALES_MIDDLE)
 
 export default {
   name: "Icon",
@@ -78,11 +113,19 @@ export default {
   layout: "void",
   data() {
     return {
-      scale: 4,
       angleFormatter: "{value}°",
-      options: {
-        data: Array.from(new Array((MAX_SCALE - MIN_SCALE) * 12 + 1), (_, i) => {
-          return i == 0 ? 0 : Math.round(Math.pow(2, i / 12 + MIN_SCALE) * 100) / 100
+      optionsStrokeWidth: {
+        data: Array.from(new Array((MAX_STROKEWIDTH - MIN_STROKEWIDTH) * MAX_STROKEWIDTH + 1), (_, i) => {
+          return Math.round(
+            i == 0
+              ? 0
+              : Math.round(Math.pow(2, i / MAX_STROKEWIDTH + MIN_STROKEWIDTH) * MAX_STROKEWIDTH) / MAX_STROKEWIDTH
+          )
+        })
+      },
+      optionsScale: {
+        data: Array.from(new Array(SCALES_NUM), (_, i) => {
+          return Math.pow(SCALE_FACTOR, i) / SCALE_DIVIDER
         })
       }
     }
@@ -90,28 +133,72 @@ export default {
   components: {
     VueSlider
   },
+  mounted() {
+    // https://stackoverflow.com/a/42513893/1070215
+    this.$nextTick(() => {
+      this.onResize()
+    })
+    window.addEventListener("resize", this.onResize)
+  },
   methods: {
-    // https://stackoverflow.com/a/31488227/1070215
-    getMatrixForRotation(cx, cy) {
-      const an = this.angle
-      var ca = Math.cos((an * Math.PI) / 180)
-      var sa = Math.sin((an * Math.PI) / 180)
+    onResize() {
+      // https://stackoverflow.com/a/11701129
+      const svgWrapper = window.svgWrapper
+      const svg = svgWrapper.getElementsByTagName("svg")[0]
+      if (svg) {
+        const svgRect = SVG(svg)
+        const boundingBox = svgRect.bbox()
+        const boundingWrapperParentRect = svgWrapper.parentNode.getBoundingClientRect()
 
-      var a = ca.toFixed(4)
-      var b = sa.toFixed(4)
-      var c = (-sa).toFixed(4)
-      var d = ca.toFixed(4)
-      var e = (-ca * cx + sa * cy + cx).toFixed(4)
-      var f = (-sa * cx - ca * cy + cy).toFixed(4)
+        // https://stackoverflow.com/a/37269418
+        // https://github.com/fregante/intrinsic-scale
+        const renderedSize = contain(
+          boundingWrapperParentRect.width,
+          boundingWrapperParentRect.height,
+          boundingBox.width,
+          boundingBox.height
+        )
 
-      return "matrix(" + [a, b, c, d, e, f].join(", ") + ")"
+        svgWrapper.setAttribute("style", `left: ${renderedSize.x}px; top : ${renderedSize.y}px; visibility: visible;`)
+        svg.setAttribute("width", renderedSize.width)
+        svg.setAttribute("height", renderedSize.height)
+        const shrink = 40
+        svgRect.viewbox(
+          boundingBox.x - shrink,
+          boundingBox.y - shrink,
+          boundingBox.width + shrink * 2,
+          boundingBox.height + shrink * 2
+        )
+        svgRect.transform(
+          {
+            scale: this.scale,
+            rotate: this.angle,
+            ox: 0,
+            oy: 0
+          },
+          false
+        )
+      }
     },
-    formatnum: (n) => {
-      return n ? n.toFixed(2).padStart(7, " ") : "?"
+    transformPlease: (angle, scale) => {
+      const svgWrapper = window.svgWrapper
+      const svg = svgWrapper.getElementsByTagName("svg")[0]
+      if (svg) {
+        SVG(svg).transform(
+          {
+            scale: scale,
+            rotate: angle,
+            ox: 0,
+            oy: 0
+          },
+          false
+        )
+      }
     },
     ...mapMutations({
       setStrokeWidth: "user/setStrokeWidth",
       setAngle: "user/setAngle",
+      setScale: "user/setScale",
       setBlur: "user/setBlur"
     })
   },
@@ -124,13 +211,12 @@ export default {
       user: "user/user"
     }),
     style() {
-      return `.logo svg path { 
-        filter: blur(${this.blur}px); 
-        stroke-width: ${this.strokeWidth}; 
-      } 
-      .logo svg > g { 
-        transform: ${this.getMatrixForRotation(310, 535)};
-      }`
+      return `
+        #svgWrapper > svg path {
+          filter: blur(${this.blur}px);
+          stroke-width: ${this.strokeWidth};
+        }
+      `
     },
     strokeWidth: {
       get() {
@@ -145,7 +231,17 @@ export default {
         return this.user.angle
       },
       set(angle) {
+        this.transformPlease(angle, this.scale)
         this.setAngle(angle)
+      }
+    },
+    scale: {
+      get() {
+        return this.user.scale
+      },
+      set(scale) {
+        this.transformPlease(this.angle, scale)
+        this.setScale(scale)
       }
     },
     blur: {

@@ -1,6 +1,6 @@
 export default () => ({
-  strokeWidth: 20.16,
+  strokeWidth: 21,
   angle: 0,
-  blur: 2
-
+  scale: 1,
+  blur: 0
 })
