@@ -1,5 +1,3 @@
-# draft
-
 ## Build Setup
 
 ```bash
