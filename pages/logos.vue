@@ -18,12 +18,12 @@
           <label for="angle">Angle</label>
           <vue-slider
             id="angle"
+            class="mx-2 flex-grow-1"
             :contained="true"
             :interval="1"
             :max="360"
             :min="0"
             :tooltip-formatter="angleFormatter"
-            class="mx-2 flex-grow-1"
             tooltip="none"
             v-model="angle"
           />
@@ -35,9 +35,6 @@
             id="scale"
             class="mx-2 flex-grow-1"
             :contained="true"
-            :interval="1"
-            :max="4"
-            :min="-4"
             tooltip="none"
             v-bind="optionsScale"
             v-model="scale"
