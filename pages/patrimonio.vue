@@ -193,22 +193,17 @@ export default {
       // YOU HAVE ACCESS TO "new google" now, ADD YOUR GOOGLE MAPS FUNCTIONS HERE.
       if (event) {
         // google was added
-        // console.log("google was added")
       } else {
         // google already existed
-        // console.log("google already existed")
       }
       if (process.client) {
-        // console.log("about to initialize!")
         this.initialize()
       }
     },
     async initialize() {
       if (typeof google !== "undefined") {
-        // console.log("google in initialize()", typeof google)
         const mapElement = this.mapElement || document.getElementById("map")
         if (mapElement) {
-          // console.log("mapElement", typeof mapElement)
           const map = await new google.maps.Map(mapElement, {
             center: { lat: 41.8442301, lng: 14.5618596 },
             zoom: this.zoom,
@@ -259,7 +254,6 @@ export default {
               const unitkey = key
               const unititle = unit.title || key
               if (unit && unitkey && unititle) {
-                // console.log(key, unit, unititle, unit.imgs)
                 let content = `<p>
                     ${unititle} [${key}]
                   </p>
@@ -354,7 +348,6 @@ export default {
     })
 
     if (typeof google === "undefined") {
-      // console.log("map", document.getElementById("map"), "pano", document.getElementById("pano"))
       __nuxt
       const script0 = document.createElement("script")
       script0.appendChild(

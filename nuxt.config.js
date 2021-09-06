@@ -1,4 +1,5 @@
 import { version } from "./package.json"
+
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: "static",
@@ -169,8 +170,10 @@ export default {
         "faInfoCircle",
         "faList",
         "faMapMarker",
+        "faMarker",
         "faMinus",
         "faPlus",
+        "faServer",
         "faSignOutAlt",
         "faSpinner",
         "faUser"

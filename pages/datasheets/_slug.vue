@@ -629,9 +629,6 @@ export default {
       if (sheet.hasImage) {
         columnCount = columnCount + 1
       }
-      if (row.hasImage) {
-        // console.log(row)
-      }
 
       let ret = []
       let lastCell = undefined

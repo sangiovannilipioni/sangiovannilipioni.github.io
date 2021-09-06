@@ -78,11 +78,20 @@
                 }}</nuxt-link>
                 <nuxt-link class="dropdown-item" :to="localePath('/from_the_sky')">{{ $t("from_the_sky") }}</nuxt-link>
                 <nuxt-link class="dropdown-item" :to="localePath('/logos')">{{ $t("impresa") }}</nuxt-link>
-                <div v-if="$auth.user && $auth.user.email === 'christophe.thiebaud@alumni.insead.edu'">
+                <div v-if="($auth.user && $auth.user.email === 'christophe.thiebaud@alumni.insead.edu')">
                   <div class="dropdown-divider"></div>
+                  <div class="dropdown-item text-muted">
+                    <font-awesome-icon :icon="['fas', 'marker']" style="width: 24px; height: 24px" />
+                    {{ version }}
+                  </div>
                   <a class="dropdown-item" :href="gitUrl" target="_github">
                     <font-awesome-icon :icon="['fab', 'github']" style="width: 24px; height: 24px" />
+                    {{ gitSha }}
                   </a>
+                  <div class="dropdown-item text-muted">
+                    <font-awesome-icon :icon="['fas', 'server']" style="width: 24px; height: 24px" />
+                    {{ nuxtTimestamp }}
+                  </div>
                 </div>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" @click="$auth.logout()">
@@ -108,7 +117,10 @@
 export default {
   data() {
     return {
-      gitUrl: `https://github.com/sangiovannilipioni/sangiovannilipioni.github.io/commit/${process.env.NUXT_ENV_CURRENT_GIT_SHA}`
+      version: process.env.packageVersion,
+      gitSha: process.env.NUXT_ENV_CURRENT_GIT_SHA,
+      gitUrl: `https://github.com/sangiovannilipioni/sangiovannilipioni.github.io/commit/${process.env.NUXT_ENV_CURRENT_GIT_SHA}`,
+      nuxtTimestamp: new Date(this.$store.getters["getNuxtTimestamp"]).toUTCString()
     }
   }
 }
