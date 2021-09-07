@@ -307,7 +307,7 @@ export default {
     },
     githubUsername: "cthiebaud",
     gitSha: process.env.NUXT_ENV_CURRENT_GIT_SHA,
-    forceGraphqlQuery: false,
+    forceGraphqlQuery: true,
     generationTimestamp: process.env.NUXT_ENV_GENERATION_TIMESTAMP
   },
   privateRuntimeConfig: {
