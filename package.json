@@ -6,7 +6,7 @@
     "dev": "NUXT_ENV_CURRENT_GIT_SHA=`git rev-parse HEAD` NUXT_ENV_GENERATION_TIMESTAMP=`date +'%s'` nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "NUXT_ENV_CURRENT_GIT_SHA=`git rev-parse HEAD` NUXT_ENV_GENERATION_TIMESTAMP=`date +'%s'` nuxt generate |& tee logs.log",
+    "generate": "NUXT_ENV_CURRENT_GIT_SHA=`git rev-parse HEAD` NUXT_ENV_GENERATION_TIMESTAMP=`date +'%s'` nuxt generate | tee logs.log",
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
