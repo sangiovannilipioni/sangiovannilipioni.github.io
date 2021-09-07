@@ -37,33 +37,34 @@ export const actions = {
         url: "https://api.github.com/graphql",
         auth: {
           username: "cthiebaud",
-          password: "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"
+          password: process.env.SGL_API_GITHUB_TOKEN
         },
         data: {
-          query: `{
-          repository(owner: "sangiovannilipioni", name: "sangiovannilipioni.api") {
-            name
-            defaultBranchRef {
-              target {
-                ... on Commit {
-                  history(first: 1) {
-                    nodes {
-                      message
-                      committedDate
-                      authoredDate
-                      oid
-                      author {
-                        email
-                        name
-                      }
-                    }
-                  }
-                }
+        query: `
+{
+  repository(owner: "sangiovannilipioni", name: "sangiovannilipioni.api") {
+    name
+    defaultBranchRef {
+      target {
+        ... on Commit {
+          history(first: 1) {
+            nodes {
+              message
+              committedDate
+              authoredDate
+              oid
+              author {
+                email
+                name
               }
             }
           }
-        }`
         }
+      }
+    }
+  }
+}
+        `}
       })
         .then(function (response) {
           if (
