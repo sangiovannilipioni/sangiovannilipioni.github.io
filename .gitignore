@@ -97,4 +97,5 @@ material-kit-master/
 /videos/
 /wetransfer/
 
-GraphQL.txt
+.graphQL.txt
+.travis.txt
