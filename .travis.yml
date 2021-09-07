@@ -10,7 +10,6 @@ branches:
 install:
   - yarn install
   - yarn generate
-  - cp logs.log dist
 script:
   - echo "Skipping tests"
 deploy:
