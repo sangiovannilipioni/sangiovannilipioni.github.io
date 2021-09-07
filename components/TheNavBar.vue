@@ -174,7 +174,9 @@ export default {
       return `https://github.com/sangiovannilipioni/sangiovannilipioni.api/commit/${this.apiLastGitSha}`
     },
     generationTimestampAsString() {
-      return new Date(this.$config.generationTimestamp).toUTCString()
+      const date = new Date(this.$config.generationTimestamp * 1000)
+      const fornatted = date.toString()
+      return fornatted
     }
   }
 }
