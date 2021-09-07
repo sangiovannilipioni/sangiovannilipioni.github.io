@@ -20,8 +20,8 @@ export const actions = {
       console.log("SERVER TIMESTAMP", new Date(now).toUTCString())
       commit("setServerTimestamp", now)
     }
-    console.log("@nuxtServerInit, apiLastGitSha getter IS", getters.apiLastGitSha)
-    if (typeof getters.apiLastGitSha === "undefined") {
+    console.log("@nuxtServerInit, apiLastGitSha getter IS", getters.apiLastGitSha, "SGL_API_URL is", process.env.SGL_API_URL )
+    if (!process.env.SGL_API_URL && typeof getters.apiLastGitSha === "undefined") {
       await dispatch("fetchAndStoreApiLastGitSha")
     }
   },

@@ -50,8 +50,15 @@
 
             <LocaleSwitcherNavItemDropdown />
 
+            <li class="nav-item">
+              <nuxt-link :to="localePath('/credits')" class="nav-link">
+                <img src="/svg/OOjs_UI_icon_info.svg">
+              </nuxt-link>
+            </li>
+            
+
             <!-- area riservata -->
-            <li v-if="$auth.$state.loggedIn" class="nav-item dropdown">
+            <li v-if="!apiLastGitSha || $auth.$state.loggedIn" class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
                 href="#"
@@ -78,7 +85,7 @@
                 }}</nuxt-link>
                 <nuxt-link class="dropdown-item" :to="localePath('/from_the_sky')">{{ $t("from_the_sky") }}</nuxt-link>
                 <nuxt-link class="dropdown-item" :to="localePath('/logos')">{{ $t("impresa") }}</nuxt-link>
-                <div v-if="($auth.user && $auth.user.email === 'christophe.thiebaud@alumni.insead.edu')">
+                <div v-if="!apiLastGitSha || ($auth.user && $auth.user.email === 'christophe.thiebaud@alumni.insead.edu')">
                   <div class="dropdown-divider"></div>
                   <div class="ellipsed card card-body m-2 p-1">
                     <div class="dropdown-item">
@@ -89,7 +96,7 @@
                       <font-awesome-icon :icon="['fab', 'github']" style="width: 24px; height: 24px" />
                       <span>{{ abbrev(gitSha) }}</span>
                     </a>
-                    <a class="dropdown-item" :href="gitUrlAPI" target="_github_api">
+                    <a v-if="apiLastGitSha" class="dropdown-item" :href="gitUrlAPI" target="_github_api">
                       <font-awesome-icon :icon="['fas', 'database']" style="width: 24px; height: 24px" />
                       <span>{{ abbrev(apiLastGitSha) }}</span>
                     </a>
@@ -121,14 +128,16 @@
 
 <style lang="scss" scoped>
 .ellipsed {
-  max-width: 240px;
-  white-space: nowrap;
+  max-width: 280px;
   font-size: smaller;
   background-color: #f7f7f7;
 
   * {
     padding: 0;
-    font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
   }
   > div > span {
     color: #6c757d !important;
@@ -148,7 +157,7 @@ export default {
   },
   methods: {
     abbrev(str) {
-      return str.slice(0, 7)
+      return str ? str.slice(0, 7) : undefined
     }
   },
   computed: {

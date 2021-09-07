@@ -15,7 +15,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100%;
   width: auto;
   filter: opacity(10%) blur(3px);
 }
