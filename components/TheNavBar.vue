@@ -88,9 +88,13 @@
                     <font-awesome-icon :icon="['fab', 'github']" style="width: 24px; height: 24px" />
                     {{ gitSha }}
                   </a>
+                  <a class="dropdown-item" :href="gitUrlAPI" target="_github_api">
+                    <font-awesome-icon :icon="['fas', 'database']" style="width: 24px; height: 24px" />
+                    {{ apiLastGitSha }}
+                  </a>
                   <div class="dropdown-item text-muted">
                     <font-awesome-icon :icon="['fas', 'server']" style="width: 24px; height: 24px" />
-                    {{ nuxtTimestamp }}
+                    {{ serverTimestampAsString }}
                   </div>
                 </div>
                 <div class="dropdown-divider"></div>
@@ -114,13 +118,23 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex"
 export default {
   data() {
     return {
       version: process.env.packageVersion,
       gitSha: process.env.NUXT_ENV_CURRENT_GIT_SHA,
-      gitUrl: `https://github.com/sangiovannilipioni/sangiovannilipioni.github.io/commit/${process.env.NUXT_ENV_CURRENT_GIT_SHA}`,
-      nuxtTimestamp: new Date(this.$store.getters["getNuxtTimestamp"]).toUTCString()
+      gitUrl: `https://github.com/sangiovannilipioni/sangiovannilipioni.github.io/commit/${process.env.NUXT_ENV_CURRENT_GIT_SHA}`
+    }
+  },
+  computed: {
+    // mix the getters into computed with object spread operator
+    ...mapGetters(["serverTimestamp", "apiLastGitSha"]),
+    gitUrlAPI() {
+      return `https://github.com/sangiovannilipioni/sangiovannilipioni.api/commit/${this.apiLastGitSha}`
+    },
+    serverTimestampAsString() {
+      return new Date(this.serverTimestamp).toUTCString()
     }
   }
 }

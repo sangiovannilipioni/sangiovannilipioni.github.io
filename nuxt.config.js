@@ -165,6 +165,7 @@ export default {
       solid: [
         "faArrowLeft",
         "faArrowRight",
+        "faDatabase",
         "faExternalLinkAlt",
         "faImages",
         "faInfoCircle",
