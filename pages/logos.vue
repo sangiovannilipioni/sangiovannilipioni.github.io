@@ -96,13 +96,13 @@ import { mapGetters, mapMutations } from "vuex"
 import { SVG } from "@svgdotjs/svg.js"
 import { cover, contain } from "intrinsic-scale"
 
-const MIN_STROKEWIDTH = 0
-const MAX_STROKEWIDTH = Math.round(800 / 100)
+const SW_MIN = 0
+const SW_MAX = Math.round(800 / 100)
 
-const SCALES_NUM = 64
-const SCALES_MIDDLE = 40
+const SCALE_COUNT = 64
+const SCALE_MIDDLE = 40
 const SCALE_FACTOR = 1.05
-const SCALE_DIVIDER = Math.pow(SCALE_FACTOR, SCALES_MIDDLE)
+const SCALE_DIVIDER = Math.pow(SCALE_FACTOR, SCALE_MIDDLE)
 
 export default {
   name: "Icon",
@@ -112,16 +112,12 @@ export default {
     return {
       angleFormatter: "{value}°",
       optionsStrokeWidth: {
-        data: Array.from(new Array((MAX_STROKEWIDTH - MIN_STROKEWIDTH) * MAX_STROKEWIDTH + 1), (_, i) => {
-          return Math.round(
-            i == 0
-              ? 0
-              : Math.round(Math.pow(2, i / MAX_STROKEWIDTH + MIN_STROKEWIDTH) * MAX_STROKEWIDTH) / MAX_STROKEWIDTH
-          )
+        data: Array.from(new Array((SW_MAX - SW_MIN) * SW_MAX + 1), (_, i) => {
+          return Math.round(i == 0 ? 0 : Math.round(Math.pow(2, i / SW_MAX + SW_MIN) * SW_MAX) / SW_MAX)
         })
       },
       optionsScale: {
-        data: Array.from(new Array(SCALES_NUM), (_, i) => {
+        data: Array.from(new Array(SCALE_COUNT), (_, i) => {
           return Math.pow(SCALE_FACTOR, i) / SCALE_DIVIDER
         })
       }
