@@ -1,33 +1,33 @@
 <template>
-  <div class="p-2">
+  <div class="d-flex flex-column vh-100">
+    <component :is="'style'">
+      {{ style }}
+    </component>
 
     <TheNavBar />
 
-    <div v-html="src" class="logo w-100 h-100 blurp d-flex justify-content-center align-items-center"></div>
-
+    <main role="main" class="wip h-100 flex-grow-1">
+      <Nuxt />
+    </main>
   </div>
 </template>
 
-<style>
-.blurp {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: auto;
-  filter: opacity(10%) blur(3px);
-}
-.blurp svg {
-  width: 100%;
-}
-</style>
+<style></style>
 
 <script>
 export default {
   computed: {
-    src() {
-      const src = require(`assets/svg/Work_in_progress_icon.svg?raw`)
-      return src
+    style() {
+      return `
+        .wip {
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: center center;
+          /* background-color: #F96815; 
+          background-blend-mode: luminosity; */
+          background-image: url(/svg/Work_in_progress_icon.svg);
+        }
+      `
     }
   }
 }

@@ -21,7 +21,7 @@
           <ul class="navbar-nav me-auto mb-0 mb-lg-0" style="flex: auto">
             <!-- presentation -->
             <li class="nav-item">
-              <nuxt-link :to="localePath('/slides')" class="nav-link">{{ $t("presentation") }}</nuxt-link>
+              <nuxt-link :to="localePath('/slides')" class="nav-link">{{ $t("presentation") }} </nuxt-link>
             </li>
 
             <!-- patrimonio -->
@@ -52,13 +52,12 @@
 
             <li class="nav-item">
               <nuxt-link :to="localePath('/credits')" class="nav-link">
-                <img src="/svg/OOjs_UI_icon_info.svg">
+                <img src="/svg/OOjs_UI_icon_info.svg" />
               </nuxt-link>
             </li>
-            
 
             <!-- area riservata -->
-            <li v-if="!apiLastGitSha || $auth.$state.loggedIn" class="nav-item dropdown">
+            <li v-if="$config.dev || $auth.$state.loggedIn" class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
                 href="#"
@@ -85,9 +84,17 @@
                 }}</nuxt-link>
                 <nuxt-link class="dropdown-item" :to="localePath('/from_the_sky')">{{ $t("from_the_sky") }}</nuxt-link>
                 <nuxt-link class="dropdown-item" :to="localePath('/logos')">{{ $t("impresa") }}</nuxt-link>
-                <div v-if="!apiLastGitSha || ($auth.user && $auth.user.email === 'christophe.thiebaud@alumni.insead.edu')">
+                <div v-if="$config.dev || ($auth.user && $auth.user.email === 'christophe.thiebaud@alumni.insead.edu')">
                   <div class="dropdown-divider"></div>
                   <div class="ellipsed card card-body m-2 p-1">
+                    <div v-if="$config.dev" class="dropdown-item">
+                      <font-awesome-icon :icon="['fas', 'code']" style="width: 24px; height: 24px" />
+                      <span>Development</span>
+                    </div>
+                    <div v-else class="dropdown-item">
+                      <font-awesome-icon :icon="['fas', 'industry']" style="width: 24px; height: 24px" />
+                      <span>Production</span>
+                    </div>
                     <div class="dropdown-item">
                       <font-awesome-icon :icon="['fas', 'marker']" style="width: 24px; height: 24px" />
                       <span>{{ version }}</span>
@@ -102,7 +109,7 @@
                     </a>
                     <div class="dropdown-item">
                       <font-awesome-icon :icon="['fas', 'server']" style="width: 24px; height: 24px" />
-                      <span>{{ serverTimestampAsString }}</span>
+                      <span>{{ generationTimestampAsString }}</span>
                     </div>
                   </div>
                 </div>
@@ -150,9 +157,9 @@ import { mapGetters } from "vuex"
 export default {
   data() {
     return {
-      version: process.env.packageVersion,
-      gitSha: process.env.NUXT_ENV_CURRENT_GIT_SHA,
-      gitUrl: `https://github.com/sangiovannilipioni/sangiovannilipioni.github.io/commit/${process.env.NUXT_ENV_CURRENT_GIT_SHA}`
+      version: this.$config.packageVersion,
+      gitSha: this.$config.gitSha,
+      gitUrl: `https://github.com/sangiovannilipioni/sangiovannilipioni.github.io/commit/${this.$config.gitSha}`
     }
   },
   methods: {
@@ -162,12 +169,12 @@ export default {
   },
   computed: {
     // mix the getters into computed with object spread operator
-    ...mapGetters(["serverTimestamp", "apiLastGitSha"]),
+    ...mapGetters(["apiLastGitSha"]),
     gitUrlAPI() {
       return `https://github.com/sangiovannilipioni/sangiovannilipioni.api/commit/${this.apiLastGitSha}`
     },
-    serverTimestampAsString() {
-      return new Date(this.serverTimestamp).toUTCString()
+    generationTimestampAsString() {
+      return new Date(this.$config.generationTimestamp).toUTCString()
     }
   }
 }

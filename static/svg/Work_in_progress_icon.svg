@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34">
+    <path d="M16.978.241C7.715.241.245 7.755.245 17.018c0 9.263 7.47 16.778 16.733 16.778 9.262 0 16.777-7.515 16.777-16.778C33.755 7.755 26.24.241 16.978.241zm0 4.15c6.966 0 12.627 5.66 12.627 12.627 0 6.967-5.66 12.583-12.627 12.583A12.56 12.56 0 0 1 4.394 17.018c0-6.967 5.617-12.627 12.584-12.627z" style="color:#000;fill:#000;fill-opacity:.08333333;stroke:#565656;stroke-width:.5;stroke-opacity:.19607843"/>
+    <path d="M16.903 2.23a14.68 14.68 0 0 0-14.18 10.88" style="fill:none;stroke:#000;stroke-width:2.25834560000000018;stroke-linecap:round;stroke-opacity:.5"/>
+    <path d="m26.535 23.997-11.937.015c-.108-.01-.186-.034-.145-.163l4.386-5.623a.729.729 0 0 1 .61-.324l2.205-.005c.357 0 .495.103.692.35l4.295 5.546c.039.098.004.196-.106.204z" style="font-size:12px;fill-rule:evenodd;fill:#500;stroke:#d95b00;stroke-opacity:1;stroke-width:.4;stroke-miterlimit:4;stroke-dasharray:none"/>
+    <rect width="3.02" height="6.06" rx=".545" ry=".574" x="17.041" y="4.135" transform="matrix(.88545 .46474 -.40805 .91296 0 0)" style="font-size:12px;fill:#000002;fill-rule:evenodd"/>
+    <rect width="4.86" height="1.579" rx=".457" ry=".389" x="10.801" y="11.821" style="font-size:12px;fill-rule:evenodd"/>
+    <rect width="4.529" height="1.343" rx=".426" ry=".331" x="-5.936" y="15.665" transform="matrix(.46869 -.88336 .74463 .66747 0 0)" style="font-size:12px;fill-rule:evenodd"/>
+    <rect width="10.78" height=".772" rx=".981" ry=".132" x="14.421" y="9.101" transform="matrix(.89042 .45513 -.4477 .89418 0 0)" style="font-size:12px;fill-rule:evenodd"/>
+    <rect style="font-size:12px;fill-rule:evenodd" transform="matrix(-.00278 -.04852 .04846 -.00374 -2.156 -1.233)" y="335.387" x="-440.255" ry="6.654" rx="12.701" height="27.031" width="134.952"/>
+    <ellipse cx="418.75" cy="467.362" rx="31.25" ry="32.5" transform="matrix(.04654 0 0 .04728 -2.894 -11.004)" style="font-size:12px;fill-rule:evenodd;stroke-width:1"/>
+    <rect width="3.794" height="1.518" rx=".357" ry=".374" x="-22.918" y="7.553" transform="matrix(-.234 -.97223 .98565 -.16883 0 0)" style="font-size:12px;fill-rule:evenodd"/>
+    <rect width="3.802" height="1.519" rx=".358" ry=".374" x="-22.944" y="12.612" transform="matrix(-.00757 -.99997 .99703 .07697 0 0)" style="font-size:12px;fill-rule:evenodd"/>
+    <rect width="7.616" height="1.553" rx=".717" ry=".382" x="-14.651" y="18.133" transform="matrix(.4947 -.86906 .81787 .5754 0 0)" style="font-size:12px;fill-rule:evenodd"/>
+</svg>

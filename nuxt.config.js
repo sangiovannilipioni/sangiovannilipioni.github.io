@@ -165,9 +165,11 @@ export default {
       solid: [
         "faArrowLeft",
         "faArrowRight",
+        "faCode",
         "faDatabase",
         "faExternalLinkAlt",
         "faImages",
+        "faIndustry",
         "faInfoCircle",
         "faList",
         "faMapMarker",
@@ -268,10 +270,6 @@ export default {
     }
   },
 
-  env: {
-    packageVersion: version
-  },
-
   content: {
     markdown: {
       /* remarkPlugins: [["remark-emoji", { emoticon: true }]] */
@@ -298,11 +296,23 @@ export default {
 
   // https://nuxtjs.org/blog/moving-from-nuxtjs-dotenv-to-runtime-config/
   publicRuntimeConfig: {
+    packageVersion: version,
+    dev: process.env.NODE_ENV !== "production",
     axios: {
-      baseURL: process.env.SGL_API_URL || "https://api.sangiovannilipioni.net/api/v1"
-    }
+      baseURL:
+        process.env.NODE_ENV === "production"
+          ? "https://api.sangiovannilipioni.net/api/v1"
+          : process.env.SGL_API_URL || "http://localhost:3002/api/v1",
+      githubGraphqlURL: "https://api.github.com/graphql"
+    },
+    githubUsername: "cthiebaud",
+    gitSha: process.env.NUXT_ENV_CURRENT_GIT_SHA,
+    forceGraphqlQuery: false,
+    generationTimestamp: process.env.NUXT_ENV_GENERATION_TIMESTAMP
   },
-  privateRuntimeConfig: {},
+  privateRuntimeConfig: {
+    githubToken: process.env.GITHUB_TOKEN
+  },
 
   // https://nuxtjs.org/docs/2.x/deployment/netlify-deployment/
   generate: {
