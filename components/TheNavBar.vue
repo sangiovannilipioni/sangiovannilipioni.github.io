@@ -80,21 +80,23 @@
                 <nuxt-link class="dropdown-item" :to="localePath('/logos')">{{ $t("impresa") }}</nuxt-link>
                 <div v-if="($auth.user && $auth.user.email === 'christophe.thiebaud@alumni.insead.edu')">
                   <div class="dropdown-divider"></div>
-                  <div class="dropdown-item text-muted">
-                    <font-awesome-icon :icon="['fas', 'marker']" style="width: 24px; height: 24px" />
-                    {{ version }}
-                  </div>
-                  <a class="dropdown-item" :href="gitUrl" target="_github">
-                    <font-awesome-icon :icon="['fab', 'github']" style="width: 24px; height: 24px" />
-                    {{ gitSha }}
-                  </a>
-                  <a class="dropdown-item" :href="gitUrlAPI" target="_github_api">
-                    <font-awesome-icon :icon="['fas', 'database']" style="width: 24px; height: 24px" />
-                    {{ apiLastGitSha }}
-                  </a>
-                  <div class="dropdown-item text-muted">
-                    <font-awesome-icon :icon="['fas', 'server']" style="width: 24px; height: 24px" />
-                    {{ serverTimestampAsString }}
+                  <div class="ellipsed card card-body m-2 p-1">
+                    <div class="dropdown-item">
+                      <font-awesome-icon :icon="['fas', 'marker']" style="width: 24px; height: 24px" />
+                      <span>{{ version }}</span>
+                    </div>
+                    <a class="dropdown-item" :href="gitUrl" target="_github">
+                      <font-awesome-icon :icon="['fab', 'github']" style="width: 24px; height: 24px" />
+                      <span>{{ abbrev(gitSha) }}</span>
+                    </a>
+                    <a class="dropdown-item" :href="gitUrlAPI" target="_github_api">
+                      <font-awesome-icon :icon="['fas', 'database']" style="width: 24px; height: 24px" />
+                      <span>{{ abbrev(apiLastGitSha) }}</span>
+                    </a>
+                    <div class="dropdown-item">
+                      <font-awesome-icon :icon="['fas', 'server']" style="width: 24px; height: 24px" />
+                      <span>{{ serverTimestampAsString }}</span>
+                    </div>
                   </div>
                 </div>
                 <div class="dropdown-divider"></div>
@@ -117,6 +119,23 @@
   </client-only>
 </template>
 
+<style lang="scss" scoped>
+.ellipsed {
+  max-width: 240px;
+  white-space: nowrap;
+  font-size: smaller;
+  background-color: #f7f7f7;
+
+  * {
+    padding: 0;
+    font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  }
+  > div > span {
+    color: #6c757d !important;
+  }
+}
+</style>
+
 <script>
 import { mapGetters } from "vuex"
 export default {
@@ -125,6 +144,11 @@ export default {
       version: process.env.packageVersion,
       gitSha: process.env.NUXT_ENV_CURRENT_GIT_SHA,
       gitUrl: `https://github.com/sangiovannilipioni/sangiovannilipioni.github.io/commit/${process.env.NUXT_ENV_CURRENT_GIT_SHA}`
+    }
+  },
+  methods: {
+    abbrev(str) {
+      return str.slice(0, 7)
     }
   },
   computed: {
