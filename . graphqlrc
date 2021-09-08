@@ -1,1 +1,1 @@
-schema: schema.docs.graphql
+schema: graphql/schema.docs.graphql

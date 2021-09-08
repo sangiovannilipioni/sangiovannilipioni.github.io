@@ -5,14 +5,14 @@ export const getters = {}
 export const actions = {
   async nuxtServerInit({ commit, getters }, { $config }) {
     const props = [
-      "apiGitSha",
       "dev",
       "generationTimestamp",
       "gitDirty",
-      /* "githubToken", NEVER! */
       "githubUsername",
       "gitSha",
+      "gitShaAPI",
       "packageVersion"
+      /* NEVER! "githubToken", EVER! */
     ]
     props.forEach((p) => {
       console.log(p, $config[p])

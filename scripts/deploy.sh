@@ -1,4 +1,4 @@
-# /bin/bash
+#!/usr/bin/env bash
 set -ex
 # https://sangsoonam.github.io/2019/02/08/using-git-worktree-to-deploy-github-pages.html
 rm -rf deploy
