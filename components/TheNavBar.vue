@@ -109,13 +109,13 @@
                       <!-- font-awesome-icon :icon="['fas', 'external-link-alt']" style="" / -->
                       {{ axiosBaseURL }}
                     </a>
-                    <a v-if="apiLastGitSha" class="dropdown-item" :href="gitUrlAPI" target="_github_api">
+                    <a v-if="gitShaAPI" class="dropdown-item" :href="gitUrlAPI" target="_github_api">
                       <font-awesome-icon :icon="['fas', 'database']" style="visibility: hidden" />
-                      <span>{{ abbrev(apiLastGitSha) }}</span>
+                      <span>{{ abbrev(gitShaAPI) }}</span>
                     </a>
                     <div v-else class="dropdown-item">
                       <font-awesome-icon :icon="['fas', 'database']" style="visibility: hidden" />
-                      <span>{{ abbrev(apiLastGitSha) }}</span>
+                      <span>{{ abbrev(gitShaAPI) }}</span>
                     </div>
                     <div class="dropdown-item">
                       <font-awesome-icon :icon="['fas', 'server']" style="" />
@@ -145,7 +145,7 @@
 
 <style lang="scss" scoped>
 .ellipsed {
-  max-width: 280px;
+  max-width: 300px;
   font-size: smaller;
   background-color: #f7f7f7;
 
@@ -163,16 +163,17 @@
 </style>
 
 <script>
-import { mapGetters } from "vuex"
 export default {
   data() {
     return {
-      devMode: this.$config.dev,
-      version: this.$config.packageVersion,
       axiosBaseURL: this.$config.axios.baseURL,
-      gitSha: this.$config.gitSha,
+      devMode: this.$config.dev,
       gitDirty: this.$config.gitDirty,
-      gitUrl: `https://github.com/sangiovannilipioni/sangiovannilipioni.github.io/commit/${this.$config.gitSha}`
+      gitSha: this.$config.gitSha,
+      gitShaAPI: this.$config.gitShaAPI,
+      gitUrl: `https://github.com/sangiovannilipioni/sangiovannilipioni.github.io/commit/${this.$config.gitSha}`,
+      gitUrlAPI: `https://github.com/sangiovannilipioni/sangiovannilipioni.api/commit/${this.$config.gitShaAPI}`,
+      version: this.$config.packageVersion
     }
   },
   methods: {
@@ -182,10 +183,6 @@ export default {
   },
   computed: {
     // mix the getters into computed with object spread operator
-    ...mapGetters(["apiLastGitSha"]),
-    gitUrlAPI() {
-      return `https://github.com/sangiovannilipioni/sangiovannilipioni.api/commit/${this.apiLastGitSha}`
-    },
     generationTimestampAsString() {
       const date = new Date(this.$config.generationTimestamp * 1000)
       const fornatted = date.toString()

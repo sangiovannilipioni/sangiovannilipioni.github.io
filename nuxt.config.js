@@ -5,10 +5,10 @@ export default {
   target: "static",
 
   /*
-  ** Customize the progress-bar color
-  */
-  loading: { color: '#fff' },
-  
+   ** Customize the progress-bar color
+   */
+  loading: { color: "#fff" },
+
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: "Nessuno Escluso",
@@ -301,20 +301,19 @@ export default {
 
   // https://nuxtjs.org/blog/moving-from-nuxtjs-dotenv-to-runtime-config/
   publicRuntimeConfig: {
-    packageVersion: version,
-    dev: process.env.NODE_ENV !== "production",
     axios: {
       baseURL:
         process.env.NODE_ENV === "production"
           ? "https://api.sangiovannilipioni.net/api/v1"
-          : process.env.SGL_API_URL || "http://localhost:3002/api/dev",
-      githubGraphqlURL: "https://api.github.com/graphql"
+          : process.env.SGL_API_URL || "http://localhost:3002/api/dev"
     },
+    dev: process.env.NODE_ENV !== "production",
+    generationTimestamp: process.env.NUXT_ENV_GENERATION_TIMESTAMP,
+    gitDirty: process.env.NUXT_ENV_GIT_DIRTY,
     githubUsername: "cthiebaud",
     gitSha: process.env.NUXT_ENV_CURRENT_GIT_SHA,
-    gitDirty: process.env.NUXT_ENV_GIT_DIRTY,
-    forceGraphqlQuery: process.env.FORCE_GRAPHQL_QUERY === "true",
-    generationTimestamp: process.env.NUXT_ENV_GENERATION_TIMESTAMP
+    gitShaAPI: process.env.NUXT_ENV_API_GIT_SHA,
+    packageVersion: version
   },
   privateRuntimeConfig: {
     githubToken: process.env.GITHUB_TOKEN
