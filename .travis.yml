@@ -1,0 +1,34 @@
+language: node_js
+node_js:
+  - lts/*
+cache:
+  directories:
+    - node_modules
+branches:
+  only:
+    - master
+install:
+  - yarn install
+script:
+  - yarn generate
+  - echo "Skipping tests"
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: "$GITHUB_ACCESS_TOKEN"
+  target-branch: gh-pages
+  local-dir: dist
+  on:
+    branch: master
+notifications:
+  email: false
+  slack:
+    rooms:
+      - nessunoescluso:kGIR9oCAutxpT7YTygEJeqKN#engineering
+    on_success: always
+    on_failure: always
+    on_start: always
+env:
+  global:
+    - secure: l/oFv6WiPg+fiEE+98r8YnYd1B0ZSIJxiEEPHihTJDB7eicKYnT+VHRR8HSYbvn2Xl6yRz36pZuK/KGyiHser7q0/bNkbsUA7igpKPvfED2RFCGqC31lldyEo/ZNJeGciwzFkEGp6HPG876N32kE2D/tXDXCI7XGp9pEl0uP9jKvcjHXVsnXHzIbOU7ecrZFeB0Ng7Ck9HWVBVsUqFNnGhHnDoueNDuTCHolcLrRBtACacLoCnrMf+DbHPo0ew5oOxcuUXHi5n6yUSKlshdgM7bZWwUKLmnAkgzCrbAP6lgyFPcK+146uu3+bmdJMPYd4jzEFBHxJ/dHOyV5CG+ACuD/3pfGJW/G579Tz0d9P8b2WvKY2XlbcJBLA/kj4+7P4IvlHZWOJdJw6KsUnPZfbvWJB6ZAc79cn5Ag1V49VJJzCtG+k1gN7kb9t7KkFwGWbSz/x36HxSB/ssFakOJ+SKIl8WFaljWuFviB9oxEU8V80l6EarhAd8Ww0/8OYVvSaWmwS8U72NPm/DlWEVgfwGHJUjck7K/rii1jyh/pWuCu84l4yu2vQwl8RVl9RNJLOMltRFsxF59fumGLfBU7OjXuyZAcobeHMsnGVrun/SoSXGl7OGTknV1uyGeHZj565xqVnvVTPmEwCRjMLfFJZ9AplWLlhZKErwVVIWc5M4U=
+    - secure: K39hz/82UIMHmk3ysmtTWr8zFtROVIRGvQRGfbN93IPUZMR/B9NRK5K4BlHF/AmapHt41qGdG1OT+rIfpvAwP4Zvhj22aWmfGs1U484t9FslBjjAfFMCmSVIjZQ0l/jJ1B+TOL+nlIvwl9/SanRBfe3jeVJjngxCFCFzCpao1qal7XV5oeEALNBvQlCllbHZ5gy6cN7hjnjOynEx45wwuxIKUvHWGmeo/1CaX/fCcmH/nknPV8j+7jC1oHphocwTnjxuwoBWPyx/8seJZ/bdjwkDvDIZzsLqjmnZeQITP7P1tDetAIigx3b6DTZkHkm94VA0MaIgO0AUO2+b8+n2dXnlUlyqcAXVwXuQY6siyu7IMyhe/su8/2vZa8+Fpn3EBqPEcFmD/+fH7Ahln06PVEF1+CKriNWJpJejMz4+f0FgEESKSrHl0eIscOVodLqNJJB3uRcCuzrC3GnCJUy4f/R/sF6h4/kpbm7v3IvN7RsLnQFjlJGcRXFux/lyJKw1vI+SqCW77dgEJF7KReJbw8OUPOyK4tQSHS06kNmUgSAz+s7aSyQ3YoritLU2y2t0NhDumbcwkLsdaVLJpEOSk3YYsSjs3wTI7nX0Wsc4sTv+ea7YobwOoghqSbqfONYEz8dUXjJsaKF91Xnaoz17hDR/8WeBMXY/k4mgrKepsVQ=

@@ -1,0 +1,221 @@
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+/* https://stackoverflow.com/a/25410621/1070215 */
+.footer {
+  > div > div:last-child > div {
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+  }
+  a:before {
+    display: inline-block;
+    content: "";
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    height: 20px;
+    width: 20px;
+    margin-right: 0.25rem;
+  }
+  a.pdf:before {
+    background-image: url("/svg/PDF_file_icon.svg");
+    vertical-align: text-top;
+  }
+  a.mail:before {
+    background-image: url("/svg/mail_icon.svg");
+    vertical-align: middle;
+  }
+  a.info:before {
+    background-image: url("/svg/OOjs_UI_icon_info.svg");
+    vertical-align: text-top;
+  }
+}
+
+/* navbar */
+.navbar li.nav-item {
+  background-color: #efefef;
+  padding: 0 1rem;
+}
+
+main[role="main"] {
+  padding-bottom: 0.5rem;
+}
+
+@media (min-width: 992px) {
+  main[role="main"].home {
+    margin-top: 6rem;
+  }
+  main[role="main"].not-home {
+    margin-top: 1rem;
+  }
+  .navbar {
+    max-height: 60px;
+    overflow: visible;
+  }
+  .navbar .logo {
+    z-index: 2;
+  }
+  .navbar .logo.home {
+    padding-top: 9rem;
+  }
+  .navbar .logo.not-home {
+    padding-top: 0;
+  }
+  .navbar .logo svg {
+    height: auto;
+  }
+  .navbar .logo.home svg {
+    width: 200px;
+  }
+  .navbar .logo.not-home svg {
+    width: 60px;
+    padding-top: 0;
+  }
+  .navbar .logo svg path {
+    stroke-width: $logoStrokeWidth;
+  }
+}
+@media (max-width: 992px) {
+  main[role="main"].home {
+    margin-top: 1rem;
+  }
+  main[role="main"].not-home {
+    margin-top: 1rem;
+  }
+  .navbar {
+    overflow: visible;
+  }
+  .navbar .logo {
+    z-index: 2;
+    padding: 0;
+  }
+  .navbar .logo svg {
+    width: 50px;
+    height: auto;
+  }
+  .navbar .logo svg path {
+    stroke-width: $logoStrokeWidth;
+  }
+}
+
+.binome {
+  display: flex !important;
+}
+
+.binome .fa-spin {
+  color: lightgray;
+  font-size: 32pt;
+}
+
+.binome > div.border {
+  border: solid 1px lightgray;
+  padding: 0.25rem !important;
+}
+
+@media (orientation: landscape) {
+  .binome {
+    flex-direction: row;
+    flex-flow: row wrap;
+  }
+  .binome > div:first-child {
+    margin-right: 0.5rem;
+  }
+  .binome > div:last-child {
+    margin-left: 0.5rem;
+    max-width: 75%;
+  }
+}
+
+@media (orientation: portrait) {
+  .binome {
+    flex-direction: column;
+    flex-flow: column;
+  }
+  .binome > div:first-child {
+    margin-bottom: 0.5rem;
+  }
+  .binome > div:last-child {
+    margin-top: 0.5rem;
+  }
+  .binome.reverse {
+    flex-direction: column;
+    flex-flow: column-reverse;
+  }
+  .binome.reverse > div:first-child {
+    margin-top: 0.5rem;
+  }
+}
+
+.mySlides {
+  .swiper {
+    border-radius: 0.25rem;
+
+    .swiper-slide {
+      display: flex !important;
+      color: black;
+      display: flex !important;
+      align-items: center !important;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      overflow: scroll;
+      max-height: calc(100vh - (#{$footerHeight} + #{$headerHeight}));
+
+      > div {
+        width: 100%;
+      }
+    }
+  }
+
+  .swiper#swiperTop {
+    border: 1px dotted gray;
+
+    .swiper-slide {
+      background-color: white;
+    }
+  }
+
+  .swiper#swiperThumbs {
+    margin: 0.5rem 0 !important;
+    padding: 0.25rem 0;
+    background-color: #f7f7f7;
+    border: 1px dotted #bfbfbf;
+
+    .swiper-slide {
+      width: 16%;
+      overflow: hidden !important;
+
+      button {
+        font-size: 8pt;
+        white-space: nowrap;
+        background-color: white;
+        text-overflow: ellipsis;
+        overflow-x: clip;
+        max-width: 100% !important;
+        padding: 0.1rem 0.5rem !important;
+      }
+
+      button:hover {
+        color: black;
+      }
+    }
+    .swiper-slide-active > button {
+      color: black;
+      background-color: #eeeeee;
+    }
+  }
+}
+
+#slidesContent {
+  img {
+    margin-left: 1rem;
+    max-width: 40%;
+    float: right;
+  }
+
+  .swiper#swiperTop {
+    .swiper-slide {
+      padding: 0.5rem;
+    }
+  }
+}
