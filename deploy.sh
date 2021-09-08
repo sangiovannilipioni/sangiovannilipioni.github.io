@@ -15,4 +15,3 @@ git add -A
 git commit -m 'chore: deploy'
 git push -f https://github.com/sangiovannilipioni/sangiovannilipioni.github.io.git master:gh-pages
 cd ../..
-rm -rf deploy
