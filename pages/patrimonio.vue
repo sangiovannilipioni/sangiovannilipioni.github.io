@@ -1,5 +1,6 @@
 <template>
   <div id="patrimonio" class="container-lg">
+    <h1 v-if="error" class="alert alert-warning">{{ error }}</h1>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
         <button
@@ -85,7 +86,9 @@
               id="pano"
               class="col border d-flex justify-content-center align-items-center"
               style="background: transparent; padding: 0 !important"
-            ><span class="text-muted">{{ $t("helpPatrimoine") }}</span></div>
+            >
+              <span class="text-muted">{{ $t("helpPatrimoine") }}</span>
+            </div>
           </client-only>
         </div>
         <!-- TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 -->
@@ -396,12 +399,18 @@ export default {
       })
     })
   },
-  async asyncData({ app, params, error }) {
-    let units
-    await app.$axios.get("/units.json").then((response) => {
-      return (units = response.data)
-    })
-    return { units }
+  async asyncData({ app, params, errorHandler }) {
+    let units = {}, error
+    await app.$axios.get("/units.json").then(
+      (response) => {
+        units = response.data
+      },
+      (e) => {
+        console.log(Object.keys(e))
+        error = `${e.address}:${e.port} ${app.i18n.t("no_longer_answer")}`
+      }
+    )
+    return { units, error }
   },
   data() {
     return {

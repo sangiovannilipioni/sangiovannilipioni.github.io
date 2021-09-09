@@ -1,6 +1,6 @@
 <template>
   <div class="container-lg">
-    <h1>Work in progress</h1>
+    <h1 style="text-align: center">Work in progress</h1>
   </div>
 </template>
 

@@ -2,7 +2,7 @@
   <div class="container-lg">
     <UnitBanner :unit_key="$route.params.slug" :units="units" to="blueprints" />
 
-    <div v-if="units[$route.params.slug].massaged">
+    <div v-if="units[$route.params.slug] && units[$route.params.slug].massaged">
       <ul id="myTabs" class="nav nav-tabs">
         <li type="button" class="discreet btn btn-outline-secondary" @click="toggleBreadcrumbs()">
           <font-awesome-icon v-if="showBreadcrumbs" :icon="['fas', 'minus']" />
@@ -140,37 +140,11 @@ export default {
       showBreadcrumbs: false
     }
   },
-  async asyncData({ app, params, error }) {
-    let units = {}
-    await app.$axios
-      .get("/units.json")
-      .then(
-        (response) => {
-          if (!response || !response.data || !response.data[params.slug]) {
-            return error({ statusCode: 404 })
-          }
-          units = response.data
-          return app.$axios.get(`/unit/${params.slug}.json`)
-        },
-        (err) => {
-          return error({ statusCode: 500 })
-        }
-      )
-      .then(
-        (response) => {
-          units[params.slug].rawData = response.data
-        },
-        (err) => {
-          units[params.slug].rawData = undefined
-          // return error({ statusCode: 404 })
-        }
-      )
-      .catch((err) => err)
-    return { units }
-  },
   fetch() {
-    const data = this.massageData(this.units[this.$route.params.slug].rawData)
-    this.units[this.$route.params.slug].massaged = data
+    if (this.units && this.units[this.$route.params.slug]) {
+      const data = this.massageData(this.units[this.$route.params.slug].rawData)
+      this.units[this.$route.params.slug].massaged = data
+    }
   },
   computed: {
     slug() {
@@ -385,7 +359,9 @@ export default {
             // function to instantiate background image cell
             const createImageCell = (column, rowspan) => {
               if (this.units[this.$route.params.slug].inserts[breadcrumb.id]) {
-                const html = `<img style='width:120px;' src='${this.$axios.defaults.baseURL}/image/${this.units[this.$route.params.slug].inserts[breadcrumb.id]}' />`
+                const html = `<img style='width:120px;' src='${this.$axios.defaults.baseURL}/image/${
+                  this.units[this.$route.params.slug].inserts[breadcrumb.id]
+                }' />`
                 return {
                   col: column,
                   rowspan: rowspan,
@@ -412,7 +388,7 @@ export default {
                   : cell.text === "3" || cell.text === "C"
                   ? "bg-danger"
                   : "bg-info"
-              }" title="1/A:ottimo 2/B:medio 3/C:scarso" 
+              }" title="1/A:ottimo 2/B:medio 3/C:scarso"
               onclick="window.scrollTo(0,document.body.scrollHeight);"
               style="font-family: Courier New, monospace; cursor: pointer;">${cell.text}</span>`
             }
@@ -672,6 +648,38 @@ export default {
       }
       return ret
     }
+  },
+  async asyncData({ app, params, errorHandler }) {
+    let units = {},
+      error
+    await app.$axios
+      .get("/units.json")
+      .then(
+        (response) => {
+          if (!response || !response.data || !response.data[params.slug]) {
+            return errorHandler({ statusCode: 404 })
+          }
+          units = response.data
+          return app.$axios.get(`/unit/${params.slug}.json`)
+        },
+        (err) => {
+          error = `${err.address}:${err.port} ${app.i18n.t("no_longer_answer")}`
+          // return errorHandler({ statusCode: 500 })
+        }
+      )
+      .then(
+        (response) => {
+          units[params.slug].rawData = response.data
+        },
+        (err) => {
+          units[params.slug].rawData = undefined
+          // return errorHandler({ statusCode: 404 })
+        }
+      )
+      .catch((err) => {
+        error = `${err.address}:${err.port} ${app.i18n.t("no_longer_answer")}`
+      })
+    return { units, error }
   }
 }
 </script>

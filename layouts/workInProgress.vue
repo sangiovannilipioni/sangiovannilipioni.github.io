@@ -6,8 +6,10 @@
 
     <TheNavBar />
 
-    <main role="main" class="wip h-100 flex-grow-1">
-      <Nuxt />
+    <main role="main" class="flex-grow-1" style="position: relative">
+      <div class="wip" style="position: absolute; top: 10%; right:10%; bottom: 10%; left:10%;">
+      </div>
+      <Nuxt class="py-2_" style="position: absolute; top: 0; right:0; bottom: 0; left:0;"/>
     </main>
   </div>
 </template>
@@ -23,8 +25,6 @@ export default {
           background-repeat: no-repeat;
           background-size: contain;
           background-position: center center;
-          /* background-color: #F96815; 
-          background-blend-mode: luminosity; */
           background-image: url(/svg/Work_in_progress_icon.svg);
         }
       `

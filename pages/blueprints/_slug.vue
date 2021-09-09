@@ -1,7 +1,9 @@
 <template>
   <client-only>
     <article class="container-lg">
-      <UnitBanner :unit_key="$route.params.slug" :units="units" to="datasheets"/>
+      <h1 v-if="error" class="alert alert-warning">{{ error }}</h1>
+
+      <UnitBanner :unit_key="$route.params.slug" :units="units" to="datasheets" />
 
       <div class="binome reverse" v-if="theUnit">
         <div class="col" style="flex: 1">
@@ -51,13 +53,18 @@ export default {
       y: 0
     }
   },
-  async asyncData({ app, params, error }) {
-    let units
-    await app.$axios.get("/units.json").then((response) => {
-      if (!response.data[params.slug]) error({ statusCode: 404 })
-      return (units = response.data)
-    })
-    return { units }
+  async asyncData({ app, params, errorHandler }) {
+    let units = {}, error
+    await app.$axios.get("/units.json").then(
+      (response) => {
+        if (!response.data[params.slug]) errorHandler({ statusCode: 404 })
+        return (units = response.data)
+      },
+      (err) => {
+        error = `${err.address}:${err.port} ${app.i18n.t("no_longer_answer")}`
+      }
+    )
+    return { units, error }
   },
   computed: {
     slug() {
