@@ -17,11 +17,11 @@ function yellow {
     printf "${YELLOW}$@${NC}\n"
 }
 
-source .env
+. .env
 export NUXT_ENV_CURRENT_GIT_SHA=`git rev-parse HEAD`
 export NUXT_ENV_GIT_DIRTY=`git diff --quiet || echo dirty`
 export NUXT_ENV_GENERATION_TIMESTAMP=`date +'%s'`
-export NUXT_ENV_API_GIT_SHA=`source scripts/ghgql.sh graphql/lastSglApiGitSha.gql | jq --raw-output '. | .data.repository.defaultBranchRef.target.history.nodes[0].oid'`
+export NUXT_ENV_API_GIT_SHA=`. scripts/ghgql.sh graphql/lastSglApiGitSha.gql | jq --raw-output '. | .data.repository.defaultBranchRef.target.history.nodes[0].oid'`
 
 echo   NUXT_ENV_CURRENT_GIT_SHA $(green $NUXT_ENV_CURRENT_GIT_SHA)
 echo   NUXT_ENV_GIT_DIRTY $(red $NUXT_ENV_GIT_DIRTY)

@@ -8,6 +8,7 @@ branches:
   only:
     - master
 install:
+  - sudo apt-get install jq
   - yarn install
 script:
   - yarn generate
