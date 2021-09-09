@@ -154,7 +154,7 @@ export default {
   googleFonts: {
     /* download: true, */
     families: {
-      "Quicksand": [400, 600],
+      "Libre Franklin": [400, 700],
       "Ubuntu Mono": [400]
     }
   },

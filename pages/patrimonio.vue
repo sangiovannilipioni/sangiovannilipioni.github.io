@@ -7,10 +7,10 @@
           :class="`nav-link ${tabIndex === 0 ? 'active' : ''}`"
           id="li_map"
           data-bs-toggle="tab"
-          data-bs-target="#home"
+          data-bs-target="#mapContent"
           type="button"
           role="tab"
-          aria-controls="home"
+          aria-controls="mapContent"
           aria-selected="true"
         >
           <font-awesome-icon class="text-muted" :icon="['fas', 'map-marker-alt']" />
@@ -22,10 +22,10 @@
           :class="`nav-link ${tabIndex === 1 ? 'active' : ''}`"
           id="li_masonry"
           data-bs-toggle="tab"
-          data-bs-target="#profile"
+          data-bs-target="#masonryContent"
           type="button"
           role="tab"
-          aria-controls="profile"
+          aria-controls="masonryContent"
           aria-selected="false"
         >
           <font-awesome-icon class="text-muted" :icon="['fas', 'images']" />
@@ -37,10 +37,10 @@
           :class="`nav-link ${tabIndex === 2 ? 'active' : ''}`"
           id="li_list"
           data-bs-toggle="tab"
-          data-bs-target="#contact"
+          data-bs-target="#listContent"
           type="button"
           role="tab"
-          aria-controls="contact"
+          aria-controls="listContent"
           aria-selected="false"
         >
           <font-awesome-icon class="text-muted" :icon="['fas', 'list']" />
@@ -66,7 +66,7 @@
     <div class="tab-content" id="myTabContent">
       <div
         :class="`tab-pane fade ${tabIndex === 0 ? ' show active' : ''}`"
-        id="home"
+        id="mapContent"
         role="tabpanel"
         aria-labelledby="li_map"
       >
@@ -95,7 +95,7 @@
       </div>
       <div
         :class="`tab-pane fade ${tabIndex === 1 ? ' show active' : ''}`"
-        id="profile"
+        id="masonryContent"
         role="tabpanel"
         aria-labelledby="li_masonry"
       >
@@ -105,13 +105,13 @@
       </div>
       <div
         :class="`tab-pane fade ${tabIndex === 2 ? ' show active' : ''}`"
-        id="contact"
+        id="listContent"
         role="tabpanel"
         aria-labelledby="li_list"
       >
         <!-- TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 -->
-        <div class="card table-responsive" style="margin: 0.75rem 0; overflow: hidden">
-          <table v-if="units" class="sortable table table-striped table-hover table-borderless">
+        <div class="card table-responsive" style="margin: 0.75rem 0">
+          <table id="listTable" v-if="units" class="sortable table table-striped table-hover table-borderless">
             <thead>
               <tr>
                 <th scope="col">{{ $t("title") }}</th>
@@ -125,11 +125,11 @@
               <tr v-for="(unit, key) in units" v-bind:key="key">
                 <td scope="row">
                   <span v-if="unit && unit.title">
-                    <span class="text-muted" style="font-weight: bold">{{ unit.title }}</span>
+                    <span>{{ unit.title }}</span>
                   </span>
                 </td>
                 <td scope="row">
-                  <span>{{ key }}</span>
+                  <span class="text-muted">{{ key }}</span>
                 </td>
                 <td scope="row">
                   <div v-if="unit && unit.position">
@@ -137,7 +137,7 @@
                       :href="`https://www.google.com/maps/search/?api=1&query=${unit.position.lat},${unit.position.lng}`"
                       target="_googleMaps"
                     >
-                      <font-awesome-icon class="text-muted" :icon="['fas', 'map-marker-alt']" />
+                      <font-awesome-icon :icon="['fas', 'map-marker-alt']" />
                     </a>
                     <span class="monospace">{{ unit.position.lat }} - {{ unit.position.lng }}</span>
                   </div>
@@ -184,9 +184,15 @@
   .monospace {
     font-family: $fontFamilyMonospace, monospace;
   }
-  table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
-    content: " \25B4\25BE" 
-  }  
+  table#listTable.sortable {
+    th {
+      white-space: nowrap;
+    }
+    th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after {
+      color: gray;
+      content: " \25B4\25BE";
+    }
+  }
 }
 </style>
 
@@ -396,10 +402,12 @@ export default {
           li.addEventListener("shown.bs.tab", this.onTabShown)
         }
       }
-      if (process.browser) {
+      this.$nextTick(() => {
         const el = document.querySelector(".sortable")
-        sorttable.makeSortable(el)
-      }
+        if (sorttable) {
+          sorttable.makeSortable(el)
+        }
+      })
     })
 
     if (typeof google === "undefined") {
