@@ -179,6 +179,7 @@ export default {
         "faInfoCircle",
         "faList",
         "faMapMarker",
+        "faMapMarkerAlt",
         "faMarker",
         "faMinus",
         "faPlus",
