@@ -26,7 +26,6 @@
     "medium-zoom": "^1.0.6",
     "n": "^7.3.1",
     "nuxt": "^2.15.8",
-    "nuxt-google-sheets-parser": "^1.2.4",
     "nuxt-i18n": "^6.28.1",
     "push-dir": "^0.4.1",
     "remark": "^14.0.1",

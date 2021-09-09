@@ -211,8 +211,6 @@ export default {
     "nuxt-i18n",
     //
     "cookie-universal-nuxt",
-    //
-    "nuxt-google-sheets-parser"
   ],
 
   i18n: {
@@ -251,20 +249,11 @@ export default {
 
   auth: {
     redirect: {
-      login: "/login",
+      login: "/",
       logout: "/",
       home: "/"
     },
     strategies: {
-      google: {
-        // https://github.com/nuxt-community/auth-module/issues/931#issue-764604267
-        clientId: "804480548931-gis93majiebm1o4idpuilslm5arn9l0k.apps.googleusercontent.com",
-        // https://stackoverflow.com/a/64080397/1070215
-        // https://github.com/nuxt-community/auth-module/issues/931#issue-764604267
-        // https://stackoverflow.com/questions/64073309/parameter-not-allowed-for-this-message-type-code-challenge-method-how-to-fix-i/64080397#64080397
-        // https://github.com/nuxt-community/auth-module/issues/850
-        codeChallengeMethod: ""
-      },
       facebook: {
         endpoints: {
           userInfo: "https://graph.facebook.com/v6.0/me?fields=id,name,email,picture{url}"

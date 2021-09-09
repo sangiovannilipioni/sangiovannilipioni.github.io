@@ -7192,13 +7192,6 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-nuxt-google-sheets-parser@^1.2.4:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/nuxt-google-sheets-parser/-/nuxt-google-sheets-parser-1.2.4.tgz#13c73aa27d4863c8f4d3834ddb26daa44f681a7f"
-  integrity sha512-H4s4suN6LzvzC5QZqGNwvI7wdhn8Px1jufp/dR9XJgQV+pxWojarFB5SudjId+y/XFzdaHaR0Hj0jrY+q9bZRA==
-  dependencies:
-    public-google-sheets-parser "^1.2.4"
-
 nuxt-i18n@^6.28.1:
   version "6.28.1"
   resolved "https://registry.yarnpkg.com/nuxt-i18n/-/nuxt-i18n-6.28.1.tgz#63e3e809fa41d855c5c7c443c0074eecaa97d273"
@@ -8520,11 +8513,6 @@ public-encrypt@^4.0.0:
     parse-asn1 "^5.0.0"
     randombytes "^2.0.1"
     safe-buffer "^5.1.2"
-
-public-google-sheets-parser@^1.2.4:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/public-google-sheets-parser/-/public-google-sheets-parser-1.2.4.tgz#b3526a50e26190721babfbc87edf608b3cf0817c"
-  integrity sha512-wJBV6zf+F7XALgmLSoCPkQvsVI2ode6lFBjQENQJuCb9fFC4nG1P4I4vKy8Zxxi6Y1hv9qgI0NksOHHJGiDi6g==
 
 pump@^2.0.0:
   version "2.0.1"
