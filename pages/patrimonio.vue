@@ -100,7 +100,7 @@
         aria-labelledby="li_masonry"
       >
         <!-- TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 -->
-        <masonry-div :items="masonryItems" />
+        <masonry-div :items="masonryItems" :shuffle="false"/>
         <!-- TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 -->
       </div>
       <div
@@ -139,7 +139,7 @@
                     >
                       <font-awesome-icon :icon="['fas', 'map-marker-alt']" />
                     </a>
-                    <span class="monospace">{{ unit.position.lat }} - {{ unit.position.lng }}</span>
+                    <span class="monospace">[{{ unit.position.lat }}, {{ unit.position.lng }}]</span>
                   </div>
                 </td>
                 <td scope="row">
@@ -453,30 +453,14 @@ export default {
       }
     }
     const f = require.context("../static/masonry", true, /\.jpg$/)
-    // http://stackoverflow.com/questions/20789373/shuffle-array-in-ng-repeat-angular
-    // -> Fisher–Yates shuffle algorithm
-    function shuffleArray(array) {
-      let m = array.length,
-        t,
-        i
-      // while there remain elements to shuffle
-      while (m) {
-        // pick a remaining element
-        i = Math.floor(Math.random() * m--)
-        // swap it with the current element
-        t = array[m]
-        array[m] = array[i]
-        array[i] = t
-      }
-      return array
-    }
+
     const beforeShuffle = []
     f.keys().forEach((key) => {
       beforeShuffle.push({
         src: `/masonry/${key}`
       })
     })
-    const faterShuffle = shuffleArray(beforeShuffle)
+    const faterShuffle = this.$store.$shuffleArray(beforeShuffle)
     this.masonryItems.push(...faterShuffle)
   },
   async asyncData({ app, params, errorHandler }) {

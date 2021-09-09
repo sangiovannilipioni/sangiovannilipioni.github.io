@@ -1,7 +1,7 @@
 <template>
   <div id="photoGallery" class="container-lg d-flex justify-content-center">
     <div id="VueMasonry" v-masonry fit-width="true">
-      <div v-masonry-tile class="Item" :key="index" v-for="(item, index) in items">
+      <div v-masonry-tile class="Item" :key="index" v-for="(item, index) in shuffled">
         <nuxt-link v-if="item.to" :to="localePath(item.to)">
           <img class="Img Content masonryImage" :src="item.src" :title="item.title" />
         </nuxt-link>
@@ -56,6 +56,16 @@ export default {
       default: () => [],
       type: Array,
       required: false
+    },
+    shuffle: {
+      default: true,
+      type: Boolean,
+      required: false
+    }
+  },
+  computed: {
+    shuffled() {
+      return this.shuffle ? this.$store.$shuffleArray(this.items) : this.items
     }
   },
   mounted() {
