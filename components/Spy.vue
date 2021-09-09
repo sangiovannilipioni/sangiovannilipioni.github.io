@@ -47,7 +47,7 @@
 
   * {
     padding: 0;
-    font-family: "Ubuntu Mono", monospace;
+    font-family: $fontFamilyMonospace, monospace;
     white-space: nowrap;
     overflow-x: hidden;
     text-overflow: ellipsis;

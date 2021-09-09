@@ -74,7 +74,7 @@ body {
   padding: 0;
 }
 .feedback {
-  font-family: "Ubuntu Mono", monospace;
+  font-family: $fontFamilyMonospace, monospace;
   /* font-size: smaller; */
   width: 50px;
   text-align: right;

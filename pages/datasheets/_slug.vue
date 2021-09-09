@@ -111,7 +111,7 @@ table.excel {
   }
   tbody.breadcrumbs td:first-child {
     color: gray;
-    font-family: "Ubuntu Mono", monospace;
+    font-family: $fontFamilyMonospace, monospace;
     font-size: 11pt;
     white-space: nowrap;
     width: 76px;
@@ -121,12 +121,8 @@ table.excel {
 #_03_dati_metrici_AB {
   td:nth-child(5) {
     text-align: right;
-    font-family: "Ubuntu Mono", monospace;
+    font-family: $fontFamilyMonospace, monospace;
   }
-}
-
-.badge.rounded-pill {
-  font-family: "Ubuntu Mono", monospace;
 }
 </style>
 
@@ -380,7 +376,7 @@ export default {
               if (!cell.text.match(/^[ABC123\-]$/g)) {
                 return undefined
               }
-              return `<span class="badge rounded-pill ${
+              return `<span class='badge rounded-pill ${
                 cell.text === "1" || cell.text === "A"
                   ? "bg-success"
                   : cell.text === "2" || cell.text === "B"
@@ -388,9 +384,10 @@ export default {
                   : cell.text === "3" || cell.text === "C"
                   ? "bg-danger"
                   : "bg-info"
-              }" title="1/A:ottimo 2/B:medio 3/C:scarso"
-              onclick="window.scrollTo(0,document.body.scrollHeight);"
-              style="font-family: \"Ubuntu Mono\", monospace; cursor: pointer;">${cell.text}</span>`
+              }' title='1/A:ottimo 2/B:medio 3/C:scarso'
+                 onclick='window.scrollTo(0,document.body.scrollHeight);'>
+                ${cell.text}
+              </span>`
             }
 
             // special case 1 -------------------------------------------------
@@ -402,10 +399,10 @@ export default {
               // google maps coordinates
               // https://stackoverflow.com/a/3518546/1070215
               if (cell.text.match(/^(-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)$/g)) {
-                cell.html = `<a href="https://www.google.com/maps/search/?api=1&query=${cell.text.replace(
+                cell.html = `<a href='https://www.google.com/maps/search/?api=1&query=${cell.text.replace(
                   " ",
                   ""
-                )}" target="_blank">${cell.text}</a>`
+                )}' target='_blank'>${cell.text}</a>`
               }
               // calc title
               {
@@ -559,11 +556,10 @@ export default {
               text: breadcrumb.id
             }
             formatNumber(breadcrumbCell)
-            breadcrumbCell.html =
-              breadcrumbCell.text +
-              "<span style='float: right; margin-left: 0.5rem; color: lightgray;'>" +
-              breadcrumb.row +
-              "</span>"
+            breadcrumbCell.html = `${breadcrumbCell.text}
+              <span style='float: right; margin-left: 0.5rem; color: lightgray;'>
+                ${breadcrumb.row}
+              </span>`
             row.cells.unshift(breadcrumbCell)
 
             if (!(nextRow.ignore === true)) {
