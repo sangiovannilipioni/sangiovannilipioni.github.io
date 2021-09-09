@@ -68,6 +68,6 @@ export default {
   ,no_longer_answer: "ne répond plus"
 
   ,title : "Titre"
-  ,id : "Code"
-  ,position : "Emplacement"
+  ,id : "Clé"
+  ,position : "Coordonnées GPS"
 }

@@ -66,7 +66,7 @@ export default {
 
   ,title : "Titolo"
   ,id : "Codice"
-  ,position : "Locazione"
+  ,position : "Coordinate GPS"
 }
 
 

@@ -66,6 +66,6 @@ export default {
   ,no_longer_answer: "no longer answer"
 
   ,title : "Title"
-  ,id : "ID"
-  ,position : "Location"
+  ,id : "Key"
+  ,position : "GPS coordinates"
 }
