@@ -13,7 +13,7 @@
           aria-controls="home"
           aria-selected="true"
         >
-          <font-awesome-icon class="text-muted" :icon="['fas', 'map-marker']" />
+          <font-awesome-icon class="text-muted" :icon="['fas', 'map-marker-alt']" />
           {{ $t("map") }}
         </button>
       </li>
@@ -110,29 +110,39 @@
         aria-labelledby="li_list"
       >
         <!-- TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 -->
-        <div class="card" v-for="(unit, key) in units" v-bind:key="key" style="margin: 0.75rem 0; overflow: hidden">
-          <div v-if="unit">
-            <div class="d-flex">
-              <div class="p-2 flex-grow-1">
-                <span v-if="unit.title">
-                  <span class="text-muted" style="font-weight: bold">{{ unit.title }}</span>
-                  <span class="mx-2">|</span>
-                </span>
-                <span>[{{ key }}]</span>
-                <span v-if="unit.hasData">
-                  <span class="mx-2">|</span>
-                  <nuxt-link :to="localePath(`/datasheets/${key}`)">{{ $t("datasheets") }}</nuxt-link>
-                </span>
-                <span v-if="unit.slides">
-                  <span class="mx-2">|</span>
-                  <nuxt-link :to="localePath(`/blueprints/${key}`)">{{ $t("blueprints") }}</nuxt-link>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div v-else class="p-2 flex-grow-1" style="text-align: center">
-            {{ key }}
-          </div>
+        <div class="card table-responsive" style="margin: 0.75rem 0; overflow: hidden">
+          <table v-if="units" class="sortable table table-striped table-hover table-borderless">
+            <thead>
+              <tr>
+                <th scope="col">Address</th>
+                <th scope="col">Id</th>
+                <th scope="col">Blueprints</th>
+                <th scope="col">Datasheets</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(unit, key) in units" v-bind:key="key">
+                <td scope="row">
+                  <span v-if="unit && unit.title">
+                    <span class="text-muted" style="font-weight: bold">{{ unit.title }}</span>
+                  </span>
+                </td>
+                <td scope="row">
+                  <span>{{ key }}</span>
+                </td>
+                <td scope="row">
+                  <span v-if="unit && unit.slides">
+                    <nuxt-link :to="localePath(`/blueprints/${key}`)">{{ $t("blueprints") }}</nuxt-link>
+                  </span>
+                </td>
+                <td scope="row">
+                  <span v-if="unit && unit.hasData">
+                    <nuxt-link :to="localePath(`/datasheets/${key}`)">{{ $t("datasheets") }}</nuxt-link>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <!-- TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 -->
       </div>
@@ -169,6 +179,24 @@ export default {
   computed: {
     tab() {
       return this.$store.state.tab.tab
+    },
+    unitArray() {
+      if (!this.units) {
+        return []
+      } else {
+        const ret = Object.entries(this.units).map(([key, val]) => ({ key, ...val }))
+        console.log(ret)
+        return ret
+      }
+    }
+  },
+  head() {
+    return {
+      script: [
+        {
+          src: "https://cdn.jsdelivr.net/npm/sorttable@latest/sorttable.js"
+        }
+      ]
     }
   },
   methods: {
@@ -305,8 +333,8 @@ export default {
                         height: 100%;
                       "
                     >
-                    <div 
-                      id="otherImage" 
+                    <div
+                      id="otherImage"
                       style="
                         width: 100%;
                         height: 100%;
