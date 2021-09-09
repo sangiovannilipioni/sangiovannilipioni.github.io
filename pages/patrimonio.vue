@@ -423,11 +423,29 @@ export default {
       }
     }
     const f = require.context("../static/masonry", true, /\.jpg$/)
+    // http://stackoverflow.com/questions/20789373/shuffle-array-in-ng-repeat-angular
+    // -> Fisher–Yates shuffle algorithm
+    function shuffleArray(array) {
+      let m = array.length, t, i;
+      // while there remain elements to shuffle
+      while (m) {
+        // pick a remaining element
+        i = Math.floor(Math.random() * m--);
+        // swap it with the current element
+        t = array[m];
+        array[m] = array[i];
+        array[i] = t;
+      }
+      return array;
+    }
+    const beforeShuffle = []
     f.keys().forEach((key) => {
-      this.masonryItems.push({
+      beforeShuffle.push({
         src: `/masonry/${key}`
       })
     })
+    const faterShuffle = shuffleArray(beforeShuffle)
+    this.masonryItems.push(...faterShuffle)
   },
   async asyncData({ app, params, errorHandler }) {
     let units = {},
