@@ -184,6 +184,9 @@
   .monospace {
     font-family: $fontFamilyMonospace, monospace;
   }
+  table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
+    content: " \25B4\25BE" 
+  }  
 }
 </style>
 
@@ -392,6 +395,10 @@ export default {
         if (li) {
           li.addEventListener("shown.bs.tab", this.onTabShown)
         }
+      }
+      if (process.browser) {
+        const el = document.querySelector(".sortable")
+        sorttable.makeSortable(el)
       }
     })
 
