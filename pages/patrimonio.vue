@@ -110,23 +110,23 @@
         aria-labelledby="li_list"
       >
         <!-- TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 -->
-        <div
-          class="card"
-          v-for="(unit, key) in units"
-          v-bind:key="key"
-          style="margin-bottom: 0.75rem; overflow: hidden"
-        >
+        <div class="card" v-for="(unit, key) in units" v-bind:key="key" style="margin: 0.75rem 0; overflow: hidden">
           <div v-if="unit">
             <div class="d-flex">
               <div class="p-2 flex-grow-1">
-                <span>{{ unit.title || key }}</span>
-                <nuxt-link v-if="unit.hasData" :to="localePath(`/datasheets/${key}`)"> [{{ key }}] </nuxt-link>
-                <span v-else class="text-muted">[{{ key }}]</span>
-              </div>
-              <div v-if="unit.imgs && unit.imgs[0]" class="p-2" style="max-width: 30%; text-align: right">
-                <nuxt-link :to="localePath(`/blueprints/${key}`)">
-                  <img class="thmb" :src="`${$axios.defaults.baseURL}/unit/${key}/image/${unit.imgs[0]}`" alt="" />
-                </nuxt-link>
+                <span v-if="unit.title">
+                  <span class="text-muted" style="font-weight: bold">{{ unit.title }}</span>
+                  <span class="mx-2">|</span>
+                </span>
+                <span>[{{ key }}]</span>
+                <span v-if="unit.hasData">
+                  <span class="mx-2">|</span>
+                  <nuxt-link :to="localePath(`/datasheets/${key}`)">{{ $t("datasheets") }}</nuxt-link>
+                </span>
+                <span v-if="unit.slides">
+                  <span class="mx-2">|</span>
+                  <nuxt-link :to="localePath(`/blueprints/${key}`)">{{ $t("blueprints") }}</nuxt-link>
+                </span>
               </div>
             </div>
           </div>
@@ -286,7 +286,7 @@ export default {
                     text: unitkey.slice(0, 2),
                     fontSize: "12px",
                     fontWeight: "bold",
-                    color: "white", 
+                    color: "white",
                     fontFamily: '"Quicksand", sans-serif'
                   }
                 })
@@ -402,7 +402,8 @@ export default {
     })
   },
   async asyncData({ app, params, errorHandler }) {
-    let units = {}, error
+    let units = {},
+      error
     await app.$axios.get("/units.json").then(
       (response) => {
         units = response.data
