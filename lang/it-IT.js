@@ -63,5 +63,10 @@ export default {
   da3: "Gli esiti delle attività comprendono la schedatura del patrimonio analizzato al fine di rendere le informazioni facilmente consultabili e condivisibili, l’indicazione di massima degli interventi da eseguire per il recupero funzionale del patrimonio e la restituzione fotografica e video di alcuni percorsi urbani di interesse culturale e paesaggistico, al fine di ricostruire un percorso virtuale visualizzabile mediante piattaforme web."
 
   ,no_longer_answer: "non risponde più"
+
+  ,title : "Titolo"
+  ,id : "Codice"
+  ,position : "Locazione"
 }
+
 

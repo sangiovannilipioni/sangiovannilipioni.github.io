@@ -64,4 +64,8 @@ export default {
   da3: "The results of the activities include the cataloguing of the analysed heritage in order to make the information easily consultable and shareable, the general indication of the interventions to be carried out for the functional recovery of the heritage and the photographic and video restitution of some urban routes of cultural and landscape interest, in order to reconstruct a virtual route that can be viewed through web platforms."
 
   ,no_longer_answer: "no longer answer"
+
+  ,title : "Title"
+  ,id : "ID"
+  ,position : "Location"
 }

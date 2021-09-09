@@ -114,10 +114,11 @@
           <table v-if="units" class="sortable table table-striped table-hover table-borderless">
             <thead>
               <tr>
-                <th scope="col">Address</th>
-                <th scope="col">Id</th>
-                <th scope="col">Blueprints</th>
-                <th scope="col">Datasheets</th>
+                <th scope="col">{{ $t("title") }}</th>
+                <th scope="col">{{ $t("id") }}</th>
+                <th scope="col">{{ $t("position") }}</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
@@ -129,6 +130,17 @@
                 </td>
                 <td scope="row">
                   <span>{{ key }}</span>
+                </td>
+                <td scope="row">
+                  <div v-if="unit && unit.position">
+                    <a
+                      :href="`https://www.google.com/maps/search/?api=1&query=${unit.position.lat},${unit.position.lng}`"
+                      target="_googleMaps"
+                    >
+                      <font-awesome-icon class="text-muted" :icon="['fas', 'map-marker-alt']" />
+                    </a>
+                    <span class="monospace">{{ unit.position.lat }} - {{ unit.position.lng }}</span>
+                  </div>
                 </td>
                 <td scope="row">
                   <span v-if="unit && unit.slides">
@@ -168,6 +180,9 @@
   }
   .binome {
     height: calc(100vh - (80px + #{$footerHeight} + #{$headerHeight}));
+  }
+  .monospace {
+    font-family: $fontFamilyMonospace, monospace;
   }
 }
 </style>
@@ -426,17 +441,19 @@ export default {
     // http://stackoverflow.com/questions/20789373/shuffle-array-in-ng-repeat-angular
     // -> Fisher–Yates shuffle algorithm
     function shuffleArray(array) {
-      let m = array.length, t, i;
+      let m = array.length,
+        t,
+        i
       // while there remain elements to shuffle
       while (m) {
         // pick a remaining element
-        i = Math.floor(Math.random() * m--);
+        i = Math.floor(Math.random() * m--)
         // swap it with the current element
-        t = array[m];
-        array[m] = array[i];
-        array[i] = t;
+        t = array[m]
+        array[m] = array[i]
+        array[i] = t
       }
-      return array;
+      return array
     }
     const beforeShuffle = []
     f.keys().forEach((key) => {

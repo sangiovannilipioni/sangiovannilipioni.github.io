@@ -66,4 +66,8 @@ export default {
   da3: "Les résultats des activités comprennent le catalogage du patrimoine analysé afin de rendre l'information facilement consultable et partageable, l'indication générale des interventions à effectuer pour la récupération fonctionnelle du patrimoine et la restitution photographique et vidéo de certains itinéraires urbains d'intérêt culturel et paysager, afin de reconstruire un itinéraire virtuel qui peut être visualisé à travers des plateformes web."
 
   ,no_longer_answer: "ne répond plus"
+
+  ,title : "Titre"
+  ,id : "Code"
+  ,position : "Emplacement"
 }
