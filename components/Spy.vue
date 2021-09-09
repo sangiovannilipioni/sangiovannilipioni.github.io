@@ -47,7 +47,7 @@
 
   * {
     padding: 0;
-    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-family: "Ubuntu Mono", monospace;
     white-space: nowrap;
     overflow-x: hidden;
     text-overflow: ellipsis;

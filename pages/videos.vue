@@ -26,6 +26,10 @@
     </div>
   </div>
 </template>
+
+<style>
+</style>
+
 <script>
 export default {
   data() {
@@ -41,17 +45,3 @@ export default {
   fetchOnServer: false
 }
 </script>
-<style>
-/* 
-.card {
-  background-color: rgba(255, 255, 255, 0.2) !important;
-}
-
-.card img {
-  cursor: pointer;
-}
-.card-text {
-  font-size: smaller;
-}
-*/
-</style>

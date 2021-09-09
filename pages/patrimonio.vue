@@ -257,7 +257,7 @@ export default {
               const unitkey = key
               const unititle = unit.title || key
               if (unit && unitkey && unititle) {
-                let content = `<p>
+                let content = `<div style='font-family: "Quicksand", sans-serif'><p>
                     ${unititle} [${key}]
                   </p>
                   <p>
@@ -269,7 +269,7 @@ export default {
                     <a href="${this.localePath(`/datasheets/${unitkey}`)}">
                       ${this.$t("gotoDatasheets")}
                     </a>
-                  </p>`
+                  </p></div>`
                 if (unit.hasData) {
                   content = content + contentPlus
                 }
@@ -283,9 +283,11 @@ export default {
                   position: unit.position,
                   map,
                   label: {
-                    text: unititle,
-                    fontSize: "16px",
-                    fontFamily: '"Poppins", sans-serif'
+                    text: unitkey.slice(0, 2),
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    color: "white", 
+                    fontFamily: '"Quicksand", sans-serif'
                   }
                 })
 

@@ -111,8 +111,8 @@ table.excel {
   }
   tbody.breadcrumbs td:first-child {
     color: gray;
-    font-family: "Courier New", monospace;
-    font-size: 12pt;
+    font-family: "Ubuntu Mono", monospace;
+    font-size: 11pt;
     white-space: nowrap;
     width: 76px;
   }
@@ -121,12 +121,12 @@ table.excel {
 #_03_dati_metrici_AB {
   td:nth-child(5) {
     text-align: right;
-    font-family: monospace;
+    font-family: "Ubuntu Mono", monospace;
   }
 }
 
 .badge.rounded-pill {
-  font-family: Courier New, monospace;
+  font-family: "Ubuntu Mono", monospace;
 }
 </style>
 
@@ -390,7 +390,7 @@ export default {
                   : "bg-info"
               }" title="1/A:ottimo 2/B:medio 3/C:scarso"
               onclick="window.scrollTo(0,document.body.scrollHeight);"
-              style="font-family: Courier New, monospace; cursor: pointer;">${cell.text}</span>`
+              style="font-family: \"Ubuntu Mono\", monospace; cursor: pointer;">${cell.text}</span>`
             }
 
             // special case 1 -------------------------------------------------

@@ -152,9 +152,10 @@ export default {
   ],
 
   googleFonts: {
-    /*download: true,*/
+    /* download: true, */
     families: {
-      Poppins: [400, 600]
+      "Quicksand": [400, 600],
+      "Ubuntu Mono": [400]
     }
   },
 
@@ -200,17 +201,16 @@ export default {
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
-    // https://go.nuxtjs.dev/bootstrap
-    // "bootstrap-vue/nuxt",
     // https://content.nuxtjs.org/
     "@nuxt/content",
-    // https://auth.nuxtjs.org/guide/setup
+    // https://axios.nuxtjs.org/
     "@nuxtjs/axios",
+    // https://auth.nuxtjs.org/guide/setup
     "@nuxtjs/auth-next",
-    //
+    // https://i18n.nuxtjs.org/
     "nuxt-i18n",
-    //
-    "cookie-universal-nuxt",
+    // https://github.com/microcipcip/cookie-universal/tree/master/packages/cookie-universal-nuxt
+    "cookie-universal-nuxt"
   ],
 
   i18n: {
@@ -249,7 +249,7 @@ export default {
 
   auth: {
     redirect: {
-      login: "/",
+      login: "/login",
       logout: "/",
       home: "/"
     },
