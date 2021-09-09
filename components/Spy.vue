@@ -1,5 +1,5 @@
 <template>
-  <div v-if="devMode || ($auth.user && $auth.user.email === 'christophe.thiebaud@alumni.insead.edu')">
+  <div v-if="forceShow || devMode || ($auth.user && $auth.user.email === 'christophe.thiebaud@alumni.insead.edu')">
     <div class="dropdown-divider"></div>
     <div class="ellipsed card card-body m-2 p-1">
       <div v-if="devMode" class="dropdown-item">
@@ -69,7 +69,7 @@ export default {
       gitShaAPI: this.$config.gitShaAPI,
       gitUrl: `https://github.com/sangiovannilipioni/sangiovannilipioni.github.io/commit/${this.$config.gitSha}`,
       gitUrlAPI: `https://github.com/sangiovannilipioni/sangiovannilipioni.api/commit/${this.$config.gitShaAPI}`,
-      version: this.$config.packageVersion
+      version: this.$config.packageVersion,
     }
   },
   methods: {
@@ -82,6 +82,13 @@ export default {
       const date = new Date(this.$config.generationTimestamp * 1000)
       const fornatted = date.toString()
       return fornatted
+    }
+  },
+  props: {
+    forceShow: {
+      default: false,
+      type: Boolean,
+      required: false
     }
   }
 }
