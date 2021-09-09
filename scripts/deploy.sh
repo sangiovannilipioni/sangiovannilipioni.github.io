@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -e
 # https://sangsoonam.github.io/2019/02/08/using-git-worktree-to-deploy-github-pages.html
 

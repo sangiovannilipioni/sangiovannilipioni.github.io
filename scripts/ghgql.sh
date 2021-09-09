@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 if [ ! -f $1 ] || [ $# -ne 1 ]
 then
