@@ -15,12 +15,16 @@ fi
 rm -rf deploy
 mkdir deploy
 cd deploy
+pwd
 git clone https://github.com/sangiovannilipioni/sangiovannilipioni.github.io.git
 cd sangiovannilipioni.github.io
-cp ../../.env .
+if test -f "../../.env"; then
+  cp ../../.env .
+fi
 yarn install
 yarn generate
 cd dist
+pwd
 git init
 git add -A
 git commit -m "generated on `date +'%Y-%m-%d %H:%M:%S'`"
