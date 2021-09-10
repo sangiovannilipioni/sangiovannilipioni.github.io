@@ -3,11 +3,11 @@
   "version": "0.5.3",
   "private": true,
   "scripts": {
-    "dev": ". ./scripts/setEnv.sh && nuxt",
+    "dev": "bash ./scripts/setEnv.sh && nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": ". ./scripts/setEnv.sh && nuxt generate",
-    "deploy": ". ./scripts/deploy.sh"
+    "generate": "bash ./scripts/setEnv.sh && nuxt generate",
+    "deploy": "bash ./scripts/deploy.sh"
   },
   "dependencies": {
     "@nuxt/content": "^1.14.0",
