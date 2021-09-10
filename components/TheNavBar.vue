@@ -92,7 +92,7 @@
               </div>
             </li>
             <li v-else right="" class="nav-item">
-              <nuxt-link :to="('/login')" target="_self" class="nav-link">
+              <nuxt-link :to="localePath('/login')" target="_self" class="nav-link">
                 <span style="white-space: nowrap" class="nav-item">
                   {{ $t("signIn") }}
                 </span>
