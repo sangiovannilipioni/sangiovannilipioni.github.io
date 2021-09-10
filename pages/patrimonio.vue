@@ -75,7 +75,7 @@
           <div
             id="map"
             class="col border d-flex justify-content-center align-items-center"
-            style="background: transparent"
+            style="background: transparent; min-height: 50vh"
           >
             <div>
               <font-awesome-icon :icon="['fas', 'spinner']" class="fa-spin" />
@@ -100,7 +100,7 @@
         aria-labelledby="li_masonry"
       >
         <!-- TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 -->
-        <masonry-div :items="masonryItems" :shuffle="false"/>
+        <masonry-div :items="masonryItems" :shuffle="false" />
         <!-- TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 TAB 2 -->
       </div>
       <div
@@ -343,36 +343,49 @@ export default {
                   }
                 })
 
-                marker.addListener("click", (e) => {
-                  infowindow.open({
-                    anchor: marker,
-                    map,
-                    shouldFocus: false
-                  })
-                  if (document.getElementById("otherImage")) {
-                    document.getElementById("otherImage").remove()
-                  }
-                  const innerHTML = `<a href="${this.localePath(`/blueprints/${unitkey}`)}" style="
-                        width: 100%;
-                        height: 100%;
-                      "
-                    >
-                    <div
+                {
+                  marker.addListener("click", (e) => {
+                    infowindow.open({
+                      anchor: marker,
+                      map,
+                      shouldFocus: false
+                    })
+                    if (document.getElementById("otherImage")) {
+                      document.getElementById("otherImage").remove()
+                    }
+                    let innerHTML = "no image"
+                    if (unit.imgs && unit.imgs[0]) {
+                      const imgURL = `${this.$axios.defaults.baseURL}/unit/${unitkey}/image/${unit.imgs[0]}`
+                      innerHTML = `<a href="${this.localePath(`/blueprints/${unitkey}`)}" style="
+                          width: 100%;
+                          height: 100%;
+                          position: relative;">
+                        <img style="
+                          object-fit: cover;
+                          object-position: 50% 50%;
+                          height: 100%;
+                          width: 100%;
+                        "
+                        src="${imgURL}"
+                        >
+                        </img>
+                        <!-- div
                       id="otherImage"
                       style="
                         width: 100%;
                         height: 100%;
                         background-size: cover;
                         background: no-repeat center center url(${this.$axios.defaults.baseURL}/unit/${unitkey}/image/${
-                    unit.imgs[0]
-                  });
+                        unit.imgs[0]
+                      });
                       "
                     >
-                    </div>
-                  </a>
-                  `
-                  document.getElementById("pano").innerHTML = innerHTML
-                })
+                    </div -->
+                      </a>`
+                    }
+                    document.getElementById("pano").innerHTML = innerHTML
+                  })
+                }
               }
             }
           }
