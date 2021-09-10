@@ -1,5 +1,5 @@
 <template>
-  <div id="backButton" class="container" @click="backOnEscape">
+  <div id="backButton" class="container-lg" @click="backOnEscape">
     <div v-if="$auth.$state.redirect" role="alert" class="alert alert-info">
       You have to login before accessing to
       <strong>{{ $auth.$state.redirect }}</strong>
@@ -55,7 +55,6 @@
 import { mapState } from "vuex"
 
 export default {
-  middleware: ["auth"],
   data() {
     return {
       loading: false

@@ -3,7 +3,7 @@
     <div v-html="src" class="logo w-100 blurp d-flex justify-content-center align-items-center"></div>
     <Nuxt style="z-index: 1000" />
     <footer class="fixed-bottom">
-      <div class="text-muted px-2">
+      <div class="text-muted text-center px-2">
         <div style="whitespace: nowrap">Associazione <b>Nessuno Escluso</b> APS</div>
       </div>
     </footer>
