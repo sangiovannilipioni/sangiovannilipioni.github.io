@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "bash -c '. ./scripts/envSet.sh; . ./scripts/envEcho.sh; nuxt'",
-    "build": "nuxt build",
+    "build": "bash -c '. ./scripts/envSet.sh; . ./scripts/envEcho.sh; nuxt build'",
     "start": "nuxt start",
     "generate": "bash -c '. ./scripts/envSet.sh; . ./scripts/envEcho.sh; nuxt generate'",
     "deploy": "bash -c '. ./scripts/deploy.sh'"
