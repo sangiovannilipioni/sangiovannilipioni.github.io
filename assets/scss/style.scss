@@ -82,7 +82,7 @@ main[role="main"] {
     margin-top: 1rem;
   }
   main[role="main"].not-home {
-    margin-top: 1rem;
+    margin-top: .5rem;
   }
   .navbar {
     padding: 0;
@@ -161,7 +161,7 @@ main[role="main"] {
       flex-direction: column;
       flex-wrap: nowrap;
       overflow: scroll;
-      max-height: calc(100vh - (#{$footerHeight} + #{$headerHeight}));
+      max-height: calc(100vh - 12px - (#{$headerHeight})); /* #{$footerHeight} +  */
 
       > div {
         width: 100%;
@@ -178,7 +178,7 @@ main[role="main"] {
   }
 
   .swiper#swiperThumbs {
-    margin: 0.5rem 0 !important;
+    margin: 0 0 0.5rem 0 !important;
     padding: 0.25rem 0;
     background-color: #f7f7f7;
     border: 1px dotted #bfbfbf;

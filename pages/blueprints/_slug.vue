@@ -36,6 +36,13 @@
   width: 100vh;
   height: auto;
 }
+
+.binome > .col:first-child > img {
+  object-fit: cover;
+  object-position: 50% 50%;
+  height: 100%;
+  width: 100%;
+}
 </style>
 
 <script>
@@ -54,7 +61,8 @@ export default {
     }
   },
   async asyncData({ app, params, errorHandler }) {
-    let units = {}, error
+    let units = {},
+      error
     await app.$axios.get("/units.json").then(
       (response) => {
         if (!response.data[params.slug]) errorHandler({ statusCode: 404 })

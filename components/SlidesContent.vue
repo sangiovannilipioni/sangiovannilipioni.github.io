@@ -1,10 +1,6 @@
 <template>
   <client-only>
-    <div id="slidesContent" class="mySlides container-lg">
-      <h1 class="m-4" style="text-align: center">
-        <strong>Nessuno Escluso</strong>
-      </h1>
-
+    <div id="slidesContent" class="mySlides">
       <swiper
         :navigation="true"
         id="swiperThumbs"
