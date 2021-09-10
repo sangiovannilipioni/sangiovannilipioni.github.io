@@ -254,6 +254,7 @@ export default {
       logout: "/",
       home: "/"
     },
+    plugins: ["~/plugins/auth.js"],
     strategies: {
       facebook: {
         endpoints: {
