@@ -114,10 +114,6 @@ export default {
     return {
       devMode: this.$config.dev,
     }
-  },
-  methods: {
-  },
-  computed: {
   }
 }
 </script>
