@@ -123,10 +123,10 @@ export default {
     "~/plugins/global.js",
     "~/plugins/persistedState",
     { src: "./plugins/vue-awesome-swiper.client.js", mode: "client" },
-    { src: "~/plugins/medium-zoom", mode: "client" },
-    { src: "~/plugins/vue-masonry.js", mode: "client" },
+    { src: "~/plugins/medium-zoom.client.js", mode: "client" },
+    { src: "~/plugins/vue-masonry.client.js", mode: "client" },
     { src: "~/plugins/vue-pdf.client.js", mode: "client" },
-    { src: "~/plugins/vue-plyr.js", mode: "client" }
+    { src: "~/plugins/vue-plyr.client.js", mode: "client" }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -135,12 +135,12 @@ export default {
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     "@nuxt/image",
-    "@nuxtjs/pwa",
     "@nuxtjs/fontawesome",
     "@nuxtjs/google-analytics",
+    "@nuxtjs/google-fonts",
+    "@nuxtjs/pwa",
     "@nuxtjs/style-resources",
-    "@nuxtjs/svg",
-    "@nuxtjs/google-fonts"
+    "@nuxtjs/svg"
   ],
 
   googleFonts: {
