@@ -2,7 +2,6 @@ body {
   font-family: $fontFamily, sans-serif;
 }
 
-/* https://stackoverflow.com/a/25410621/1070215 */
 .footer {
   > div > div:last-child > div {
     white-space: nowrap;
@@ -32,7 +31,6 @@ body {
   }
 }
 
-/* navbar */
 .navbar li.nav-item {
   background-color: #efefef;
   padding: 0 1rem;
@@ -82,7 +80,7 @@ main[role="main"] {
     margin-top: 1rem;
   }
   main[role="main"].not-home {
-    margin-top: .5rem;
+    margin-top: 0.5rem;
   }
   .navbar {
     padding: 0;
@@ -161,7 +159,7 @@ main[role="main"] {
       flex-direction: column;
       flex-wrap: nowrap;
       overflow: scroll;
-      max-height: calc(100vh - 12px - (#{$headerHeight})); /* #{$footerHeight} +  */
+      max-height: calc(100vh - 12px - (#{$headerHeight}));
 
       > div {
         width: 100%;

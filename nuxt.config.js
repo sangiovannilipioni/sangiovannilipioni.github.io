@@ -4,9 +4,6 @@ export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: "static",
 
-  /*
-   ** Customize the progress-bar color
-   */
   loading: { color: "#fff" },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -23,8 +20,6 @@ export default {
       },
       { name: "msapplication-TileColor", content: "#da532c" },
       { name: "theme-color", content: "#ffffff" },
-      /* Search Engine */
-
       {
         hid: "description",
         name: "description",
@@ -37,7 +32,7 @@ export default {
         content: "https://sangiovannilipioni.net/_nuxt/img/panoramix2.b0cd889.jpg"
       },
 
-      /* Schema.org for Google */
+      // Schema.org for Google
 
       { hid: "name", name: "name", content: "Nessuno Escluso" },
       {
@@ -52,7 +47,7 @@ export default {
         content: "https://sangiovannilipioni.net/_nuxt/img/panoramix2.b0cd889.jpg"
       },
 
-      /* Open Graph general (Facebook, Pinterest & Google+) */
+      // Open Graph general (Facebook, Pinterest & Google+)
 
       { hid: "og:title", name: "og:title", content: "Nessuno Escluso" },
       {
@@ -79,9 +74,6 @@ export default {
       { hid: "fb:admins", name: "fb:admins", content: "708154592" },
       { hid: "fb:app_id", name: "fb:app_id", content: "104250825478" },
       { hid: "og:type", name: "og:type", content: "website" },
-
-      /* CT */
-
       { hid: "og:image:type", name: "og:image:type", content: "image/jpeg" },
       { hid: "og:image:width", name: "og:image:width", content: "1600" },
       { hid: "og:image:height", name: "og:image:height", content: "1200" }
@@ -152,7 +144,6 @@ export default {
   ],
 
   googleFonts: {
-    /* download: true, */
     families: {
       "Libre Franklin": [400, 700],
       "Ubuntu Mono": [400]
@@ -161,7 +152,6 @@ export default {
 
   pwa: {
     meta: {
-      /* meta options */
       theme_color: "#cce18d"
     }
   },
@@ -267,9 +257,7 @@ export default {
   },
 
   content: {
-    markdown: {
-      /* remarkPlugins: [["remark-emoji", { emoticon: true }]] */
-    }
+    markdown: {}
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)

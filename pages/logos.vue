@@ -75,7 +75,6 @@ body {
 }
 .feedback {
   font-family: $fontFamilyMonospace, monospace;
-  /* font-size: smaller; */
   width: 50px;
   text-align: right;
 }

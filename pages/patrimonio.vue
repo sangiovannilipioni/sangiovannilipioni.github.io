@@ -262,7 +262,6 @@ export default {
           const map = await new google.maps.Map(mapElement, {
             center: { lat: 41.8442301, lng: 14.5618596 },
             zoom: this.zoom,
-            /* disableDefaultUI: true, */
             mapTypeControl: false,
             streetViewControl: false,
             styles: [

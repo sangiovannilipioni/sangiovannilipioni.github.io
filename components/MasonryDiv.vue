@@ -28,7 +28,6 @@
     overflow: hidden;
     border-radius: 4px;
     width: 334px;
-    /* background: #f5f5f5; */
   }
   .Content {
     padding: 10px 10px 0 10px;

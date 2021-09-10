@@ -68,7 +68,6 @@ export default {
       const map = await new google.maps.Map(mapElement, {
         center: farmacia.position,
         zoom: this.zoom,
-        /* disableDefaultUI: true, */
         mapTypeControl: false,
         streetViewControl: false
       })
