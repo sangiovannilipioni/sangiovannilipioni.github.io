@@ -1,6 +1,7 @@
 <template>
   <div id="patrimonio" class="container-lg">
     <h1 v-if="error" class="alert alert-warning">{{ error }}</h1>
+
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
         <button
@@ -71,11 +72,10 @@
         aria-labelledby="li_map"
       >
         <!-- TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 TAB 1 -->
-        <div style="width: 100%; margin: 2rem 0" class="binome">
+        <div class="binome">
           <div
             id="map"
             class="col border d-flex justify-content-center align-items-center"
-            style="background: transparent; min-height: 50vh"
           >
             <div>
               <font-awesome-icon :icon="['fas', 'spinner']" class="fa-spin" />
@@ -85,7 +85,6 @@
             <div
               id="pano"
               class="col border d-flex justify-content-center align-items-center"
-              style="background: transparent; padding: 0 !important"
             >
               <span class="text-muted">{{ $t("helpPatrimoine") }}</span>
             </div>
@@ -110,7 +109,7 @@
         aria-labelledby="li_list"
       >
         <!-- TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 TAB 3 -->
-        <div class="card table-responsive" style="margin: 0.75rem 0">
+        <div class="card table-responsive">
           <table id="listTable" v-if="units" class="sortable table table-striped table-hover table-borderless">
             <thead>
               <tr>
@@ -174,12 +173,23 @@
 
 <style lang="scss">
 #patrimonio {
+  #myTabContent {
+    padding-top: 1rem;
+  }
   .thmb {
     max-width: 300px;
     height: auto;
   }
   .binome {
     height: calc(100vh - (80px + #{$footerHeight} + #{$headerHeight}));
+    #map {
+      background: transparent; 
+      min-height: 50vh;
+    }
+    #pano {
+      background: transparent; 
+      padding: 0 !important;
+    }
   }
   .monospace {
     font-family: $fontFamilyMonospace, monospace;
@@ -368,18 +378,6 @@ export default {
                         src="${imgURL}"
                         >
                         </img>
-                        <!-- div
-                      id="otherImage"
-                      style="
-                        width: 100%;
-                        height: 100%;
-                        background-size: cover;
-                        background: no-repeat center center url(${this.$axios.defaults.baseURL}/unit/${unitkey}/image/${
-                        unit.imgs[0]
-                      });
-                      "
-                    >
-                    </div -->
                       </a>`
                     }
                     document.getElementById("pano").innerHTML = innerHTML
