@@ -34,12 +34,6 @@ h1 {
 </style>
 
 <script>
-function gm_authFailure() {
-  console.log("gm_authFailure!")
-}
-</script>
-
-<script>
 export default {
   // https://dev.to/bawa93/troubleshooting-and-adding-google-maps-to-individual-nuxt-js-pages-1d34
   // https://dev.to/bawa_geek/how-to-use-google-maps-in-nuxt-js-project-without-any-package-or-heavy-library-26gh
@@ -131,8 +125,19 @@ export default {
       __nuxt
       const script0 = document.createElement("script")
       script0.appendChild(
-        document.createTextNode(
-          "function gm_authFailure() {console.log('gm_authFailure!');document.getElementById('map').remove();document.getElementById('pano').remove();}"
+        document.createTextNode(`
+          function gm_authFailure(e) {
+            console.log('gm_authFailure', '[from text node in index.vue]')
+            const mapEl = document.getElementById('map')
+            if (mapEl) {
+              mapEl.innerHTML = "Google Maps Auth Failure"
+            }; 
+            const panoEl = document.getElementById('pano')
+            if (panoEl) {
+              panoEl.innerHTML = '🙁'
+            }
+            // throw new Error("Google Auth Failure"); 
+          }`
         )
       )
       script0.type = "text/javascript"

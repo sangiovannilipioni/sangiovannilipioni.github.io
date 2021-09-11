@@ -424,8 +424,19 @@ export default {
       __nuxt
       const script0 = document.createElement("script")
       script0.appendChild(
-        document.createTextNode(
-          "function gm_authFailure() {console.log('gm_authFailure!');document.getElementById('map').remove();document.getElementById('pano').remove();}"
+        document.createTextNode(`
+          function gm_authFailure(e) {
+            console.log('gm_authFailure', '[from text node in patrimonio.vue]')
+            const mapEl = document.getElementById('map')
+            if (mapEl) {
+              mapEl.innerHTML = "Google Maps Auth Failure"
+            }; 
+            const panoEl = document.getElementById('pano')
+            if (panoEl) {
+              panoEl.innerHTML = '🙁'
+            }
+            // throw new Error("Google Auth Failure"); 
+          }`
         )
       )
       script0.type = "text/javascript"

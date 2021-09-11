@@ -163,6 +163,7 @@ export default {
         "faArrowRight",
         "faCode",
         "faDatabase",
+        "faDizzy",
         "faExternalLinkAlt",
         "faImages",
         "faIndustry",
