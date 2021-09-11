@@ -12,10 +12,10 @@
               <nuxt-img v-else class="img-fluid" :src="c.img" alt="" />
 
               <div class="card-body">
-                <a v-if="c.slug && c.slug != '#'" :href="c.slug" :target="'_' + c.key" class="card-text" style="">
+                <a v-if="c.slug && c.slug != '#'" :href="c.slug" :target="'_' + c.key" class="card-text">
                   {{ c.name }}
                 </a>
-                <p v-else class="card-text" style="">
+                <p v-else class="card-text">
                   {{ c.name }}
                 </p>
               </div>

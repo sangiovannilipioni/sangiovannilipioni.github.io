@@ -3,24 +3,24 @@
     <div class="dropdown-divider"></div>
     <div class="ellipsed card card-body m-2 p-1">
       <div v-if="devMode" class="dropdown-item">
-        <font-awesome-icon :icon="['fas', 'code']" style="" />
+        <font-awesome-icon :icon="['fas', 'code']" />
         <span>Development</span>
       </div>
       <div v-else class="dropdown-item">
-        <font-awesome-icon :icon="['fas', 'industry']" style="" />
+        <font-awesome-icon :icon="['fas', 'industry']" />
         <span>Production</span>
       </div>
       <div class="dropdown-item">
-        <font-awesome-icon :icon="['fas', 'marker']" style="" />
+        <font-awesome-icon :icon="['fas', 'marker']" />
         <span>{{ version }}</span>
       </div>
       <a class="dropdown-item" :href="gitUrl" target="_github">
-        <font-awesome-icon :icon="['fab', 'github']" style="" />
+        <font-awesome-icon :icon="['fab', 'github']" />
         <span>{{ abbrev(gitSha) }}</span>
         <span class="text-muted">{{ gitDirty }}</span>
       </a>
       <a class="dropdown-item" :href="`${axiosBaseURL}/units.json`" target="_api">
-        <font-awesome-icon :icon="['fas', 'database']" style="" />
+        <font-awesome-icon :icon="['fas', 'database']" />
         {{ axiosBaseURL }}
       </a>
       <a v-if="gitShaAPI" class="dropdown-item" :href="gitUrlAPI" target="_github_api">
@@ -32,7 +32,7 @@
         <span>{{ abbrev(gitShaAPI) }}</span>
       </div>
       <div class="dropdown-item">
-        <font-awesome-icon :icon="['fas', 'server']" style="" />
+        <font-awesome-icon :icon="['fas', 'server']" />
         <span>{{ generationTimestampAsString }}</span>
       </div>
     </div>
@@ -69,7 +69,7 @@ export default {
       gitShaAPI: this.$config.gitShaAPI,
       gitUrl: `https://github.com/sangiovannilipioni/sangiovannilipioni.github.io/commit/${this.$config.gitSha}`,
       gitUrlAPI: `https://github.com/sangiovannilipioni/sangiovannilipioni.api/commit/${this.$config.gitShaAPI}`,
-      version: this.$config.packageVersion,
+      version: this.$config.packageVersion
     }
   },
   methods: {
