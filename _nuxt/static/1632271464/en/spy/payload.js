@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/en/spy", {data:[{_img:{}}],fetch:{},mutations:[]});

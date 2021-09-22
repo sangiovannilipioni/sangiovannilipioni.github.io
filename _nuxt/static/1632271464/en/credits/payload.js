@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/en/credits", {data:[{_img:{}}],fetch:{},mutations:[]});

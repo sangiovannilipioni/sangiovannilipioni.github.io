@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/slides", {data:[{_img:{}}],fetch:{},mutations:[]});

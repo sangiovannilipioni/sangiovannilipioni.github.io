@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/fr/videos", {data:[{_img:{}}],fetch:{},mutations:[]});

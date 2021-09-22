@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/en/logos", {data:[{_img:{}}],fetch:{},mutations:[]});

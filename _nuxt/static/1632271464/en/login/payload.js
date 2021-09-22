@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/en/login", {data:[{_img:{}}],fetch:{},mutations:[]});
