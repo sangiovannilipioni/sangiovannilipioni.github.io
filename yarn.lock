@@ -5291,6 +5291,11 @@ imagesloaded@4.1.4, imagesloaded@^4.1.4:
   dependencies:
     ev-emitter "^1.0.0"
 
+immutable@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.0.0.tgz#b86f78de6adef3608395efb269a91462797e2c23"
+  integrity sha512-zIE9hX70qew5qTUjSS7wi1iwj/l7+m54KWU247nhM3v806UdGj1yDndXj+IOYxxtW9zyLI+xqFNZjTuDaLUqFw==
+
 import-cwd@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/import-cwd/-/import-cwd-2.1.0.tgz#aa6cf36e722761285cb371ec6519f53e2435b0a9"
@@ -9123,12 +9128,13 @@ sass-resources-loader@^2.2.4:
     glob "^7.1.6"
     loader-utils "^2.0.0"
 
-sass@^1.42.0:
-  version "1.42.0"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.42.0.tgz#dc485e5cf7890a22fd6ccc6856c64f297239d595"
-  integrity sha512-kcjxsemgaOnfl43oZgO/IePLvXQI0ZKzo0/xbCt6uyrg3FY/FF8hVK9YoO8GiZBcEG2Ebl79EKnUc+aiE4f2Vw==
+sass@^1.44.0:
+  version "1.44.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.44.0.tgz#619aa0a2275c097f9af5e6b8fe8a95e3056430fb"
+  integrity sha512-0hLREbHFXGQqls/K8X+koeP+ogFRPF4ZqetVB19b7Cst9Er8cOR0rc6RU7MaI4W1JmUShd1BPgPoeqmmgMMYFw==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
+    immutable "^4.0.0"
 
 sax@>=0.6.0, sax@~1.2.4:
   version "1.2.4"
