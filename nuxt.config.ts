@@ -1,6 +1,7 @@
 import { version } from "./package.json"
+import { defineNuxtConfig } from '@nuxt/bridge'
 
-export default {
+export default defineNuxtConfig({
   // Target (https://go.nuxtjs.dev/config-target)
   target: "static",
 
@@ -183,6 +184,8 @@ export default {
     }
   },
 
+  // TODO
+  // https://www.carlcassar.com/articles/add-google-analytics-to-a-nuxt-js-app/
   googleAnalytics: {
     id: "UA-163898058-3"
   },
@@ -303,4 +306,4 @@ export default {
   generate: {
     fallback: true
   }
-}
+})
