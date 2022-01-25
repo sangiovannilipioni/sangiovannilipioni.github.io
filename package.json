@@ -19,7 +19,7 @@
     "bootstrap": "^5.1.1",
     "cookie-universal-nuxt": "^2.1.5",
     "core-js": "^3.18.0",
-    "fibers": "^5.0.0",
+    "fibers": "^5.0.1",
     "glob-parent": "^6.0.2",
     "imagesloaded": "^4.1.4",
     "intrinsic-scale": "^3.0.4",
