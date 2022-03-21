@@ -6985,10 +6985,10 @@ mute-stream@0.0.8:
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.8.tgz#1630c42b2251ff81e2a283de96a5497ea92e5e0d"
   integrity sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==
 
-n@^8.0.1:
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/n/-/n-8.0.1.tgz#fb2cb4cedd107f54dc1c5b4ef64cafedd1d619ed"
-  integrity sha512-vbISQMhNQILeHdAyGT59BOP6Jl1nl6dQiVa0LZFQKCnCJPKWHZwOpMUkqfU1lD7Xt/wEnUfT3Bdfo8/Xm9qqdQ==
+n@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/n/-/n-8.1.0.tgz#4cda2992841db28e4d24335b985fe6df31dbedb7"
+  integrity sha512-J8cb9e3Hb75Qs6cZ+McFY9toh+X3PnJOzyKMacC11etNo61bucIMAH+uuHrFCD3ELIdmcq9AAkoljowViCJMLw==
 
 nan@^2.12.1:
   version "2.15.0"
@@ -9150,10 +9150,10 @@ sass-resources-loader@^2.2.4:
     glob "^7.1.6"
     loader-utils "^2.0.0"
 
-sass@^1.41.1:
-  version "1.45.1"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.45.1.tgz#fa03951f924d1ba5762949567eaf660e608a1ab0"
-  integrity sha512-pwPRiq29UR0o4X3fiQyCtrESldXvUQAAE0QmcJTpsI4kuHHcLzZ54M1oNBVIXybQv8QF2zfkpFcTxp8ta97dUA==
+sass@^1.42.0:
+  version "1.49.9"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.49.9.tgz#b15a189ecb0ca9e24634bae5d1ebc191809712f9"
+  integrity sha512-YlYWkkHP9fbwaFRZQRXgDi3mXZShslVmmo+FVK3kHLUELHHEYrCmL1x6IUjC7wLS6VuJSAFXRQS/DxdsC4xL1A==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
